@@ -8,7 +8,7 @@ Actual Version is 0.8.0.
 
 ## Licence
 
-New BSD License.
+Apache 2 License.
 
 ## Technology Stack
 
