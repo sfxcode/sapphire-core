@@ -71,6 +71,11 @@ Expressions are resolved by JUEL.
 - Simple load from controller
 - Value Factory for using expressions inside fxml
 
+### TODO
+
+- Documentation
+- g8 template
+- automatic binding for more node types (currently: Label, TextField, TextArea, CheckBox)
 
 ## Demos
 
