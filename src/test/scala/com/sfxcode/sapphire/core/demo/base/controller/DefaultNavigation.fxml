@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.base.controller.DefaultNavigationController">
+    <children>
+        <HBox layoutY="-10.0" prefHeight="40.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button fx:id="" mnemonicParsing="false" onAction="#actionWorkspace1" text="Workspace 1" />
+                <Button mnemonicParsing="false" onAction="#actionWorkspace2" text="Workspace 2" />
+                <Button mnemonicParsing="false" onAction="#actionWorkspace3" text="Workspace 3" />
+                <Button mnemonicParsing="false" onAction="#actionToggleNavigation" text="Switch Navigation" />
+            </children>
+            <padding>
+                <Insets left="10.0" top="5.0" />
+            </padding>
+        </HBox>
+    </children>
+</AnchorPane>

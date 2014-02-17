@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.sfxcode.sapphire.core.scene.control.cell.ListCellFactory?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
+            styleClass="workspace1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sfxcode.sapphire.core.demo.base.controller.WorkspaceController">
+    <children>
+        <BorderPane layoutX="331.0" layoutY="7.0" prefHeight="1000.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <center>
+                <ListView fx:id="listView" layoutX="138.0" layoutY="116.0" prefHeight="176.0" prefWidth="200.0">
+                    <cellFactory>
+                        <ListCellFactory property="Exp{_self.name()} [Exp{_self.id()}]"/>
+                    </cellFactory>
+                </ListView>
+            </center>
+            <top>
+                <Label layoutX="61.0" layoutY="55.0" text="First Demo"/>
+            </top>
+        </BorderPane>
+    </children>
+    <stylesheets>
+        <URL value="@MainWindow.css"/>
+    </stylesheets>
+</AnchorPane>

@@ -1,0 +1,36 @@
+package com.sfxcode.sapphire.core.value
+
+import scala.collection.mutable
+import javafx.util.StringConverter
+import javafx.util.converter.DefaultStringConverter
+
+object ConverterFactory {
+  val converterMap = new mutable.HashMap[String, StringConverter[_]]()
+
+  def getConverterByName[T](name: String, forceNew:Boolean=false): StringConverter[T] = {
+
+    var className = name
+    if (!name.contains("."))
+      className = "javafx.util.converter." + name
+
+    if (!forceNew && converterMap.contains(className))
+      return converterMap(className).asInstanceOf[StringConverter[T]]
+
+    var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]
+
+    try {
+      val converterClass = Class.forName(className)
+      val converter = converterClass.newInstance()
+      if (converter != null) {
+        result = converter.asInstanceOf[StringConverter[T]]
+      }
+    }
+    catch {
+      case e: Exception => println(e)
+    }
+    converterMap.put(className, result)
+    result
+
+  }
+
+}
