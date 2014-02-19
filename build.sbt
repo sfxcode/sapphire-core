@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.8.0"
+version := "0.8.1-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 
@@ -61,3 +61,12 @@ libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-spi" % "1.2.0"
 libraryDependencies += "de.odysseus.juel" % "juel-impl" % "2.2.6"
 
 libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.6"
+
+
+publishTo := {
+  if (version.value.trim.endsWith("SNAPSHOT"))
+    Some(Resolver.file("file", new File("/Users/admin/projects/sfxcode/mvn-repo/snapshots")))
+  else
+    Some(Resolver.file("file", new File("/Users/admin/projects/sfxcode/mvn-repo/releases")))
+}
+
