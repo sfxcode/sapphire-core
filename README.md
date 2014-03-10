@@ -111,4 +111,4 @@ libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.0"
 
 ## Demos
 
-Demos can be found under [https://github.com/sfxcode/sapphire-demo](sapphire-demo) on github.
+Demos can be found under [sapphire-demo](https://github.com/sfxcode/sapphire-demo) on github.
