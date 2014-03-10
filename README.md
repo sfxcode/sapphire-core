@@ -6,6 +6,8 @@ A JavaFX Application Framework for Scala User.
 
 Actual Version is 0.8.0.
 
+Snapshot Version = 0.8.1-SNAPSHOT
+
 ## Licence
 
 Apache 2 License.
@@ -22,19 +24,30 @@ Java UI Application Framework as replacement for Swing.
 
 Sapphire depends on JavaFX 8.
 
+[http://www.oracle.com/technetwork/java/javafx/overview/index.html](http://www.oracle.com/technetwork/java/javafx/overview/index.html)
+
+
 ### ScalaFX
 
 A DSL for JavaFX written in Scala.
+
+[https://code.google.com/p/scalafx/](https://code.google.com/p/scalafx)
 
 ### Dependency Injection
 
 Sapphire use Apache Deltaspike as CDI Abstraction Layer.
 
+[http://deltaspike.apache.org](http://deltaspike.apache.org)
+
 The default implementation depends on Apache OpenWebBeans.
+
+[http://openwebbeans.apache.org](http://openwebbeans.apache.org)
 
 ### Expression Language
 
 Expressions are resolved by JUEL.
+
+[http://juel.sourceforge.net](http://juel.sourceforge.net)
 
 ## Features
 
@@ -77,21 +90,25 @@ Expressions are resolved by JUEL.
 - g8 template
 - automatic binding for more node types (currently: Label, TextField, TextArea, CheckBox)
 
+
+## maven
+
+Sapphire use a github repository for maven.
+
+[https://github.com/sfxcode/mvn-repo](https://github.com/sfxcode/mvn-repo)
+
+### sbt build snippet
+
+```scala
+
+resolvers ++= Seq(
+  "sfxcode-releases" at "https://github.com/sfxcode/mvn-repo/raw/master/releases",
+  "sfxcode-snapshots" at "https://github.com/sfxcode/mvn-repo/raw/master/snapshots"
+)
+
+libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.0"
+```
+
 ## Demos
 
-### Base
-
-An example for simple controller exchange.
-
-### Form
-
-A simple Form Demo. It shows the usage of FXAdapter / Bindings.
-
-### Login Demo
-
-JavaFX Login Demo pimped by Sapphire.
-
-### Issues Demo
-
-JavaFX Issues Demo pimped by Sapphire.
-
+Demos can be found under [https://github.com/sfxcode/sapphire-demo](sapphire-demo) on github.
