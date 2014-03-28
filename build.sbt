@@ -44,13 +44,13 @@ libraryDependencies += "org.scalafx" % "scalafx_2.10" % "8.0.0-R4"
 
 libraryDependencies += "org.apache.openejb" % "javaee-api" % "6.0-4"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-api" % "0.6"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-api" % "0.5"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "0.6"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "0.5"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "0.6"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "0.5"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "0.6"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "0.5"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.2"
 
