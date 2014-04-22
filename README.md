@@ -4,9 +4,9 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 0.8.0.
+Actual Version is 0.8.2.
 
-Snapshot Version = 0.8.1-SNAPSHOT
+Scala Version is 2.11.0.
 
 ## Licence
 
@@ -16,13 +16,13 @@ Apache 2 License.
 
 ### Java / JDK 1.8
 
-Sapphire runs agains the latest JDK 1.8 EAP version.
+Sapphire runs agains the latest JDK 8 version.
 
 ### JavaFX
 
 Java UI Application Framework as replacement for Swing.
 
-Sapphire depends on JavaFX 8.
+Sapphire depends on JavaFX 8, which is included in JDK 8.
 
 [http://www.oracle.com/technetwork/java/javafx/overview/index.html](http://www.oracle.com/technetwork/java/javafx/overview/index.html)
 
@@ -102,11 +102,11 @@ Sapphire use a github repository for maven.
 ```scala
 
 resolvers ++= Seq(
-  "sfxcode-releases" at "https://github.com/sfxcode/mvn-repo/raw/master/releases",
-  "sfxcode-snapshots" at "https://github.com/sfxcode/mvn-repo/raw/master/snapshots"
+  "sfxcode-releases" at "https://raw.github.com/sfxcode/mvn-repo/master/releases",
+  "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
 )
 
-libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.0"
+libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.2"
 ```
 
 ## Demos
