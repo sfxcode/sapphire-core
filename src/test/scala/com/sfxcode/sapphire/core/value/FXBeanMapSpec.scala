@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleStringProperty
 
 class FXBeanMapSpec extends Specification {
 
-  sequential
+
 
   "FXBean" should {
     "update scala map value" in {

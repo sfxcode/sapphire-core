@@ -25,7 +25,7 @@ class FXValueFactory[S <: AnyRef, T] extends Callback[TableColumn.CellDataFeatur
     val value: S = features.getValue
 
     value match {
-      case bean: FXBean[_<:AnyRef] =>
+      case bean: FXBean[_] =>
         var p =  bean.getProperty(property)
         if (format.length>0)  {
           p match {

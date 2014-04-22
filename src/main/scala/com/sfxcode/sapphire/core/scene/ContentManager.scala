@@ -6,13 +6,13 @@ import javafx.scene.Node
 import javax.inject.{Named, Inject}
 import javax.enterprise.event.Event
 import org.apache.deltaspike.core.api.provider.BeanProvider
-import com.typesafe.scalalogging.slf4j.Logging
+import com.typesafe.scalalogging.slf4j.LazyLogging
 
 case class ContentWillChangeEvent(pane:Pane, parentController:ViewController,newController:ViewController, oldController:ViewController)
 case class ContentDidChangeEvent(pane:Pane, parentController:ViewController, newController:ViewController, oldController:ViewController)
 
 @Named
-class ContentManager extends Logging{
+class ContentManager extends LazyLogging{
   var contentPane: Pane = _
 
   var parentController: ViewController = _

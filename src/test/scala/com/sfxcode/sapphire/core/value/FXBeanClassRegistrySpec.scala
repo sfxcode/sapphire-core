@@ -18,7 +18,7 @@ import FXBeanClassRegistry._
 import PropertyType._
 
 class FXBeanClassRegistrySpec extends Specification {
-  sequential
+
 
   "FXBeanClassRegistry" should {
 

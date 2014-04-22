@@ -6,9 +6,9 @@ import com.sfxcode.sapphire.core.cdi.annotation.{Startup, FXStage}
 import scalafx.stage.Stage
 import scalafx.scene.{Node, Scene}
 import scalafx.delegate.SFXDelegate
-import com.typesafe.scalalogging.slf4j.Logging
+import com.typesafe.scalalogging.slf4j.LazyLogging
 
-abstract class AppController extends NodeLocator with FXController with Logging {
+abstract class AppController extends NodeLocator with FXController with LazyLogging {
   val sceneMap = new collection.mutable.HashMap[javafx.scene.Parent, javafx.scene.Scene]()
 
   def startup(@Observes @FXStage @Startup stage: Stage) {

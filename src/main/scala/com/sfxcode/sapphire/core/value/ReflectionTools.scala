@@ -23,7 +23,7 @@ object ReflectionTools {
   def getFieldMirror(target: Any, name: String): FieldMirror = {
 
     val t = typeMirror.classSymbol(target.getClass).toType
-    val symbol = t.declaration(ru.newTermName(name)).asTerm
+    val symbol = t.decl(ru.TermName(name)).asTerm
     val instanceMirror = typeMirror.reflect(target)
     instanceMirror.reflectField(symbol)
   }

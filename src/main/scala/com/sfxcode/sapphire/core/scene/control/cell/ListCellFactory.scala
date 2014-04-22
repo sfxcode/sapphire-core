@@ -21,7 +21,7 @@ class FXListCell[S](property: String="") extends ListCell[S] {
   override def updateItem(item: S, empty: Boolean)  {
     super.updateItem(item, empty)
     item match {
-      case b:FXBean[Any] =>
+      case b:FXBean[_] =>
         val value = b.getValue(property)
         value match {
           case v:Any =>  textProperty().set(v.toString)

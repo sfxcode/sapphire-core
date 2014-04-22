@@ -26,8 +26,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
 
   def getValue(key: String): Any = {
     bean match {
-      case map: mutable.Map[String, Any] => map(key)
-      case javaMap: java.util.Map[String, Any] => javaMap.get(key)
+      case map: mutable.Map[String, _] => map(key)
+      case javaMap: java.util.Map[String, _] => javaMap.get(key)
       case _ => Expressions.evaluateExpressionOnObject(bean, key)
     }
   }
@@ -204,8 +204,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
 }
 
 object FXBean {
-  val configuration = ConfigFactory.load()
-  var defaultDateConverter = new DateStringConverter(configuration.getString("sapphire.core.value.defaultDateConverterPattern"))
+  var defaultDateConverter = new DateStringConverter(ConfigFactory.load().getString("sapphire.core.value.defaultDateConverterPattern"))
 
   def apply[T <: AnyRef](bean: T, typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()): FXBean[T] = {
     new FXBean[T](bean, typeHints)

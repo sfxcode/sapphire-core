@@ -4,7 +4,7 @@ import org.specs2.mutable.Specification
 import com.sfxcode.sapphire.core.cdi.CDILauncher
 
 class FXBeanPerformanceSpec extends Specification {
-  sequential
+
 
   "FXBean" should {
 

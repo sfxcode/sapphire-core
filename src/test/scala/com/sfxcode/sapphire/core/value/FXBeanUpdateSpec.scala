@@ -7,7 +7,7 @@ case class UpdateTestBean(var name: String = "test", var age: Int = 42, var desc
 
 class FXBeanUpdateSpec extends Specification {
 
-  sequential
+
 
   "FXBean" should {
     "update member value" in {

@@ -25,7 +25,7 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 
 
 class FXBeanSpec extends Specification {
-  sequential
+  CDILauncher.init()
 
   "FXBean" should {
 
@@ -73,9 +73,11 @@ class FXBeanSpec extends Specification {
       val testBean = FXBean[TestBean](TestBean())
       testBean.getValue("result ${2*4}") must be equalTo "result 8"
       testBean.getValue("${_self.description().get()}") must be equalTo "desc"
+      testBean.getValue("!{_self.description().get()}") must be equalTo "desc"
       testBean.getValue("zip.value") must be equalTo 12345
       testBean.getValue("${_self.age() / 2}") must be equalTo 21.0
       testBean.getValue("${_self.multiply(2,3)}") must be equalTo 6
+      testBean.getValue("!{_self.multiply(2,3)}") must be equalTo 6
       testBean.getValue("doubleAge()") must be equalTo 84
    }
 

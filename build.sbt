@@ -2,15 +2,22 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.8.1"
+version := "0.8.2"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.0"
 
 scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-// (testOptions in Test) += Tests.Argument(TestFrameworks.Specs2, "html")
+(testOptions in Test) += Tests.Argument(TestFrameworks.Specs2, "html")
+
+javacOptions ++= Seq("-source", "1.7")
+
+javacOptions ++= Seq("-target", "1.7")
+
+scalacOptions += "-target:jvm-1.7"
+
 
 // resolvers
 
@@ -26,41 +33,39 @@ resolvers += "lodgon" at "http://maven.lodgon.com/maven2/"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.3.7" % "test"
+libraryDependencies += "org.specs2" %% "specs2" % "2.3.11" % "test"
 
 // Compile
 
 // Environment
 
-libraryDependencies += "com.typesafe" %% "scalalogging-slf4j" % "1.0.1"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.0"
 
-libraryDependencies += "com.typesafe" % "config" % "1.0.2"
+libraryDependencies += "com.typesafe" % "config" % "1.2.0"
 
 // UI
 
-libraryDependencies += "org.scalafx" % "scalafx_2.10" % "8.0.0-R4"
+libraryDependencies += "org.scalafx" % "scalafx_2.11.0-RC4" % "8.0.0-R4"
 
 // CDI
 
-libraryDependencies += "org.apache.openejb" % "javaee-api" % "6.0-4"
+libraryDependencies += "javax.enterprise" % "cdi-api" % "1.0"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-api" % "0.6"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.2"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "0.6"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "0.6"
-
 libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "0.6"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.0"
-
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-spi" % "1.2.0"
+libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
 // Expression Language
 
-libraryDependencies += "de.odysseus.juel" % "juel-impl" % "2.2.6"
+libraryDependencies += "de.odysseus.juel" % "juel-api" % "2.2.7"
 
-libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.6"
+libraryDependencies += "de.odysseus.juel" % "juel-impl" % "2.2.7"
+
+libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.7"
 
 
 publishTo := {
