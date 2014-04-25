@@ -4,7 +4,7 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 0.8.2.
+Actual Version is 0.8.5.
 
 Scala Version is 2.11.0.
 
@@ -32,6 +32,10 @@ Sapphire depends on JavaFX 8, which is included in JDK 8.
 A DSL for JavaFX written in Scala.
 
 [https://code.google.com/p/scalafx/](https://code.google.com/p/scalafx)
+
+FXML support by scalafxm
+
+[https://github.com/vigoo/scalafxml/] (https://github.com/vigoo/scalafxml)
 
 ### Dependency Injection
 
@@ -83,10 +87,11 @@ Expressions are resolved by JUEL.
 
 - Simple load from controller
 - Value Factory for using expressions inside fxml
+- Support for scalafxml with @sfxml annotations
 
 ### TODO
 
-- Documentation
+- Documentation !
 - g8 template
 - automatic binding for more node types (currently: Label, TextField, TextArea, CheckBox)
 
@@ -101,12 +106,17 @@ Sapphire use a github repository for maven.
 
 ```scala
 
+crossScalaVersions := Seq("2.11.0")
+
+// macro support
+addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.0" cross CrossVersion.full)
+
 resolvers ++= Seq(
   "sfxcode-releases" at "https://raw.github.com/sfxcode/mvn-repo/master/releases",
   "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
 )
 
-libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.2"
+libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.5"
 ```
 
 ## Demos
