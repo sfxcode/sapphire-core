@@ -41,7 +41,7 @@ FXML support by scalafxml.
 
 Sapphire use Apache Deltaspike as CDI Abstraction Layer.
 
-[http://deltaspike.aTypopache.org](http://deltaspike.apache.org)
+[http://deltaspike.apache.org](http://deltaspike.apache.org)
 
 The default implementation depends on Apache OpenWebBeans.
 
