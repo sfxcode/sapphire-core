@@ -33,7 +33,7 @@ A DSL for JavaFX written in Scala.
 
 [https://code.google.com/p/scalafx/](https://code.google.com/p/scalafx)
 
-FXML support by scalafxm
+FXML support by scalafxml.
 
 [https://github.com/vigoo/scalafxml/] (https://github.com/vigoo/scalafxml)
 
@@ -41,7 +41,7 @@ FXML support by scalafxm
 
 Sapphire use Apache Deltaspike as CDI Abstraction Layer.
 
-[http://deltaspike.apache.org](http://deltaspike.apache.org)
+[http://deltaspike.aTypopache.org](http://deltaspike.apache.org)
 
 The default implementation depends on Apache OpenWebBeans.
 
