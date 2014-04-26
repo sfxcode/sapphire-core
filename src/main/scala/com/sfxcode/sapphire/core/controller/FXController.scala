@@ -37,7 +37,7 @@ trait FXController {
 
     val fxmlResult =  loader.getViewController(fxmlPath, dependencyResolver)
 
-    val result = ct.runtimeClass.newInstance().asInstanceOf[T]
+    val result = getBean[T]()
     result.fxml = fxmlResult._1
     result.rootPane = fxmlResult._2
 
