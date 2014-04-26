@@ -60,9 +60,9 @@ libraryDependencies += "org.scalafx" % "scalafx_2.11.0-RC4" % "8.0.0-R4"
 
 // macros recompiled for scala 2.11
 
-libraryDependencies += "org.scalafx" % "scalafxml-core_2.10" % "0.1" intransitive()
+libraryDependencies += "org.scalafx" % "scalafxml-core_2.10" % "0.1" % "provided" intransitive()
 
-libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.2.0" intransitive()
+libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.2.0" % "provided" intransitive()
 
 
 // CDI

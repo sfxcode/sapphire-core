@@ -116,7 +116,14 @@ resolvers ++= Seq(
   "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
 )
 
-libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.6"
+libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.6"
+
+// recompiled macros for 2.11
+
+libraryDependencies += "org.scalafx" % "scalafxml-core_2.10" % "0.1" intransitive()
+
+libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.2.0" intransitive()
+
 ```
 
 ## Demos
