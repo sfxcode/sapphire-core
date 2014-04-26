@@ -128,4 +128,4 @@ libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.2
 
 ## Demos
 
-Demos can be found under [sapphire-demo](https://github.com/sfxcode/sapphire-demo) on github.
+Demos can be found under [sapphire-demo](http://sfxcode.github.io/sapphire-demo/) on github.
