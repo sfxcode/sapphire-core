@@ -1,98 +1,195 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Sapphire-core : ScalaFX - JavaFX  Framework (CDI, Binding, Expressions)" />
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Sapphire-core by sfxcode</title>
+    <title>Sapphire-core</title>
   </head>
 
   <body>
-    <a id="forkme_banner" href="https://github.com/sfxcode/sapphire-core">View on GitHub</a>
-    <div class="shell">
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Sapphire-core</h1>
-            <h2>ScalaFX - JavaFX  Framework (CDI, Binding, Expressions)</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/sfxcode/sapphire-core">View on GitHub</a>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/sfxcode/sapphire-core/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/sfxcode/sapphire-core/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
+          <h1 id="project_title">Sapphire-core</h1>
+          <h2 id="project_tagline">ScalaFX - JavaFX  Framework (CDI, Binding, Expressions)</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sfxcode/sapphire-core/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sfxcode/sapphire-core/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="sapphire" class="anchor" href="#sapphire"><span class="octicon octicon-link"></span></a>Sapphire</h1>
+
+<p>A JavaFX Application Framework for Scala User.</p>
+
+<h2>
+<a name="version" class="anchor" href="#version"><span class="octicon octicon-link"></span></a>Version</h2>
+
+<p>Actual Version is 0.8.6.</p>
+
+<p>Scala Version is 2.11.0.</p>
+
+<h2>
+<a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h2>
+
+<p>Apache 2 License.</p>
+
+<h2>
+<a name="technology-stack" class="anchor" href="#technology-stack"><span class="octicon octicon-link"></span></a>Technology Stack</h2>
+
+<h3>
+<a name="java--jdk-18" class="anchor" href="#java--jdk-18"><span class="octicon octicon-link"></span></a>Java / JDK 1.8</h3>
+
+<p>Sapphire runs agains the latest JDK 8 version.</p>
+
+<h3>
+<a name="javafx" class="anchor" href="#javafx"><span class="octicon octicon-link"></span></a>JavaFX</h3>
+
+<p>Java UI Application Framework as replacement for Swing.</p>
+
+<p>Sapphire depends on JavaFX 8, which is included in JDK 8.</p>
+
+<p><a href="http://www.oracle.com/technetwork/java/javafx/overview/index.html">http://www.oracle.com/technetwork/java/javafx/overview/index.html</a></p>
+
+<h3>
+<a name="scalafx" class="anchor" href="#scalafx"><span class="octicon octicon-link"></span></a>ScalaFX</h3>
+
+<p>A DSL for JavaFX written in Scala.</p>
+
+<p><a href="https://code.google.com/p/scalafx">https://code.google.com/p/scalafx/</a></p>
+
+<p>FXML support by scalafxml.</p>
+
+<p><a href="https://github.com/vigoo/scalafxml">https://github.com/vigoo/scalafxml/</a></p>
+
+<h3>
+<a name="dependency-injection" class="anchor" href="#dependency-injection"><span class="octicon octicon-link"></span></a>Dependency Injection</h3>
+
+<p>Sapphire use Apache Deltaspike as CDI Abstraction Layer.</p>
+
+<p><a href="http://deltaspike.apache.org">http://deltaspike.apache.org</a></p>
+
+<p>The default implementation depends on Apache OpenWebBeans.</p>
+
+<p><a href="http://openwebbeans.apache.org">http://openwebbeans.apache.org</a></p>
+
+<h3>
+<a name="expression-language" class="anchor" href="#expression-language"><span class="octicon octicon-link"></span></a>Expression Language</h3>
+
+<p>Expressions are resolved by JUEL.</p>
+
+<p><a href="http://juel.sourceforge.net">http://juel.sourceforge.net</a></p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<h3>
+<a name="application-environment-powered-by-cdi" class="anchor" href="#application-environment-powered-by-cdi"><span class="octicon octicon-link"></span></a>Application Environment powered by CDI</h3>
+
+<ul>
+<li>Application Controller</li>
+<li>UI Controller loading</li>
+<li>Parameter Provider</li>
+<li>Configuration Provider</li>
+<li>FXML Loading</li>
+</ul><h3>
+<a name="bean-enhancement" class="anchor" href="#bean-enhancement"><span class="octicon octicon-link"></span></a>Bean Enhancement</h3>
+
+<ul>
+<li>Every Java / Scala Bean can be used for FXBean</li>
+<li>FXBean has additional support for java/scala Maps</li>
+<li>FXBean resolves Expressions on bean</li>
+<li>FXBean creates Properties needed for Binding on demand</li>
+<li>FXBean has change management by default</li>
+</ul><h3>
+<a name="scala-javafx-bean-binding" class="anchor" href="#scala-javafx-bean-binding"><span class="octicon octicon-link"></span></a>Scala JavaFX Bean Binding</h3>
+
+<ul>
+<li>Bindings by form id</li>
+<li>Binding with converter</li>
+<li>Adapter Pattern (FXBean Adapter)</li>
+</ul><h3>
+<a name="viewcontroller" class="anchor" href="#viewcontroller"><span class="octicon octicon-link"></span></a>ViewController</h3>
+
+<ul>
+<li>Controller Lifecycle</li>
+<li>Node Locator</li>
+<li>Controller CDI Additions</li>
+</ul><h3>
+<a name="fxml-support" class="anchor" href="#fxml-support"><span class="octicon octicon-link"></span></a>FXML Support</h3>
+
+<ul>
+<li>Simple load from controller</li>
+<li>Value Factory for using expressions inside fxml</li>
+<li>Support for scalafxml with @sfxml annotations</li>
+</ul><h3>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h3>
+
+<ul>
+<li>Documentation !</li>
+<li>g8 template</li>
+<li>automatic binding for more node types (currently: Label, TextField, TextArea, CheckBox)</li>
+</ul><h2>
+<a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>maven</h2>
+
+<p>Sapphire use a github repository for maven.</p>
+
+<p><a href="https://github.com/sfxcode/mvn-repo">https://github.com/sfxcode/mvn-repo</a></p>
+
+<h3>
+<a name="sbt-build-snippet" class="anchor" href="#sbt-build-snippet"><span class="octicon octicon-link"></span></a>sbt build snippet</h3>
+
+<div class="highlight highlight-scala"><pre>
+<span class="n">crossScalaVersions</span> <span class="o">:=</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">"2.11.0"</span><span class="o">)</span>
+
+<span class="c1">// macro support</span>
+<span class="n">addCompilerPlugin</span><span class="o">(</span><span class="s">"org.scalamacros"</span> <span class="o">%</span> <span class="s">"paradise"</span> <span class="o">%</span> <span class="s">"2.0.0"</span> <span class="n">cross</span> <span class="nc">CrossVersion</span><span class="o">.</span><span class="n">full</span><span class="o">)</span>
+
+<span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="s">"sfxcode-releases"</span> <span class="n">at</span> <span class="s">"https://raw.github.com/sfxcode/mvn-repo/master/releases"</span><span class="o">,</span>
+  <span class="s">"sfxcode-snapshots"</span> <span class="n">at</span> <span class="s">"https://raw.github.com/sfxcode/mvn-repo/master/snapshots"</span>
+<span class="o">)</span>
+
+<span class="n">libraryDependencies</span> <span class="o">+=</span>   <span class="s">"com.sfxcode.sapphire"</span> <span class="o">%%</span> <span class="s">"sapphire-core"</span> <span class="o">%</span> <span class="s">"0.8.6"</span>
+
+<span class="c1">// recompiled macros for 2.11</span>
+
+<span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.scalafx"</span> <span class="o">%</span> <span class="s">"scalafxml-core_2.10"</span> <span class="o">%</span> <span class="s">"0.1"</span> <span class="n">intransitive</span><span class="o">()</span>
+
+<span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"com.sfxcode.scalafxml"</span> <span class="o">%%</span> <span class="s">"scalafxml-core-macros"</span> <span class="o">%</span> <span class="s">"0.2.0"</span> <span class="n">intransitive</span><span class="o">()</span>
+
+</pre></div>
+
+<h2>
+<a name="demos" class="anchor" href="#demos"><span class="octicon octicon-link"></span></a>Demos</h2>
+
+<p>Demos can be found under <a href="https://github.com/sfxcode/sapphire-demo">sapphire-demo</a> on github.</p>
       </section>
+    </div>
 
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/sfxcode">sfxcode</a> can be found on <a href="https://github.com/sfxcode/sapphire-core">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Sapphire-core maintained by <a href="https://github.com/sfxcode">sfxcode</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
-
     </div>
 
     
+
   </body>
 </html>
