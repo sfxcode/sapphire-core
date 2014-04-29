@@ -46,6 +46,9 @@ addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.0" cross CrossVersion.fu
 
 libraryDependencies += "org.specs2" %% "specs2" % "2.3.11" % "test"
 
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.9" % "test"
+
+
 // Compile
 
 // Environment

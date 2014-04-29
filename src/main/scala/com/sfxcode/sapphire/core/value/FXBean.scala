@@ -201,6 +201,10 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       hasChangesProperty.setValue(changeManagementMap.size > 0)
     }
   }
+
+  override def toString: String = {
+    "{%s : %s@%s}".format(super.toString, bean, bean.hashCode())
+  }
 }
 
 object FXBean {
