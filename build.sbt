@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.8.6"
+version := "0.8.7"
 
 scalaVersion := "2.11.0"
 
@@ -74,9 +74,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.0"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.2"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "0.6"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "0.7"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "0.6"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "0.7"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
