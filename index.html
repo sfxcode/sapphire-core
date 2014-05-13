@@ -54,7 +54,7 @@
 <h2>
 <a name="version" class="anchor" href="#version"><span class="octicon octicon-link"></span></a>Version</h2>
 
-<p>Actual Version is 0.8.6.</p>
+<p>Actual Version is 0.8.8.</p>
 
 <p>Scala Version is 2.11.0.</p>
 
@@ -90,6 +90,8 @@
 <p>FXML support by scalafxml.</p>
 
 <p><a href="https://github.com/vigoo/scalafxml">https://github.com/vigoo/scalafxml/</a></p>
+
+<p>(Optional - you have to import additional libs) </p>
 
 <h3>
 <a name="dependency-injection" class="anchor" href="#dependency-injection"><span class="octicon octicon-link"></span></a>Dependency Injection</h3>
@@ -171,28 +173,28 @@
 <div class="highlight highlight-scala"><pre>
 <span class="n">crossScalaVersions</span> <span class="o">:=</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">"2.11.0"</span><span class="o">)</span>
 
-<span class="c1">// macro support</span>
-<span class="n">addCompilerPlugin</span><span class="o">(</span><span class="s">"org.scalamacros"</span> <span class="o">%</span> <span class="s">"paradise"</span> <span class="o">%</span> <span class="s">"2.0.0"</span> <span class="n">cross</span> <span class="nc">CrossVersion</span><span class="o">.</span><span class="n">full</span><span class="o">)</span>
+<span class="c1">// optional - needed for macro support with scalafxml</span>
+<span class="c1">// addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.0" cross CrossVersion.full)</span>
 
 <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
   <span class="s">"sfxcode-releases"</span> <span class="n">at</span> <span class="s">"https://raw.github.com/sfxcode/mvn-repo/master/releases"</span><span class="o">,</span>
   <span class="s">"sfxcode-snapshots"</span> <span class="n">at</span> <span class="s">"https://raw.github.com/sfxcode/mvn-repo/master/snapshots"</span>
 <span class="o">)</span>
 
-<span class="n">libraryDependencies</span> <span class="o">+=</span>   <span class="s">"com.sfxcode.sapphire"</span> <span class="o">%%</span> <span class="s">"sapphire-core"</span> <span class="o">%</span> <span class="s">"0.8.6"</span>
+<span class="n">libraryDependencies</span> <span class="o">+=</span>   <span class="s">"com.sfxcode.sapphire"</span> <span class="o">%%</span> <span class="s">"sapphire-core"</span> <span class="o">%</span> <span class="s">"0.8.8"</span>
 
-<span class="c1">// recompiled macros for 2.11</span>
+<span class="c1">// optional - recompiled macros for 2.11</span>
 
-<span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.scalafx"</span> <span class="o">%</span> <span class="s">"scalafxml-core_2.10"</span> <span class="o">%</span> <span class="s">"0.1"</span> <span class="n">intransitive</span><span class="o">()</span>
+<span class="c1">// libraryDependencies += "org.scalafx" % "scalafxml-core_2.10" % "0.1" intransitive()</span>
 
-<span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"com.sfxcode.scalafxml"</span> <span class="o">%%</span> <span class="s">"scalafxml-core-macros"</span> <span class="o">%</span> <span class="s">"0.2.0"</span> <span class="n">intransitive</span><span class="o">()</span>
+<span class="c1">// libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.3.0" intransitive()</span>
 
 </pre></div>
 
 <h2>
 <a name="demos" class="anchor" href="#demos"><span class="octicon octicon-link"></span></a>Demos</h2>
 
-<p>Demos can be found under <a href="https://github.com/sfxcode/sapphire-demo">sapphire-demo</a> on github.</p>
+<p>Demos can be found under <a href="http://sfxcode.github.io/sapphire-demo/">sapphire-demo</a> on github.</p>
       </section>
 
       <footer>
