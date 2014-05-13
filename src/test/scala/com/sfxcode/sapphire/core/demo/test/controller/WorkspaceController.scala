@@ -6,11 +6,10 @@ import com.sfxcode.sapphire.core.demo.test.model.{PersonFactory, Person}
 import com.sfxcode.sapphire.core.value.FXBeanCollections._
 import com.sfxcode.sapphire.core.value.FXBean
 import com.sfxcode.sapphire.core.Includes._
-import scalafxml.core.macros.sfxml
 
 class WorkspaceController extends ViewController  {
-  def ui = fxml.asInstanceOf[WorkspaceFxml]
 
+  var listView: ListView[FXBean[Person]] = _
   val personList = observableBuffer[Person]
 
   var name:String=""
@@ -18,7 +17,7 @@ class WorkspaceController extends ViewController  {
   override def didGainVisibilityFirstTime() {
     super.willGainVisibility()
     PersonFactory.personList.foreach(p => personList.+=(p))
-    ui.listView.setItems(personList)
+    listView.setItems(personList)
   }
 
   override def didGainVisibility() {
@@ -27,5 +26,3 @@ class WorkspaceController extends ViewController  {
 
 }
 
-@sfxml
-class WorkspaceFxml(val listView: ListView[FXBean[Person]] )

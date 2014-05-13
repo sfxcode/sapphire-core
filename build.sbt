@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.8.7"
+version := "0.8.8"
 
 scalaVersion := "2.11.0"
 
@@ -36,12 +36,6 @@ resolvers ++= Seq(
   "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
 )
 
-crossScalaVersions := Seq("2.11.0")
-
-// macro support
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.0" cross CrossVersion.full)
-
-
 // Test
 
 libraryDependencies += "org.specs2" %% "specs2" % "2.3.11" % "test"
@@ -60,12 +54,6 @@ libraryDependencies += "com.typesafe" % "config" % "1.2.0"
 // UI
 
 libraryDependencies += "org.scalafx" % "scalafx_2.11.0-RC4" % "8.0.0-R4"
-
-// macros recompiled for scala 2.11
-
-libraryDependencies += "org.scalafx" % "scalafxml-core_2.10" % "0.1" % "provided" intransitive()
-
-libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.2.0" % "provided" intransitive()
 
 
 // CDI

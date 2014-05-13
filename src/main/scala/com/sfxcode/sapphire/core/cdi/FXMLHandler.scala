@@ -3,14 +3,12 @@ package com.sfxcode.sapphire.core.cdi
 import javax.inject.Inject
 import javax.enterprise.context.ApplicationScoped
 import scalafx.scene.layout.Pane
-import com.sfxcode.sapphire.core.controller.{ViewController, ApplicationEnvironment}
 import javafx.{fxml => jfxf}
 import javafx.{util => jfxu}
 
 import jfxf.FXMLLoader
 import javafx.scene.Parent
 import java.io.{IOException, InputStream}
-import scalafxml.core.{NoDependencyResolver, ControllerDependencyResolver, FxmlProxyGenerator}
 
 case class TestDependency(initialPath: String)
 
@@ -20,7 +18,7 @@ class FXMLHandler {
   var fxmlLoader: FXMLLoader = _
   var defaultCallback: Option[jfxu.Callback[Class[_], Object]] = None
 
-  def loadFromDocument(path: String, callback: jfxu.Callback[Class[_], Object] = null): Parent = {
+  def loadFromDocument(path: String, callback: jfxu.Callback[Class[_], Object] = null): (AnyRef, Pane) = {
     // save cdi callback
     if (!defaultCallback.isDefined)
       defaultCallback = Some(fxmlLoader.getControllerFactory)
@@ -38,6 +36,11 @@ class FXMLHandler {
       inputStream = getClass.getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
       fxmlLoader.load(inputStream).asInstanceOf[Parent]
+
+      val controller = fxmlLoader.getController[AnyRef]
+
+      val rootPane = new Pane(fxmlLoader.getRoot[javafx.scene.layout.Pane])
+      (controller, rootPane)
 
     }
     catch {
@@ -57,24 +60,6 @@ class FXMLHandler {
     }
   }
 
-  def getViewController[T <: ViewController](fxml: String): T = {
-    loadFromDocument(fxml)
-    val result = fxmlLoader.getController[T]
-    ApplicationEnvironment.controllerMap.put(result.getClass.getName, result)
-    result.rootPane = new Pane(fxmlLoader.getRoot[javafx.scene.layout.Pane])
-    result
-  }
 
-  def getViewController(fxml: String, dependencyResolver: ControllerDependencyResolver = NoDependencyResolver): (AnyRef, Pane) = {
-
-    val callback = new jfxu.Callback[Class[_], Object] {
-      override def call(cls: Class[_]): Object = FxmlProxyGenerator(cls, dependencyResolver)
-    }
-
-    loadFromDocument(fxml, callback)
-    val controller = fxmlLoader.getController[AnyRef]
-    val rootPane = new Pane(fxmlLoader.getRoot[javafx.scene.layout.Pane])
-    (controller, rootPane)
-  }
 
 }
