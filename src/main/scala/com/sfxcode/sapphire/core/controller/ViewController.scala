@@ -6,6 +6,8 @@ import com.typesafe.config.Config
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.ResourceBundle
+import com.sfxcode.sapphire.core.cdi.annotation.Startup
+import javax.annotation.{PreDestroy, PostConstruct}
 
 abstract class ViewController extends NodeLocator with FxmlLoading with ActionEvents with Initializable {
 
@@ -18,10 +20,29 @@ abstract class ViewController extends NodeLocator with FxmlLoading with ActionEv
 
   var firstTimeLoaded = false
 
+  // bean lifecycle
+
+  @PostConstruct
+  final def postConstruct() = startup()
+
+  def startup() {}
+
+  @PreDestroy
+  final def preDestroy() = shutdown()
+
+  def shutdown() {}
+
+
+
   override def initialize(loc: URL, res: ResourceBundle): Unit = {
     location = loc
     resources = res
+    didInitialize()
   }
+
+  // controller lifecycle
+
+  def didInitialize()  {}
 
   def willGainVisibility() {}
 
@@ -33,9 +54,6 @@ abstract class ViewController extends NodeLocator with FxmlLoading with ActionEv
 
   def didLooseVisibility() {}
 
-  def startup() {}
-
-  def shutdown() {}
 
   def actualSceneController: ViewController = ApplicationEnvironment.actualSceneController
 

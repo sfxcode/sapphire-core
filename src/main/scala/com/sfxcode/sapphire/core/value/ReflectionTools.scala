@@ -2,6 +2,7 @@ package com.sfxcode.sapphire.core.value
 
 import scala.reflect.runtime.universe._
 import scala.reflect.runtime.{universe => ru}
+import scala.reflect.ClassTag
 
 object ReflectionTools {
   val typeMirror = ru.runtimeMirror(this.getClass.getClassLoader)
@@ -46,5 +47,12 @@ object ReflectionTools {
     }
 
   }
+
+  def getMembers(ct:ClassTag[_]):List[Symbol] = {
+    val mirror = ru.runtimeMirror(ct.runtimeClass.getClassLoader)
+    mirror.classSymbol(ct.runtimeClass).asType.typeSignature.members.toList.reverse
+  }
+
+
 
 }

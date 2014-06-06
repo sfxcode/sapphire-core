@@ -2,9 +2,9 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.8.8"
+version := "0.9.0-SNAPSHOT"
 
-scalaVersion := "2.11.0"
+scalaVersion := "2.11.1"
 
 scalacOptions += "-deprecation"
 
@@ -53,7 +53,7 @@ libraryDependencies += "com.typesafe" % "config" % "1.2.0"
 
 // UI
 
-libraryDependencies += "org.scalafx" % "scalafx_2.11.0-RC4" % "8.0.0-R4"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.0-R5-SNAPSHOT"
 
 
 // CDI
@@ -80,8 +80,8 @@ libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.7"
 
 publishTo := {
   if (version.value.trim.endsWith("SNAPSHOT"))
-    Some(Resolver.file("file", new File("/Users/admin/projects/sfxcode/mvn-repo/snapshots")))
+    Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/snapshots")))
   else
-    Some(Resolver.file("file", new File("/Users/admin/projects/sfxcode/mvn-repo/releases")))
+    Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/releases")))
 }
 
