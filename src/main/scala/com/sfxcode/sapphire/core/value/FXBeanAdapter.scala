@@ -6,7 +6,6 @@ import javafx.scene.control._
 import javafx.beans.property._
 import scala.collection.mutable
 import javafx.util.StringConverter
-import com.sfxcode.sapphire.core.scene.NodePropertyResolver
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) {
 
@@ -73,7 +72,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       case option: Some[Node] =>
         if (!nodeCache.get(key).isDefined)
           nodeCache.put(key, option)
-        NodePropertyResolver.resolve(node.get)
+        viewController.resolve(node.get)
       case _ => None
     }
   }

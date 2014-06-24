@@ -1,15 +1,14 @@
 package com.sfxcode.sapphire.core.controller
 
-import com.sfxcode.sapphire.core.event.ActionEvents
 import javax.inject.Inject
 import com.typesafe.config.Config
 import javafx.fxml.Initializable
 import java.net.URL
 import java.util.ResourceBundle
-import com.sfxcode.sapphire.core.cdi.annotation.Startup
 import javax.annotation.{PreDestroy, PostConstruct}
+import com.sfxcode.sapphire.core.controller.ActionEvents
 
-abstract class ViewController extends NodeLocator with FxmlLoading with ActionEvents with Initializable {
+abstract class ViewController extends NodeLocator with NodePropertyResolving with FxmlLoading with ActionEvents with Initializable {
 
   implicit def stringListToMap(list:List[String]):Map[String, String] = list.map(s=> (s,s)).toMap
 

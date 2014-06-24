@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.event
+package com.sfxcode.sapphire.core.controller
 
 import javafx.scene.Node
 import javafx.event.ActionEvent
