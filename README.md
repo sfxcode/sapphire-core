@@ -4,9 +4,9 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 0.8.8.
+Actual Version is 0.9.1.
 
-Scala Version is 2.11.0.
+Scala Version is 2.11.1.
 
 ## Licence
 
@@ -118,7 +118,11 @@ resolvers ++= Seq(
   "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
 )
 
-libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "0.8.8"
+libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "0.9.1"
+
+// optional - controls framework
+
+// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-control" % "0.9.1"
 
 // optional - recompiled macros for 2.11
 
