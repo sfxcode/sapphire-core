@@ -1,11 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
 import javafx.beans.property.{SimpleIntegerProperty, SimpleStringProperty}
-import org.specs2.mutable._
 import javafx.beans.value.ObservableValue
+
 import com.sfxcode.sapphire.core.cdi.CDILauncher
-import javax.inject.Named
-import javax.enterprise.context._
+import com.typesafe.scalalogging.LazyLogging
+import org.specs2.mutable._
 
 case class Zip(value: Long = 12345)
 
@@ -24,7 +24,7 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 }
 
 
-class FXBeanSpec extends Specification {
+class FXBeanSpec extends Specification with LazyLogging {
   CDILauncher.init()
 
   "FXBean" should {
@@ -62,7 +62,7 @@ class FXBeanSpec extends Specification {
     "get value of members of java class" in {
       val bean: TestJavaBean = new TestJavaBean()
       val testBean = FXBean[TestJavaBean] (bean)
-      println(testBean.getProperty("date"))
+      logger.debug(testBean.getProperty("date").toString)
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
 

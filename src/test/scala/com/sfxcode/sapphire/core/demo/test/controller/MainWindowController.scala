@@ -6,7 +6,9 @@ import com.sfxcode.sapphire.core.scene.{ContentDidChangeEvent, ContentManager}
 import javax.enterprise.event.Observes
 import javafx.fxml.FXML
 
-class MainWindowController extends ViewController   {
+import com.typesafe.scalalogging.LazyLogging
+
+class MainWindowController extends ViewController with LazyLogging   {
 
   lazy val workspaceController = getController[WorkspaceController]()
   lazy val workspace2Controller = getController[Workspace2Controller]()
@@ -47,7 +49,7 @@ class MainWindowController extends ViewController   {
   }
 
   def listenToChanges(@Observes event: ContentDidChangeEvent) {
-    System.out.println(event)
+    logger.debug(event.toString)
   }
 
 }

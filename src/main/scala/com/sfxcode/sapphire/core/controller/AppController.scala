@@ -6,7 +6,7 @@ import com.sfxcode.sapphire.core.cdi.annotation.{Startup, FXStage}
 import scalafx.stage.Stage
 import scalafx.scene.{Node, Scene}
 import scalafx.delegate.SFXDelegate
-import com.typesafe.scalalogging.slf4j.LazyLogging
+import com.typesafe.scalalogging.LazyLogging
 
 abstract class AppController extends NodeLocator with FxmlLoading with LazyLogging {
   val sceneMap = new collection.mutable.HashMap[javafx.scene.Parent, javafx.scene.Scene]()

@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.1"
+version := "0.9.2"
 
 scalaVersion := "2.11.1"
 
@@ -42,12 +42,13 @@ libraryDependencies += "org.specs2" %% "specs2" % "2.3.12" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.9" % "test"
 
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13" % "test"
 
 // Compile
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.0.0"
 
 libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 

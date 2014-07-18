@@ -26,7 +26,7 @@ class BaseApplicationController extends AppController {
   lazy val mainWindowController = getController[MainWindowController]()
 
   def applicationDidLaunch() {
-    println("start " + this)
+    logger.info("start " + this)
     replaceSceneContent(mainWindowController)
   }
 

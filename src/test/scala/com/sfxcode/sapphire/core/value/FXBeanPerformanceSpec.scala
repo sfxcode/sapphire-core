@@ -1,9 +1,9 @@
 package com.sfxcode.sapphire.core.value
 
+import com.typesafe.scalalogging.LazyLogging
 import org.specs2.mutable.Specification
-import com.sfxcode.sapphire.core.cdi.CDILauncher
 
-class FXBeanPerformanceSpec extends Specification {
+class FXBeanPerformanceSpec extends Specification with LazyLogging {
 
 
   "FXBean" should {
@@ -20,8 +20,7 @@ class FXBeanPerformanceSpec extends Specification {
         testBean.updateValue("name", "test")
         testBean.updateValue("age", 3)
       } )
-      println(System.currentTimeMillis()-start)
-        println()
+      logger.debug("" + (System.currentTimeMillis()-start))
 
       testBean.getValue("name") must be equalTo "test"
 

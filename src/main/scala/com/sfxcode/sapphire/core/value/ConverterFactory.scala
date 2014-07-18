@@ -1,10 +1,12 @@
 package com.sfxcode.sapphire.core.value
 
+import com.typesafe.scalalogging.LazyLogging
+
 import scala.collection.mutable
 import javafx.util.StringConverter
 import javafx.util.converter.DefaultStringConverter
 
-object ConverterFactory {
+object ConverterFactory extends LazyLogging{
   val converterMap = new mutable.HashMap[String, StringConverter[_]]()
 
   def getConverterByName[T](name: String, forceNew:Boolean=false): StringConverter[T] = {
@@ -26,7 +28,7 @@ object ConverterFactory {
       }
     }
     catch {
-      case e: Exception => println(e)
+      case e: Exception => logger.error(e.getMessage, e)
     }
     converterMap.put(className, result)
     result
