@@ -4,7 +4,7 @@ organization := "com.sfxcode.sapphire"
 
 version := "0.9.2"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.2"
 
 scalacOptions += "-deprecation"
 
@@ -38,7 +38,7 @@ resolvers ++= Seq(
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.3.12" % "test"
+libraryDependencies += "org.specs2" %% "specs2" % "2.3.13" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.9" % "test"
 
@@ -55,7 +55,6 @@ libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 // UI
 
 libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.5-R5"
-
 
 // CDI
 
@@ -85,4 +84,19 @@ publishTo := {
   else
     Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/releases")))
 }
+
+instrumentSettings
+
+// 50 - 70 good, 70 -85 very good, 85 and above excellent
+
+ScoverageKeys.minimumCoverage := 75
+
+ScoverageKeys.failOnMinimumCoverage := false
+
+
+// dependency
+
+net.virtualvoid.sbt.graph.Plugin.graphSettings
+
+
 

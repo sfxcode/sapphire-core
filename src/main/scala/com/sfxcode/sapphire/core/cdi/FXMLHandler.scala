@@ -10,8 +10,6 @@ import jfxf.FXMLLoader
 import javafx.scene.Parent
 import java.io.{IOException, InputStream}
 
-case class TestDependency(initialPath: String)
-
 @ApplicationScoped
 class FXMLHandler {
   @Inject

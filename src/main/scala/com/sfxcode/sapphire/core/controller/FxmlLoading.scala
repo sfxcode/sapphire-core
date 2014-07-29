@@ -1,15 +1,15 @@
 package com.sfxcode.sapphire.core.controller
 
-import javax.inject.Inject
-
-import scala.reflect.ClassTag
-import com.sfxcode.sapphire.core.cdi.FXMLHandler
-import org.apache.deltaspike.core.api.provider.BeanProvider
-import com.typesafe.config.ConfigFactory
-import scalafx.scene.layout.Pane
-import scala.reflect.runtime.{universe => ru}
 import java.net.URL
 import java.util.ResourceBundle
+import javax.inject.Inject
+
+import com.sfxcode.sapphire.core.cdi.FXMLHandler
+import com.typesafe.config.ConfigFactory
+
+import scala.reflect.ClassTag
+import scala.reflect.runtime.{universe => ru}
+import scalafx.scene.layout.Pane
 
 trait FxmlLoading {
   val m = ru.runtimeMirror(getClass.getClassLoader)
@@ -43,16 +43,13 @@ trait FxmlLoading {
       }
       else {
         val fxmlName = ct.runtimeClass.getSimpleName.replace("Controller", "")
-        fxmlPath = "%S%s.fxml".format(basePath, fxmlName)
+        fxmlPath = "%s%s.fxml".format(basePath, fxmlName)
       }
     }
     fxmlPath
   }
 
-  def getBean[T <: AnyRef](optional: Boolean = false)(implicit ct: ClassTag[T]): T = {
-    val clazz = ct.runtimeClass
-    BeanProvider.getContextualReference(clazz, optional).asInstanceOf[T]
-  }
+
 
   def isLoadedFromFXML = fxml != null
 
