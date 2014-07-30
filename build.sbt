@@ -87,9 +87,7 @@ publishTo := {
 
 instrumentSettings
 
-// 50 - 70 good, 70 -85 very good, 85 and above excellent
-
-ScoverageKeys.minimumCoverage := 75
+ScoverageKeys.minimumCoverage := 50
 
 ScoverageKeys.failOnMinimumCoverage := false
 
