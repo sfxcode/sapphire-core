@@ -40,13 +40,16 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
   def updateValue(key: String, newValue: Any) {
+    var valueToUpdate = newValue
+    if (newValue == None)
+      valueToUpdate = null
     val property = propertyMap.getOrElse(key, getProperty(key))
     bean match {
-      case map: mutable.Map[String, Any] => map.put(key, newValue)
-      case javaMap: java.util.Map[String, Any] => javaMap.put(key, newValue)
-      case _ => ReflectionTools.setMemberValue(bean, key, newValue)
+      case map: mutable.Map[String, Any] => map.put(key, valueToUpdate)
+      case javaMap: java.util.Map[String, Any] => javaMap.put(key, valueToUpdate)
+      case _ => ReflectionTools.setMemberValue(bean, key, valueToUpdate)
     }
-    updateObservableValue(property, newValue)
+    updateObservableValue(property, valueToUpdate)
   }
 
 
@@ -55,7 +58,11 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       return hasChangesProperty
     var value = getValue(key)
     value match {
-      case option: Option[_] => value = option.get
+      case option: Option[_] =>
+        if (option.isDefined)
+          value = option.get
+        else
+          value = null
       case _ =>
     }
     value match {

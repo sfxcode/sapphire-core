@@ -46,6 +46,12 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean("description") must be equalTo Some("desc")
       testBean("observable").asInstanceOf[SimpleStringProperty].getValue must be equalTo "observable"
       testBean("zip").asInstanceOf[Zip].value must be equalTo 12345
+
+      val testBean2 = FXBean[TestBean](TestBean())
+
+      testBean2.updateValue("description", None)
+      testBean2.bean.description must beNone
+      testBean2.getValue("description") must be equalTo None
     }
 
     "get value of members of class" in {

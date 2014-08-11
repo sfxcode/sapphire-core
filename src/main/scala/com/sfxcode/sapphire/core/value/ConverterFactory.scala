@@ -35,4 +35,14 @@ object ConverterFactory extends LazyLogging{
 
   }
 
+  def guessConverterName(className:String):String = {
+    println(className)
+    var result = "DefaultStringConverter"
+    if (className.endsWith("Integer") || className.equals("Int") )
+      result = "IntegerStringConverter"
+    println(result)
+
+    result
+  }
+
 }
