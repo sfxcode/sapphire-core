@@ -1,7 +1,8 @@
 package com.sfxcode.sapphire.core.value
 
+
 import scala.collection.mutable
-import javafx.util.StringConverter
+import scala.reflect.runtime.universe._
 
 class KeyBindings {
   private val bindingMap = new mutable.HashMap[String, String]()
@@ -48,6 +49,17 @@ object KeyBindings {
   def apply(list: List[String], nodePrefix: String = ""): KeyBindings = {
     val bindings = new KeyBindings
     bindings.add(list, nodePrefix)
+  }
+
+  def forClass[T <:AnyRef](nodePrefix: String = "")(implicit t: TypeTag[T]): KeyBindings = {
+    val bindings = new KeyBindings
+
+    val symbols = ReflectionTools.getMembers[T]()
+    symbols.foreach(s => {
+      val name = s.name.toString
+      bindings.add(nodePrefix + name, name)
+    })
+    bindings
   }
 
 }

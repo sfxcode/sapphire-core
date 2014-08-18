@@ -12,11 +12,11 @@ class AppControllerSpec extends Specification with BeanResolver with LazyLogging
     CDILauncher.init()
   }
 
-
-
   "AppController" should {
 
     "get value of members of case class" in {
+      CDILauncher.init()
+
       val appController = getBean[BaseApplicationController]()
       appController must haveSuperclass[BaseApplicationController]
     }
