@@ -1,13 +1,15 @@
 package com.sfxcode.sapphire.core.el
 
-import scala.collection.mutable
-import javax.el.{PropertyNotFoundException, ELContext, ELResolver}
-import java.util
 import java.beans.FeatureDescriptor
+import java.util
+import javax.el.{ELContext, ELResolver, PropertyNotFoundException}
+
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
+import scalafx.collections.ObservableMap
+
 class RootPropertyResolver extends ELResolver {
-  val map = new mutable.HashMap[String, AnyRef]()
+  val map = ObservableMap[String, AnyRef]()
 
   def setValue(context: ELContext, base: Any, property: Any, value: AnyRef) {
     if (resolve(context, base, property))

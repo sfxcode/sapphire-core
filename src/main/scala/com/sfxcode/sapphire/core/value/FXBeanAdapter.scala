@@ -1,21 +1,24 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.controller.ViewController
+import javafx.beans.property._
 import javafx.scene.Node
 import javafx.scene.control._
-import javafx.beans.property._
-import scala.collection.mutable
 import javafx.util.StringConverter
+
+import com.sfxcode.sapphire.core.controller.ViewController
+
+import scalafx.collections.ObservableMap
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) {
 
   private var fxBean: Option[FXBean[T]] = None
-  private val nodeCache = new mutable.HashMap[String, Option[Node]]()
 
-  private val converterMap = new mutable.HashMap[StringProperty, StringConverter[_]]()
-  private val bindingMap = new mutable.HashMap[Property[_], String]()
+  val nodeCache = ObservableMap[String, Option[Node]]()
 
-  private val boundProperties = new mutable.HashMap[Property[_], Property[_]]()
+  val converterMap = ObservableMap[StringProperty, StringConverter[_]]()
+  val bindingMap = ObservableMap[Property[_], String]()
+
+  val boundProperties = ObservableMap[Property[_], Property[_]]()
 
   if (parent == null)
     parent = viewController.rootPane
@@ -112,7 +115,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     else
       beanProperty match {
         case sp: StringProperty =>
-          stringProperty.bindBidirectional(sp)
+          stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[Any]], ConverterFactory.getConverterByName[Any]("DefaultStringConverter"))
           boundProperties.put(stringProperty, beanProperty)
       }
   }

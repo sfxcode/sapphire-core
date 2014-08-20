@@ -1,10 +1,12 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el._
 import java.lang.reflect.Method
-import scala.collection.mutable
+import javax.el._
+
 import de.odysseus.el.ObjectValueExpression
 import de.odysseus.el.misc.TypeConverter
+
+import scalafx.collections.ObservableMap
 
 
 class BaseContext extends ELContext {
@@ -38,7 +40,7 @@ object BaseContext {
 
 
 class BaseFunctionMapper extends  FunctionMapper {
-  val map = new mutable.HashMap[String, Method]()
+  val map = ObservableMap[String, Method]()
 
   def resolveFunction(prefix: String, localName: String): Method = {
     map(key(prefix, localName))
@@ -58,7 +60,7 @@ object BaseFunctionMapper {
 }
 
 class BaseVariableMapper extends  VariableMapper {
-  val map = new mutable.HashMap[String, ValueExpression]()
+  val map = ObservableMap[String, ValueExpression]()
 
   def resolveVariable(variable: String): ValueExpression =
   {

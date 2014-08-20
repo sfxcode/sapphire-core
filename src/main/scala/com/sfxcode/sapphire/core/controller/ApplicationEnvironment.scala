@@ -1,12 +1,12 @@
 package com.sfxcode.sapphire.core.controller
 
-import scalafx.stage.Stage
-import scalafx.scene.Scene
-import scala.collection.mutable
 import scala.reflect.ClassTag
+import scalafx.collections.ObservableMap
+import scalafx.scene.Scene
+import scalafx.stage.Stage
 
 object ApplicationEnvironment   {
-  lazy val  controllerMap = new mutable.HashMap[String, ViewController]()
+  lazy val  controllerMap = ObservableMap[String, ViewController]()
 
   var stage: Stage = _
 

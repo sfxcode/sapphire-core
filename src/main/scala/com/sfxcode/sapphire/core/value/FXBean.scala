@@ -6,6 +6,7 @@ import scala.collection.mutable
 import PropertyType._
 import com.sfxcode.sapphire.core.el.Expressions
 import com.typesafe.config.ConfigFactory
+import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
 
 class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()) extends ChangeListener[Any] {
@@ -15,10 +16,10 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
 
   lazy val hasChangesProperty = new SimpleBooleanProperty(bean, "_hasChanges", false)
 
-  lazy val propertyMap = new mutable.HashMap[String, Property[_]]()
-  lazy val expressionMap = new mutable.HashMap[String, Property[_]]()
+  lazy val propertyMap = ObservableMap[String, Property[_]]()
+  lazy val expressionMap = ObservableMap[String, Property[_]]()
 
-  lazy val changeManagementMap = new mutable.HashMap[String, Any]()
+  lazy val changeManagementMap = ObservableMap[String, Any]()
 
   def apply(key: String): Any = {
     getValue(key)
@@ -177,7 +178,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   def preserveChanges(key: String, oldValue: Any, newValue: Any) {
     if (trackChanges) {
       if (changeManagementMap.contains(key)) {
-        if (changeManagementMap(key).equals(newValue))
+        if (changeManagementMap(key) == newValue || newValue.equals(changeManagementMap(key)))
           changeManagementMap.remove(key)
       } else {
         changeManagementMap.put(key, oldValue)

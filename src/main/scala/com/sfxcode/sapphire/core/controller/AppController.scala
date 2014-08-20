@@ -3,13 +3,14 @@ package com.sfxcode.sapphire.core.controller
 import javax.enterprise.event.Observes
 import com.sfxcode.sapphire.core.cdi.annotation.{Startup, FXStage}
 
+import scalafx.collections.ObservableMap
 import scalafx.stage.Stage
 import scalafx.scene.{Node, Scene}
 import scalafx.delegate.SFXDelegate
 import com.typesafe.scalalogging.LazyLogging
 
 abstract class AppController extends NodeLocator with FxmlLoading with LazyLogging {
-  val sceneMap = new collection.mutable.HashMap[javafx.scene.Parent, javafx.scene.Scene]()
+  val sceneMap = ObservableMap[javafx.scene.Parent, javafx.scene.Scene]()
 
   def startup(@Observes @FXStage @Startup stage: Stage) {
     applicationStartup(stage)
@@ -22,9 +23,7 @@ abstract class AppController extends NodeLocator with FxmlLoading with LazyLoggi
     applicationDidLaunch()
   }
 
-
   def applicationDidLaunch()
-
 
   def replaceSceneContent(newController: ViewController, resize: Boolean = true) {
     val oldController = ApplicationEnvironment.actualSceneController

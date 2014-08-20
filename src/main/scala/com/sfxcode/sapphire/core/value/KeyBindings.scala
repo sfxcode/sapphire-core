@@ -1,11 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
 
-import scala.collection.mutable
 import scala.reflect.runtime.universe._
+import scalafx.collections.ObservableMap
 
 class KeyBindings {
-  private val bindingMap = new mutable.HashMap[String, String]()
+  val bindingMap = ObservableMap[String, String]()
 
   def apply(key: String) = bindingMap(key)
 
