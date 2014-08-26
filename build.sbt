@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.3.1"
+version := "0.9.4"
 
 scalaVersion := "2.11.2"
 
@@ -40,7 +40,7 @@ resolvers ++= Seq(
 
 libraryDependencies += "org.specs2" %% "specs2" % "2.3.13" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.9" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.10" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13" % "test"
 
@@ -48,7 +48,7 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13" % "test"
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.0.0"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
 
 libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
@@ -62,9 +62,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.0"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.6"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.0.0"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.0.2"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.0.0"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.0.2"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 

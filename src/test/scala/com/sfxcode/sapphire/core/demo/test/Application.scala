@@ -15,7 +15,6 @@ object Application extends FXApp {
   override def applicationStage:Stage  = new PrimaryStage {
     title = "Sapphire Controller Demo"
     scene = new Scene {
-
     }
   }
 }
