@@ -3,11 +3,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+    <meta name="viewport" content="width=640">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
 
     <script type="text/javascript" src="javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -54,9 +54,9 @@
 <h2>
 <a name="version" class="anchor" href="#version"><span class="octicon octicon-link"></span></a>Version</h2>
 
-<p>Actual Version is 0.9.1.</p>
+<p>Actual Version is 0.9.5.</p>
 
-<p>Scala Version is 2.11.1.</p>
+<p>Scala Version is 2.11.2.</p>
 
 <h2>
 <a name="licence" class="anchor" href="#licence"><span class="octicon octicon-link"></span></a>Licence</h2>
@@ -86,12 +86,6 @@
 <p>A DSL for JavaFX written in Scala.</p>
 
 <p><a href="https://code.google.com/p/scalafx">https://code.google.com/p/scalafx/</a></p>
-
-<p>FXML support by scalafxml.</p>
-
-<p><a href="https://github.com/vigoo/scalafxml">https://github.com/vigoo/scalafxml/</a></p>
-
-<p>(Optional - you have to import additional libs) </p>
 
 <h3>
 <a name="dependency-injection" class="anchor" href="#dependency-injection"><span class="octicon octicon-link"></span></a>Dependency Injection</h3>
@@ -123,7 +117,9 @@
 <li>Parameter Provider</li>
 <li>Configuration Provider</li>
 <li>FXML Loading</li>
-</ul><h3>
+</ul>
+
+<h3>
 <a name="bean-enhancement" class="anchor" href="#bean-enhancement"><span class="octicon octicon-link"></span></a>Bean Enhancement</h3>
 
 <ul>
@@ -132,35 +128,43 @@
 <li>FXBean resolves Expressions on bean</li>
 <li>FXBean creates Properties needed for Binding on demand</li>
 <li>FXBean has change management by default</li>
-</ul><h3>
+</ul>
+
+<h3>
 <a name="scala-javafx-bean-binding" class="anchor" href="#scala-javafx-bean-binding"><span class="octicon octicon-link"></span></a>Scala JavaFX Bean Binding</h3>
 
 <ul>
 <li>Bindings by form id</li>
 <li>Binding with converter</li>
 <li>Adapter Pattern (FXBean Adapter)</li>
-</ul><h3>
+</ul>
+
+<h3>
 <a name="viewcontroller" class="anchor" href="#viewcontroller"><span class="octicon octicon-link"></span></a>ViewController</h3>
 
 <ul>
 <li>Controller Lifecycle</li>
 <li>Node Locator</li>
 <li>Controller CDI Additions</li>
-</ul><h3>
+</ul>
+
+<h3>
 <a name="fxml-support" class="anchor" href="#fxml-support"><span class="octicon octicon-link"></span></a>FXML Support</h3>
 
 <ul>
 <li>Simple load from controller</li>
-<li>Value Factory for using expressions inside fxml</li>
-<li>Support for scalafxml with @sfxml annotations</li>
-</ul><h3>
+</ul>
+
+<h3>
 <a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h3>
 
 <ul>
 <li>Documentation !</li>
 <li>g8 template</li>
 <li>automatic binding for more node types (currently: Label, TextField, TextArea, CheckBox)</li>
-</ul><h2>
+</ul>
+
+<h2>
 <a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>maven</h2>
 
 <p>Sapphire use a github repository for maven.</p>
@@ -173,25 +177,13 @@
 <div class="highlight highlight-scala"><pre>
 <span class="n">crossScalaVersions</span> <span class="o">:=</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">"2.11.0"</span><span class="o">)</span>
 
-<span class="c1">// optional - needed for macro support with scalafxml</span>
-<span class="c1">// addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.0" cross CrossVersion.full)</span>
 
-<span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-  <span class="s">"sfxcode-releases"</span> <span class="n">at</span> <span class="s">"https://raw.github.com/sfxcode/mvn-repo/master/releases"</span><span class="o">,</span>
-  <span class="s">"sfxcode-snapshots"</span> <span class="n">at</span> <span class="s">"https://raw.github.com/sfxcode/mvn-repo/master/snapshots"</span>
-<span class="o">)</span>
-
-<span class="n">libraryDependencies</span> <span class="o">+=</span>   <span class="s">"com.sfxcode.sapphire"</span> <span class="o">%%</span> <span class="s">"sapphire-core"</span> <span class="o">%</span> <span class="s">"0.9.1"</span>
+<span class="n">libraryDependencies</span> <span class="o">+=</span>   <span class="s">"com.sfxcode.sapphire"</span> <span class="o">%%</span> <span class="s">"sapphire-core"</span> <span class="o">%</span> <span class="s">"0.9.5"</span>
 
 <span class="c1">// optional - controls framework</span>
 
-<span class="c1">// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-control" % "0.9.1"</span>
+<span class="c1">// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-control" % "0.9.5"</span>
 
-<span class="c1">// optional - recompiled macros for 2.11</span>
-
-<span class="c1">// libraryDependencies += "org.scalafx" % "scalafxml-core_2.10" % "0.1" intransitive()</span>
-
-<span class="c1">// libraryDependencies += "com.sfxcode.scalafxml" %% "scalafxml-core-macros" % "0.3.0" intransitive()</span>
 
 </pre></div>
 
