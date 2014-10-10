@@ -26,6 +26,8 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 
 class FXBeanSpec extends Specification with LazyLogging {
 
+  sequential
+
   step {
     CDILauncher.init()
 

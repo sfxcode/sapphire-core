@@ -1,11 +1,13 @@
-package com.sfxcode.sapphire.core.cdi
+package com.sfxcode.sapphire.core.demo.cdi
+
+import com.sfxcode.sapphire.core.cdi.FXApp
 
 import scalafx.application.JFXApp.PrimaryStage
-import scalafx.stage.Stage
-import scalafx.scene.Scene
-import scalafx.scene.layout.BorderPane
 import scalafx.geometry.Insets
+import scalafx.scene.Scene
 import scalafx.scene.control.Label
+import scalafx.scene.layout.BorderPane
+import scalafx.stage.Stage
 
 object CDITestLauncher extends  FXApp{
 

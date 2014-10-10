@@ -5,19 +5,21 @@ import javafx.scene.layout.HBox
 import com.sfxcode.sapphire.core.cdi.{CDILauncher, BeanResolver}
 import com.sfxcode.sapphire.core.demo.test.controller.{Navigation2Controller, DefaultNavigationController, MainWindowController}
 import com.sfxcode.sapphire.core.scene.ContentManager
+import com.sfxcode.sapphire.core.test.JavaFXTestEnvironment
 import com.typesafe.scalalogging.LazyLogging
 import org.specs2.mutable.Specification
 import scalafx.Includes._
 
 
 class ContentManagerSpec extends Specification with BeanResolver with LazyLogging {
+  JavaFXTestEnvironment.init()
+
   val navController = new DefaultNavigationController
   val nav2Controller = new Navigation2Controller
 
   sequential
 
   step {
-    CDILauncher.init()
     navController.rootPane = new HBox()
     nav2Controller.rootPane = new HBox()
 
