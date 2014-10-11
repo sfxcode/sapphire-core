@@ -14,7 +14,7 @@ object ConverterFactory extends LazyLogging{
 
     var className = name
     if (!name.contains("."))
-      className = "javafx.util.converter." + name
+      className = "javafx.util.converter." + guessConverterName(name)
 
     if (!forceNew && converterMap.contains(className))
       return converterMap(className).asInstanceOf[StringConverter[T]]
@@ -29,7 +29,8 @@ object ConverterFactory extends LazyLogging{
       }
     }
     catch {
-      case e: Exception => logger.error(e.getMessage, e)
+      case e: Exception =>
+        logger.warn("use default converter for name: " + className)
     }
     converterMap.put(className, result)
     result
@@ -37,13 +38,9 @@ object ConverterFactory extends LazyLogging{
   }
 
   def guessConverterName(className:String):String = {
-    println(className)
-    var result = "DefaultStringConverter"
-    if (className.endsWith("Integer") || className.equals("Int") )
-      result = "IntegerStringConverter"
-    println(result)
-
-    result
+    if (!className.endsWith("StringConverter"))
+      return className + "StringConverter"
+  className
   }
 
 }

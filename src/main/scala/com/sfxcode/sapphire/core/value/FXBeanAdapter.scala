@@ -5,7 +5,7 @@ import com.typesafe.scalalogging.LazyLogging
 import scalafx.beans.property._
 import scalafx.scene.Node
 import scalafx.scene.control._
-import scalafx.util.StringConverter
+import javafx.util.StringConverter
 import scalafx.Includes._
 import javafx.beans.{property => jfxbp}
 
