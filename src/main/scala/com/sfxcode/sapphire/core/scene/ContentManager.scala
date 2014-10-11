@@ -1,12 +1,13 @@
 package com.sfxcode.sapphire.core.scene
 
-import javafx.scene.layout.Pane
 import com.sfxcode.sapphire.core.controller.ViewController
-import javafx.scene.Node
 import javax.inject.{Named, Inject}
 import javax.enterprise.event.Event
 import org.apache.deltaspike.core.api.provider.BeanProvider
 import com.typesafe.scalalogging.LazyLogging
+
+import scalafx.scene.Node
+import scalafx.scene.layout.Pane
 
 case class ContentWillChangeEvent(pane:Pane, parentController:ViewController,newController:ViewController, oldController:ViewController)
 case class ContentDidChangeEvent(pane:Pane, parentController:ViewController, newController:ViewController, oldController:ViewController)

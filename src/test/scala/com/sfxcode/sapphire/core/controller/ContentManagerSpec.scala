@@ -2,12 +2,13 @@ package com.sfxcode.sapphire.core.controller
 
 import javafx.scene.layout.HBox
 
-import com.sfxcode.sapphire.core.cdi.{CDILauncher, BeanResolver}
-import com.sfxcode.sapphire.core.demo.test.controller.{Navigation2Controller, DefaultNavigationController, MainWindowController}
+import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.demo.appdemo.controller._
 import com.sfxcode.sapphire.core.scene.ContentManager
 import com.sfxcode.sapphire.core.test.JavaFXTestEnvironment
 import com.typesafe.scalalogging.LazyLogging
 import org.specs2.mutable.Specification
+
 import scalafx.Includes._
 
 

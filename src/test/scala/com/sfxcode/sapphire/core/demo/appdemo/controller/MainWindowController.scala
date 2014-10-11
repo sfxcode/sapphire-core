@@ -1,10 +1,11 @@
-package com.sfxcode.sapphire.core.demo.test.controller
+package com.sfxcode.sapphire.core.demo.appdemo.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import javafx.scene.layout.Pane
 import com.sfxcode.sapphire.core.scene.{ContentDidChangeEvent, ContentManager}
 import javax.enterprise.event.Observes
 import javafx.fxml.FXML
+import scalafx.Includes._
 
 import com.typesafe.scalalogging.LazyLogging
 

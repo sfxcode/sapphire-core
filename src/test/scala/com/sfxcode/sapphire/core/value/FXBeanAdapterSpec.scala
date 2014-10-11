@@ -1,9 +1,10 @@
 package com.sfxcode.sapphire.core.value
 
+import com.sfxcode.sapphire.core.demo.appdemo.controller.WorkspaceController
+
 import scalafx.scene.control.Label
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.test.controller.WorkspaceController
 import com.sfxcode.sapphire.core.test.{JavaFXTestEnvironment, Person, PersonDatabase}
 import org.specs2.mutable.Specification
 import scalafx.Includes._

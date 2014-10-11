@@ -6,7 +6,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
             styleClass="workspace1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sfxcode.sapphire.core.demo.test.controller.WorkspaceController">
+            fx:controller="com.sfxcode.sapphire.core.demo.appdemo.controller.WorkspaceController">
     <children>
         <Label layoutX="79.0" layoutY="126.0" text="Workspace"/>
     </children>

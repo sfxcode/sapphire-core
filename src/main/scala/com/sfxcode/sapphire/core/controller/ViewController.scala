@@ -8,7 +8,7 @@ import java.net.URL
 import java.util.ResourceBundle
 import javax.annotation.{PreDestroy, PostConstruct}
 
-abstract class ViewController extends NodeLocator with NodePropertyResolving with FxmlLoading with BeanResolver with ActionEvents with Initializable {
+abstract class ViewController extends NodeLocator  with FxmlLoading with BeanResolver with ActionEvents with Initializable {
 
   implicit def stringListToMap(list:List[String]):Map[String, String] = list.map(s=> (s,s)).toMap
 

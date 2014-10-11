@@ -1,8 +1,9 @@
 package com.sfxcode.sapphire.core.controller
 
+import javafx.scene.Node
+
 import scalafx.stage.Stage
 import scalafx.scene.Scene
-import javafx.scene._
 import scalafx.scene.control._
 
 trait NodeLocator {
@@ -11,7 +12,7 @@ trait NodeLocator {
 
   def scene: Scene = ApplicationEnvironment.scene
 
-  def locateInternal(nodeId: String, parent: Node = null): Option[javafx.scene.Node] = {
+  def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
     if (parent == null) {
       val delegate = scene.delegate
       var result = delegate.lookup(nodeId)

@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.demo.test.model
+package com.sfxcode.sapphire.core.demo.appdemo.model
 
 case class Person(id:Int,name: String, age: Int)
 

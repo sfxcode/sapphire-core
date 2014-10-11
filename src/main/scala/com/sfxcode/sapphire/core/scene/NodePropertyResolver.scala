@@ -1,13 +1,13 @@
-package com.sfxcode.sapphire.core.controller
+package com.sfxcode.sapphire.core.scene
 
-import scalafx.scene.Node
 import scalafx.beans.property.Property
-import scalafx.scene.control.{CheckBox, TextArea, TextField, Label}
+import javafx.scene.Node
+import javafx.scene.control._
 import scalafx.Includes._
 
-trait NodePropertyResolving {
+class NodePropertyResolver {
 
-  def resolve(node: Node): Option[Property[_,_]] = {
+  def resolve(node: Node): Option[Property[_, _ <: Any]] = {
     node match {
       case label: Label => Some(label.textProperty())
       case textField: TextField => Some(textField.textProperty())
@@ -17,10 +17,15 @@ trait NodePropertyResolving {
     }
   }
 
-  def resolveCustomNode(node: Node): Option[Property[_,_]] = {
+  def resolveCustomNode(node: Node): Option[Property[_, _ <: Any]] = {
     node match {
       case _ => None
     }
   }
+}
 
+object NodePropertyResolver {
+  def apply():NodePropertyResolver = {
+    new NodePropertyResolver
+  }
 }

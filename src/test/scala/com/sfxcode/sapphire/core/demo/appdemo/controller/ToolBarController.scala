@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.demo.test.controller
+package com.sfxcode.sapphire.core.demo.appdemo.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import scalafx.scene.Group

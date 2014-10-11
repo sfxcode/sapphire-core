@@ -1,16 +1,16 @@
 package com.sfxcode.sapphire.core.controller
 
 import javax.enterprise.event.Observes
-import com.sfxcode.sapphire.core.cdi.annotation.{Startup, FXStage}
 
-import scalafx.collections.ObservableMap
-import scalafx.stage.Stage
-import scalafx.scene.{Node, Scene}
-import scalafx.delegate.SFXDelegate
+import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
 import com.typesafe.scalalogging.LazyLogging
 
+import scalafx.collections.ObservableMap
+import scalafx.scene.{Parent, Scene}
+import scalafx.stage.Stage
+
 abstract class AppController extends NodeLocator with FxmlLoading with LazyLogging {
-  val sceneMap = ObservableMap[javafx.scene.Parent, javafx.scene.Scene]()
+  val sceneMap = ObservableMap[Parent, Scene]()
 
   def startup(@Observes @FXStage @Startup stage: Stage) {
     applicationStartup(stage)
@@ -68,26 +68,18 @@ abstract class AppController extends NodeLocator with FxmlLoading with LazyLoggi
     }
   }
 
-  def replaceSceneContentWithNode(node: Node, resize: Boolean = true) {
+  def replaceSceneContentWithNode(content: Parent, resize: Boolean = true) {
 
-    val fxNode = node match {
-      case node: SFXDelegate[_] => node.delegate
-      case _ => node
-    }
+    val newScene = sceneMap.getOrElse(content, {
+      val scene = new Scene(content)
+      sceneMap.put(content, scene)
+      scene
+    })
 
-    fxNode match {
-      case parent: javafx.scene.Parent =>
-        val newScene = sceneMap.getOrElse(parent, {
-          val tempScene = new javafx.scene.Scene(parent)
-          sceneMap.put(parent, tempScene)
-          tempScene
-        })
+    stage.setScene(newScene)
+    ApplicationEnvironment.scene = newScene
+    stage.sizeToScene()
 
-        stage.delegate.setScene(newScene)
-        ApplicationEnvironment.scene = new Scene(stage.getScene)
-        stage.sizeToScene()
-      case _ =>
-    }
   }
 
 }

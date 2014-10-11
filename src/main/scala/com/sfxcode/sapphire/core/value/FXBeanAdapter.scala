@@ -1,5 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
+import com.typesafe.scalalogging.LazyLogging
+
 import scalafx.beans.property._
 import scalafx.scene.Node
 import scalafx.scene.control._
@@ -8,15 +10,15 @@ import scalafx.Includes._
 import javafx.beans.{property => jfxbp}
 
 
-import com.sfxcode.sapphire.core.controller.ViewController
+import com.sfxcode.sapphire.core.controller.{ApplicationEnvironment, ViewController}
 
 import scalafx.collections.ObservableMap
 
-class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) {
+class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) extends LazyLogging {
 
   private var fxBean: Option[FXBean[T]] = None
 
-  val nodeCache = ObservableMap[String, Option[Node]]()
+  val nodeCache = ObservableMap[String, Option[javafx.scene.Node]]()
 
   val converterMap = ObservableMap[StringProperty, StringConverter[_]]()
   val bindingMap = ObservableMap[Property[_, _ <: Any], String]()
@@ -61,7 +63,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     None
   }
 
-  def addBinding(property: Property[_,_], beanKey: String, converter: Option[StringConverter[T]] = None) {
+  def addBinding(property: Property[_, _], beanKey: String, converter: Option[StringConverter[T]] = None) {
     if (converter.isDefined && property.isInstanceOf[StringProperty])
       converterMap.put(property.asInstanceOf[StringProperty], converter.get)
     bindingMap.put(property.asInstanceOf[Property[_, _ <: Any]], beanKey)
@@ -78,13 +80,15 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   def guessPropertyForNode(key: String): Option[Property[_, _ <: Any]] = {
     val node = nodeCache.getOrElse(key, viewController.locateInternal(key, parent))
-    node match {
-      case option: Some[Node] =>
-        if (!nodeCache.get(key).isDefined)
-          nodeCache.put(key, option)
-        viewController.resolve(option.get)
-      case _ => None
+    if (node.isDefined) {
+      if (!nodeCache.containsKey(key))
+        nodeCache.put(key, node)
+      val result = ApplicationEnvironment.nodePropertyResolver.resolve(node.get)
+      logger.info("resolved property for %s : %s".format(key, result))
+      result
     }
+    else
+      None
   }
 
   def addConverter(key: String, name: String, forceNew: Boolean = false) {
@@ -124,12 +128,12 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     else
       beanProperty match {
         case sp: StringProperty =>
-          stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[Any,Any]], ConverterFactory.getConverterByName[Any]("DefaultStringConverter"))
+          stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[Any, Any]], ConverterFactory.getConverterByName[Any]("DefaultStringConverter"))
           boundProperties.put(stringProperty, beanProperty)
       }
   }
 
-  protected def bindBidirectionalFromProperty(nodeProperty: Property[Any, Any], beanProperty: Property[Any,Any]) {
+  protected def bindBidirectionalFromProperty(nodeProperty: Property[Any, Any], beanProperty: Property[Any, Any]) {
     nodeProperty <==> beanProperty
     boundProperties.put(nodeProperty, beanProperty)
   }
