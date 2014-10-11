@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.value
 import org.specs2.mutable.Specification
 import FXBeanClassMemberInfo._
 import scala.collection.mutable
-import javafx.beans.property.SimpleStringProperty
+import scalafx.beans.property.StringProperty
 
 class FXBeanMapSpec extends Specification {
 
@@ -29,8 +29,8 @@ class FXBeanMapSpec extends Specification {
       testBean("name") must be equalTo "test"
 
       val property = testBean.getProperty("name")
-      property.isInstanceOf[SimpleStringProperty] must beTrue
-      property.asInstanceOf[SimpleStringProperty].setValue("ABC")
+      property.isInstanceOf[StringProperty] must beTrue
+      property.asInstanceOf[StringProperty].setValue("ABC")
       testMap("name") must be equalTo "ABC"
     }
   }
@@ -55,8 +55,8 @@ class FXBeanMapSpec extends Specification {
       testBean("name") must be equalTo "test"
 
       val property = testBean.getProperty("name")
-      property.isInstanceOf[SimpleStringProperty] must beTrue
-      property.asInstanceOf[SimpleStringProperty].setValue("ABC")
+      property.isInstanceOf[StringProperty] must beTrue
+      property.asInstanceOf[StringProperty].setValue("ABC")
       testMap.get("name") must be equalTo "ABC"
     }
   }

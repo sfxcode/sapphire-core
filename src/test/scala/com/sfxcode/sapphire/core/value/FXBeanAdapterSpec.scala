@@ -1,11 +1,12 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.scene.control.Label
+import scalafx.scene.control.Label
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.test.controller.WorkspaceController
 import com.sfxcode.sapphire.core.test.{JavaFXTestEnvironment, Person, PersonDatabase}
 import org.specs2.mutable.Specification
+import scalafx.Includes._
 
 class FXBeanAdapterSpec extends Specification {
   val adapter = FXBeanAdapter[Person](new WorkspaceController)
@@ -27,9 +28,9 @@ class FXBeanAdapterSpec extends Specification {
     }
 
     "have bindings" in {
-      val label = new Label("test")
+      val label = Label("test")
       label.getText must be equalTo "test"
-      adapter.addBinding(label.textProperty(), "name")
+      adapter.addBinding(label.textProperty, "name")
       adapter.set(Some(testPerson))
       label.getText must be equalTo "Cheryl Hoffman"
 
