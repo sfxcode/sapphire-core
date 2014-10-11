@@ -33,11 +33,6 @@ A DSL for JavaFX written in Scala.
 
 [https://code.google.com/p/scalafx/](https://code.google.com/p/scalafx)
 
-FXML support by scalafxml.
-
-[https://github.com/vigoo/scalafxml/] (https://github.com/vigoo/scalafxml)
-
-(Optional - you have to import additional libs) 
 
 ### Dependency Injection
 
