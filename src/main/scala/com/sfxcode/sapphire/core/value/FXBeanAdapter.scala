@@ -84,7 +84,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       if (!nodeCache.containsKey(key))
         nodeCache.put(key, node)
       val result = ApplicationEnvironment.nodePropertyResolver.resolve(node.get)
-      logger.info("resolved property for %s : %s".format(key, result))
+      logger.debug("resolved property for %s : %s".format(key, result))
       result
     }
     else

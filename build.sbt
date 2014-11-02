@@ -2,9 +2,9 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.6"
+version := "0.9.6.5"
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.4"
 
 scalacOptions += "-deprecation"
 
