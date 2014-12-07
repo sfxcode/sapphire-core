@@ -1,31 +1,31 @@
 package com.sfxcode.sapphire.core.scene
 
-import scalafx.beans.property.Property
 import javafx.scene.Node
-import javafx.scene.control._
-import scalafx.Includes._
+
+import scala.collection.mutable.ArrayBuffer
+import scalafx.beans.property.Property
 
 class NodePropertyResolver {
+  val resolverBuffer = new ArrayBuffer[NodePropertyResolving]()
+  addResolver(DefaultResolver())
+
+  def addResolver(resolver: NodePropertyResolving) = {
+    resolverBuffer.+=(resolver)
+  }
 
   def resolve(node: Node): Option[Property[_, _ <: Any]] = {
-    node match {
-      case label: Label => Some(label.textProperty())
-      case textField: TextField => Some(textField.textProperty())
-      case textArea: TextArea => Some(textArea.textProperty())
-      case checkBox: CheckBox => Some(checkBox.selectedProperty())
-      case _ => resolveCustomNode(node)
-    }
+    resolverBuffer.foreach(r => {
+      val result = r.resolve(node)
+      if (result.isDefined)
+        return result
+    })
+    None
   }
 
-  def resolveCustomNode(node: Node): Option[Property[_, _ <: Any]] = {
-    node match {
-      case _ => None
-    }
-  }
 }
 
 object NodePropertyResolver {
-  def apply():NodePropertyResolver = {
+  def apply(): NodePropertyResolver = {
     new NodePropertyResolver
   }
 }

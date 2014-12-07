@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.7"
+version := "0.9.8"
 
 scalaVersion := "2.11.4"
 
@@ -40,11 +40,11 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.3.13" % "test"
+libraryDependencies += "org.specs2" %% "specs2" % "2.4.14" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.10" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.0.13" % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2" % "test"
 
 
 scalacOptions in Test ++= Seq("-Yrangepos")
@@ -63,13 +63,13 @@ libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.20-R6"
 
 // CDI
 
-libraryDependencies += "javax.enterprise" % "cdi-api" % "1.0"
+libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.6"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.7"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.0.3"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.2.0"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.0.3"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.2.0"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
@@ -81,7 +81,7 @@ libraryDependencies += "de.odysseus.juel" % "juel-impl" % "2.2.7"
 
 libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.7"
 
-unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/ext/jfxrt.jar"))
+// unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/ext/jfxrt.jar"))
 
 publishTo := {
   if (version.value.trim.endsWith("SNAPSHOT"))
@@ -90,11 +90,7 @@ publishTo := {
     Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/releases")))
 }
 
-instrumentSettings
 
-ScoverageKeys.minimumCoverage := 50
-
-ScoverageKeys.failOnMinimumCoverage := false
 
 
 // dependency
