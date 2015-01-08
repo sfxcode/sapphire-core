@@ -1,15 +1,18 @@
 package com.sfxcode.sapphire.core.value
 
+import java.util.Date
+
+import com.sfxcode.sapphire.core.value.FXBeanClassMemberInfo._
+
 import scala.collection.mutable
 import scala.reflect.runtime.universe._
-import scala.Option
 
 object PropertyType extends Enumeration {
   type PropertyValue = Value
-  val TypeUnknown, TypeString, TypeInt, TypeLong, TypeFloat, TypeDouble, TypeBoolean = Value
+  val TypeUnknown, TypeString, TypeInt, TypeLong, TypeFloat, TypeDouble, TypeBoolean, TypeDate = Value
 }
 
-import PropertyType._
+import com.sfxcode.sapphire.core.value.PropertyType._
 
 object FXBeanClassRegistry {
 
@@ -32,29 +35,33 @@ object FXBeanClassRegistry {
       val isJavaType = t.toString.contains("java")
 
       if (!isJavaType && fieldType.get =:= typeOf[Option[String]])
-        result = FXBeanClassMemberInfo(name, TypeString, isOption = true)
+        result = stringInfo(name, isOption = true)
       else if (t =:= typeOf[String] || t.toString.contains("String"))
-        result = FXBeanClassMemberInfo(name, TypeString)
+        result = stringInfo(name)
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Int]])
-        result = FXBeanClassMemberInfo(name, TypeInt, isOption = true)
+        result = intInfo(name, isOption = true)
       else if (t =:= typeOf[Int] || t.toString.contains("Int"))
-      result = FXBeanClassMemberInfo(name, TypeInt)
+        result = intInfo(name)
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Long]])
-        result = FXBeanClassMemberInfo(name, TypeLong, isOption = true)
+        result = longInfo(name, isOption = true)
       else if (t =:= typeOf[Long] || t.toString.contains("Long"))
-      result = FXBeanClassMemberInfo(name, TypeLong)
+        result = longInfo(name)
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Float]])
-        result = FXBeanClassMemberInfo(name, TypeFloat, isOption = true)
+        result = floatInfo(name, isOption = true)
       else if (t =:= typeOf[Float] || t.toString.contains("Float"))
-      result = FXBeanClassMemberInfo(name, TypeFloat)
+        result = floatInfo(name)
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Double]])
-        result = FXBeanClassMemberInfo(name, TypeDouble, isOption = true)
+        result = doubleInfo(name, isOption = true)
       else if (t =:= typeOf[Double] || t.toString.contains("Double"))
-        result = FXBeanClassMemberInfo(name, TypeDouble)
+        result = doubleInfo(name)
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Boolean]])
-        result = FXBeanClassMemberInfo(name, TypeBoolean, isOption = true)
+        result = boolInfo(name, isOption = true)
       else if (t =:= typeOf[Double] || t.toString.contains("Boolean"))
-        result = FXBeanClassMemberInfo(name, TypeBoolean)
+        result = boolInfo(name)
+      else if (!isJavaType && fieldType.get =:= typeOf[Option[Date]])
+        result = dateInfo(name, isOption = true)
+      else if (t =:= typeOf[Date] || t.toString.contains("Date"))
+        result = dateInfo(name)
     }
 
     memberInfoMap.put(name, result)
@@ -62,19 +69,25 @@ object FXBeanClassRegistry {
   }
 
 
-
 }
 
-case class FXBeanClassMemberInfo(name: String, signature: PropertyValue = TypeUnknown, isOption: Boolean = false)
+case class FXBeanClassMemberInfo(name: String, signature: PropertyValue = TypeUnknown, isOption: Boolean = false, javaClass: Class[_] = classOf[java.lang.String])
 
 object FXBeanClassMemberInfo {
 
-  def stringInfo(name: String):FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeString)
-  def intInfo(name: String):FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeInt)
-  def longInfo(name: String):FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeLong)
-  def floatInfo(name: String):FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeFloat)
-  def doubleInfo(name: String):FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDouble)
-  def boolInfo(name: String):FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeBoolean)
+  def stringInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeString, isOption)
+
+  def intInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeInt, isOption, classOf[java.lang.Integer])
+
+  def longInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeLong, isOption, classOf[java.lang.Long])
+
+  def floatInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeFloat, isOption, classOf[java.lang.Float])
+
+  def doubleInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDouble, isOption, classOf[java.lang.Double])
+
+  def boolInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeBoolean, isOption, classOf[java.lang.Boolean])
+
+  def dateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDate, isOption, classOf[java.util.Date])
 
 
 }
