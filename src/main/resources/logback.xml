@@ -8,6 +8,8 @@
         </encoder>
     </appender>
 
+    <logger name="com.sfxcode.sapphire.core" level="trace" />
+
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>

@@ -62,6 +62,10 @@ object FXBeanClassRegistry {
         result = dateInfo(name, isOption = true)
       else if (t =:= typeOf[Date] || t.toString.contains("Date"))
         result = dateInfo(name)
+      else if (!isJavaType && fieldType.get =:= typeOf[Option[Date]])
+        result = dateInfo(name, isOption = true)
+      else if (t =:= typeOf[Date] || t.toString.contains("Date"))
+        result = dateInfo(name)
     }
 
     memberInfoMap.put(name, result)

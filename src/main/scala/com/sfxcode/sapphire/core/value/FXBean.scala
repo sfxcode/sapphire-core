@@ -1,16 +1,18 @@
 package com.sfxcode.sapphire.core.value
 
-import java.util.Date
-import javafx.beans.value.{ObservableValue, ChangeListener}
-import scalafx.beans.property._
-import scala.collection.mutable
-import PropertyType._
+import javafx.beans.value.{ChangeListener, ObservableValue}
+
 import com.sfxcode.sapphire.core.el.Expressions
+import com.sfxcode.sapphire.core.value.PropertyType._
 import com.typesafe.config.ConfigFactory
+import com.typesafe.scalalogging.LazyLogging
+
+import scala.collection.mutable
+import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
 
-class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()) extends ChangeListener[Any] {
+class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()) extends ChangeListener[Any] with LazyLogging {
   val EmptyMemberInfo = FXBeanClassMemberInfo("name_ignored")
   val memberInfoMap = typeHints.map(info => (info.name, info)).toMap
   var trackChanges = true
@@ -93,8 +95,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
               case TypeFloat => result = new FloatProperty(bean, info.name, value.asInstanceOf[Float])
               case TypeDouble => result = new DoubleProperty(bean, info.name, value.asInstanceOf[Double])
               case TypeBoolean => result = new BooleanProperty(bean, info.name, value.asInstanceOf[Boolean])
-              case TypeDate => result = new StringProperty(bean, info.name, value.asInstanceOf[Date].toString)
-              case _ => result = new StringProperty(bean, info.name, value.asInstanceOf[String])
+              case _ => result = createSimpleStringPropertyForObject(value, info.name)
             }
 
             val property = result.asInstanceOf[Property[_,_]]
@@ -168,7 +169,13 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
 
   def updateObservableValue(property: Property[_,_], value: Any) {
     property match {
-      case s: StringProperty => s.set(value.asInstanceOf[String])
+      case s: StringProperty =>
+        if (value.isInstanceOf[String] )
+          s.set(value.asInstanceOf[String])
+        else if (value == null)
+          s.set(null)
+        else
+          logger.debug("can not update observable value of type %s".format(value.getClass))
       case i: IntegerProperty => i.set(value.asInstanceOf[Integer])
       case l: LongProperty => l.set(value.asInstanceOf[Long])
       case f: FloatProperty => f.set(value.asInstanceOf[Float])
