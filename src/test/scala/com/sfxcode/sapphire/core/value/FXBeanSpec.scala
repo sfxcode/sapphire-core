@@ -8,14 +8,14 @@ import scalafx.beans.property._
 
 case class Zip(value: Long = 12345)
 
-case class TestBean(name: String = "test", age: Int = 42, zip: Zip = Zip(), description: Option[String] = Some("desc"), observable: Property[_,_] = new StringProperty("observable")) {
+case class TestBean(name: String = "test", age: Int = 42, zip: Zip = Zip(), description: Option[String] = Some("desc"), observable: Property[_, _] = new StringProperty("observable")) {
   def doubleAge() = age * 2
 
   def multiply(first: Int, second: Int): Int = first * second
 
 }
 
-class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip(), var description: Option[String] = Some("desc"), var observable: Property[_,_] = new StringProperty("observable"))  {
+class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip(), var description: Option[String] = Some("desc"), var observable: Property[_, _] = new StringProperty("observable")) {
   def doubleAge() = age * 2
 
   def multiply(first: Int, second: Int): Int = first * second
@@ -29,7 +29,6 @@ class FXBeanSpec extends Specification with LazyLogging {
 
   step {
     CDILauncher.init()
-
   }
 
   "FXBean" should {
@@ -56,7 +55,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "get value of members of class" in {
-      val testBean = FXBean[TestClass] (new TestClass())
+      val testBean = FXBean[TestClass](new TestClass())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
       testBean.getValue("description") must be equalTo Some("desc")
@@ -72,7 +71,7 @@ class FXBeanSpec extends Specification with LazyLogging {
 
     "get value of members of java class" in {
       val bean: TestJavaBean = new TestJavaBean()
-      val testBean = FXBean[TestJavaBean] (bean)
+      val testBean = FXBean[TestJavaBean](bean)
       logger.debug(testBean.getProperty("date").toString())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
@@ -80,7 +79,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
 
-      "evaluate expressions" in {
+    "evaluate expressions" in {
       val testBean = FXBean[TestBean](TestBean())
       testBean.getValue("result ${2*4}") must be equalTo "result 8"
       testBean.getValue("${_self.description().get()}") must be equalTo "desc"
@@ -90,7 +89,7 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean.getValue("${_self.multiply(2,3)}") must be equalTo 6
       testBean.getValue("!{_self.multiply(2,3)}") must be equalTo 6
       testBean.getValue("doubleAge()") must be equalTo 84
-   }
+    }
 
     "get observable property" in {
       val testBean = FXBean[TestBean](TestBean())

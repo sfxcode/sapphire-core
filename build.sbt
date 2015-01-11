@@ -2,15 +2,15 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.9"
+version := "0.9.9.1"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.5"
 
 scalacOptions += "-deprecation"
 
-parallelExecution in Test := false
+// parallelExecution in Test := false
 
-(testOptions in Test) += Tests.Argument(TestFrameworks.Specs2, "html")
+// (testOptions in Test) += Tests.Argument(TestFrameworks.Specs2, "html")
 
 javacOptions ++= Seq("-source", "1.8")
 
@@ -40,7 +40,7 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.4.14" % "test"
+libraryDependencies += "org.specs2" %% "specs2" % "2.4.15" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
@@ -67,9 +67,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.7"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.2.0"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.2.1"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.2.0"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.2.1"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
