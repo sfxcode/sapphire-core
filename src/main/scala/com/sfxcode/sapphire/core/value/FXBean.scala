@@ -19,8 +19,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
 
   lazy val hasChangesProperty = new BooleanProperty(bean, "_hasChanges", false)
 
-  lazy val propertyMap = ObservableMap[String, Property[_,_]]()
-  lazy val expressionMap = ObservableMap[String, Property[_,_]]()
+  lazy val propertyMap = ObservableMap[String, Property[_, _]]()
+  lazy val expressionMap = ObservableMap[String, Property[_, _]]()
 
   lazy val changeManagementMap = ObservableMap[String, Any]()
 
@@ -57,7 +57,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
 
-  def getProperty(key: String): Property[_,_] = {
+  def getProperty(key: String): Property[_, _] = {
     if ("_hasChanges".equals(key))
       return hasChangesProperty
     var value = getValue(key)
@@ -70,16 +70,16 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       case _ =>
     }
     value match {
-      case value1: Property[_,_] => value1
+      case value1: Property[_, _] => value1
       case _ =>
         // lookup in local function
-       var info = memberInfo(key)
+        var info = memberInfo(key)
         if (info.signature == TypeUnknown) {
           // lookup in registry
           bean match {
             case map: mutable.Map[String, Any] =>
             case javaMap: java.util.Map[String, Any] =>
-            case _ => info =  FXBeanClassRegistry.memberInfo(bean, key)
+            case _ => info = FXBeanClassRegistry.memberInfo(bean, key)
           }
 
         }
@@ -98,7 +98,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
               case _ => result = createSimpleStringPropertyForObject(value, info.name)
             }
 
-            val property = result.asInstanceOf[Property[_,_]]
+            val property = result.asInstanceOf[Property[_, _]]
             property.addListener(this)
             propertyMap.put(key, property)
             property
@@ -121,7 +121,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
               case _ => result = new StringProperty(bean, info.name, "")
             }
 
-            val property = result.asInstanceOf[Property[_,_]]
+            val property = result.asInstanceOf[Property[_, _]]
             expressionMap.put(key, property)
             property
           }
@@ -142,7 +142,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     new StringProperty(bean, name, propertyValue)
   }
 
-  def beanValueChanged(key: String, property: Property[_,_], oldValue: Any, newValue: Any) {
+  def beanValueChanged(key: String, property: Property[_, _], oldValue: Any, newValue: Any) {
     updateObservableValue(property, newValue)
   }
 
@@ -167,19 +167,25 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     })
   }
 
-  def updateObservableValue(property: Property[_,_], value: Any) {
+  def updateObservableValue(property: Property[_, _], value: Any) {
     property match {
-      case s: StringProperty =>
-        if (value.isInstanceOf[String] )
-          s.set(value.asInstanceOf[String])
-        else if (value == null)
-          s.set(null)
-        else
-          logger.debug("can not update observable value of type %s".format(value.getClass))
+      case property: StringProperty =>
+        value match {
+          case s: String => property.set(s)
+          case d: java.util.Date => property.set(FXBean.defaultDateConverter.toString(d))
+          case c: java.util.Calendar => property.set(FXBean.defaultDateConverter.toString(c.getTime))
+          case c: javax.xml.datatype.XMLGregorianCalendar => property.set(FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime))
+          case _ =>
+            if (value != null)
+              property.set(value.toString)
+            else
+              property.set(null)
+        }
       case i: IntegerProperty => i.set(value.asInstanceOf[Integer])
       case l: LongProperty => l.set(value.asInstanceOf[Long])
       case f: FloatProperty => f.set(value.asInstanceOf[Float])
       case d: DoubleProperty => d.set(value.asInstanceOf[Double])
+      case b: BooleanProperty => b.set(value.asInstanceOf[Boolean])
       case _ =>
     }
   }

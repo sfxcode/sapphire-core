@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.9.1"
+version := "0.9.9.3"
 
 scalaVersion := "2.11.5"
 
@@ -59,7 +59,9 @@ libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.20-R6"
+//libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.20-R6"
+
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.20-R7-SNAPSHOT"
 
 // CDI
 
@@ -96,6 +98,5 @@ publishTo := {
 // dependency
 
 net.virtualvoid.sbt.graph.Plugin.graphSettings
-
 
 
