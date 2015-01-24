@@ -1,12 +1,9 @@
 package com.sfxcode.sapphire.core.el
 
-import java.lang.reflect.Method
 import javax.el._
 
 import de.odysseus.el.ObjectValueExpression
 import de.odysseus.el.misc.TypeConverter
-
-import scalafx.collections.ObservableMap
 
 
 class BaseContext extends ELContext {
@@ -38,49 +35,5 @@ object BaseContext {
   def apply():BaseContext = new BaseContext
 }
 
-
-class BaseFunctionMapper extends  FunctionMapper {
-  val map = ObservableMap[String, Method]()
-
-  def resolveFunction(prefix: String, localName: String): Method = {
-    map(key(prefix, localName))
-  }
-
-  def addFunction(prefix: String, localName: String,method:Method):Option[Method] = {
-    map.put(key(prefix, localName), method)
-  }
-
-  def key(prefix: String, localName: String):String = {
-    "%s:%s".format(prefix, localName)
-  }
-}
-
-object BaseFunctionMapper {
-  def apply():BaseFunctionMapper = new BaseFunctionMapper
-}
-
-class BaseVariableMapper extends  VariableMapper {
-  val map = ObservableMap[String, ValueExpression]()
-
-  def resolveVariable(variable: String): ValueExpression =
-  {
-    map.getOrElse(variable, null)
-  }
-
-  def removeVariable(variable: String) {
-    map.remove(variable)
-  }
-
-
-  def setVariable(variable: String, expression: ValueExpression): ValueExpression =
-  {
-    map.put(variable, expression)
-    expression
-  }
-}
-
-object BaseVariableMapper {
-  def apply():BaseVariableMapper = new BaseVariableMapper
-}
 
 

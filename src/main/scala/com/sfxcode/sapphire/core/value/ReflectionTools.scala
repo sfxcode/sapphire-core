@@ -1,9 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
+import com.typesafe.scalalogging.LazyLogging
+
 import scala.reflect.runtime.universe._
 import scala.reflect.runtime.{universe => ru}
 
-object ReflectionTools {
+object ReflectionTools extends LazyLogging {
   val typeMirror = ru.runtimeMirror(this.getClass.getClassLoader)
 
   def getFieldType(target: Any, name: String,showMethods:Boolean=false): Option[Type] = {
@@ -42,7 +44,12 @@ object ReflectionTools {
         fieldMirror.set(Some(value))
     }
     else {
-      fieldMirror.set(value)
+      try {
+        fieldMirror.set(value)
+      }
+      catch {
+        case e:Exception => logger.trace("can not update %s for field %s".format(value, name))
+      }
     }
 
   }
