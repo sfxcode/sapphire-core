@@ -72,7 +72,6 @@ object DefaultFunctions {
   }
 
   def dateString(date: Any): String = {
-    println(date)
     date match {
       case d: java.util.Date => FXBean.defaultDateConverter.toString(d)
       case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
