@@ -53,7 +53,7 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[Any])
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
-
+    result.addFunction(SapphireFunctionPrefix, "boolString", clazz, "boolString", classOf[Boolean], classOf[String], classOf[String])
     result
   }
 
@@ -63,6 +63,13 @@ object BaseFunctionMapper {
 object DefaultFunctions {
 
   def frameworkName() = "Sapphire"
+
+  def boolString(value:Boolean, trueValue:String, falseValue:String):String = {
+    if(value)
+      trueValue
+    else
+      falseValue
+  }
 
   def dateString(date: Any): String = {
     println(date)
@@ -77,6 +84,7 @@ object DefaultFunctions {
   def now = new java.util.Date
 
   def nowAsString = dateString(new java.util.Date)
+
 
 
 

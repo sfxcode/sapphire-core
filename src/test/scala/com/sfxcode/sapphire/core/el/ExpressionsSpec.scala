@@ -26,6 +26,13 @@ class ExpressionsSpec extends Specification {
 
       Expressions.getValue("${sf:dateString(testDate)}") must be equalTo "2015-01-01"
 
+      Expressions.register("testBoolean", true)
+
+      Expressions.getValue("${sf:boolString(testBoolean,'Y', 'N')}") must be equalTo "Y"
+
+      Expressions.register("testBoolean", false)
+      Expressions.getValue("${sf:boolString(testBoolean,'Y', 'N')}") must be equalTo "N"
+
     }
 
   }
