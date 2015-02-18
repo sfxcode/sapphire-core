@@ -1,10 +1,13 @@
 package com.sfxcode.sapphire.core.value
 
+import org.apache.deltaspike.core.api.exclude.Exclude
+
 import org.specs2.mutable.Specification
 import FXBeanClassMemberInfo._
 import scala.collection.mutable
 import scalafx.beans.property.StringProperty
 
+@Exclude
 class FXBeanMapSpec extends Specification {
 
 

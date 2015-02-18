@@ -2,6 +2,7 @@ package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.cdi.CDILauncher
 import com.typesafe.scalalogging.LazyLogging
+import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable._
 
 import scalafx.beans.property._
@@ -22,18 +23,15 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 
 }
 
-
+@Exclude
 class FXBeanSpec extends Specification with LazyLogging {
 
-  sequential
-
-  step {
-    CDILauncher.init()
-  }
 
   "FXBean" should {
 
     "get value of members of case class" in {
+      CDILauncher.init()
+
       val testBean = FXBean[TestBean](TestBean())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
@@ -47,11 +45,14 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean("observable").asInstanceOf[StringProperty].getValue must be equalTo "observable"
       testBean("zip").asInstanceOf[Zip].value must be equalTo 12345
 
+      CDILauncher.shutdown()
+
       val testBean2 = FXBean[TestBean](TestBean())
 
       testBean2.updateValue("description", None)
       testBean2.bean.description must beNone
       testBean2.getValue("description") must be equalTo None
+
     }
 
     "get value of members of class" in {

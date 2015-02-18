@@ -14,5 +14,13 @@ object CDILauncher {
     }
   }
 
+  def shutdown() {
+    if (initialized) {
+      val CdiContainer = CdiContainerLoader.getCdiContainer
+      CdiContainer.shutdown()
+      initialized = false
+    }
+  }
+
 }
 

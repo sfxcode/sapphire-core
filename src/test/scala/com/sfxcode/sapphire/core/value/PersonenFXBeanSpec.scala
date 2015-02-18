@@ -1,11 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
-import org.specs2.mutable.Specification
-import com.sfxcode.sapphire.core.cdi.CDILauncher
 import com.sfxcode.sapphire.core.test.PersonDatabase
+import org.apache.deltaspike.core.api.exclude.Exclude
+import org.specs2.mutable.Specification
 
+@Exclude
 class PersonenFXBeanSpec extends Specification {
-   CDILauncher.init()
 
    "Personen List of FXBean" should {
 

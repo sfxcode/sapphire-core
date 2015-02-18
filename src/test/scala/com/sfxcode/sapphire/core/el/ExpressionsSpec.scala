@@ -2,12 +2,11 @@ package com.sfxcode.sapphire.core.el
 
 import java.text.SimpleDateFormat
 
-import com.sfxcode.sapphire.core.cdi.CDILauncher
+import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable.Specification
 
-
+@Exclude
 class ExpressionsSpec extends Specification {
-  CDILauncher.init()
 
   "Expressions" should {
 

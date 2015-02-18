@@ -8,7 +8,7 @@ scalaVersion := "2.11.5"
 
 scalacOptions += "-deprecation"
 
-// parallelExecution in Test := false
+parallelExecution in Test := false
 
 // (testOptions in Test) += Tests.Argument(TestFrameworks.Specs2, "html")
 
@@ -40,7 +40,9 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.4.15" % "test"
+libraryDependencies += "org.specs2" %% "specs2" % "2.4.16" % "test"
+
+libraryDependencies += "org.scalamock" %% "scalamock-specs2-support" % "3.2.1" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
@@ -59,9 +61,8 @@ libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.20-R6"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.31-R7"
 
-// libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.20-R7-SNAPSHOT"
 
 // CDI
 

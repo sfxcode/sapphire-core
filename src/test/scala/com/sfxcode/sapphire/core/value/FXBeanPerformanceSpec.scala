@@ -1,8 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
+import org.apache.deltaspike.core.api.exclude.Exclude
+
 import com.typesafe.scalalogging.LazyLogging
 import org.specs2.mutable.Specification
 
+@Exclude
 class FXBeanPerformanceSpec extends Specification with LazyLogging {
 
 

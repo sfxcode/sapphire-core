@@ -1,6 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
 import java.util.Date
+import org.apache.deltaspike.core.api.exclude.Exclude
 
 import org.specs2.mutable.Specification
 
@@ -19,6 +20,7 @@ case class LongTest(value: Long = 11, valueOption: Option[Long] = Some(12))
 import com.sfxcode.sapphire.core.value.FXBeanClassRegistry._
 import com.sfxcode.sapphire.core.value.PropertyType._
 
+@Exclude
 class FXBeanClassRegistrySpec extends Specification {
 
 

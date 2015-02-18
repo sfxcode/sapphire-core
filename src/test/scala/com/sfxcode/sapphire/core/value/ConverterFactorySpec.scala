@@ -1,11 +1,13 @@
 package com.sfxcode.sapphire.core.value
 
+import org.apache.deltaspike.core.api.exclude.Exclude
+
 import org.specs2.mutable.Specification
 
 import javafx.util.converter._
 
 
-
+@Exclude
 class ConverterFactorySpec extends Specification {
 
 
