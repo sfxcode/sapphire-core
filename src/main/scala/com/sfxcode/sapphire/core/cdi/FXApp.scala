@@ -46,8 +46,15 @@ abstract class FXApp extends JFXApp {
 
   def applicationWillLaunch() {}
 
+  def applicationWillTerminate() {}
+
   def startupLiteral: AnnotationLiteral[_] = {
     new AnnotationLiteral[Startup] {}
+  }
+
+  override def stopApp(): Unit = {
+    applicationWillTerminate()
+    CDILauncher.shutdown()
   }
 }
 

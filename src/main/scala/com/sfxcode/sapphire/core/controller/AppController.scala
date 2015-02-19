@@ -51,14 +51,14 @@ abstract class AppController extends NodeLocator with FxmlLoading with LazyLoggi
           case e: Exception => logger.error(e.getMessage, e)
         }
     }
-    if (!newController.firstTimeLoaded) {
+    if (!newController.gainVisibility) {
       try {
         newController.didGainVisibilityFirstTime()
       }
       catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
-      newController.firstTimeLoaded = true
+      newController.gainVisibility = true
     }
     try {
       newController.didGainVisibility()

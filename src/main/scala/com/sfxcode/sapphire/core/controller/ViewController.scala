@@ -1,23 +1,24 @@
 package com.sfxcode.sapphire.core.controller
 
-import javax.inject.Inject
-import com.sfxcode.sapphire.core.cdi.BeanResolver
-import com.typesafe.config.Config
-import javafx.fxml.Initializable
 import java.net.URL
 import java.util.ResourceBundle
-import javax.annotation.{PreDestroy, PostConstruct}
+import javafx.fxml.Initializable
+import javax.annotation.{PostConstruct, PreDestroy}
+import javax.inject.Inject
 
-abstract class ViewController extends NodeLocator  with FxmlLoading with BeanResolver with ActionEvents with Initializable {
+import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.typesafe.config.Config
 
-  implicit def stringListToMap(list:List[String]):Map[String, String] = list.map(s=> (s,s)).toMap
+abstract class ViewController extends NodeLocator with FxmlLoading with BeanResolver with ActionEvents with Initializable {
+
+  implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
   @Inject
   var configuration: Config = _
 
-  var parent:ViewController = _
+  var parent: ViewController = _
 
-  var firstTimeLoaded = false
+  var gainVisibility = false
 
   // bean lifecycle
 
@@ -32,7 +33,6 @@ abstract class ViewController extends NodeLocator  with FxmlLoading with BeanRes
   def shutdown() {}
 
 
-
   override def initialize(loc: URL, res: ResourceBundle): Unit = {
     location = loc
     resources = res
@@ -41,7 +41,7 @@ abstract class ViewController extends NodeLocator  with FxmlLoading with BeanRes
 
   // controller lifecycle
 
-  def didInitialize()  {}
+  def didInitialize() {}
 
   def willGainVisibility() {}
 
@@ -60,9 +60,6 @@ abstract class ViewController extends NodeLocator  with FxmlLoading with BeanRes
 
 
   override def toString: String = {
-    var result = this.getClass.getSimpleName
-    if (isLoadedFromFXML)
-      result += " fxml: " + fxml
-    result
+    "%s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName, isLoadedFromFXML, gainVisibility)
   }
 }

@@ -17,7 +17,6 @@ trait FxmlLoading {
   @Inject
   var loader: FXMLHandler = _
 
-  var fxml: Any = _
   var rootPane: Pane = _
   var location: URL = _
   var resources: ResourceBundle = _
@@ -33,24 +32,24 @@ trait FxmlLoading {
   }
 
 
-  protected def guessFxmlPath[T <: ViewController](fxml: String, ct: ClassTag[T]): String = {
-    var fxmlPath = fxml.toString
-    if (fxml.isEmpty) {
+  protected def guessFxmlPath[T <: ViewController](path: String, ct: ClassTag[T]): String = {
+    var result = path.toString
+    if (path.isEmpty) {
       var basePath = ConfigFactory.load().getString("sapphire.core.fxml.basePath")
       if (basePath.isEmpty) {
         val guessed = ct.runtimeClass.getName.replace(".", "/").replace("Controller", "")
-        fxmlPath = "/%s.fxml".format(guessed)
+        result = "/%s.fxml".format(guessed)
       }
       else {
         val fxmlName = ct.runtimeClass.getSimpleName.replace("Controller", "")
-        fxmlPath = "%s%s.fxml".format(basePath, fxmlName)
+        result = "%s%s.fxml".format(basePath, fxmlName)
       }
     }
-    fxmlPath
+    result
   }
 
 
 
-  def isLoadedFromFXML = fxml != null
+  def isLoadedFromFXML = location != null
 
 }
