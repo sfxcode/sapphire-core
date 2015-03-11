@@ -48,7 +48,7 @@ object ReflectionTools extends LazyLogging {
         fieldMirror.set(value)
       }
       catch {
-        case e:Exception => logger.trace("can not update %s for field %s".format(value, name))
+        case e:Exception => logger.debug("can not update %s for field %s".format(value, name))
       }
     }
 

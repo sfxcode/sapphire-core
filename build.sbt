@@ -2,9 +2,9 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.9.7-SNAPSHOT"
+version := "0.9.9.9-SNAPSHOT"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 scalacOptions += "-deprecation"
 
@@ -36,18 +36,20 @@ resolvers ++= Seq(
   "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
 )
 
+resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
+
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2" % "2.4.16" % "test"
-
-libraryDependencies += "org.scalamock" %% "scalamock-specs2-support" % "3.2.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.0.1" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2" % "test"
 
+libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6"
 
 scalacOptions in Test ++= Seq("-Yrangepos")
 
@@ -70,9 +72,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.7"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.2.1"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.3.0"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.2.1"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.3.0"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 

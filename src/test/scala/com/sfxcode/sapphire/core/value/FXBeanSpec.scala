@@ -1,6 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.test.cdi
+import com.sfxcode.sapphire.core.cdi.CDILauncher
+import com.sfxcode.sapphire.core.test.BeforeAfterAll
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable._
@@ -24,12 +25,21 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 }
 
 @Exclude
-class FXBeanSpec extends Specification with LazyLogging {
+class FXBeanSpec extends Specification with LazyLogging with BeforeAfterAll {
+
+  override protected def beforeAll(): Unit = {
+    CDILauncher.init()
+  }
+
+  override protected def afterAll(): Unit = {
+    CDILauncher.shutdown()
+  }
+
 
 
   "FXBean" should {
 
-    "get value of members of case class" in new cdi {
+    "get value of members of case class" in {
 
       val testBean = FXBean[TestBean](TestBean())
       testBean.getValue("name") must be equalTo "test"

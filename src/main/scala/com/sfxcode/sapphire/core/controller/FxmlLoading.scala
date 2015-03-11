@@ -17,6 +17,7 @@ trait FxmlLoading {
   @Inject
   var loader: FXMLHandler = _
 
+  var fxml: AnyRef = _
   var rootPane: Pane = _
   var location: URL = _
   var resources: ResourceBundle = _
