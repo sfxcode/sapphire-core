@@ -4,9 +4,9 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 0.9.9.
+Actual Version is 0.9.9.9.
 
-Scala Version is 2.11.4.
+Scala Version is 2.11.6.
 
 ## Licence
 
@@ -14,7 +14,7 @@ Apache 2 License.
 
 ## Technology Stack
 
-### Java / JDK 1.8
+### Java / JDK 1.8 u40
 
 Sapphire runs agains the latest JDK 8 version.
 
@@ -108,7 +108,7 @@ libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "0.9.9"
 
 // optional - controls framework
 
-// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-control" % "0.9.9"
+// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-extension" % "0.3.2"
 
 
 ```
