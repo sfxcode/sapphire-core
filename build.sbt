@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.9.9-SNAPSHOT"
+version := "0.9.9.9"
 
 scalaVersion := "2.11.6"
 
