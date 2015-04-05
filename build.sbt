@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "0.9.9.9"
+version := "1.0.0.RC2"
 
 scalaVersion := "2.11.6"
 
@@ -43,11 +43,11 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.0.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.3.1" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2" % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.3" % "test"
 
 libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6"
 
@@ -63,7 +63,7 @@ libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.31-R7"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.40-R8"
 
 
 // CDI

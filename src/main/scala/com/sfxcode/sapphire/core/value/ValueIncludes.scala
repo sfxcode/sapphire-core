@@ -1,7 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
 import scalafx.collections.ObservableBuffer
-import javafx.collections.ObservableList
 
 trait ValueIncludes {
 
@@ -24,7 +23,7 @@ trait ValueIncludes {
       None
   }
 
-  implicit def collectionToObservableList[T <:AnyRef](collection:Iterable[T]):ObservableList[FXBean[T]] = {
+  implicit def collectionToObservableBuffer[T <:AnyRef](collection:Iterable[T]):ObservableBuffer[FXBean[T]] = {
     ObservableBuffer(collection.map(item => FXBean[T](item)).toList)
   }
 
