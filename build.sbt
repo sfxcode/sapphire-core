@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.0.RC2"
+version := "1.0.0.RC3"
 
 scalaVersion := "2.11.6"
 
@@ -43,7 +43,7 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.3.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.4" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
@@ -94,9 +94,6 @@ publishTo := {
   else
     Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/releases")))
 }
-
-
-
 
 // dependency
 

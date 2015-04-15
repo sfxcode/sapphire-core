@@ -36,17 +36,24 @@ trait NodeLocator {
     None
   }
 
-  def locateTextField(nodeId: String): Option[TextField] = {
+  def locateTextField(nodeId: String, parent: Node = null): Option[TextField] = {
     val result = locateInternal(nodeId)
     if (result.isDefined && result.get.isInstanceOf[javafx.scene.control.TextField])
       return Some(new TextField(result.get.asInstanceOf[javafx.scene.control.TextField]))
     None
   }
 
-  def locateLabel(nodeId: String): Option[Label] = {
+  def locateLabel(nodeId: String, parent: Node = null): Option[Label] = {
     val result = locateInternal(nodeId)
     if (result.isDefined && result.get.isInstanceOf[javafx.scene.control.Label])
       return Some(new Label(result.get.asInstanceOf[javafx.scene.control.Label]))
+    None
+  }
+
+  def locateComboBox[T <: Any](nodeId: String, parent: Node = null): Option[ComboBox[T]] = {
+    val result = locateInternal(nodeId, parent)
+    if (result.isDefined && result.get.isInstanceOf[javafx.scene.control.ComboBox[T]])
+      return Some(new ComboBox[T](result.get.asInstanceOf[javafx.scene.control.ComboBox[T]]))
     None
   }
 

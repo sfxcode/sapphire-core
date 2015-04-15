@@ -1,18 +1,14 @@
 package com.sfxcode.sapphire.core.value
 
+import javafx.beans.{property => jfxbp}
+import javafx.util.StringConverter
+
+import com.sfxcode.sapphire.core.controller.{ApplicationEnvironment, ViewController}
 import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.beans.property._
-import scalafx.scene.Node
-import scalafx.scene.control._
-import javafx.util.StringConverter
-import scalafx.Includes._
-import javafx.beans.{property => jfxbp}
-
-
-import com.sfxcode.sapphire.core.controller.{ApplicationEnvironment, ViewController}
-
 import scalafx.collections.ObservableMap
+import scalafx.scene.Node
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) extends LazyLogging {
 
@@ -45,16 +41,6 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   protected def bindAll() {
     bindingMap.keys.foreach(property => bindBidirectional(property, bindingMap(property)))
-  }
-
-  protected def bindToNode(node: Node, beanKey: String) {
-    node match {
-      case label: Label => bindBidirectional(label.textProperty(), beanKey)
-      case textField: TextField => bindBidirectional(textField.textProperty(), beanKey)
-      case textArea: TextArea => bindBidirectional(textArea.textProperty(), beanKey)
-      case checkBox: CheckBox => bindBidirectional(checkBox.selectedProperty(), beanKey)
-      case _ =>
-    }
   }
 
   def getBean: Option[T] = {
