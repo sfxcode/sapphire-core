@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.0.RC3"
+version := "1.0.0.RC4"
 
 scalaVersion := "2.11.6"
 
@@ -43,7 +43,7 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.4" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.6" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
@@ -59,18 +59,19 @@ scalacOptions in Test ++= Seq("-Yrangepos")
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
 
-libraryDependencies += "com.typesafe" % "config" % "1.2.1"
+libraryDependencies += "com.typesafe" % "config" % "1.3.0"
 
 // UI
 
 libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.40-R8"
 
+libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.2.2"
 
 // CDI
 
 libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.7"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.8"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.3.0"
 
