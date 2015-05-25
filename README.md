@@ -104,7 +104,7 @@ Sapphire use a github repository for maven.
 crossScalaVersions := Seq("2.11.0")
 
 
-libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "0.9.9.9"
+libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "1.0.0"
 
 // optional - controls framework
 

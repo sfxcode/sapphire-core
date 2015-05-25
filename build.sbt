@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.0.RC4"
+version := "1.0.0"
 
 scalaVersion := "2.11.6"
 
@@ -24,7 +24,7 @@ scalacOptions += "-target:jvm-1.7"
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
                     "releases"  at "http://oss.sonatype.org/content/repositories/releases",
                     "java"  at "https://maven.java.net/content/groups/public/",
-                      "apache" at "http://maven.acm-sl.org/artifactory/list/libs-releases"
+                      "apache" at "https://repo.maven.apache.org/maven2/"
 )
 
 resolvers += "jboss" at "https://repository.jboss.org/nexus/content/repositories/"
@@ -49,8 +49,6 @@ libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.3" % "test"
 
-libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6"
-
 scalacOptions in Test ++= Seq("-Yrangepos")
 
 // Compile
@@ -60,6 +58,8 @@ scalacOptions in Test ++= Seq("-Yrangepos")
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.0"
+
+libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6"
 
 // UI
 
@@ -73,9 +73,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.8"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.3.0"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.4.0"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.3.0"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.4.0"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 

@@ -27,6 +27,8 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 @Exclude
 class FXBeanSpec extends Specification with LazyLogging with BeforeAfterAll {
 
+  sequential
+
   override protected def beforeAll(): Unit = {
     CDILauncher.init()
   }
@@ -34,7 +36,6 @@ class FXBeanSpec extends Specification with LazyLogging with BeforeAfterAll {
   override protected def afterAll(): Unit = {
     CDILauncher.shutdown()
   }
-
 
 
   "FXBean" should {
