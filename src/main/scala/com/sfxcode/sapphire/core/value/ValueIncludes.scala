@@ -27,4 +27,8 @@ trait ValueIncludes {
     ObservableBuffer(collection.map(item => FXBean[T](item)).toList)
   }
 
+  implicit def observableBufferToCollection[T <: AnyRef](buffer: ObservableBuffer[FXBean[T]]): Iterable[T] = {
+    buffer.map(item => item.bean).toIterable
+  }
+
 }
