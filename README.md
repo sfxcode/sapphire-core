@@ -4,9 +4,9 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 0.9.9.9.
+Actual Version is 1.0.1.
 
-Scala Version is 2.11.6.
+Scala Version is 2.11.1.
 
 ## Licence
 
@@ -36,11 +36,11 @@ A DSL for JavaFX written in Scala.
 
 ### Dependency Injection
 
-Sapphire use Apache Deltaspike as CDI Abstraction Layer.
+Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.4.1).
 
 [http://deltaspike.apache.org](http://deltaspike.apache.org)
 
-The default implementation depends on Apache OpenWebBeans.
+The default implementation depends on Apache OpenWebBeans (1.6.1).
 
 [http://openwebbeans.apache.org](http://openwebbeans.apache.org)
 
@@ -104,11 +104,11 @@ Sapphire use a github repository for maven.
 crossScalaVersions := Seq("2.11.0")
 
 
-libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "1.0.0"
+libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "1.0.1"
 
 // optional - controls framework
 
-// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-extension" % "0.3.2"
+// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-extension" % "0.4.0"
 
 
 ```

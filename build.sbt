@@ -2,9 +2,9 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.0"
+version := "1.0.1"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 scalacOptions += "-deprecation"
 
@@ -16,7 +16,7 @@ javacOptions ++= Seq("-source", "1.8")
 
 javacOptions ++= Seq("-target", "1.8")
 
-scalacOptions += "-target:jvm-1.7"
+scalacOptions += "-target:jvm-1.8"
 
 
 // resolvers
@@ -43,7 +43,7 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.6" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.1" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
@@ -71,11 +71,13 @@ libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.2.2"
 
 libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.2.8"
+libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.4.0"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.1"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.4.0"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.4.1"
+
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.4.1"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
