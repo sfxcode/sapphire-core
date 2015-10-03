@@ -20,7 +20,6 @@ case class LongTest(value: Long = 11, valueOption: Option[Long] = Some(12))
 import com.sfxcode.sapphire.core.value.FXBeanClassRegistry._
 import com.sfxcode.sapphire.core.value.PropertyType._
 
-@Exclude
 class FXBeanClassRegistrySpec extends Specification {
 
 

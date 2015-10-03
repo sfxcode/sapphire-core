@@ -1,12 +1,9 @@
 package com.sfxcode.sapphire.core.value
 
-import org.apache.deltaspike.core.api.exclude.Exclude
-
 import org.specs2.mutable.Specification
 
 case class UpdateTestBean(var name: String = "test", var age: Int = 42, var description: Option[String] = Some("desc"))
 
-@Exclude
 class FXBeanUpdateSpec extends Specification {
 
   sequential

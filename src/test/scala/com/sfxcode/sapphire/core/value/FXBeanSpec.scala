@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.cdi.CDILauncher
-import com.sfxcode.sapphire.core.test.BeforeAfterAll
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable._
+import org.specs2.specification.BeforeAfterAll
 
 import scalafx.beans.property._
 
@@ -29,11 +29,12 @@ class FXBeanSpec extends Specification with LazyLogging with BeforeAfterAll {
 
   sequential
 
-  override protected def beforeAll(): Unit = {
+  def beforeAll(): Unit = {
     CDILauncher.init()
   }
 
-  override protected def afterAll(): Unit = {
+
+   def afterAll(): Unit = {
     CDILauncher.shutdown()
   }
 

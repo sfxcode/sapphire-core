@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.1"
+version := "1.0.2"
 
 scalaVersion := "2.11.7"
 
@@ -27,7 +27,7 @@ resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/s
                       "apache" at "https://repo.maven.apache.org/maven2/"
 )
 
-resolvers += "jboss" at "https://repository.jboss.org/nexus/content/repositories/"
+//resolvers += "jboss" at "https://repository.jboss.org/nexus/content/repositories/"
 
 resolvers += "lodgon" at "http://maven.lodgon.com/maven2/"
 
@@ -43,7 +43,7 @@ resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.4" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
 
@@ -59,11 +59,11 @@ libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.0"
 
-libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6"
+libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.40-R8"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.60-R9"
 
 libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.2.2"
 
@@ -73,11 +73,11 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.1"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.2"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.4.1"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.0"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.4.1"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.0"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
@@ -89,16 +89,9 @@ libraryDependencies += "de.odysseus.juel" % "juel-impl" % "2.2.7"
 
 libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.7"
 
-// unmanagedJars in Compile += Attributed.blank(file(System.getenv("JAVA_HOME") + "/jre/lib/ext/jfxrt.jar"))
+licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
-publishTo := {
-  if (version.value.trim.endsWith("SNAPSHOT"))
-    Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/snapshots")))
-  else
-    Some(Resolver.file("file", new File("/Users/tom/projects/sfxcode/mvn-repo/releases")))
-}
-
-// dependency
+bintrayReleaseOnPublish in ThisBuild := false
 
 net.virtualvoid.sbt.graph.Plugin.graphSettings
 

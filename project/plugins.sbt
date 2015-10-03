@@ -7,3 +7,5 @@ addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.5.0")
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.1.0")
 
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.7")
+
+addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")

@@ -3,26 +3,26 @@ package com.sfxcode.sapphire.core.controller
 import com.sfxcode.sapphire.core.cdi.{BeanResolver, CDILauncher}
 import com.sfxcode.sapphire.core.demo.appdemo.BaseApplicationController
 import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
-import com.sfxcode.sapphire.core.test.BeforeAfterAll
 import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable.Specification
+import org.specs2.specification.BeforeAfterAll
 
 @Exclude
 class MainWindowControllerSpec extends Specification with BeforeAfterAll with BeanResolver {
   var applicationController: BaseApplicationController = _
   var mainWindowController: MainWindowController = _
 
-  override protected def beforeAll(): Unit = {
+   def beforeAll(): Unit = {
     CDILauncher.init()
     applicationController = getBean[BaseApplicationController]()
     mainWindowController = applicationController.mainWindowController
   }
 
-  override protected def afterAll(): Unit = {
+   def afterAll(): Unit = {
     CDILauncher.shutdown()
   }
 
-
+  //section("pending")
   "mainWindowController" should {
 
     "be valid" in {
