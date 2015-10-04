@@ -8,6 +8,10 @@ Actual Version is 1.0.2.
 
 Scala Version is 2.11.7.
 
+## Download
+
+[ ![Download](https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg) ](https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion)
+
 ## Licence
 
 Apache 2 License.
