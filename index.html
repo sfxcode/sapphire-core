@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/core.css" media="screen">
     <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
 
     <script type="text/javascript" src="javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -54,9 +54,9 @@
 <h2>
 <a id="version" class="anchor" href="#version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version</h2>
 
-<p>Actual Version is 0.9.9.9.</p>
+<p>Actual Version is 1.0.2.</p>
 
-<p>Scala Version is 2.11.6.</p>
+<p>Scala Version is 2.11.7.</p>
 
 <h2>
 <a id="licence" class="anchor" href="#licence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licence</h2>
@@ -67,7 +67,7 @@
 <a id="technology-stack" class="anchor" href="#technology-stack" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technology Stack</h2>
 
 <h3>
-<a id="java--jdk-18-u40" class="anchor" href="#java--jdk-18-u40" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java / JDK 1.8 u40</h3>
+<a id="java--jdk-18-u60" class="anchor" href="#java--jdk-18-u60" aria-hidden="true"><span class="octicon octicon-link"></span></a>Java / JDK 1.8 u60</h3>
 
 <p>Sapphire runs agains the latest JDK 8 version.</p>
 
@@ -90,11 +90,11 @@
 <h3>
 <a id="dependency-injection" class="anchor" href="#dependency-injection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependency Injection</h3>
 
-<p>Sapphire use Apache Deltaspike as CDI Abstraction Layer.</p>
+<p>Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.5.0).</p>
 
 <p><a href="http://deltaspike.apache.org">http://deltaspike.apache.org</a></p>
 
-<p>The default implementation depends on Apache OpenWebBeans.</p>
+<p>The default implementation depends on Apache OpenWebBeans (1.6.1).</p>
 
 <p><a href="http://openwebbeans.apache.org">http://openwebbeans.apache.org</a></p>
 
@@ -174,15 +174,11 @@
 <h3>
 <a id="sbt-build-snippet" class="anchor" href="#sbt-build-snippet" aria-hidden="true"><span class="octicon octicon-link"></span></a>sbt build snippet</h3>
 
-<div class="highlight highlight-scala"><pre>
-crossScalaVersions <span class="pl-k">:</span><span class="pl-k">=</span> <span class="pl-en">Seq</span>(<span class="pl-s1"><span class="pl-pds">"</span>2.11.0<span class="pl-pds">"</span></span>)
+<div class="highlight highlight-source-scala"><pre>
+crossScalaVersions <span class="pl-k">:</span><span class="pl-k">=</span> <span class="pl-en">Seq</span>(<span class="pl-s"><span class="pl-pds">"</span>2.11.7<span class="pl-pds">"</span></span>)
 
 
-libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span>   <span class="pl-s1"><span class="pl-pds">"</span>com.sfxcode.sapphire<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s1"><span class="pl-pds">"</span>sapphire-core<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s1"><span class="pl-pds">"</span>0.9.9.9<span class="pl-pds">"</span></span>
-
-<span class="pl-c">// optional - controls framework</span>
-
-<span class="pl-c">// libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-extension" % "0.3.2"</span>
+libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span>   <span class="pl-s"><span class="pl-pds">"</span>com.sfxcode.sapphire<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>sapphire-core<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.0.2<span class="pl-pds">"</span></span>
 
 </pre></div>
 
@@ -200,7 +196,7 @@ libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span>   <sp
           <span class="left-tail"></span>
           <span class="right-tail"></span>
         </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
         <span class="octocat"></span>
       </footer>
 
