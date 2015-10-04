@@ -97,9 +97,7 @@ Expressions are resolved by JUEL.
 
 ## maven
 
-Sapphire use a github repository for maven.
-
-[https://github.com/sfxcode/mvn-repo](https://github.com/sfxcode/mvn-repo)
+sapphire-core is deployed on bintray (jcenter).
 
 ### sbt build snippet
 
