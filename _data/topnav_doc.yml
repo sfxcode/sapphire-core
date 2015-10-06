@@ -9,6 +9,12 @@ topnav:
       platform: all
       product: all
       version: all
+    - title: Bintray
+      external_url: https://bintray.com/sfxcode/maven/sapphire-core
+      audience: developers
+      platform: all
+      product: all
+      version: all
 
 #Topnav dropdowns
 topnav_dropdowns:
