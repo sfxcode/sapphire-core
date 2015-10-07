@@ -59,3 +59,26 @@ entries:
           product: all
           version: all
 
+
+    - title: Getting started
+      audience: developers
+      platform: all
+      product: all
+      version: all
+      print: true
+
+      items:
+
+        - title: Setup
+          url: /doc_setup.html
+          audience: developers
+          platform: all
+          product: all
+          version: all
+
+        - title: App Tutorial
+          url: /doc_first_app.html
+          audience: developers
+          platform: all
+          product: all
+          version: all
