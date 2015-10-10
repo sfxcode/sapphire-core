@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.2"
+version := "1.0.3-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
@@ -21,33 +21,21 @@ scalacOptions += "-target:jvm-1.8"
 
 // resolvers
 
-resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
-                    "releases"  at "http://oss.sonatype.org/content/repositories/releases",
-                    "java"  at "https://maven.java.net/content/groups/public/",
-                      "apache" at "https://repo.maven.apache.org/maven2/"
-)
-
-//resolvers += "jboss" at "https://repository.jboss.org/nexus/content/repositories/"
-
-resolvers += "lodgon" at "http://maven.lodgon.com/maven2/"
-
-resolvers ++= Seq(
-  "sfxcode-releases" at "https://raw.github.com/sfxcode/mvn-repo/master/releases",
-  "sfxcode-snapshots" at "https://raw.github.com/sfxcode/mvn-repo/master/snapshots"
-)
+resolvers += "sonatype-snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
 
 // Test
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.4" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.2.11" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.3" % "test"
+
+libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7" % "test"
+
 
 scalacOptions in Test ++= Seq("-Yrangepos")
 
@@ -58,8 +46,6 @@ scalacOptions in Test ++= Seq("-Yrangepos")
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.0"
-
-libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7"
 
 // UI
 

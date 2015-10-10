@@ -1,13 +1,13 @@
 package com.sfxcode.sapphire.core.test
 
-import java.util.Date
-import scala.io.Source
-import org.json4s.{DefaultFormats, native}
-import native.Serialization._
 import java.text.SimpleDateFormat
+import java.util.Date
+
 import com.sfxcode.sapphire.core.value.FXBean
-import javafx.collections.ObservableList
-import com.sfxcode.sapphire.core.Includes._
+import org.json4s.DefaultFormats
+import org.json4s.native.Serialization._
+
+import scala.io.Source
 
 case class Person(
   id:Long,
@@ -39,7 +39,7 @@ object PersonDatabase  {
 
   val personen = read[List[Person]](fromJson("/test_data.json"))
 
-  val friends = personen(0).friends
+  val friends = personen.head.friends
 
 
   def fromJson(name: String): String = {

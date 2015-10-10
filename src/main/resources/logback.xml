@@ -10,7 +10,7 @@
 
     <logger name="com.sfxcode.sapphire.core" level="trace" />
 
-    <root level="info">
+    <root level="error">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

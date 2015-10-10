@@ -1,8 +1,8 @@
 package com.sfxcode.sapphire.core.value
 
 import java.util.Date
-import org.apache.deltaspike.core.api.exclude.Exclude
 
+import org.scalameter._
 import org.specs2.mutable.Specification
 
 case class StringTest(value: String = "myString", valueOption: Option[String] = Some("myString2"))
@@ -31,11 +31,7 @@ class FXBeanClassRegistrySpec extends Specification {
 
 
     "get member info" in {
-      (1 to 1000).foreach(_ => {
-        memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
-        memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
 
-      })
       memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
       memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
 
@@ -48,11 +44,26 @@ class FXBeanClassRegistrySpec extends Specification {
       memberInfo(longTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeLong, isOption = true, classOf[java.lang.Long])
     }
 
+    "get member info performance" in {
+      val time = measure {
+        (1 to 100000).foreach(_ => {
+          memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
+          memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
+
+        })}.value
+
+        time must be lessThan 2000
+    }
+
     "get date member info" in {
       memberInfo(stringTest2, "date").signature must be equalTo TypeDate
       memberInfo(stringTest2, "date").javaClass.toString must contain("Date")
 
     }
+
+
+
+
 
 
   }
