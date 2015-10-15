@@ -1,34 +1,35 @@
 package com.sfxcode.sapphire.core.controller
 
 import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.demo.appdemo.controller.DefaultNavigationController
 import com.sfxcode.sapphire.core.test.TestEnvironment
 import org.specs2.mutable.Specification
-import org.specs2.specification.BeforeAfterAll
 
-class MainWindowControllerSpec extends Specification with BeforeAfterAll with BeanResolver {
+class MainWindowControllerSpec extends Specification with BeanResolver {
+  TestEnvironment.init()
 
-   def beforeAll(): Unit = {
-     TestEnvironment.init()
-
-
-  }
+  def appController = TestEnvironment.applicationController
+  def mainWindowController = appController.mainWindowController
 
   "mainWindowController" should {
 
     "be valid" in {
-      val appController = TestEnvironment.applicationController
 
       appController must not beNull
-
-      val mainWindowController = appController.mainWindowController
 
       mainWindowController must not beNull
 
       mainWindowController.rootPane must not beNull
+    }
+
+    "have a navigation manager" in {
+
+      mainWindowController.navigationManager.actualController must beAnInstanceOf[DefaultNavigationController]
 
     }
+
+
   }
 
-  override def afterAll(): Unit = {}
 }
 
