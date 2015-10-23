@@ -1,13 +1,17 @@
-package com.sfxcode.sapphire.core.value
+package com.sfxcode.sapphire.core.cdi.provider
 
 import javafx.util.StringConverter
 import javafx.util.converter.DefaultStringConverter
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Named
 
 import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.collections.ObservableMap
 
-object ConverterFactory extends LazyLogging{
+@Named
+@ApplicationScoped
+class ConverterProvider extends Serializable with LazyLogging {
   val converterMap = ObservableMap[String, StringConverter[_]]()
 
   def getConverterByName[T](name: String, forceNew:Boolean=false): StringConverter[T] = {

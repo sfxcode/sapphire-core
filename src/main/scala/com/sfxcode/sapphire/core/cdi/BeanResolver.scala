@@ -11,4 +11,5 @@ trait BeanResolver {
     val clazz = ct.runtimeClass
     BeanProvider.getContextualReference(clazz, optional).asInstanceOf[T]
   }
+
 }
