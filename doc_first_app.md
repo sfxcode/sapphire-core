@@ -10,7 +10,7 @@ summary: "Step by step tutorial."
 
 Setup the project as described before.
 
-## Create Application object
+## Application object
 
 A sapphire application must contain an Application object that extends FXApp.
 
@@ -31,7 +31,15 @@ object MyApplication extends FXApp {
 
 ```
 
-## Create ApplicationController
+## ApplicationController
+
+Application controller is used for startup purposes.
+
+Normally the main scene is replaced by a ViewController.
+
+Here we will use a MainWindowController with Navigation, Workspace and StatusBarConroller.
+
+
 
 ```scala
 
@@ -39,12 +47,18 @@ object MyApplication extends FXApp {
 @ApplicationScoped
 class ApplicationController extends AppController {
 
+  lazy val mainWindowController = getController[MainWindowController]()
+
   def applicationDidLaunch() {
     logger.info("start " + this)
+    replaceSceneContent(mainWindowController)
   }
+
 }
 
 ```
+
+
 
 ... to be continued
 

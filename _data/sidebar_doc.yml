@@ -76,7 +76,7 @@ entries:
           product: all
           version: all
 
-        - title: App Tutorial
+        - title: Tutorial Part 1 - Application
           url: /doc_first_app.html
           audience: developers
           platform: all
