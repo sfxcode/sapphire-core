@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.fxml
 import javafx.{util => jfxu}
 
 import com.sfxcode.sapphire.core.cdi.BeanResolver
-import com.sfxcode.sapphire.core.controller.{ApplicationEnvironment, FxmlLoading, ViewController}
+import com.sfxcode.sapphire.core.controller.{FxmlLoading, ViewController}
 import com.sfxcode.sapphire.core.value.ReflectionTools
 
 import scala.reflect.ClassTag
@@ -26,7 +26,7 @@ trait ScalaFxmlLoading extends FxmlLoading with BeanResolver{
     if (ReflectionTools.getFieldType(impl, "viewController").isDefined)
       ReflectionTools.setMemberValue(impl, "viewController", result)
 
-    ApplicationEnvironment.controllerMap.put(result.getClass.getName, result)
+    applicationEnvironment.controllerMap.put(result.getClass.getName, result)
     result
   }
 
