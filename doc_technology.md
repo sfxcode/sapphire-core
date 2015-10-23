@@ -23,7 +23,7 @@ Sapphire depends on JavaFX 8, which is included in JDK 8.
 
 A DSL for JavaFX written in Scala.
 
-[https://github.com/scalafx/scalafx)
+[https://github.com/scalafx/scalafx](https://github.com/scalafx/scalafx)
 
 
 ## Dependency Injection
