@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.3-SNAPSHOT"
+version := "1.0.5"
 
 scalaVersion := "2.11.7"
 
@@ -28,7 +28,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.4" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.5" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
 
@@ -78,7 +78,3 @@ libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.7"
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 bintrayReleaseOnPublish in ThisBuild := false
-
-net.virtualvoid.sbt.graph.Plugin.graphSettings
-
-
