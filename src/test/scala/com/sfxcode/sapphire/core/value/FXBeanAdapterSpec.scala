@@ -16,11 +16,10 @@ class FXBeanAdapterSpec extends Specification {
     }
 
     "be updated with FXBean" in {
-      adapter.set(Some(testPerson))
-      adapter.getBean.get must be equalTo testPerson.bean
+      adapter.hasBeanProperty.value must beFalse
+      adapter.beanProperty.value = testPerson
+      adapter.hasBeanProperty.value must beTrue
     }
-
-
   }
 
 }
