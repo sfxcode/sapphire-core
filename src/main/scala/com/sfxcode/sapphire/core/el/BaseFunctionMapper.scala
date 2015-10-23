@@ -4,6 +4,7 @@ import java.lang.reflect.Method
 import javax.el.FunctionMapper
 
 import com.sfxcode.sapphire.core.value.FXBean
+import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.collections.ObservableMap
@@ -50,6 +51,7 @@ object BaseFunctionMapper {
     val result = new BaseFunctionMapper
     val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.DefaultFunctions")
     result.addFunction(SapphireFunctionPrefix, "frameworkName", clazz, "frameworkName")
+    result.addFunction(SapphireFunctionPrefix, "frameworkVersion", clazz, "frameworkVersion")
     result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[Any])
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
@@ -61,8 +63,12 @@ object BaseFunctionMapper {
 }
 
 object DefaultFunctions {
+  private val conf = ConfigFactory.load()
 
-  def frameworkName() = "Sapphire"
+
+  def frameworkName() = conf.getString("sapphire.core.name")
+
+  def frameworkVersion() = conf.getString("sapphire.core.version")
 
   def boolString(value:Boolean, trueValue:String, falseValue:String):String = {
     if(value)
