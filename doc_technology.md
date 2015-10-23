@@ -2,7 +2,7 @@
 title: Technology Stack
 tags: [info]
 keywords: java, scala, JavaFX, ScalaFX,
-last_updated: October 7, 2015
+last_updated: October 24, 2015
 summary: "Technolgies used by sapphire-core."
 
 ---
@@ -23,7 +23,7 @@ Sapphire depends on JavaFX 8, which is included in JDK 8.
 
 A DSL for JavaFX written in Scala.
 
-[https://code.google.com/p/scalafx/](https://code.google.com/p/scalafx)
+[https://github.com/scalafx/scalafx)
 
 
 ## Dependency Injection
