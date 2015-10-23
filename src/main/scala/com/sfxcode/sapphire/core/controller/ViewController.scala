@@ -9,7 +9,9 @@ import javax.inject.Inject
 import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.typesafe.config.Config
 
-abstract class ViewController extends NodeLocator with FxmlLoading with BeanResolver with ActionEvents with Initializable {
+import scala.reflect.ClassTag
+
+abstract class ViewController extends FxmlLoading with BeanResolver with ActionEvents with Initializable {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
@@ -20,15 +22,17 @@ abstract class ViewController extends NodeLocator with FxmlLoading with BeanReso
 
   var gainVisibility = false
 
+
+
   // bean lifecycle
 
   @PostConstruct
-  final def postConstruct() = startup()
+  def postConstruct() = startup()
 
   def startup() {}
 
   @PreDestroy
-  final def preDestroy() = shutdown()
+  def preDestroy() = shutdown()
 
   def shutdown() {}
 
@@ -54,12 +58,26 @@ abstract class ViewController extends NodeLocator with FxmlLoading with BeanReso
   def didLooseVisibility() {}
 
 
-  def actualSceneController: ViewController = ApplicationEnvironment.actualSceneController
+  def actualSceneController: ViewController = applicationEnvironment.actualSceneController
 
   def isActualSceneController = this == actualSceneController
 
+  def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] = {
+
+    val viewController = applicationEnvironment.getController[T]
+    if (viewController.isDefined)
+      viewController
+    else {
+     val bean = getBean[T]()
+      bean match {
+        case result: T => Some(result)
+        case _ => None
+      }
+    }
+  }
+
 
   override def toString: String = {
-    "%s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName, isLoadedFromFXML, gainVisibility)
+    "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName, hashCode(), isLoadedFromFXML, gainVisibility)
   }
 }

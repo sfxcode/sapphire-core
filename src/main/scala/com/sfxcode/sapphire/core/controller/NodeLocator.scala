@@ -8,9 +8,9 @@ import scalafx.scene.control._
 
 trait NodeLocator {
 
-  def stage: Stage = ApplicationEnvironment.stage
+  def stage: Stage
 
-  def scene: Scene = ApplicationEnvironment.scene
+  def scene: Scene
 
   def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
     if (parent == null) {

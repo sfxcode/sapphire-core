@@ -9,7 +9,9 @@ import scalafx.collections.ObservableMap
 import scalafx.scene.{Parent, Scene}
 import scalafx.stage.Stage
 
-abstract class AppController extends NodeLocator with FxmlLoading with LazyLogging {
+abstract class AppController extends FxmlLoading with NodeLocator with LazyLogging {
+
+
   val sceneMap = ObservableMap[Parent, Scene]()
 
   def startup(@Observes @FXStage @Startup stage: Stage) {
@@ -17,16 +19,16 @@ abstract class AppController extends NodeLocator with FxmlLoading with LazyLoggi
   }
 
   def applicationStartup(stage: Stage) {
-    ApplicationEnvironment.stage = stage
-    ApplicationEnvironment.scene = new Scene(stage.getScene)
-    ApplicationEnvironment.applicationController = this
+    applicationEnvironment.stage = stage
+    applicationEnvironment.scene = new Scene(stage.getScene)
+    applicationEnvironment.applicationController = this
     applicationDidLaunch()
   }
 
   def applicationDidLaunch()
 
   def replaceSceneContent(newController: ViewController, resize: Boolean = true) {
-    val oldController = ApplicationEnvironment.actualSceneController
+    val oldController = applicationEnvironment.actualSceneController
     if (newController != null && oldController != newController) {
       if (oldController != null)
         try {
@@ -42,7 +44,7 @@ abstract class AppController extends NodeLocator with FxmlLoading with LazyLoggi
         case e: Exception => logger.error(e.getMessage, e)
       }
       replaceSceneContentWithNode(newController.rootPane, resize)
-      ApplicationEnvironment.actualSceneController = newController
+      applicationEnvironment.actualSceneController = newController
       if (oldController != null)
         try {
           oldController.didLooseVisibility()
@@ -77,7 +79,7 @@ abstract class AppController extends NodeLocator with FxmlLoading with LazyLoggi
     })
 
     stage.setScene(newScene)
-    ApplicationEnvironment.scene = newScene
+    applicationEnvironment.scene = newScene
     stage.sizeToScene()
 
   }
