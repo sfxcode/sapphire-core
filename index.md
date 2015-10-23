@@ -14,7 +14,7 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 1.0.2.
+Actual Version is 1.0.5.
 
 Scala Version is 2.11.7.
 
