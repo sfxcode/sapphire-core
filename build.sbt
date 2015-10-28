@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.5"
+version := "1.0.6-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
@@ -61,9 +61,9 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.2"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.0"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.1"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.0"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.1"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
@@ -76,5 +76,7 @@ libraryDependencies += "de.odysseus.juel" % "juel-impl" % "2.2.7"
 libraryDependencies += "de.odysseus.juel" % "juel-spi" % "2.2.7"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
+
+// developers += new Developer("tom.lamers", "Thomas Lamers", "tom@sfxcode.com", url("http://www.sfxcode.com"))
 
 bintrayReleaseOnPublish in ThisBuild := false
