@@ -83,8 +83,15 @@ entries:
           product: all
           version: all
 
-        - title: Tutorial Part 2 - MainWindowController
+        - title: Tutorial Part 2 - Controller
           url: /doc_main_window.html
+          audience: developers
+          platform: all
+          product: all
+          version: all
+
+        - title: Tutorial Part 3 - FXBean
+          url: /doc_fx_bean.html
           audience: developers
           platform: all
           product: all

@@ -1,14 +1,24 @@
 ---
 title: MainWindowController
 tags: [info, tutorial]
-keywords: CDI, MainWindowController, ContentManager
+keywords: CDI, MainWindowController, ViewController, ContentManager
 last_updated: October 7, 2015
-summary: "Step by step tutorial - MainWindowController"
+summary: "Step by step tutorial - ViewController"
 
 ---
+
+## ViewController
+
+ViewController is the base class for all Controller used by the sapphire framework.
+
+ViewController points to the root pane of the corresponding ui node.
+
+ A ViewController can be instantiated by a FXML File and his ClassName or by manually creating an instance.
+
 ## MainWindowController
 
 The MainWindowController is used for managing the base Layout-Parts of the application.
+All Controller of these Parts also subclasses ViewController.
 
 * NavigationController (top)
 * WorkspaceController (middle)
@@ -42,6 +52,8 @@ class MainWindowController extends ViewController with LazyLogging{
 ## ContentManager
 
 For each of the panes a ContentManager is used for controlling the content of the Pane elements.
+
+ContentManager are primary used as container for a ViewController, which can easily be replaced by an other controller.
 
 
 ```scala
