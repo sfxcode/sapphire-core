@@ -4,7 +4,7 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 1.0.5.
+Actual Version is 1.0.6.
 
 Scala Version is 2.11.7.
 
@@ -99,17 +99,6 @@ Expressions are resolved by JUEL.
 
 sapphire-core is deployed on bintray (jcenter).
 
-### sbt build snippet
-
-```scala
-
-crossScalaVersions := Seq("2.11.7")
-
-
-libraryDependencies +=   "com.sfxcode.sapphire" %% "sapphire-core" % "1.0.2"
-
-
-```
 
 ## Demos
 
