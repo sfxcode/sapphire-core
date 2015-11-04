@@ -1,10 +1,10 @@
-package com.sfxcode.sapphire.core.controller
+package com.sfxcode.sapphire.core.scene
 
 import javafx.scene.Node
 
-import scalafx.stage.Stage
 import scalafx.scene.Scene
 import scalafx.scene.control._
+import scalafx.stage.Stage
 
 trait NodeLocator {
 
