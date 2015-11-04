@@ -5,6 +5,8 @@ import javafx.event.ActionEvent
 
 class DefaultNavigationController extends ViewController {
 
+
+
   def mainWindowController:MainWindowController = {
     parent.asInstanceOf[MainWindowController]
   }
