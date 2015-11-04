@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.controller
+package com.sfxcode.sapphire.core.fxml
 
 import java.net.URL
 import java.util.ResourceBundle
@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.cdi.{ApplicationEnvironment, FXMLHandler}
+import com.sfxcode.sapphire.core.controller.ViewController
+import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.config.ConfigFactory
 
 import scala.reflect.ClassTag
@@ -37,9 +39,11 @@ trait FxmlLoading extends NodeLocator {
 
   def getController[T <: ViewController](fxml: String = "")(implicit ct: ClassTag[T]): T = {
     var fxmlPath = guessFxmlPath(fxml, ct)
+
+    loader.fxmlLoader.getNamespace.put("expression", applicationEnvironment.fxmlExpressionResolver)
     val loadResult = loader.loadFromDocument(fxmlPath.toString)
     val controller = loadResult._1.asInstanceOf[T]
-    applicationEnvironment.controllerMap.put(controller.getClass.getName, controller)
+    applicationEnvironment.registerController(controller)
 
     controller.rootPane = loadResult._2
     controller
