@@ -12,8 +12,13 @@ import java.io.{IOException, InputStream}
 
 @ApplicationScoped
 class FXMLHandler {
+
+  @Inject
+  var applicationEnvironment:ApplicationEnvironment = _
+
   @Inject
   var fxmlLoader: FXMLLoader = _
+
   var defaultCallback: Option[jfxu.Callback[Class[_], Object]] = None
 
   def loadFromDocument(path: String, callback: jfxu.Callback[Class[_], Object] = null): (AnyRef, Pane) = {
@@ -33,6 +38,8 @@ class FXMLHandler {
     try {
       inputStream = getClass.getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
+      fxmlLoader.setResources(applicationEnvironment.applicationController.resourceBundleForView(path))
+
       fxmlLoader.load(inputStream).asInstanceOf[Parent]
 
       val controller = fxmlLoader.getController[AnyRef]

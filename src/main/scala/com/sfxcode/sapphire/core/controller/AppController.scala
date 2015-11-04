@@ -86,4 +86,7 @@ abstract class AppController extends FxmlLoading with NodeLocator with LazyLoggi
 
   }
 
+  def resourceBundleForView(viewPath:String) = applicationEnvironment.resourceBundle
+
+
 }

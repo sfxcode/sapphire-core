@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.cdi
 
+import java.util.ResourceBundle
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
@@ -29,7 +30,10 @@ class ApplicationEnvironment extends Serializable{
 
   var applicationController: AppController = _
 
+  var resourceBundle:ResourceBundle = _
+
   var actualSceneController: ViewController = _
+
 
   def registerController(controller:ViewController):Unit = {
     controllerMap.put(controller.getClass.getName, controller)
@@ -47,3 +51,7 @@ class ApplicationEnvironment extends Serializable{
   }
 
 }
+
+
+
+
