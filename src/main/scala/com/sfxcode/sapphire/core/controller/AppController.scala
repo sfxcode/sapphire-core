@@ -3,6 +3,8 @@ package com.sfxcode.sapphire.core.controller
 import javax.enterprise.event.Observes
 
 import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
+import com.sfxcode.sapphire.core.fxml.FxmlLoading
+import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.collections.ObservableMap

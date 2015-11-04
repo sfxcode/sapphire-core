@@ -7,6 +7,7 @@ import javax.annotation.{PostConstruct, PreDestroy}
 import javax.inject.Inject
 
 import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.config.Config
 
 import scala.reflect.ClassTag
@@ -21,8 +22,6 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   var parent: ViewController = _
 
   var gainVisibility = false
-
-
 
   // bean lifecycle
 
