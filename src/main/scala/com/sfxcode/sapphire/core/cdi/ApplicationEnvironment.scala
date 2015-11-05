@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.cdi
 
-import java.util.ResourceBundle
+import java.util.{Locale, ResourceBundle}
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
@@ -34,6 +34,10 @@ class ApplicationEnvironment extends Serializable{
 
   var actualSceneController: ViewController = _
 
+  def loadResourceBundle(path:String): Unit = {
+    val classLoader = Thread.currentThread().getContextClassLoader
+    resourceBundle = ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
+  }
 
   def registerController(controller:ViewController):Unit = {
     controllerMap.put(controller.getClass.getName, controller)

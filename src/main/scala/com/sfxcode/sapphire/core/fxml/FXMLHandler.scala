@@ -1,17 +1,18 @@
-package com.sfxcode.sapphire.core.cdi
+package com.sfxcode.sapphire.core.fxml
 
-import javax.inject.Inject
-import javax.enterprise.context.ApplicationScoped
-import scalafx.scene.layout.Pane
-import javafx.{fxml => jfxf}
-import javafx.{util => jfxu}
-
-import jfxf.FXMLLoader
-import javafx.scene.Parent
 import java.io.{IOException, InputStream}
+import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
+import javafx.{fxml => jfxf, util => jfxu}
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Inject
+
+import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
+
+import scalafx.scene.layout.Pane
 
 @ApplicationScoped
-class FXMLHandler {
+class FxmlHandler {
 
   @Inject
   var applicationEnvironment:ApplicationEnvironment = _

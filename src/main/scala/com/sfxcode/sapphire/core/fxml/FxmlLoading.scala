@@ -5,7 +5,7 @@ import java.util.ResourceBundle
 import javax.inject.Inject
 
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
-import com.sfxcode.sapphire.core.cdi.{ApplicationEnvironment, FXMLHandler}
+import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.config.ConfigFactory
@@ -20,7 +20,7 @@ trait FxmlLoading extends NodeLocator {
   val m = ru.runtimeMirror(getClass.getClassLoader)
 
   @Inject
-  var loader: FXMLHandler = _
+  var loader: FxmlHandler = _
 
   @Inject
   var applicationEnvironment:ApplicationEnvironment = _
