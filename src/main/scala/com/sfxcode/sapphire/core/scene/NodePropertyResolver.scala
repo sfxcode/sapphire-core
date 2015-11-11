@@ -9,15 +9,16 @@ class NodePropertyResolver {
   val resolverBuffer = new ArrayBuffer[NodePropertyResolving]()
   addResolver(DefaultResolver())
 
-  def addResolver(resolver: NodePropertyResolving) = {
+  def addResolver(resolver: NodePropertyResolving):Unit = {
     resolverBuffer.+=(resolver)
   }
 
   def resolve(node: Node): Option[Property[_, _ <: Any]] = {
     resolverBuffer.foreach(r => {
       val result = r.resolve(node)
-      if (result.isDefined)
+      if (result.isDefined) {
         return result
+      }
     })
     None
   }
