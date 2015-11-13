@@ -1,10 +1,8 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.cdi.CDILauncher
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable._
-import org.specs2.specification.BeforeAfterAll
 
 import scalafx.beans.property._
 
@@ -25,18 +23,10 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 }
 
 @Exclude
-class FXBeanSpec extends Specification with LazyLogging with BeforeAfterAll {
+class FXBeanSpec extends Specification with LazyLogging {
 
   sequential
 
-  def beforeAll(): Unit = {
-    CDILauncher.init()
-  }
-
-
-   def afterAll(): Unit = {
-    CDILauncher.shutdown()
-  }
 
 
   "FXBean" should {
