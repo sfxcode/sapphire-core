@@ -2,13 +2,17 @@
 title: Technology Stack
 tags: [info]
 keywords: java, scala, JavaFX, ScalaFX,
-last_updated: October 24, 2015
+last_updated: November 13, 2015
 summary: "Technolgies used by sapphire-core."
 
 ---
-## Java / JDK 1.8 u60
+## Java / JDK 1.8 u66
 
 Sapphire runs agains the latest JDK 8 version.
+
+## Scala / 2.1.7
+
+Sapphire runs agains the latest Scala 2.1.x version.
 
 ## JavaFX
 

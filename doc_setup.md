@@ -17,7 +17,7 @@ name := "project-name"
 
 organization := "your.organization"
 
-version := "1.0.5"
+version := "1.0.0"
 
 scalaVersion := "2.11.7"
 

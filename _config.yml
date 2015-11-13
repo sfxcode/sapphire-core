@@ -16,7 +16,7 @@ github_editme_path: sfxcode/sapphire-core/blob//gh-pages
 # variables
 
 sidebar_tagline: Documentation
-sidebar_version: Version 1.0.5
+sidebar_version: Version 1.0.7
 project_file_name: doc
 
 port: 4001

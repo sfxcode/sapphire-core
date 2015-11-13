@@ -14,13 +14,10 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 1.0.5.
-
-Scala Version is 2.11.7.
-
-## Download
-
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg) ](https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion)
+
+[![Build Status](https://travis-ci.org/sfxcode/sapphire-core.svg?branch=master)](https://travis-ci.org/sfxcode/sapphire-core)
+
 
 ## Licence
 
