@@ -10,9 +10,9 @@ summary: "Technolgies used by sapphire-core."
 
 Sapphire runs agains the latest JDK 8 version.
 
-## Scala / 2.1.7
+## Scala / 2.11.7
 
-Sapphire runs agains the latest Scala 2.1.x version.
+Sapphire runs agains the latest Scala 2.11.x version.
 
 ## JavaFX
 
