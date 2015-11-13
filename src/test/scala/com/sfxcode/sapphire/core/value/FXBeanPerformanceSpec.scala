@@ -23,7 +23,7 @@ class FXBeanPerformanceSpec extends Specification with LazyLogging {
         })
       }.value
 
-      time must be lessThan 250
+      time must be lessThan 500
 
     }
   }
