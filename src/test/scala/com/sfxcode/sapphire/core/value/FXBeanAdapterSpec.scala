@@ -1,12 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.appdemo.controller.WorkspaceController
-import com.sfxcode.sapphire.core.test.{Person, PersonDatabase}
+import com.sfxcode.sapphire.core.test.{TestViewController, Person, PersonDatabase}
 import org.specs2.mutable.Specification
 
 class FXBeanAdapterSpec extends Specification {
-  val adapter = FXBeanAdapter[Person](new WorkspaceController)
+  val adapter = FXBeanAdapter[Person](new TestViewController)
   val testPerson = PersonDatabase.testPerson(0)
 
   "FXBeanAdapter" should {

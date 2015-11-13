@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.controller
 
 import javafx.scene.{control => jfxsc}
-import javafx.util.converter.{IntegerStringConverter, BooleanStringConverter, DefaultStringConverter}
+import javafx.util.converter.{BooleanStringConverter, DefaultStringConverter, IntegerStringConverter}
 
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.cdi.{ApplicationEnvironment, BeanResolver}
