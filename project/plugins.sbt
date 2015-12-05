@@ -6,7 +6,7 @@ addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.7.0" excludeAll(Ex
 
 libraryDependencies += "org.scalariform" %% "scalariform" % "0.1.7"
 
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.1.0")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.3.3")
 
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.10")
 

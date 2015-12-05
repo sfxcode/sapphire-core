@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.7"
+version := "1.0.8-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
@@ -28,7 +28,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.5" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.6" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
 
