@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.0.8-SNAPSHOT"
+version := "1.0.8"
 
 scalaVersion := "2.11.7"
 
@@ -61,9 +61,9 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.2"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.1"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.2"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.1"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.2"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
