@@ -26,7 +26,7 @@ trait ScalaFxmlLoading extends FxmlLoading with BeanResolver{
     controller.rootPane = loadResult._2
 
     val res = applicationEnvironment.applicationController.resourceBundleForView(fxmlPath)
-    controller.initialize(controller.getClass.getResource(fxmlPath), null)
+    controller.initialize(controller.getClass.getResource(fxmlPath), res)
 
     val impl = ReflectionTools.getMemberValue(controller.fxml, "impl")
     if (ReflectionTools.getFieldType(impl, "viewController").isDefined)

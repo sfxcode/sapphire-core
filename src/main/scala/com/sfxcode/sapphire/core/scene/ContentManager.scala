@@ -1,16 +1,18 @@
 package com.sfxcode.sapphire.core.scene
 
-import com.sfxcode.sapphire.core.controller.ViewController
-import javax.inject.{Named, Inject}
 import javax.enterprise.event.Event
-import org.apache.deltaspike.core.api.provider.BeanProvider
+import javax.inject.{Inject, Named}
+
+import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
+import org.apache.deltaspike.core.api.provider.BeanProvider
 
 import scalafx.scene.Node
 import scalafx.scene.layout.Pane
 
 case class ContentWillChangeEvent(pane:Pane, parentController:ViewController,newController:ViewController, oldController:ViewController)
 case class ContentDidChangeEvent(pane:Pane, parentController:ViewController, newController:ViewController, oldController:ViewController)
+
 
 @Named
 class ContentManager extends LazyLogging{
