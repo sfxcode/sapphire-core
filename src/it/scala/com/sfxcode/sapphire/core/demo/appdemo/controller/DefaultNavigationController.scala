@@ -23,6 +23,10 @@ class DefaultNavigationController extends ViewController {
     mainWindowController.showWorkspace3()
   }
 
+  def actionWorkspaceFromStack(event: ActionEvent) {
+    mainWindowController.workspaceManager.loadFromStack()
+  }
+
   def actionToggleNavigation(event: ActionEvent) {
     mainWindowController.toggleNavigation()
   }

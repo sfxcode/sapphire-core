@@ -56,6 +56,9 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def didLooseVisibility() {}
 
+  def stateMap = Map[String, Any]()
+
+  def updateFromStateMap(map:Map[String, Any]): Unit =  {}
 
   def actualSceneController: ViewController = applicationEnvironment.actualSceneController
 
