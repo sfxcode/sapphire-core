@@ -30,6 +30,7 @@ class MainWindowController extends ViewController with LazyLogging   {
 
   override def didGainVisibilityFirstTime() {
     workspaceManager = ContentManager(workspacePane, this, workspaceController)
+    workspaceManager.enableStack()
     navigationManager = ContentManager(navigationPane, this, navigation2Controller)
     navigationManager.updatePaneContent(defaultNavigationController)
   }

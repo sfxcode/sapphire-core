@@ -7,7 +7,7 @@ import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
-import scalafx.beans.property.IntegerProperty
+import scalafx.beans.property.{BooleanProperty, IntegerProperty}
 import scalafx.scene.Node
 import scalafx.scene.layout.Pane
 
@@ -20,6 +20,7 @@ case class ContentDidChangeEvent(pane: Pane, parentController: ViewController, n
 class ContentManager extends LazyLogging {
   private val controllerStack = ControllerStack(this)
   val stackSize = IntegerProperty(0)
+  var useStack = BooleanProperty(false)
 
   var contentPane: Pane = _
 
@@ -54,6 +55,9 @@ class ContentManager extends LazyLogging {
     stackSize.value = controllerStack.size
     result
   }
+
+  def enableStack() = useStack.set(true)
+  def disableStack() = useStack.set(false)
 
   def switchToLast() = {
     updatePaneContent(lastController)
@@ -90,7 +94,7 @@ class ContentManager extends LazyLogging {
       }
 
       lastController = oldController
-      if (pushToStack)
+      if (useStack.value && pushToStack)
         controllerStack.push(oldController)
 
       addPaneContent(newController.rootPane)
