@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.0"
+version := "1.1.1-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
@@ -18,6 +18,9 @@ javacOptions ++= Seq("-target", "1.8")
 
 scalacOptions += "-target:jvm-1.8"
 
+lazy val sapphire_core_root = Project(id = "sapphire-core", base = file(".")).
+  configs(IntegrationTest).
+  settings(Defaults.itSettings: _*)
 
 // resolvers
 
@@ -28,11 +31,11 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.6.6" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.7.1" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
 
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.3" % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.4" % "test"
 
 libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7" % "test"
 
@@ -61,9 +64,9 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.2"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.2"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.3"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.2"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.3"
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
