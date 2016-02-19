@@ -46,7 +46,7 @@ class FXBeanClassRegistrySpec extends Specification {
 
     "get member info performance" in {
       val time = measure {
-        (1 to 100000).foreach(_ => {
+        (1 to 10000).foreach(_ => {
           memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
           memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
 
