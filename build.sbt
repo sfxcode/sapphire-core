@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.1"
+version := "1.1.2"
 
 scalaVersion := "2.11.8"
 
@@ -35,7 +35,7 @@ libraryDependencies += "org.specs2" %% "specs2-core" % "3.7.2" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
 
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.6" % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.7" % "test"
 
 libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7" % "test"
 
@@ -64,9 +64,11 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.3"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.5.4"
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.6.0"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.5.4"
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "1.6.0" intransitive()
+
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.6.0" intransitive()
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 

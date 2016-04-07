@@ -1,0 +1,5 @@
+[user]
+	name = tom
+	email = tom@sfxcode.com
+[core]
+	autocrlf = input
