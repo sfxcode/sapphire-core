@@ -22,7 +22,6 @@ import com.sfxcode.sapphire.core.value.PropertyType._
 
 class FXBeanClassRegistrySpec extends Specification {
 
-
   "FXBeanClassRegistry" should {
 
     val stringTest = StringTest()
@@ -45,6 +44,10 @@ class FXBeanClassRegistrySpec extends Specification {
     }
 
     "get member info performance" in {
+      // warmup and cache
+      memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
+      memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
+
       val time = measure {
         (1 to 10000).foreach(_ => {
           memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
@@ -52,7 +55,7 @@ class FXBeanClassRegistrySpec extends Specification {
 
         })}.value
 
-        time must be lessThan 2000
+        time must be lessThan 500
     }
 
     "get date member info" in {
@@ -60,11 +63,6 @@ class FXBeanClassRegistrySpec extends Specification {
       memberInfo(stringTest2, "date").javaClass.toString must contain("Date")
 
     }
-
-
-
-
-
 
   }
 }

@@ -2,15 +2,13 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.2"
+version := "1.1.2.1"
 
 scalaVersion := "2.11.8"
 
 scalacOptions += "-deprecation"
 
-parallelExecution in Test := false
-
-// (testOptions in Test) += Tests.Argument(TestFrameworks.Specs2, "html")
+parallelExecution in Test := true
 
 javacOptions ++= Seq("-source", "1.8")
 
@@ -31,7 +29,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.7.2" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.7.3" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
 
@@ -46,13 +44,13 @@ scalacOptions in Test ++= Seq("-Yrangepos")
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.0"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.60-R9"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.92-R10"
 
 libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.2.2"
 
@@ -64,11 +62,13 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.3"
 
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % "1.6.0"
+val DeltaspikeVersion = "1.6.1"
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "1.6.0" intransitive()
+libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
 
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.6.0" intransitive()
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion intransitive()
+
+libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion intransitive()
 
 libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 

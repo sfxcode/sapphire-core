@@ -4,9 +4,8 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 1.1.1.
-
-Scala Version is 2.11.7.
+Actual Version is 1.3.4
+Scala Version is 2.11.8.
 
 ## Travis
 
@@ -26,7 +25,7 @@ Documentation can be found at [http://sfxcode.github.io/sapphire-core/](http://s
 
 ## Technology Stack
 
-### Java / JDK 1.8 u74
+### Java / JDK 1.8 u92
 
 Sapphire runs agains the latest JDK 8 version.
 
@@ -48,11 +47,11 @@ A DSL for JavaFX written in Scala.
 
 ### Dependency Injection
 
-Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.5.0).
+Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.6.1).
 
 [http://deltaspike.apache.org](http://deltaspike.apache.org)
 
-The default implementation depends on Apache OpenWebBeans (1.6.1).
+The default implementation depends on Apache OpenWebBeans (1.6.3).
 
 [http://openwebbeans.apache.org](http://openwebbeans.apache.org)
 
