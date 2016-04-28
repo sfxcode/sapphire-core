@@ -55,7 +55,7 @@ class FXBeanClassRegistrySpec extends Specification {
 
         })}.value
 
-        time must be lessThan 500
+        time must be lessThan 2000
     }
 
     "get date member info" in {

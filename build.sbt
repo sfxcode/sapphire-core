@@ -8,7 +8,7 @@ scalaVersion := "2.11.8"
 
 scalacOptions += "-deprecation"
 
-parallelExecution in Test := true
+parallelExecution in Test := false
 
 javacOptions ++= Seq("-source", "1.8")
 
