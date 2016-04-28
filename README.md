@@ -4,7 +4,7 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Actual Version is 1.3.4
+Actual Version is 1.3.3
 Scala Version is 2.11.8.
 
 ## Travis
