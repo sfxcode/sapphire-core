@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.controller
 
+import java.util.ResourceBundle
 import javax.enterprise.event.Observes
 
 import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
@@ -86,7 +87,7 @@ abstract class AppController extends FxmlLoading with NodeLocator with LazyLoggi
 
   }
 
-  def resourceBundleForView(viewPath:String) = applicationEnvironment.resourceBundle
+  def resourceBundleForView(viewPath:String):ResourceBundle = applicationEnvironment.resourceBundle
 
 
 }

@@ -27,8 +27,6 @@ class FXBeanSpec extends Specification with LazyLogging {
 
   sequential
 
-
-
   "FXBean" should {
 
     "get value of members of case class" in {

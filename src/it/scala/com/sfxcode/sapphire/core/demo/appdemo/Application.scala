@@ -13,7 +13,7 @@ import scalafx.scene.Scene
 import scalafx.stage.Stage
 
 object DemoApplication extends FXApp {
-  JFXApp.AUTO_SHOW = true
+  JFXApp.AutoShow = true
   override def applicationStage:Stage  = new PrimaryStage {
     title = "Sapphire Controller Demo"
     scene = new Scene {

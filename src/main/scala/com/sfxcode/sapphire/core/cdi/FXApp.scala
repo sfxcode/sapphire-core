@@ -22,7 +22,7 @@ abstract class FXApp extends JFXApp {
 
   def createPrimaryStage(stageWidth: Int = configuration.getInt("sapphire.core.defaultStage.width"),
                          stageHeight: Int = configuration.getInt("sapphire.core.defaultStage.height"),
-                         stageTitle: String = configuration.getString("sapphire.core.defaultStage.title")) = new PrimaryStage {
+                         stageTitle: String = configuration.getString("sapphire.core.defaultStage.title")):PrimaryStage = new PrimaryStage {
     title = stageTitle
     width = stageWidth
     height = stageHeight

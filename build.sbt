@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.3"
+version := "1.1.4"
 
 scalaVersion := "2.11.8"
 
@@ -29,16 +29,14 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.7.3" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.4" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.3.0" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.4.0" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.7" % "test"
 
 libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7" % "test"
 
-
-scalacOptions in Test ++= Seq("-Yrangepos")
 
 // Compile
 
@@ -62,7 +60,7 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.3"
 
-val DeltaspikeVersion = "1.6.1"
+val DeltaspikeVersion = "1.7.0"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
 

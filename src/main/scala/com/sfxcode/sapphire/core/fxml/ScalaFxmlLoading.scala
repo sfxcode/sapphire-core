@@ -12,7 +12,7 @@ import scalafxml.core.{ControllerDependencyResolver, FxmlProxyGenerator, NoDepen
 trait ScalaFxmlLoading extends FxmlLoading with BeanResolver{
 
   def getScalaController[T <: ViewController](fxml: String = "", dependencyResolver: ControllerDependencyResolver = NoDependencyResolver)(implicit ct: ClassTag[T]): T = {
-    var fxmlPath = guessFxmlPath(fxml, ct)
+    val fxmlPath = guessFxmlPath(fxml, ct)
     val callback = new jfxu.Callback[Class[_], Object] {
       override def call(cls: Class[_]): Object = FxmlProxyGenerator(cls, dependencyResolver)
     }

@@ -62,7 +62,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def actualSceneController: ViewController = applicationEnvironment.actualSceneController
 
-  def isActualSceneController = this == actualSceneController
+  def isActualSceneController:Boolean = this == actualSceneController
 
   def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] = {
 

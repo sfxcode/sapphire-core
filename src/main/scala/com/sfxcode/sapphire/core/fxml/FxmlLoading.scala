@@ -38,7 +38,7 @@ trait FxmlLoading extends NodeLocator {
   var resources: ResourceBundle = _
 
   def getController[T <: ViewController](fxml: String = "")(implicit ct: ClassTag[T]): T = {
-    var fxmlPath = guessFxmlPath(fxml, ct)
+    val fxmlPath = guessFxmlPath(fxml, ct)
 
     loader.fxmlLoader.getNamespace.put("expression", applicationEnvironment.fxmlExpressionResolver)
     val loadResult = loader.loadFromDocument(fxmlPath.toString)
@@ -53,7 +53,7 @@ trait FxmlLoading extends NodeLocator {
   protected def guessFxmlPath[T <: ViewController](path: String, ct: ClassTag[T]): String = {
     var result = path.toString
     if (path.isEmpty) {
-      var basePath = ConfigFactory.load().getString("sapphire.core.fxml.basePath")
+      val basePath = ConfigFactory.load().getString("sapphire.core.fxml.basePath")
       if (basePath.isEmpty) {
         val guessed = ct.runtimeClass.getName.replace(".", "/").replace("Controller", "")
         result = "/%s.fxml".format(guessed)
@@ -68,6 +68,6 @@ trait FxmlLoading extends NodeLocator {
 
 
 
-  def isLoadedFromFXML = location != null
+  def isLoadedFromFXML:Boolean = location != null
 
 }

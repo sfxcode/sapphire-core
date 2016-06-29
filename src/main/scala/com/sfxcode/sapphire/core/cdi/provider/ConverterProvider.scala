@@ -14,7 +14,7 @@ import scalafx.collections.ObservableMap
 class ConverterProvider extends Serializable with LazyLogging {
   val converterMap = ObservableMap[String, StringConverter[_]]()
 
-  def getConverterByName[T](name: String, forceNew:Boolean=false): StringConverter[T] = {
+  def getConverterByName[T](name: String, forceNew: Boolean = false): StringConverter[T] = {
 
     var className = name
     if (!name.contains("."))
@@ -41,10 +41,11 @@ class ConverterProvider extends Serializable with LazyLogging {
 
   }
 
-  def guessConverterName(className:String):String = {
+  def guessConverterName(className: String): String = {
     if (!className.endsWith("StringConverter"))
-      return className + "StringConverter"
-  className
+      className + "StringConverter"
+    else
+      className
   }
 
 }

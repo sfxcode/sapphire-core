@@ -202,7 +202,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     }
   }
 
-  def hasChanges = hasChangesProperty.get()
+  def hasChanges:Boolean = hasChangesProperty.get()
 
 
   def revert() {
