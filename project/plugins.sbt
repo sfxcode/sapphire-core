@@ -8,6 +8,6 @@ libraryDependencies += "org.scalariform" %% "scalariform" % "0.1.7"
 
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.3.5")
 
-addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.10")
+addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.2.0")
 
 addSbtPlugin("me.lessis" % "bintray-sbt" % "0.3.0")

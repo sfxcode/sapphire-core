@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.4"
+version := "1.1.5"
 
 scalaVersion := "2.11.8"
 
@@ -60,7 +60,7 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.6.3"
 
-val DeltaspikeVersion = "1.7.0"
+val DeltaspikeVersion = "1.7.1"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
 
