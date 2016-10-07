@@ -3,6 +3,8 @@ package com.sfxcode.sapphire.core.demo.appdemo.controller
 import com.sfxcode.sapphire.core.controller.ViewController
 import javafx.event.ActionEvent
 
+import com.sfxcode.sapphire.core.demo.appdemo.BaseApplicationController
+
 class DefaultNavigationController extends ViewController {
 
 
@@ -25,6 +27,11 @@ class DefaultNavigationController extends ViewController {
 
   def actionWorkspaceFromStack(event: ActionEvent) {
     mainWindowController.workspaceManager.loadFromStack()
+  }
+
+
+  def actionReload(event: ActionEvent) {
+    getBean[BaseApplicationController]().reload()
   }
 
   def actionToggleNavigation(event: ActionEvent) {

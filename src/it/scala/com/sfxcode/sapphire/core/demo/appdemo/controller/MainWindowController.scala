@@ -47,6 +47,7 @@ class MainWindowController extends ViewController with LazyLogging   {
     workspaceManager.updatePaneContent(workspace3Controller)
   }
 
+
   def toggleNavigation() {
     navigationManager.switchToLast()
     println(getViewController[DefaultNavigationController]())

@@ -25,10 +25,14 @@ object DemoApplication extends FXApp {
 @ApplicationScoped
 class BaseApplicationController extends AppController {
 
-  lazy val mainWindowController = getController[MainWindowController]()
+  def mainWindowController = getController[MainWindowController]()
 
   def applicationDidLaunch() {
     logger.info("start " + this)
+    reload()
+  }
+
+  def reload(): Unit = {
     applicationEnvironment.loadResourceBundle("com/sfxcode/sapphire/core/demo/appdemo/bundles/demo")
     replaceSceneContent(mainWindowController)
   }
