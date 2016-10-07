@@ -38,7 +38,7 @@ class ContentManager extends LazyLogging {
     contentPane.getChildren.add(node)
   }
 
-  def addToStack(viewController: ViewController) = {
+  def addToStack(viewController: ViewController): Unit = {
     controllerStack.push(viewController)
     stackSize.value = controllerStack.size
   }
@@ -55,11 +55,11 @@ class ContentManager extends LazyLogging {
     result
   }
 
-  def enableStack() = useStack.set(true)
+  def enableStack(): Unit = useStack.set(true)
 
-  def disableStack() = useStack.set(false)
+  def disableStack(): Unit = useStack.set(false)
 
-  def switchToLast() = {
+  def switchToLast(): Unit = {
     updatePaneContent(lastController)
   }
 

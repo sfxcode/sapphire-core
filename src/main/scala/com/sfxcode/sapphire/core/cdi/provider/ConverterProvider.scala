@@ -12,7 +12,8 @@ import scalafx.collections.ObservableMap
 @Named
 @ApplicationScoped
 class ConverterProvider extends Serializable with LazyLogging {
-  val converterMap = ObservableMap[String, StringConverter[_]]()
+
+  val converterMap: ObservableMap[String, StringConverter[_]] = ObservableMap[String, StringConverter[_]]()
 
   def getConverterByName[T](name: String, forceNew: Boolean = false): StringConverter[T] = {
 
@@ -20,23 +21,26 @@ class ConverterProvider extends Serializable with LazyLogging {
     if (!name.contains("."))
       className = "javafx.util.converter." + guessConverterName(name)
 
-    if (!forceNew && converterMap.contains(className))
-      return converterMap(className).asInstanceOf[StringConverter[T]]
-
-    var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]
-
-    try {
-      val converterClass = Class.forName(className)
-      val converter = converterClass.newInstance()
-      if (converter != null) {
-        result = converter.asInstanceOf[StringConverter[T]]
-      }
-    } catch {
-      case e: Exception =>
-        logger.warn("use default converter for name: " + className)
+    if (!forceNew && converterMap.contains(className)) {
+      converterMap(className).asInstanceOf[StringConverter[T]]
     }
-    converterMap.put(className, result)
-    result
+    else {
+
+      var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]
+
+      try {
+        val converterClass = Class.forName(className)
+        val converter = converterClass.newInstance()
+        if (converter != null) {
+          result = converter.asInstanceOf[StringConverter[T]]
+        }
+      } catch {
+        case e: Exception =>
+          logger.warn("use default converter for name: " + className)
+      }
+      converterMap.put(className, result)
+      result
+    }
 
   }
 

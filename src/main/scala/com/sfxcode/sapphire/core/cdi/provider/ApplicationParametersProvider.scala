@@ -16,5 +16,5 @@ class ApplicationParametersProvider {
     parameters
   }
 
-  private var parameters: Parameters = null
+  private var parameters: Parameters = _
 }

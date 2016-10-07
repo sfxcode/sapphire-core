@@ -18,7 +18,7 @@ import scalafx.stage.Stage
 @ApplicationScoped
 class ApplicationEnvironment extends Serializable {
 
-  var controllerMap = ObservableMap[String, ViewController]()
+  var controllerMap:ObservableMap[String, ViewController] = ObservableMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
@@ -48,10 +48,12 @@ class ApplicationEnvironment extends Serializable {
 
   def getController[T <: ViewController](implicit ct: ClassTag[T]): Option[T] = {
     val key = ct.runtimeClass.getName
-    if (controllerMap.isDefinedAt(key))
+    if (controllerMap.isDefinedAt(key)) {
       Some(controllerMap(key).asInstanceOf[T])
-    else
+    }
+    else {
       None
+    }
   }
 
 }
