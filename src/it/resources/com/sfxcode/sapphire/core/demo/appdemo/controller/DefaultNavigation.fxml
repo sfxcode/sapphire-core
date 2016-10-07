@@ -11,7 +11,8 @@
             <children>
                 <Button fx:id="" mnemonicParsing="false" onAction="#actionWorkspace1" text="Workspace 1" />
                 <Button mnemonicParsing="false" onAction="#actionWorkspace2" text="Workspace 2" />
-                <Button mnemonicParsing="false" onAction="#actionWorkspace3" text="Workspace 3" />
+                <Button mnemonicParsing="false" onAction="#actionWorkspace3" text="Workspace 31" />
+                <Button mnemonicParsing="false" onAction="#actionReload" text="Reload" />
             <Button mnemonicParsing="false" onAction="#actionWorkspaceFromStack" text="Workspace From Stack" />
                 <Button mnemonicParsing="false" onAction="#actionToggleNavigation" text="Switch Navigation" />
             </children>
