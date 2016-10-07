@@ -27,13 +27,11 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
     "%s:%s".format(prefix, localName)
   }
 
-
   def addFunction(prefix: String, localName: String, clazz: Class[_], methodName: String, args: Class[_]*): Option[Method] = {
     var method: Method = null
     try {
       method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
-    }
-    catch {
+    } catch {
       case e: Exception => logger.warn(e.getMessage, e)
     }
     if (method != null)
@@ -59,19 +57,17 @@ object BaseFunctionMapper {
     result
   }
 
-
 }
 
 object DefaultFunctions {
   private val conf = ConfigFactory.load()
 
-
   def frameworkName() = conf.getString("sapphire.core.name")
 
   def frameworkVersion() = conf.getString("sapphire.core.version")
 
-  def boolString(value:Boolean, trueValue:String, falseValue:String):String = {
-    if(value)
+  def boolString(value: Boolean, trueValue: String, falseValue: String): String = {
+    if (value)
       trueValue
     else
       falseValue
@@ -89,8 +85,5 @@ object DefaultFunctions {
   def now = new java.util.Date
 
   def nowAsString = dateString(new java.util.Date)
-
-
-
 
 }

@@ -1,13 +1,13 @@
 package com.sfxcode.sapphire.core.el
 
 import javax.el.{ValueExpression, VariableMapper}
+
 import scalafx.collections.ObservableMap
 
-class BaseVariableMapper extends  VariableMapper {
+class BaseVariableMapper extends VariableMapper {
   val map = ObservableMap[String, ValueExpression]()
 
-  def resolveVariable(variable: String): ValueExpression =
-  {
+  def resolveVariable(variable: String): ValueExpression = {
     map.getOrElse(variable, null)
   }
 
@@ -15,14 +15,12 @@ class BaseVariableMapper extends  VariableMapper {
     map.remove(variable)
   }
 
-
-  def setVariable(variable: String, expression: ValueExpression): ValueExpression =
-  {
+  def setVariable(variable: String, expression: ValueExpression): ValueExpression = {
     map.put(variable, expression)
     expression
   }
 }
 
 object BaseVariableMapper {
-  def apply():BaseVariableMapper = new BaseVariableMapper
+  def apply(): BaseVariableMapper = new BaseVariableMapper
 }

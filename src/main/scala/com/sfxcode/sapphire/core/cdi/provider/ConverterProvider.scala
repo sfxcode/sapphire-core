@@ -31,8 +31,7 @@ class ConverterProvider extends Serializable with LazyLogging {
       if (converter != null) {
         result = converter.asInstanceOf[StringConverter[T]]
       }
-    }
-    catch {
+    } catch {
       case e: Exception =>
         logger.warn("use default converter for name: " + className)
     }

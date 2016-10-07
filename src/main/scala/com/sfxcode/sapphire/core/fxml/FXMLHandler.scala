@@ -15,7 +15,7 @@ import scalafx.scene.layout.Pane
 class FxmlHandler {
 
   @Inject
-  var applicationEnvironment:ApplicationEnvironment = _
+  var applicationEnvironment: ApplicationEnvironment = _
 
   @Inject
   var fxmlLoader: FXMLLoader = _
@@ -48,24 +48,19 @@ class FxmlHandler {
       val rootPane = new Pane(fxmlLoader.getRoot[javafx.scene.layout.Pane])
       (controller, rootPane)
 
-    }
-    catch {
+    } catch {
       case e: Exception =>
         val message = String.format("can not load fxml from path [%s]", path)
         throw new IllegalStateException(message, e)
-    }
-    finally {
+    } finally {
       if (inputStream != null) {
         try {
           inputStream.close()
-        }
-        catch {
+        } catch {
           case e: IOException =>
         }
       }
     }
   }
-
-
 
 }

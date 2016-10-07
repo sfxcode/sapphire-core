@@ -8,7 +8,6 @@ trait ValueIncludes {
 
   implicit def fxBeanToBean[T <: AnyRef](fxBean: FXBean[T]): T = fxBean.bean
 
-
   implicit def beanToFXBeanOption[T <: AnyRef](bean: T): Option[FXBean[T]] = {
     if (bean != null)
       Some(FXBean(bean))
@@ -23,7 +22,7 @@ trait ValueIncludes {
       None
   }
 
-  implicit def collectionToObservableBuffer[T <:AnyRef](collection:Iterable[T]):ObservableBuffer[FXBean[T]] = {
+  implicit def collectionToObservableBuffer[T <: AnyRef](collection: Iterable[T]): ObservableBuffer[FXBean[T]] = {
     ObservableBuffer(collection.map(item => FXBean[T](item)).toList)
   }
 

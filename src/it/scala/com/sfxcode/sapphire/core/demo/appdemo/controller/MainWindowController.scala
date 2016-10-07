@@ -10,7 +10,7 @@ import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.Includes._
 
-class MainWindowController extends ViewController with LazyLogging   {
+class MainWindowController extends ViewController with LazyLogging {
 
   lazy val workspaceController = getController[WorkspaceController]()
   lazy val workspace2Controller = getController[Workspace2Controller]()
@@ -25,8 +25,8 @@ class MainWindowController extends ViewController with LazyLogging   {
   @FXML
   var navigationPane: Pane = _
 
-  var workspaceManager:ContentManager = _
-  var navigationManager:ContentManager = _
+  var workspaceManager: ContentManager = _
+  var navigationManager: ContentManager = _
 
   override def didGainVisibilityFirstTime() {
     workspaceManager = ContentManager(workspacePane, this, workspaceController)

@@ -5,11 +5,10 @@ import javax.el._
 import de.odysseus.el.ObjectValueExpression
 import de.odysseus.el.misc.TypeConverter
 
-
 class BaseContext extends ELContext {
-  val resolver =   BaseResolver()
+  val resolver = BaseResolver()
   val functionMapper = BaseFunctionMapper()
-  val variableMapper =  BaseVariableMapper()
+  val variableMapper = BaseVariableMapper()
 
   def getELResolver: ELResolver = resolver
 
@@ -32,8 +31,6 @@ class BaseContext extends ELContext {
 }
 
 object BaseContext {
-  def apply():BaseContext = new BaseContext
+  def apply(): BaseContext = new BaseContext
 }
-
-
 

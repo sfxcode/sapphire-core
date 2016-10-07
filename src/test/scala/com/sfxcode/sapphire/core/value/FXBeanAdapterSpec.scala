@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.test.{TestViewController, Person, PersonDatabase}
+import com.sfxcode.sapphire.core.test.{Person, PersonDatabase, TestViewController}
 import org.specs2.mutable.Specification
 
 class FXBeanAdapterSpec extends Specification {

@@ -27,13 +27,13 @@ class FXValueFactory[S <: AnyRef, T] extends Callback[TableColumn.CellDataFeatur
 
     value match {
       case bean: FXBean[_] =>
-        var p =  bean.getProperty(property)
-        if (format.length>0)  {
+        var p = bean.getProperty(property)
+        if (format.length > 0) {
           p match {
-            case intProperty:IntegerProperty => p = new StringProperty(numberFormatter.format(intProperty.get))
-            case longProperty:LongProperty => p = new StringProperty(numberFormatter.format(longProperty.get))
-            case floatProperty:FloatProperty => p = new StringProperty(numberFormatter.format(floatProperty.get))
-            case doubleProperty:DoubleProperty => p = new StringProperty(numberFormatter.format(doubleProperty.get))
+            case intProperty: IntegerProperty => p = new StringProperty(numberFormatter.format(intProperty.get))
+            case longProperty: LongProperty => p = new StringProperty(numberFormatter.format(longProperty.get))
+            case floatProperty: FloatProperty => p = new StringProperty(numberFormatter.format(floatProperty.get))
+            case doubleProperty: DoubleProperty => p = new StringProperty(numberFormatter.format(doubleProperty.get))
             case _ =>
           }
         }

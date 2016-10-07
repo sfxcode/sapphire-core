@@ -16,13 +16,13 @@ import scalafx.stage.Stage
 
 @Named
 @ApplicationScoped
-class ApplicationEnvironment extends Serializable{
+class ApplicationEnvironment extends Serializable {
 
   var controllerMap = ObservableMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
-  var fxmlExpressionResolver = new FxmlExpressionResolver[String,Any]
+  var fxmlExpressionResolver = new FxmlExpressionResolver[String, Any]
 
   var stage: Stage = _
 
@@ -30,19 +30,19 @@ class ApplicationEnvironment extends Serializable{
 
   var applicationController: AppController = _
 
-  var resourceBundle:ResourceBundle = _
+  var resourceBundle: ResourceBundle = _
 
   var actualSceneController: ViewController = _
 
-  def loadResourceBundle(path:String): Unit = {
+  def loadResourceBundle(path: String): Unit = {
     val classLoader = Thread.currentThread().getContextClassLoader
     resourceBundle = ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
   }
 
-  def registerController(controller:ViewController):Unit = {
+  def registerController(controller: ViewController): Unit = {
     controllerMap.put(controller.getClass.getName, controller)
-    val simpleName:String = controller.getClass.getSimpleName
-    val expressionName = "%s%s".format(simpleName.head.toLower,simpleName.tail)
+    val simpleName: String = controller.getClass.getSimpleName
+    val expressionName = "%s%s".format(simpleName.head.toLower, simpleName.tail)
     Expressions.register(expressionName, controller)
   }
 
@@ -55,7 +55,4 @@ class ApplicationEnvironment extends Serializable{
   }
 
 }
-
-
-
 

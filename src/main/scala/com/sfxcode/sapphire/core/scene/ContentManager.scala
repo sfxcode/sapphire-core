@@ -15,7 +15,6 @@ case class ContentWillChangeEvent(pane: Pane, parentController: ViewController, 
 
 case class ContentDidChangeEvent(pane: Pane, parentController: ViewController, newController: ViewController, oldController: ViewController)
 
-
 @Named
 class ContentManager extends LazyLogging {
   private val controllerStack = ControllerStack(this)
@@ -57,6 +56,7 @@ class ContentManager extends LazyLogging {
   }
 
   def enableStack() = useStack.set(true)
+
   def disableStack() = useStack.set(false)
 
   def switchToLast() = {
@@ -69,15 +69,13 @@ class ContentManager extends LazyLogging {
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
-        }
-        catch {
+        } catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
 
       try {
         newController.willGainVisibility()
-      }
-      catch {
+      } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
       contentWillChange.fire(ContentWillChangeEvent(contentPane, parentController, newController, actualController))
@@ -87,8 +85,7 @@ class ContentManager extends LazyLogging {
         oldController.parent = null
         try {
           oldController.didLooseVisibility()
-        }
-        catch {
+        } catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
       }
@@ -103,8 +100,7 @@ class ContentManager extends LazyLogging {
       if (!newController.gainVisibility) {
         try {
           newController.didGainVisibilityFirstTime()
-        }
-        catch {
+        } catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
         newController.gainVisibility = true
@@ -112,8 +108,7 @@ class ContentManager extends LazyLogging {
 
       try {
         newController.didGainVisibility()
-      }
-      catch {
+      } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
 

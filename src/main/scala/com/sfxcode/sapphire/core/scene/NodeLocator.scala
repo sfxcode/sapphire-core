@@ -22,8 +22,7 @@ trait NodeLocator {
       result
       if (result != null)
         return Some(result)
-    }
-    else {
+    } else {
       var result = parent.lookup(nodeId)
       if (result != null)
         return Some(result)

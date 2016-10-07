@@ -1,15 +1,14 @@
 package com.sfxcode.sapphire.core.demo.appdemo.controller
 
-import com.sfxcode.sapphire.core.controller.ViewController
 import javafx.event.ActionEvent
 
+import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.appdemo.BaseApplicationController
 
 class DefaultNavigationController extends ViewController {
 
 
-
-  def mainWindowController:MainWindowController = {
+  def mainWindowController: MainWindowController = {
     parent.asInstanceOf[MainWindowController]
   }
 

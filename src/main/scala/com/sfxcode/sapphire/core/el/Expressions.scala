@@ -1,12 +1,12 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el.{MethodNotFoundException, ExpressionFactory}
+import javax.el.{ExpressionFactory, MethodNotFoundException}
+
 import de.odysseus.el.ObjectValueExpression
 
 object Expressions {
   val props = System.getProperties
   val fxmlExpressionPrefix: String = "!{"
-
 
   if (!props.containsKey("javax.cdi.methodInvocations"))
     props.put("javax.cdi.methodInvocations", "true")
@@ -56,8 +56,7 @@ object Expressions {
     var result: Any = null
     if (expression.contains(ExpressionPrefix)) {
       result = getValueOnObject(obj, expression, clazz)
-    }
-    else if (expression.contains("("))
+    } else if (expression.contains("("))
       result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, expression), clazz)
     else {
       var tempExpression = expression
@@ -66,14 +65,12 @@ object Expressions {
         tempExpression = tempExpression.substring(0, index) + "()" + tempExpression.substring(index)
       }
 
-
       try {
         var methodExpression = tempExpression
         if (!methodExpression.endsWith("()"))
           methodExpression = methodExpression + "()"
         result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, methodExpression), clazz)
-      }
-      catch {
+      } catch {
         case e: MethodNotFoundException =>
           if (!tempExpression.endsWith("()")) {
             result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, tempExpression), clazz)
@@ -82,7 +79,6 @@ object Expressions {
     }
     result
   }
-
 
 }
 

@@ -35,7 +35,6 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def shutdown() {}
 
-
   override def initialize(loc: URL, res: ResourceBundle): Unit = {
     location = loc
     resources = res
@@ -58,11 +57,11 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def stateMap = Map[String, Any]()
 
-  def updateFromStateMap(map:Map[String, Any]): Unit =  {}
+  def updateFromStateMap(map: Map[String, Any]): Unit = {}
 
   def actualSceneController: ViewController = applicationEnvironment.actualSceneController
 
-  def isActualSceneController:Boolean = this == actualSceneController
+  def isActualSceneController: Boolean = this == actualSceneController
 
   def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] = {
 
@@ -70,14 +69,13 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
     if (viewController.isDefined)
       viewController
     else {
-     val bean = getBean[T]()
+      val bean = getBean[T]()
       bean match {
         case result: T => Some(result)
         case _ => None
       }
     }
   }
-
 
   override def toString: String = {
     "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName, hashCode(), isLoadedFromFXML, gainVisibility)

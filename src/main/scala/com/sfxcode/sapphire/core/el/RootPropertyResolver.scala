@@ -4,7 +4,6 @@ import java.beans.FeatureDescriptor
 import java.util
 import javax.el.{ELContext, ELResolver, PropertyNotFoundException}
 
-import com.sfxcode.sapphire.core.cdi.CDILauncher
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
 import scalafx.collections.ObservableMap

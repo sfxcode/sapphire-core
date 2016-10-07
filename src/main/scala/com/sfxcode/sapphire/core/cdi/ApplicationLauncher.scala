@@ -1,12 +1,14 @@
 package com.sfxcode.sapphire.core.cdi
 
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Inject
-import javax.enterprise.event.Event
 import javax.annotation.PostConstruct
-import org.apache.deltaspike.core.api.projectstage.ProjectStage
+import javax.enterprise.context.ApplicationScoped
+import javax.enterprise.event.Event
 import javax.enterprise.util.AnnotationLiteral
+import javax.inject.Inject
+
 import com.sfxcode.sapphire.core.cdi.annotation.FXStage
+import org.apache.deltaspike.core.api.projectstage.ProjectStage
+
 import scalafx.stage.Stage
 
 @ApplicationScoped

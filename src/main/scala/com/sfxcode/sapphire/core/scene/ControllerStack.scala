@@ -9,7 +9,6 @@ case class ControllerState(controller: ViewController, stateMap: Map[String, Any
 case class ControllerStack(contentManager: ContentManager) {
   private val stack = new mutable.Stack[ControllerState]()
 
-
   def push(viewController: ViewController) = {
     if (viewController != null) {
       stack.push(ControllerState(viewController, viewController.stateMap))
@@ -37,7 +36,6 @@ case class ControllerStack(contentManager: ContentManager) {
 
   def size = stack.size
 
-
   private def updateContent[T <: ViewController](controllerState: ControllerState): T = {
     val viewController: ViewController = controllerState.controller
     contentManager.updatePaneContent(viewController, pushToStack = false)
@@ -45,6 +43,5 @@ case class ControllerStack(contentManager: ContentManager) {
 
     viewController.asInstanceOf[T]
   }
-
 
 }

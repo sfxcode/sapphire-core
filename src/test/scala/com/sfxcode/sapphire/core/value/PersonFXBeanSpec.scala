@@ -1,7 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.test.PersonDatabase
-import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable.Specification
 
 class PersonFXBeanSpec extends Specification {

@@ -1,6 +1,7 @@
 package com.sfxcode.sapphire.core.demo.appdemo.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
+
 import scalafx.scene.Group
 import scalafx.scene.control.Button
 import scalafx.scene.layout.AnchorPane

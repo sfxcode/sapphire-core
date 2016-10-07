@@ -7,7 +7,7 @@ import com.sfxcode.sapphire.core.value.FXBean
 
 import scala.beans.BeanProperty
 
-class FXListCellFactory[S<:AnyRef] extends Callback[ListView[FXBean[S]], ListCell[FXBean[S]]] {
+class FXListCellFactory[S <: AnyRef] extends Callback[ListView[FXBean[S]], ListCell[FXBean[S]]] {
   @BeanProperty
   var property = ""
 
@@ -18,28 +18,28 @@ class FXListCellFactory[S<:AnyRef] extends Callback[ListView[FXBean[S]], ListCel
 
 }
 
-object FXListCellFactory  {
+object FXListCellFactory {
 
-  def apply[S<:AnyRef](property:String):FXListCellFactory[S] = {
-    val result =  new FXListCellFactory[S]()
+  def apply[S <: AnyRef](property: String): FXListCellFactory[S] = {
+    val result = new FXListCellFactory[S]()
     result.setProperty(property)
     result
   }
 }
 
-class FXListCell[R](property: String="") extends ListCell[R] {
+class FXListCell[R](property: String = "") extends ListCell[R] {
 
-  override def updateItem(item: R, empty: Boolean)  {
+  override def updateItem(item: R, empty: Boolean) {
     super.updateItem(item, empty)
     item match {
-      case b:FXBean[_] =>
+      case b: FXBean[_] =>
         val value = b.getValue(property)
         value match {
-          case v:Any =>  textProperty().set(v.toString)
+          case v: Any => textProperty().set(v.toString)
           case _ => textProperty().set("NULL VALUE")
         }
-      case b:Any => textProperty().set(b.toString)
-      case _ =>  textProperty().set("")
+      case b: Any => textProperty().set(b.toString)
+      case _ => textProperty().set("")
     }
   }
 }

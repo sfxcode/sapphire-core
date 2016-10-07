@@ -56,7 +56,6 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     updateObservableValue(property, valueToUpdate)
   }
 
-
   def getProperty(key: String): Property[_, _] = {
     if ("_hasChanges".equals(key))
       return hasChangesProperty
@@ -103,8 +102,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
             propertyMap.put(key, property)
             property
           }
-        }
-        else {
+        } else {
           if (expressionMap.contains(key))
             expressionMap(key)
           else {
@@ -202,8 +200,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     }
   }
 
-  def hasChanges:Boolean = hasChangesProperty.get()
-
+  def hasChanges: Boolean = hasChangesProperty.get()
 
   def revert() {
     if (trackChanges) {

@@ -8,8 +8,6 @@ import scalafx.beans.property.StringProperty
 
 class FXBeanMapSpec extends Specification {
 
-
-
   "FXBean" should {
     "update scala map value" in {
       val testMap = new mutable.HashMap[String, Any]()

@@ -1,6 +1,5 @@
 package com.sfxcode.sapphire.core.value
 
-
 import scala.reflect.runtime.universe._
 import scalafx.collections.ObservableMap
 
@@ -51,7 +50,7 @@ object KeyBindings {
     bindings.add(list, nodePrefix)
   }
 
-  def forClass[T <:AnyRef](nodePrefix: String = "")(implicit t: TypeTag[T]): KeyBindings = {
+  def forClass[T <: AnyRef](nodePrefix: String = "")(implicit t: TypeTag[T]): KeyBindings = {
     val bindings = new KeyBindings
 
     val symbols = ReflectionTools.getMembers[T]()
@@ -63,5 +62,4 @@ object KeyBindings {
   }
 
 }
-
 

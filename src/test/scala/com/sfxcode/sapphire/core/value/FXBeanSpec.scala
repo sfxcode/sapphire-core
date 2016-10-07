@@ -44,7 +44,6 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean("observable").asInstanceOf[StringProperty].getValue must be equalTo "observable"
       testBean("zip").asInstanceOf[Zip].value must be equalTo 12345
 
-
       val testBean2 = FXBean[TestBean](TestBean())
 
       testBean2.updateValue("description", None)
@@ -76,7 +75,6 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean.getValue("age") must be equalTo 42
 
     }
-
 
     "evaluate expressions" in {
       val testBean = FXBean[TestBean](TestBean())

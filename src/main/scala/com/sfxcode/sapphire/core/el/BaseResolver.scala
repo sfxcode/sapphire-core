@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el._
-import java.util
 import java.beans.FeatureDescriptor
+import java.util
+import javax.el._
 
-class BaseResolver() extends ELResolver{
+class BaseResolver() extends ELResolver {
 
   val delegate = new CompositeELResolver
   delegate.add(RootPropertyResolver())
@@ -45,6 +45,6 @@ class BaseResolver() extends ELResolver{
 
 object BaseResolver {
 
-  def apply():BaseResolver = new BaseResolver
+  def apply(): BaseResolver = new BaseResolver
 }
 

@@ -14,7 +14,6 @@ import scalafx.stage.Stage
 
 abstract class AppController extends FxmlLoading with NodeLocator with LazyLogging {
 
-
   val sceneMap = ObservableMap[Parent, Scene]()
 
   def startup(@Observes @FXStage @Startup stage: Stage) {
@@ -36,14 +35,12 @@ abstract class AppController extends FxmlLoading with NodeLocator with LazyLoggi
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
-        }
-        catch {
+        } catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
       try {
         newController.willGainVisibility()
-      }
-      catch {
+      } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
       replaceSceneContentWithNode(newController.rootPane, resize)
@@ -51,24 +48,21 @@ abstract class AppController extends FxmlLoading with NodeLocator with LazyLoggi
       if (oldController != null)
         try {
           oldController.didLooseVisibility()
-        }
-        catch {
+        } catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
     }
     if (!newController.gainVisibility) {
       try {
         newController.didGainVisibilityFirstTime()
-      }
-      catch {
+      } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
       newController.gainVisibility = true
     }
     try {
       newController.didGainVisibility()
-    }
-    catch {
+    } catch {
       case e: Exception => logger.error(e.getMessage, e)
     }
   }
@@ -87,7 +81,6 @@ abstract class AppController extends FxmlLoading with NodeLocator with LazyLoggi
 
   }
 
-  def resourceBundleForView(viewPath:String):ResourceBundle = applicationEnvironment.resourceBundle
-
+  def resourceBundleForView(viewPath: String): ResourceBundle = applicationEnvironment.resourceBundle
 
 }

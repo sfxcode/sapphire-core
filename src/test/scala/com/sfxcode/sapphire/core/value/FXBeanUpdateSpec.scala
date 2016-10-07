@@ -8,7 +8,6 @@ class FXBeanUpdateSpec extends Specification {
 
   sequential
 
-
   "FXBean" should {
     "update member value" in {
       val testBean = FXBean(UpdateTestBean())

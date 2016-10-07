@@ -1,11 +1,11 @@
 package com.sfxcode.sapphire.core.controller
 
-import scalafx.scene.Node
 import scalafx.event.ActionEvent
+import scalafx.scene.Node
 import scalafx.scene.control.{ChoiceBox, ComboBox}
 
 trait ActionEvents {
-  
+
   def actionSource[T <: Node](event: ActionEvent): T = event.source.asInstanceOf[T]
 
   def selectionFromActionEvent[S <: Any](event: ActionEvent): Option[S] = {

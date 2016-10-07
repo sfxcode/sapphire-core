@@ -72,7 +72,6 @@ object FXBeanClassRegistry {
     result
   }
 
-
 }
 
 case class FXBeanClassMemberInfo(name: String, signature: PropertyValue = TypeUnknown, isOption: Boolean = false, javaClass: Class[_] = classOf[java.lang.String])
@@ -92,6 +91,5 @@ object FXBeanClassMemberInfo {
   def boolInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeBoolean, isOption, classOf[java.lang.Boolean])
 
   def dateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDate, isOption, classOf[java.util.Date])
-
 
 }

@@ -12,9 +12,9 @@ class FxmlExpressionResolver[String, Any] extends java.util.HashMap[String, Any]
       val parts = expressionKey.split("_")
 
       expressionKey = parts(0)
-        (1 until parts.length).foreach(i => {
-          expressionKey =  expressionKey + "." + parts(i) + "()"
-        })
+      (1 until parts.length).foreach(i => {
+        expressionKey = expressionKey + "." + parts(i) + "()"
+      })
     }
 
     expressionKey = "${" + expressionKey + "}"

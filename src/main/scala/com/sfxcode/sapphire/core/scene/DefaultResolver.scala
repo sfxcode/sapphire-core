@@ -7,7 +7,7 @@ import javafx.scene.text.Text
 import scalafx.Includes._
 import scalafx.beans.property.Property
 
-class DefaultResolver extends NodePropertyResolving{
+class DefaultResolver extends NodePropertyResolving {
 
   def resolve(node: Node): Option[Property[_, _ <: Any]] = {
     node match {
@@ -28,5 +28,5 @@ class DefaultResolver extends NodePropertyResolving{
 
 object DefaultResolver {
 
-  def apply():DefaultResolver = new DefaultResolver()
+  def apply(): DefaultResolver = new DefaultResolver()
 }

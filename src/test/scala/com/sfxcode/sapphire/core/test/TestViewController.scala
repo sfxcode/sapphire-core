@@ -4,9 +4,9 @@ import com.sfxcode.sapphire.core.controller.ViewController
 
 import scalafx.scene.layout.HBox
 
-class TestViewController extends ViewController  {
+class TestViewController extends ViewController {
 
-  var name:String=""
+  var name: String = ""
 
   rootPane = new HBox()
 

@@ -1,11 +1,12 @@
 package com.sfxcode.sapphire.core.demo.appdemo.controller
 
-import com.sfxcode.sapphire.core.controller.ViewController
 import javafx.event.ActionEvent
+
+import com.sfxcode.sapphire.core.controller.ViewController
 
 class Navigation2Controller extends ViewController {
 
-  def mainWindowController:MainWindowController = {
+  def mainWindowController: MainWindowController = {
     parent.asInstanceOf[MainWindowController]
   }
 

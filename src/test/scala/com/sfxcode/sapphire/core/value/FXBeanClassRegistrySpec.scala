@@ -2,7 +2,6 @@ package com.sfxcode.sapphire.core.value
 
 import java.util.Date
 
-import org.scalameter._
 import org.specs2.mutable.Specification
 
 case class StringTest(value: String = "myString", valueOption: Option[String] = Some("myString2"))
@@ -28,7 +27,6 @@ class FXBeanClassRegistrySpec extends Specification {
     val stringTest2 = new StringTest2()
     val longTest = LongTest()
 
-
     "get member info" in {
 
       memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
@@ -37,7 +35,6 @@ class FXBeanClassRegistrySpec extends Specification {
       memberInfo(stringTest2, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
       memberInfo(stringTest2, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
       memberInfo(stringTest2, "testMethod") must be equalTo FXBeanClassMemberInfo("testMethod", TypeUnknown, isOption = false)
-
 
       memberInfo(longTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeLong, isOption = false, classOf[java.lang.Long])
       memberInfo(longTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeLong, isOption = true, classOf[java.lang.Long])
@@ -48,14 +45,15 @@ class FXBeanClassRegistrySpec extends Specification {
       memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
       memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
 
-      val time = measure {
-        (1 to 10000).foreach(_ => {
-          memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
-          memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
+      val start = System.currentTimeMillis()
+      (1 to 10000).foreach(_ => {
+        memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
+        memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
 
-        })}.value
+      })
+      val time = System.currentTimeMillis() - start
 
-        time must be lessThan 2000
+      time must be lessThan 2000
     }
 
     "get date member info" in {

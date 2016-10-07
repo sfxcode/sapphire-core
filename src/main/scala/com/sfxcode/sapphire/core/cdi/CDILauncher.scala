@@ -1,6 +1,5 @@
 package com.sfxcode.sapphire.core.cdi
 
-
 import org.apache.deltaspike.cdise.api.CdiContainerLoader
 
 object CDILauncher {

@@ -32,7 +32,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   def unset() = beanProperty.value = null
 
-  protected def updateBean(oldValue:FXBean[T], newValue:FXBean[T]) = {
+  protected def updateBean(oldValue: FXBean[T], newValue: FXBean[T]) = {
     unbindAll()
 
     bindAll(newValue)
@@ -48,7 +48,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     boundProperties.clear()
   }
 
-  protected def bindAll(bean:FXBean[T]) {
+  protected def bindAll(bean: FXBean[T]) {
     if (hasBeanProperty.value)
       bindingMap.keys.foreach(property => bindBidirectional(bean, property, bindingMap(property)))
   }
@@ -76,8 +76,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       val result = viewController.applicationEnvironment.nodePropertyResolver.resolve(node.get)
       logger.debug("resolved property for %s : %s".format(key, result))
       result
-    }
-    else
+    } else
       None
   }
 
@@ -96,7 +95,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     converterMap.put(property, converter)
   }
 
-  protected def bindBidirectional(bean:FXBean[T], property: Property[_, _ <: Any], beanKey: String) {
+  protected def bindBidirectional(bean: FXBean[T], property: Property[_, _ <: Any], beanKey: String) {
     val observable = bean.getProperty(beanKey)
     observable match {
       case beanProperty: Property[Any, Any] => property match {
@@ -114,8 +113,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       val bp = beanProperty.delegate.asInstanceOf[jfxbp.Property[Any]]
       stringProperty.delegate.bindBidirectional(bp, c)
       boundProperties.put(stringProperty, beanProperty)
-    }
-    else
+    } else
       beanProperty match {
         case sp: StringProperty =>
           stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[Any, Any]], viewController.converterFactory.getConverterByName[Any]("DefaultStringConverter"))
@@ -147,5 +145,4 @@ object FXBeanAdapter {
   }
 
 }
-
 

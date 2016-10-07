@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.beans.value._
 import javafx.beans._
+import javafx.beans.value._
 
 object ValueHelper {
 
@@ -22,7 +22,6 @@ object ValueHelper {
     property.addListener(listener)
     listener
   }
-
 
   private class PropertyChangeListener3[T](func: (ObservableValue[_ <: T], T, T) => Unit) extends ChangeListener[T] {
 
@@ -50,6 +49,5 @@ object ValueHelper {
       func(observable)
     }
   }
-
 
 }

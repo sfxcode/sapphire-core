@@ -9,7 +9,7 @@ class NodePropertyResolver {
   val resolverBuffer = new ArrayBuffer[NodePropertyResolving]()
   addResolver(DefaultResolver())
 
-  def addResolver(resolver: NodePropertyResolving):Unit = {
+  def addResolver(resolver: NodePropertyResolving): Unit = {
     resolverBuffer.+=(resolver)
   }
 

@@ -5,7 +5,6 @@ import javafx.util.Callback
 import javax.enterprise.inject._
 import javax.inject.Inject
 
-
 class FXMLLoaderProvider {
 
   implicit def callbackFromFunction[P, R](f: (P) => R): Callback[P, R] = new Callback[P, R] {

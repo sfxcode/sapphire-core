@@ -14,7 +14,8 @@ import scalafx.stage.Stage
 
 object DemoApplication extends FXApp {
   JFXApp.AutoShow = true
-  override def applicationStage:Stage  = new PrimaryStage {
+
+  override def applicationStage: Stage = new PrimaryStage {
     title = "Sapphire Controller Demo"
     scene = new Scene {
     }

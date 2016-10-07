@@ -4,14 +4,14 @@ package com.sfxcode.sapphire.core.demo.appdemo.controller
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 
-abstract class AbstractWorkspaceController extends ViewController with LazyLogging{
+abstract class AbstractWorkspaceController extends ViewController with LazyLogging {
 
   override def startup() {
     logger.debug("%s - %s".format(this, "startup"))
   }
 
 
-  override def didInitialize()  {
+  override def didInitialize() {
     logger.debug("%s - %s".format(this, "didInitialize"))
   }
 
