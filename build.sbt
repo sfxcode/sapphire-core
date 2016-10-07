@@ -2,9 +2,11 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.6"
+version := "1.1.6.1"
 
-scalaVersion := "2.11.8"
+crossScalaVersions := Seq( "2.11.8", "2.12.0-RC1")
+
+scalaVersion <<= crossScalaVersions { versions => versions.head }
 
 scalacOptions += "-deprecation"
 
@@ -35,22 +37,17 @@ libraryDependencies += "org.json4s" %% "json4s-native" % "3.4.1" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.7" % "test"
 
-libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.7" % "test"
-
-
 // Compile
 
 // Environment
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0"
 
-libraryDependencies += "com.typesafe" % "config" % "1.3.0"
+libraryDependencies += "com.typesafe" % "config" % "1.3.1"
 
 // UI
 
 libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.102-R11"
-
-libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.2.2"
 
 // CDI
 
@@ -67,8 +64,6 @@ libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % D
 libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion intransitive()
 
 libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion intransitive()
-
-libraryDependencies += "org.apache.geronimo.specs" % "geronimo-servlet_3.0_spec" % "1.0"
 
 // Expression Language
 
