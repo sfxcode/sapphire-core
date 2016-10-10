@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.cdi.provider
 import javax.enterprise.inject.Produces
 import javax.inject.Singleton
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.{ Config, ConfigFactory }
 
 @Singleton
 class ConfigurationProvider {

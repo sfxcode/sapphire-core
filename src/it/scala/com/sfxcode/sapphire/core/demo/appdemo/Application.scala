@@ -33,6 +33,7 @@ class BaseApplicationController extends AppController {
     reload()
   }
 
+  // live reloading of scene content for rapid development
   def reload(): Unit = {
     applicationEnvironment.loadResourceBundle("com/sfxcode/sapphire/core/demo/appdemo/bundles/demo")
     replaceSceneContent(mainWindowController)

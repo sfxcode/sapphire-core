@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el.{ExpressionFactory, MethodNotFoundException}
+import javax.el.{ ExpressionFactory, MethodNotFoundException }
 
 import de.odysseus.el.ObjectValueExpression
 

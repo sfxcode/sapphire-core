@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.value
 import com.typesafe.scalalogging.LazyLogging
 
 import scala.reflect.runtime.universe._
-import scala.reflect.runtime.{universe => ru}
+import scala.reflect.runtime.{ universe => ru }
 
 object ReflectionTools extends LazyLogging {
   val typeMirror = ru.runtimeMirror(this.getClass.getClassLoader)

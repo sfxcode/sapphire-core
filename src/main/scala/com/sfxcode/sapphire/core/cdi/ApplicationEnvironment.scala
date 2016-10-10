@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.cdi
 
-import java.util.{Locale, ResourceBundle}
+import java.util.{ Locale, ResourceBundle }
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
-import com.sfxcode.sapphire.core.controller.{AppController, ViewController}
+import com.sfxcode.sapphire.core.controller.{ AppController, ViewController }
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
@@ -18,7 +18,7 @@ import scalafx.stage.Stage
 @ApplicationScoped
 class ApplicationEnvironment extends Serializable {
 
-  var controllerMap:ObservableMap[String, ViewController] = ObservableMap[String, ViewController]()
+  var controllerMap: ObservableMap[String, ViewController] = ObservableMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
@@ -50,8 +50,7 @@ class ApplicationEnvironment extends Serializable {
     val key = ct.runtimeClass.getName
     if (controllerMap.isDefinedAt(key)) {
       Some(controllerMap(key).asInstanceOf[T])
-    }
-    else {
+    } else {
       None
     }
   }

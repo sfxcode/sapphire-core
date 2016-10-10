@@ -2,7 +2,7 @@ package com.sfxcode.sapphire.core.controller
 
 import scalafx.event.ActionEvent
 import scalafx.scene.Node
-import scalafx.scene.control.{ChoiceBox, ComboBox}
+import scalafx.scene.control.{ ChoiceBox, ComboBox }
 
 trait ActionEvents {
 

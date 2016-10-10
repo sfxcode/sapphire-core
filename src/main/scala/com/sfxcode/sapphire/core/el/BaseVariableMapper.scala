@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el.{ValueExpression, VariableMapper}
+import javax.el.{ ValueExpression, VariableMapper }
 
 import scalafx.collections.ObservableMap
 

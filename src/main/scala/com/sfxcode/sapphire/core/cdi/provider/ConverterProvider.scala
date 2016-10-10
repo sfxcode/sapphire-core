@@ -23,8 +23,7 @@ class ConverterProvider extends Serializable with LazyLogging {
 
     if (!forceNew && converterMap.contains(className)) {
       converterMap(className).asInstanceOf[StringConverter[T]]
-    }
-    else {
+    } else {
 
       var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]
 

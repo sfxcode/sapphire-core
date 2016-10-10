@@ -6,10 +6,10 @@ import javafx.scene.control.TableColumn
 import javafx.scene.control.TableColumn.CellDataFeatures
 import javafx.util.Callback
 
-import com.sfxcode.sapphire.core.value.{FXBean, ReflectionTools}
+import com.sfxcode.sapphire.core.value.{ FXBean, ReflectionTools }
 
 import scala.beans.BeanProperty
-import scalafx.beans.property.{LongProperty, _}
+import scalafx.beans.property.{ LongProperty, _ }
 import scalafx.delegate.SFXDelegate
 
 class FXValueFactory[S <: AnyRef, T] extends Callback[TableColumn.CellDataFeatures[S, T], ObservableValue[T]] {

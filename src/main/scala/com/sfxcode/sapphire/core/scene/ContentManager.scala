@@ -1,13 +1,13 @@
 package com.sfxcode.sapphire.core.scene
 
 import javax.enterprise.event.Event
-import javax.inject.{Inject, Named}
+import javax.inject.{ Inject, Named }
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
-import scalafx.beans.property.{BooleanProperty, IntegerProperty}
+import scalafx.beans.property.{ BooleanProperty, IntegerProperty }
 import scalafx.scene.Node
 import scalafx.scene.layout.Pane
 

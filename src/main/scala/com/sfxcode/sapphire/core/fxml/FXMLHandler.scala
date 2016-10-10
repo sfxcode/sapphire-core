@@ -1,9 +1,9 @@
 package com.sfxcode.sapphire.core.fxml
 
-import java.io.{IOException, InputStream}
+import java.io.{ IOException, InputStream }
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
-import javafx.{fxml => jfxf, util => jfxu}
+import javafx.{ fxml => jfxf, util => jfxu }
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 

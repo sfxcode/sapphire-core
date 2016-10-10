@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.beans.{property => jfxbp}
+import javafx.beans.{ property => jfxbp }
 import javafx.util.StringConverter
 
 import com.sfxcode.sapphire.core.controller.ViewController

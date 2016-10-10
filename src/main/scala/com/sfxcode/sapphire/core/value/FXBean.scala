@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.beans.value.{ChangeListener, ObservableValue}
+import javafx.beans.value.{ ChangeListener, ObservableValue }
 
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.value.PropertyType._

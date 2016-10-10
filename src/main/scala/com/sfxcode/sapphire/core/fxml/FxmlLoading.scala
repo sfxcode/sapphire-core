@@ -11,7 +11,7 @@ import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.config.ConfigFactory
 
 import scala.reflect.ClassTag
-import scala.reflect.runtime.{universe => ru}
+import scala.reflect.runtime.{ universe => ru }
 import scalafx.scene.Scene
 import scalafx.scene.layout.Pane
 import scalafx.stage.Stage
