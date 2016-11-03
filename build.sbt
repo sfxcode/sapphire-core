@@ -2,9 +2,9 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.7"
+version := "1.1.8-SNAPSHOT"
 
-crossScalaVersions := Seq( "2.11.8", "2.12.0-RC1")
+crossScalaVersions := Seq( "2.12.0","2.11.8")
 
 scalaVersion <<= crossScalaVersions { versions => versions.head }
 
@@ -31,9 +31,9 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.5" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.6" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.4.1" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.4.2" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.7" % "test"
 
