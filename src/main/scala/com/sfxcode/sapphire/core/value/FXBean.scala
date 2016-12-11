@@ -51,79 +51,95 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     bean match {
       case map: mutable.Map[String, Any] => map.put(key, valueToUpdate)
       case javaMap: java.util.Map[String, Any] => javaMap.put(key, valueToUpdate)
-      case _ => ReflectionTools.setMemberValue(bean, key, valueToUpdate)
+      case _ =>
+        if (key.contains(".")) {
+          val objectKey = key.substring(0, key.indexOf("."))
+          val newKey = key.substring(key.indexOf(".") + 1)
+          val value = getValue(objectKey)
+          val newBean = FXBean(value.asInstanceOf[AnyRef])
+          newBean.updateValue(newKey, newValue)
+        } else
+          ReflectionTools.setMemberValue(bean, key, valueToUpdate)
     }
     updateObservableValue(property, valueToUpdate)
   }
 
   def getProperty(key: String): Property[_, _] = {
-    if ("_hasChanges".equals(key))
-      return hasChangesProperty
-    var value = getValue(key)
-    value match {
-      case option: Option[_] =>
-        if (option.isDefined)
-          value = option.get
-        else
-          value = null
-      case _ =>
-    }
-    value match {
-      case value1: Property[_, _] => value1
-      case _ =>
-        // lookup in local function
-        var info = memberInfo(key)
-        if (info.signature == TypeUnknown) {
-          // lookup in registry
-          bean match {
-            case map: mutable.Map[String, Any] =>
-            case javaMap: java.util.Map[String, Any] =>
-            case _ => info = FXBeanClassRegistry.memberInfo(bean, key)
-          }
-
-        }
-
-        if (info.signature != TypeUnknown) {
-          if (propertyMap.contains(key))
-            propertyMap(key)
-          else {
-            var result: Any = null
-            info.signature match {
-              case TypeInt => result = new IntegerProperty(bean, info.name, value.asInstanceOf[Integer])
-              case TypeLong => result = new LongProperty(bean, info.name, value.asInstanceOf[Long])
-              case TypeFloat => result = new FloatProperty(bean, info.name, value.asInstanceOf[Float])
-              case TypeDouble => result = new DoubleProperty(bean, info.name, value.asInstanceOf[Double])
-              case TypeBoolean => result = new BooleanProperty(bean, info.name, value.asInstanceOf[Boolean])
-              case _ => result = createSimpleStringPropertyForObject(value, info.name)
+    if (key.contains(".")) {
+      val objectKey = key.substring(0, key.indexOf("."))
+      val newKey = key.substring(key.indexOf(".") + 1)
+      val value = getValue(objectKey)
+      val newBean = FXBean(value.asInstanceOf[AnyRef])
+      newBean.getProperty(newKey)
+    } else {
+      if ("_hasChanges".equals(key))
+        return hasChangesProperty
+      var value = getValue(key)
+      value match {
+        case option: Option[_] =>
+          if (option.isDefined)
+            value = option.get
+          else
+            value = null
+        case _ =>
+      }
+      value match {
+        case value1: Property[_, _] => value1
+        case _ =>
+          // lookup in local function
+          var info = memberInfo(key)
+          if (info.signature == TypeUnknown) {
+            // lookup in registry
+            bean match {
+              case map: mutable.Map[String, Any] =>
+              case javaMap: java.util.Map[String, Any] =>
+              case _ => info = FXBeanClassRegistry.memberInfo(bean, key)
             }
 
-            val property = result.asInstanceOf[Property[_, _]]
-            property.addListener(this)
-            propertyMap.put(key, property)
-            property
           }
-        } else {
-          if (expressionMap.contains(key))
-            expressionMap(key)
-          else {
-            var result: Any = null
 
-            value match {
-              case i: Integer => result = new IntegerProperty(bean, info.name, i)
-              case l: Long => result = new LongProperty(bean, info.name, l)
-              case f: Float => result = new FloatProperty(bean, info.name, f)
-              case d: Double => result = new DoubleProperty(bean, info.name, d)
-              case b: Boolean => result = new BooleanProperty(bean, info.name, b)
-              case s: String => result = new StringProperty(bean, info.name, s)
-              case v: Any => result = createSimpleStringPropertyForObject(v, info.name)
-              case _ => result = new StringProperty(bean, info.name, "")
+          if (info.signature != TypeUnknown) {
+            if (propertyMap.contains(key))
+              propertyMap(key)
+            else {
+              var result: Any = null
+              info.signature match {
+                case TypeInt => result = new IntegerProperty(bean, info.name, value.asInstanceOf[Integer])
+                case TypeLong => result = new LongProperty(bean, info.name, value.asInstanceOf[Long])
+                case TypeFloat => result = new FloatProperty(bean, info.name, value.asInstanceOf[Float])
+                case TypeDouble => result = new DoubleProperty(bean, info.name, value.asInstanceOf[Double])
+                case TypeBoolean => result = new BooleanProperty(bean, info.name, value.asInstanceOf[Boolean])
+                case _ => result = createSimpleStringPropertyForObject(value, info.name)
+              }
+
+              val property = result.asInstanceOf[Property[_, _]]
+              property.addListener(this)
+              propertyMap.put(key, property)
+              property
             }
+          } else {
+            if (expressionMap.contains(key))
+              expressionMap(key)
+            else {
+              var result: Any = null
 
-            val property = result.asInstanceOf[Property[_, _]]
-            expressionMap.put(key, property)
-            property
+              value match {
+                case i: Integer => result = new IntegerProperty(bean, info.name, i)
+                case l: Long => result = new LongProperty(bean, info.name, l)
+                case f: Float => result = new FloatProperty(bean, info.name, f)
+                case d: Double => result = new DoubleProperty(bean, info.name, d)
+                case b: Boolean => result = new BooleanProperty(bean, info.name, b)
+                case s: String => result = new StringProperty(bean, info.name, s)
+                case v: Any => result = createSimpleStringPropertyForObject(v, info.name)
+                case _ => result = new StringProperty(bean, info.name, "")
+              }
+
+              val property = result.asInstanceOf[Property[_, _]]
+              expressionMap.put(key, property)
+              property
+            }
           }
-        }
+      }
     }
   }
 

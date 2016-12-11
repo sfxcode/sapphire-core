@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import com.sfxcode.sapphire.core.test.{ Book, PersonDatabase }
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable._
@@ -94,6 +95,20 @@ class FXBeanSpec extends Specification with LazyLogging {
       val observable = testBean.getProperty("age")
       observable.asInstanceOf[IntegerProperty].getValue must be equalTo 42
 
+    }
+
+    "handle complex case classes" in {
+      val book = FXBean[Book](PersonDatabase.scalaBook)
+      book.getValue("title") must be equalTo "Programming In Scala"
+      book.getValue("author.name") must be equalTo "Martin Odersky"
+      book.updateValue("author.name", "M. Odersky")
+      book.getValue("author.name") must be equalTo "M. Odersky"
+
+      val observable = book.getProperty("author.name").asInstanceOf[StringProperty]
+      observable.getValue must be equalTo "M. Odersky"
+
+      observable.set("Martin Odersky")
+      book.getValue("author.name") must be equalTo "Martin Odersky"
     }
   }
 

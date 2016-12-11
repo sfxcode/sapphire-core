@@ -31,15 +31,19 @@ case class Person(
 
 case class Friend(id: Long, name: String)
 
+case class Author(var name: String)
+
+case class Book(id: Long, title: String, pages: Int, author: Author)
+
 object PersonDatabase {
 
   implicit val formats = new DefaultFormats {
     override def dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
   }
 
-  val personen = read[List[Person]](fromJson("/test_data.json"))
+  val personen: List[Person] = read[List[Person]](fromJson("/test_data.json"))
 
-  val friends = personen.head.friends
+  val friends: List[Friend] = personen.head.friends
 
   def fromJson(name: String): String = {
     val is = getClass.getResourceAsStream(name)
@@ -50,8 +54,10 @@ object PersonDatabase {
 
   def testFriend(id: Int) = FXBean(friends(id))
 
-  def testPersonen = personen.map(item => FXBean[Person](item))
+  def testPersonen: List[FXBean[Person]] = personen.map(item => FXBean[Person](item))
 
-  def testFriends = friends.map(item => FXBean[Friend](item))
+  def testFriends: List[FXBean[Friend]] = friends.map(item => FXBean[Friend](item))
+
+  val scalaBook = Book(1, "Programming In Scala", 852, Author("Martin Odersky"))
 }
 
