@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import java.time.LocalDate
 import java.util.Date
 
 import org.specs2.mutable.Specification
@@ -9,6 +10,7 @@ case class StringTest(value: String = "myString", valueOption: Option[String] = 
 class StringTest2 {
   var value: String = "myString"
   var date: Date = new Date()
+  var localdate: LocalDate = LocalDate.now()
   var valueOption: Option[String] = Some("myString2")
 
   def testMethod(a: Int): Int = a + 3
@@ -59,6 +61,11 @@ class FXBeanClassRegistrySpec extends Specification {
     "get date member info" in {
       memberInfo(stringTest2, "date").signature must be equalTo TypeDate
       memberInfo(stringTest2, "date").javaClass.toString must contain("Date")
+
+    }
+    "get date member info" in {
+      memberInfo(stringTest2, "localdate").signature must be equalTo TypeLocalDate
+      memberInfo(stringTest2, "localdate").javaClass.toString must contain("LocalDate")
 
     }
 

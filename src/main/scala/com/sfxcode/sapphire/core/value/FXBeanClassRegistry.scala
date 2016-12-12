@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import java.time.LocalDate
 import java.util.Date
 
 import com.sfxcode.sapphire.core.value.FXBeanClassMemberInfo._
@@ -9,7 +10,7 @@ import scala.reflect.runtime.universe._
 
 object PropertyType extends Enumeration {
   type PropertyValue = Value
-  val TypeUnknown, TypeString, TypeInt, TypeLong, TypeFloat, TypeDouble, TypeBoolean, TypeDate = Value
+  val TypeUnknown, TypeString, TypeInt, TypeLong, TypeFloat, TypeDouble, TypeBoolean, TypeLocalDate, TypeDate = Value
 }
 
 import com.sfxcode.sapphire.core.value.PropertyType._
@@ -58,6 +59,16 @@ object FXBeanClassRegistry {
         result = boolInfo(name, isOption = true)
       else if (t =:= typeOf[Double] || t.toString.contains("Boolean"))
         result = boolInfo(name)
+
+      else if (!isJavaType && fieldType.get =:= typeOf[Option[LocalDate]])
+        result = localDateInfo(name, isOption = true)
+      else if (t =:= typeOf[LocalDate] || t.toString.contains("LocalDate"))
+        result = localDateInfo(name)
+      else if (!isJavaType && fieldType.get =:= typeOf[Option[LocalDate]])
+        result = localDateInfo(name, isOption = true)
+      else if (t =:= typeOf[LocalDate] || t.toString.contains("LocalDate"))
+        result = localDateInfo(name)
+
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Date]])
         result = dateInfo(name, isOption = true)
       else if (t =:= typeOf[Date] || t.toString.contains("Date"))
@@ -91,5 +102,7 @@ object FXBeanClassMemberInfo {
   def boolInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeBoolean, isOption, classOf[java.lang.Boolean])
 
   def dateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDate, isOption, classOf[java.util.Date])
+
+  def localDateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeLocalDate, isOption, classOf[java.time.LocalDate])
 
 }

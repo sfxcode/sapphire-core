@@ -1,6 +1,8 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.beans.value.{ ChangeListener, ObservableValue }
+import java.time.LocalDate
+import java.util.Date
+import javafx.beans.value.{ChangeListener, ObservableValue}
 
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.value.PropertyType._
@@ -109,6 +111,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
                 case TypeFloat => result = new FloatProperty(bean, info.name, value.asInstanceOf[Float])
                 case TypeDouble => result = new DoubleProperty(bean, info.name, value.asInstanceOf[Double])
                 case TypeBoolean => result = new BooleanProperty(bean, info.name, value.asInstanceOf[Boolean])
+                case TypeDate => result = new ObjectProperty(bean, info.name, value.asInstanceOf[Date])
+                case TypeLocalDate => result = new ObjectProperty(bean, info.name, value.asInstanceOf[LocalDate])
                 case _ => result = createSimpleStringPropertyForObject(value, info.name)
               }
 
