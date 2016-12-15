@@ -15,6 +15,8 @@ class DefaultResolver extends NodePropertyResolving {
       case text: Text => Some(text.textProperty())
       case textField: TextField => Some(textField.textProperty())
       case textArea: TextArea => Some(textArea.textProperty())
+      case datePicker: DatePicker => Some(datePicker.valueProperty())
+      case toggleButton: ToggleButton => Some(toggleButton.selectedProperty())
       case checkBox: CheckBox => Some(checkBox.selectedProperty())
       case slider: Slider => Some(slider.valueProperty())
       case comboBox: ComboBox[_] => Some(comboBox.valueProperty())
