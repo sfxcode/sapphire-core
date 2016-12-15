@@ -1,8 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
 import java.time.LocalDate
-import java.util.Date
-import javafx.beans.value.{ChangeListener, ObservableValue}
+import javafx.beans.value.{ ChangeListener, ObservableValue }
 
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.value.PropertyType._
@@ -111,7 +110,6 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
                 case TypeFloat => result = new FloatProperty(bean, info.name, value.asInstanceOf[Float])
                 case TypeDouble => result = new DoubleProperty(bean, info.name, value.asInstanceOf[Double])
                 case TypeBoolean => result = new BooleanProperty(bean, info.name, value.asInstanceOf[Boolean])
-                case TypeDate => result = new ObjectProperty(bean, info.name, value.asInstanceOf[Date])
                 case TypeLocalDate => result = new ObjectProperty(bean, info.name, value.asInstanceOf[LocalDate])
                 case _ => result = createSimpleStringPropertyForObject(value, info.name)
               }
@@ -133,9 +131,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
                 case f: Float => result = new FloatProperty(bean, info.name, f)
                 case d: Double => result = new DoubleProperty(bean, info.name, d)
                 case b: Boolean => result = new BooleanProperty(bean, info.name, b)
-                case s: String => result = new StringProperty(bean, info.name, s)
-                case v: Any => result = createSimpleStringPropertyForObject(v, info.name)
-                case _ => result = new StringProperty(bean, info.name, "")
+                case ld: LocalDate => result = new ObjectProperty(bean, info.name, ld)
+                case _ => result = createSimpleStringPropertyForObject(value, info.name)
               }
 
               val property = result.asInstanceOf[Property[_, _]]
@@ -204,6 +201,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       case f: FloatProperty => f.set(value.asInstanceOf[Float])
       case d: DoubleProperty => d.set(value.asInstanceOf[Double])
       case b: BooleanProperty => b.set(value.asInstanceOf[Boolean])
+      case o: ObjectProperty[Any] => o.set(value)
       case _ =>
     }
   }
