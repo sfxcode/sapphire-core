@@ -23,6 +23,8 @@ class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip
 
 }
 
+case class ListClass(list: List[String] = List("A", "B"))
+
 @Exclude
 class FXBeanSpec extends Specification with LazyLogging {
 
@@ -97,6 +99,14 @@ class FXBeanSpec extends Specification with LazyLogging {
 
     }
 
+    "get observable expression property" in {
+      val testBean = FXBean[ListClass](ListClass())
+
+      val observable = testBean.getProperty("${_self.list().size()}")
+      observable.asInstanceOf[IntegerProperty].getValue must be equalTo 2
+
+    }
+
     "handle complex case classes" in {
       val book = FXBean[Book](PersonDatabase.scalaBook)
       book.getValue("title") must be equalTo "Programming In Scala"
@@ -109,6 +119,16 @@ class FXBeanSpec extends Specification with LazyLogging {
 
       observable.set("Martin Odersky")
       book.getValue("author.name") must be equalTo "Martin Odersky"
+    }
+
+    "handle scala map " in {
+      val map = Map[String, Any]("test" -> 3, "test.test" -> 4)
+
+      val book = FXBean[Map[String, Any]](map)
+
+      book.getValue("test") must be equalTo 3
+      book.getValue("test.test") must be equalTo 4
+
     }
   }
 

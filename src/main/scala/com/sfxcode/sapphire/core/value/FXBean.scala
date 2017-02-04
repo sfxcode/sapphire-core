@@ -32,6 +32,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   def getValue(key: String): Any = {
     bean match {
       case map: mutable.Map[String, _] => map(key)
+      case map: Map[String, _] => map(key)
       case javaMap: java.util.Map[String, _] => javaMap.get(key)
       case _ => Expressions.evaluateExpressionOnObject(bean, key)
     }
@@ -66,7 +67,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
   def getProperty(key: String): Property[_, _] = {
-    if (key.contains(".")) {
+    if (!key.startsWith(Expressions.ExpressionPrefix) && key.contains(".")) {
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)
       val value = getValue(objectKey)
