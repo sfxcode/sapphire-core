@@ -67,7 +67,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
   def getProperty(key: String): Property[_, _] = {
-    if (!key.startsWith(Expressions.ExpressionPrefix) && key.contains(".")) {
+    if ( key.contains(".") && !key.contains(Expressions.ExpressionPrefix)) {
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)
       val value = getValue(objectKey)

@@ -105,6 +105,9 @@ class FXBeanSpec extends Specification with LazyLogging {
       val observable = testBean.getProperty("${_self.list().size()}")
       observable.asInstanceOf[IntegerProperty].getValue must be equalTo 2
 
+      val observableString = testBean.getProperty("List count: ${_self.list().size()}")
+      observableString.asInstanceOf[StringProperty].getValue must be equalTo "List count: 2"
+
     }
 
     "handle complex case classes" in {
