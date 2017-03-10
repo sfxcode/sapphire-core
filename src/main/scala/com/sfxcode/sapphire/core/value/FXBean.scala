@@ -15,15 +15,15 @@ import scalafx.util.converter.DateStringConverter
 
 class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()) extends ChangeListener[Any] with LazyLogging {
   val EmptyMemberInfo = FXBeanClassMemberInfo("name_ignored")
-  val memberInfoMap = typeHints.map(info => (info.name, info)).toMap
+  val memberInfoMap: Map[String, FXBeanClassMemberInfo] = typeHints.map(info => (info.name, info)).toMap
   var trackChanges = true
 
   lazy val hasChangesProperty = new BooleanProperty(bean, "_hasChanges", false)
 
-  lazy val propertyMap = ObservableMap[String, Property[_, _]]()
-  lazy val expressionMap = ObservableMap[String, Property[_, _]]()
+  lazy val propertyMap: ObservableMap[String, Property[_, _]] = ObservableMap[String, Property[_, _]]()
+  lazy val expressionMap: ObservableMap[String, Property[_, _]] = ObservableMap[String, Property[_, _]]()
 
-  lazy val changeManagementMap = ObservableMap[String, Any]()
+  lazy val changeManagementMap: ObservableMap[String, Any] = ObservableMap[String, Any]()
 
   def apply(key: String): Any = {
     getValue(key)
@@ -67,7 +67,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
   def getProperty(key: String): Property[_, _] = {
-    if ( key.contains(".") && !key.contains(Expressions.ExpressionPrefix)) {
+    if (key.contains(".") && !key.contains(Expressions.ExpressionPrefix)) {
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)
       val value = getValue(objectKey)

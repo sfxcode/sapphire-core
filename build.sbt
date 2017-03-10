@@ -2,11 +2,11 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.1.12"
+version := "1.2.0"
 
 crossScalaVersions := Seq( "2.12.1","2.11.8")
 
-scalaVersion <<= crossScalaVersions { versions => versions.head }
+scalaVersion := "2.12.1"
 
 scalacOptions += "-deprecation"
 
@@ -31,11 +31,11 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.7" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "3.8.9" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.0" % "test"
 
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.9" % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.1" % "test"
 
 // Compile
 
@@ -55,7 +55,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "1.2"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.7.1"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "1.7.2"
 
 val DeltaspikeVersion = "1.7.2"
 
