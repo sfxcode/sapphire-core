@@ -7,9 +7,7 @@ import javax.inject.Inject
 
 class FXMLLoaderProvider {
 
-  implicit def callbackFromFunction[P, R](f: (P) => R): Callback[P, R] = new Callback[P, R] {
-    def call(param: P) = f(param)
-  }
+  implicit def callbackFromFunction[P, R](f: (P) => R): Callback[P, R] = (param: P) => f(param)
 
   @Inject var instance: Instance[AnyRef] = _
 

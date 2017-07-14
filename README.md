@@ -4,7 +4,7 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Scala Version is 2.12.1 / 2.11.8.
+Scala Version is 2.12.2 / 2.11.11.
 
 ## Travis
 
@@ -46,11 +46,11 @@ A DSL for JavaFX written in Scala.
 
 ### Dependency Injection
 
-Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.7.2).
+Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.8.0).
 
 [http://deltaspike.apache.org](http://deltaspike.apache.org)
 
-The default implementation depends on Apache OpenWebBeans (1.7.1).
+The default implementation depends on Apache OpenWebBeans (2.0.0).
 
 [http://openwebbeans.apache.org](http://openwebbeans.apache.org)
 
