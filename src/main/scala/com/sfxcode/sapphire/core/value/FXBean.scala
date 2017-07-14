@@ -12,6 +12,7 @@ import scala.collection.mutable
 import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
+import Expressions._
 
 class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()) extends ChangeListener[Any] with LazyLogging {
   val EmptyMemberInfo = FXBeanClassMemberInfo("name_ignored")
@@ -66,8 +67,12 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     updateObservableValue(property, valueToUpdate)
   }
 
+  def isExpressionKey(key: String): Boolean = {
+    key.contains(ExpressionPrefix) || key.contains(FxmlExpressionPrefix)
+  }
+
   def getProperty(key: String): Property[_, _] = {
-    if (key.contains(".") && !key.contains(Expressions.ExpressionPrefix)) {
+    if (key.contains(".") && !isExpressionKey(key)) {
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)
       val value = getValue(objectKey)

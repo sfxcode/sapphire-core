@@ -6,7 +6,6 @@ import de.odysseus.el.ObjectValueExpression
 
 object Expressions {
   val props = System.getProperties
-  val fxmlExpressionPrefix: String = "!{"
 
   if (!props.containsKey("javax.cdi.methodInvocations"))
     props.put("javax.cdi.methodInvocations", "true")
@@ -20,6 +19,7 @@ object Expressions {
   val TempObjectName = "_self"
   val TempValueName = "_tempValue"
   val ExpressionPrefix = "${"
+  val FxmlExpressionPrefix: String = "!{"
 
   def register(name: String, obj: Any) {
     context.register(name, obj)
@@ -51,8 +51,8 @@ object Expressions {
   def evaluateExpressionOnObject(obj: AnyRef, exp: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
 
     var expression = exp
-    while (expression.contains(fxmlExpressionPrefix))
-      expression = exp.replace(fxmlExpressionPrefix, ExpressionPrefix)
+    while (expression.contains(FxmlExpressionPrefix))
+      expression = exp.replace(FxmlExpressionPrefix, ExpressionPrefix)
     var result: Any = null
     if (expression.contains(ExpressionPrefix)) {
       result = getValueOnObject(obj, expression, clazz)

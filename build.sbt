@@ -2,7 +2,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.2.1"
+version := "1.2.2"
 
 crossScalaVersions := Seq( "2.12.2","2.11.11")
 
