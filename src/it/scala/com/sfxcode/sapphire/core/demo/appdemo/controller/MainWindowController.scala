@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane
 import javax.enterprise.event.Observes
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.scene.{ContentDidChangeEvent, ContentManager}
+import com.sfxcode.sapphire.core.scene.{ ContentDidChangeEvent, ContentManager }
 import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.Includes._
@@ -46,7 +46,6 @@ class MainWindowController extends ViewController with LazyLogging {
   def showWorkspace3() {
     workspaceManager.updatePaneContent(workspace3Controller)
   }
-
 
   def toggleNavigation() {
     navigationManager.switchToLast()

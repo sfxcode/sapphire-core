@@ -10,7 +10,6 @@ abstract class AbstractWorkspaceController extends ViewController with LazyLoggi
     logger.debug("%s - %s".format(this, "startup"))
   }
 
-
   override def didInitialize() {
     logger.debug("%s - %s".format(this, "didInitialize"))
   }
@@ -27,7 +26,6 @@ abstract class AbstractWorkspaceController extends ViewController with LazyLoggi
     logger.debug("%s - %s".format(this, "didGainVisibility"))
   }
 
-
   override def willLooseVisibility() {
     logger.debug("%s - %s".format(this, "willLooseVisibility"))
   }
@@ -39,6 +37,5 @@ abstract class AbstractWorkspaceController extends ViewController with LazyLoggi
   override def shutdown() {
     logger.debug("%s - %s".format(this, "shutdown"))
   }
-
 
 }

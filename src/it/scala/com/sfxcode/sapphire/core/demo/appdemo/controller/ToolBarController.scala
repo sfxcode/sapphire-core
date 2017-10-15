@@ -6,7 +6,6 @@ import scalafx.scene.Group
 import scalafx.scene.control.Button
 import scalafx.scene.layout.AnchorPane
 
-
 class ToolBarController extends ViewController {
 
   val testContent = new Group {
@@ -21,6 +20,5 @@ class ToolBarController extends ViewController {
   rootPane = new AnchorPane {
     children.addAll(testContent)
   }
-
 
 }

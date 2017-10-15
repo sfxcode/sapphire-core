@@ -26,5 +26,4 @@ class StatusBarController extends ViewController {
     children.addAll(testContent)
   }
 
-
 }

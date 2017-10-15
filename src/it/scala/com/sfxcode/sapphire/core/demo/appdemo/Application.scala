@@ -41,6 +41,3 @@ class BaseApplicationController extends AppController {
 
 }
 
-
-
-

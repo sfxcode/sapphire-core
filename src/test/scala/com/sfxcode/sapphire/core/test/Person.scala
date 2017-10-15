@@ -26,8 +26,7 @@ case class Person(
   tags: List[String],
   friends: List[Friend],
   greeting: String,
-  favoriteFruit: String
-)
+  favoriteFruit: String)
 
 case class Friend(id: Long, name: String)
 

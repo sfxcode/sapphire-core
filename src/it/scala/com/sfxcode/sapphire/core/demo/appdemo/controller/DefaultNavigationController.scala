@@ -7,7 +7,6 @@ import com.sfxcode.sapphire.core.demo.appdemo.BaseApplicationController
 
 class DefaultNavigationController extends ViewController {
 
-
   def mainWindowController: MainWindowController = {
     parent.asInstanceOf[MainWindowController]
   }
@@ -28,7 +27,6 @@ class DefaultNavigationController extends ViewController {
     mainWindowController.workspaceManager.loadFromStack()
   }
 
-
   def actionReload(event: ActionEvent) {
     getBean[BaseApplicationController]().reload()
   }
@@ -38,5 +36,4 @@ class DefaultNavigationController extends ViewController {
   }
 
 }
-
 
