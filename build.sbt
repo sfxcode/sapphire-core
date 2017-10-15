@@ -2,11 +2,11 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.2.2"
+version := "1.2.3"
 
-crossScalaVersions := Seq( "2.12.2","2.11.11")
+crossScalaVersions := Seq( "2.12.3","2.11.11")
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.3"
 
 scalacOptions += "-deprecation"
 
@@ -31,9 +31,9 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "3.9.2" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.1" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.2" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.3" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 
@@ -41,21 +41,21 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.7.1"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2"
 
-libraryDependencies += "com.typesafe" % "config" % "1.3.1"
+libraryDependencies += "com.typesafe" % "config" % "1.3.2"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.102-R11"
+libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.144-R12"
 
 // CDI
 
 libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
-libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3"
+libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.1"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.0"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.1"
 
 val DeltaspikeVersion = "1.8.0"
 
