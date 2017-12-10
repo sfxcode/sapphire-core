@@ -4,7 +4,7 @@ A JavaFX Application Framework for Scala User.
 
 ## Version
 
-Scala Version is 2.12.3 / 2.11.11.
+Scala Version is 2.12.4
 
 ## Travis
 
@@ -24,7 +24,7 @@ Documentation can be found at [http://sfxcode.github.io/sapphire-core/](http://s
 
 ## Technology Stack
 
-### Java / JDK 1.8 u144
+### Java / JDK 1.8 u152
 
 Sapphire runs agains the latest JDK 8 version.
 

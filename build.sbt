@@ -2,21 +2,12 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-version := "1.2.3"
-
-crossScalaVersions := Seq( "2.12.3","2.11.11")
-
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.4"
 
 scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-javacOptions ++= Seq("-source", "1.8")
-
-javacOptions ++= Seq("-target", "1.8")
-
-scalacOptions += "-target:jvm-1.8"
 
 lazy val sapphire_core_root = Project(id = "sapphire-core", base = file(".")).
   configs(IntegrationTest).
@@ -31,7 +22,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.2" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.3" % "test"
 
@@ -55,7 +46,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.1"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.1"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.2"
 
 val DeltaspikeVersion = "1.8.0"
 
@@ -78,3 +69,9 @@ libraryDependencies += "de.odysseus.juel" % "juel-spi" % JuelVersion
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
 bintrayReleaseOnPublish in ThisBuild := false
+
+enablePlugins(BuildInfoPlugin)
+
+buildInfoPackage := "com.sfxcode.sapphire.core"
+
+buildInfoOptions += BuildInfoOption.BuildTime
