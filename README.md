@@ -22,6 +22,16 @@ Apache 2 License.
 
 Documentation can be found at [http://sfxcode.github.io/sapphire-core/](http://sfxcode.github.io/sapphire-core/)
 
+### Demo
+
+Simple Demo can be found in the it directory.
+
+Start in SBT Console:
+
+```
+it:runMain com.sfxcode.sapphire.core.demo.appdemo.DemoApplication
+```
+
 ## Technology Stack
 
 ### Java / JDK 1.8 u152
