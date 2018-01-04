@@ -65,7 +65,8 @@ class ContentManager extends LazyLogging {
 
   def updatePaneContent(newController: ViewController, pushToStack: Boolean = true) {
     val oldController = actualController
-    if (newController != null && newController != oldController) {
+    if (newController != null && newController != oldController && newController.canGainVisibility
+      && (oldController == null || oldController.shouldLooseVisibility)) {
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
@@ -82,7 +83,8 @@ class ContentManager extends LazyLogging {
 
       if (oldController != null) {
         removePaneContent(oldController.rootPane)
-        oldController.parent = null
+        oldController.managedParent.value = null
+        parentController.managedChildren.remove(oldController)
         try {
           oldController.didLooseVisibility()
         } catch {
@@ -95,7 +97,7 @@ class ContentManager extends LazyLogging {
         controllerStack.push(oldController)
 
       addPaneContent(newController.rootPane)
-      newController.parent = parentController
+      newController.managedParent.value = parentController
 
       if (!newController.gainVisibility) {
         try {
@@ -108,6 +110,7 @@ class ContentManager extends LazyLogging {
 
       try {
         newController.didGainVisibility()
+        parentController.managedChildren.add(newController)
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
