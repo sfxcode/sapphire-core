@@ -80,8 +80,14 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       None
   }
 
-  def addConverter(key: String, name: String, forceNew: Boolean = false) {
-    val converter = viewController.converterFactory.getConverterByName(name, forceNew).asInstanceOf[StringConverter[_]]
+  def addConverterForKeys(keys: List[String], converterName: String, forceNew: Boolean = false): Unit = {
+    keys.foreach(key => {
+      addConverter(key, converterName, forceNew)
+    })
+  }
+
+  def addConverter(key: String, converterName: String, forceNew: Boolean = false) {
+    val converter = viewController.converterFactory.getConverterByName(converterName, forceNew).asInstanceOf[StringConverter[_]]
     addConverter(key, converter)
   }
 
