@@ -17,7 +17,7 @@ import scalafx.scene.layout.Pane
 import scalafx.stage.Stage
 
 trait FxmlLoading extends NodeLocator {
-  val m = ru.runtimeMirror(getClass.getClassLoader)
+  val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
 
   @Inject
   var loader: FxmlHandler = _
