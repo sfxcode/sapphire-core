@@ -97,7 +97,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
         logger.warn("viewController is NULL")
         false
       } else {
-        if (viewController.canGainVisibility())
+        if (viewController.canGainVisibility)
           try {
             viewController.managedParent.value = this
             viewController.willGainVisibility()
