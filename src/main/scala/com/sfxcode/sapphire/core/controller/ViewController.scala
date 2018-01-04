@@ -9,17 +9,32 @@ import javax.inject.Inject
 import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.config.Config
+import com.typesafe.scalalogging.LazyLogging
 
 import scala.reflect.ClassTag
+import scalafx.beans.property.ObjectProperty
+import scalafx.collections.ObservableBuffer
+import scalafx.scene.layout.Pane
 
-abstract class ViewController extends FxmlLoading with BeanResolver with ActionEvents with Initializable {
+abstract class ViewController extends FxmlLoading with BeanResolver with ActionEvents with Initializable with LazyLogging {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
   @Inject
   var configuration: Config = _
 
-  var parent: ViewController = _
+  val managedParent = new ObjectProperty[ViewController]()
+
+  val managedChildren = ObservableBuffer[ViewController]()
+
+  val unmanagedChildren = ObservableBuffer[ViewController]()
+
+  def parent: ViewController = managedParent.value
+
+  def addChildViewController(viewController: ViewController) = {
+    if (!managedChildren.contains(viewController))
+      managedChildren.add(viewController)
+  }
 
   var gainVisibility = false
 
@@ -45,17 +60,64 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def didInitialize() {}
 
-  def willGainVisibility() {}
+  def canGainVisibility: Boolean = true
 
-  def didGainVisibility() {}
+  def willGainVisibility(): Unit = {
+    managedChildren.foreach(_.willGainVisibility())
+    unmanagedChildren.foreach(_.willGainVisibility())
+  }
 
-  def didGainVisibilityFirstTime() {}
+  def didGainVisibilityFirstTime(): Unit = {
 
-  def willLooseVisibility() {}
+  }
 
-  def didLooseVisibility() {}
+  def didGainVisibility(): Unit = {
+    managedChildren.foreach(_.didGainVisibility())
+    unmanagedChildren.foreach(_.didGainVisibility())
+  }
 
-  def stateMap = Map[String, Any]()
+  def shouldLooseVisibility: Boolean = true
+
+  def willLooseVisibility(): Unit = {
+    managedChildren.foreach(_.willLooseVisibility())
+    unmanagedChildren.foreach(_.willLooseVisibility())
+  }
+
+  def didLooseVisibility(): Unit = {
+    managedChildren.foreach(_.didLooseVisibility())
+    unmanagedChildren.foreach(_.didLooseVisibility())
+  }
+
+  def updatePaneContent(pane: Pane, viewController: ViewController): Boolean = {
+    if (pane == null) {
+      logger.warn("contentPane is NULL")
+      false
+    } else {
+      if (viewController == null) {
+        logger.warn("viewController is NULL")
+        false
+      } else {
+        if (viewController.canGainVisibility())
+          try {
+            viewController.managedParent.value = this
+            viewController.willGainVisibility()
+            pane.getChildren.add(viewController.rootPane)
+            viewController.didGainVisibility()
+            viewController.didGainVisibilityFirstTime()
+            unmanagedChildren.add(viewController)
+            true
+          } catch {
+            case e: Exception =>
+              logger.error(e.getMessage, e)
+              false
+          }
+        else
+          false
+      }
+    }
+  }
+
+  def stateMap: Map[String, Any] = Map[String, Any]()
 
   def updateFromStateMap(map: Map[String, Any]): Unit = {}
 
