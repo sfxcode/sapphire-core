@@ -46,9 +46,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.1"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.2"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.3"
 
-val DeltaspikeVersion = "1.8.0"
+val DeltaspikeVersion = "1.8.1"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
 
