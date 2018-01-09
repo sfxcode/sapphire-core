@@ -1,6 +1,4 @@
-# this file is for convenience in updating this content in Github pages
-
-git add --all
+git add .
 git status
-git commit -m "content updates"
+git commit -m "content update"
 git push

@@ -1,11 +1,3 @@
-# Password screen
-
-changepassword_password: >
- <p>This is a sample list of stuff:<br/>
- - more stuff<br/>
- - another line<br/>
- </p>
-
 elephant: "This is a sample definition."
 
 baseball: "Baseball is considered America's pasttime sport, though that may be more of a historical term than a current one. There's a lot more excitement about football than baseball. A baseball game is somewhat of a snooze to watch, for the most part."

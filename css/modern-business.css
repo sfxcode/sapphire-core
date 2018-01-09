@@ -11,10 +11,6 @@ body {
     height: 100%;
 }
 
-body {
-    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 .img-portfolio {
     margin-bottom: 30px;
 }
@@ -76,7 +72,7 @@ footer {
 /* Responsive Styles */
 
 @media(max-width:991px) {
-    .customer-img,
+    .client-img,
     .img-related {
         margin-bottom: 30px;
     }

@@ -1,2 +1,0 @@
-# Documentation for sapphire-core
-

@@ -1,6 +1,9 @@
 
 /*body.print .container {max-width: 650px;}*/
 
+body {
+    font-size:14px;
+}
 .nav ul li a {border-top:0px; background-color:transparent; color: #808080; }
 #navig a[href] {color: #595959 !important;}
 table .table {max-width:650px;}
@@ -15,7 +18,7 @@ a[href]::after {
 }
 
 a[href^="http:"]::after, a[href^="https:"]::after {
-    content: " (" attr(href) ")";
+    content: "";
 }
 
 a[href] {
@@ -45,7 +48,7 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
 .printSubtitle {
     font-size: 19pt;
     color: #cccccc !important;
-    front-family: "Grotesque MT Light";
+    font-family: "Grotesque MT Light";
     line-height: 22pt;
     letter-spacing: -.5px;
     margin-bottom:20px;
@@ -72,6 +75,7 @@ a[href*="mailto"]::after, a[data-toggle="tooltip"]::after, a[href].noCrossRef::a
 
 .copyrightBoilerplate {
     page-break-before:always;
+    font-size:14px;
 }
 
 .lastGeneratedDate {
@@ -145,8 +149,11 @@ h1 { string-set: doctitle content() }
     }
 }
 .alert {
-    background-color: #f0f0f0 !important;
+    background-color: #fafafa !important;
     border-color: #dedede !important;
+    color: black;
 }
 
-
+pre {
+    background-color: #fafafa;
+}
