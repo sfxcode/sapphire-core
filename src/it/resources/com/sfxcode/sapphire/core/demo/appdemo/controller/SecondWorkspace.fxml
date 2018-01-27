@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import java.net.URL?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" styleClass="workspace2" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.appdemo.controller.Workspace2Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" styleClass="workspace2" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.appdemo.controller.SecondWorkspaceController">
     <children>
         <Label layoutX="79.0" layoutY="126.0" text="Second Workspace" />
       <Label layoutX="94.0" layoutY="250.0" prefHeight="44.0" prefWidth="600.0" text="${expression.mainWindowController_workspaceController_rootPane_styleClass}" />

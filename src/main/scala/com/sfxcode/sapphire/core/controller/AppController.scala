@@ -14,7 +14,7 @@ import scalafx.stage.Stage
 
 abstract class AppController extends FxmlLoading with NodeLocator with LazyLogging {
 
-  val sceneMap = ObservableMap[Parent, Scene]()
+  val sceneMap: ObservableMap[Parent, Scene] = ObservableMap[Parent, Scene]()
 
   def startup(@Observes @FXStage @Startup stage: Stage) {
     applicationStartup(stage)

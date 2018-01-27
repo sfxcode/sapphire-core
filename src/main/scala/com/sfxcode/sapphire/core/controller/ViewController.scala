@@ -1,9 +1,11 @@
 package com.sfxcode.sapphire.core.controller
 
+import scala.language.implicitConversions
+
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.fxml.Initializable
-import javax.annotation.{ PostConstruct, PreDestroy }
+import javax.annotation.{PostConstruct, PreDestroy}
 import javax.inject.Inject
 
 import com.sfxcode.sapphire.core.cdi.BeanResolver
@@ -25,13 +27,13 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   val managedParent = new ObjectProperty[ViewController]()
 
-  val managedChildren = ObservableBuffer[ViewController]()
+  val managedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
 
-  val unmanagedChildren = ObservableBuffer[ViewController]()
+  val unmanagedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
 
   def parent: ViewController = managedParent.value
 
-  def addChildViewController(viewController: ViewController) = {
+  def addChildViewController(viewController: ViewController): Unit = {
     if (!managedChildren.contains(viewController))
       managedChildren.add(viewController)
   }
@@ -41,12 +43,12 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   // bean lifecycle
 
   @PostConstruct
-  def postConstruct() = startup()
+  def postConstruct(): Unit = startup()
 
   def startup() {}
 
   @PreDestroy
-  def preDestroy() = shutdown()
+  def preDestroy(): Unit = shutdown()
 
   def shutdown() {}
 

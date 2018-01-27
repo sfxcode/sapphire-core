@@ -11,19 +11,19 @@ class DefaultNavigationController extends ViewController {
     parent.asInstanceOf[MainWindowController]
   }
 
-  def actionWorkspace1(event: ActionEvent) {
-    mainWindowController.showWorkspace1()
+  def actionShowWorkspaceController(event: ActionEvent) {
+    mainWindowController.showWorkspaceController()
   }
 
-  def actionWorkspace2(event: ActionEvent) {
-    mainWindowController.showWorkspace2()
+  def actionShowSecondWorkspaceController(event: ActionEvent) {
+    mainWindowController.showSecondWorkspaceController()
   }
 
-  def actionWorkspace3(event: ActionEvent) {
-    mainWindowController.showWorkspace3()
+  def actionShowThirdWorkspaceController(event: ActionEvent) {
+    mainWindowController.showThirdWorkspaceController()
   }
 
-  def actionWorkspaceFromStack(event: ActionEvent) {
+  def actionLoadWorkspaceFromStack(event: ActionEvent) {
     mainWindowController.workspaceManager.loadFromStack()
   }
 

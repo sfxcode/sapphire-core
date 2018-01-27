@@ -1,3 +1,5 @@
+import scala.sys.process._
+
 name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
@@ -68,10 +70,38 @@ libraryDependencies += "de.odysseus.juel" % "juel-spi" % JuelVersion
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
-bintrayReleaseOnPublish in ThisBuild := false
+bintrayReleaseOnPublish in ThisBuild := true
 
 enablePlugins(BuildInfoPlugin)
 
 buildInfoPackage := "com.sfxcode.sapphire.core"
 
 buildInfoOptions += BuildInfoOption.BuildTime
+
+val lastVersionString = "git tag -l".!!.split("\r?\n").last
+
+version in Paradox := {
+  if (isSnapshot.value)
+    lastVersionString
+  else version.value
+}
+
+paradoxProperties += ("app-version" -> {if (isSnapshot.value)
+  lastVersionString
+else version.value})
+
+enablePlugins(ParadoxSitePlugin, ParadoxMaterialThemePlugin)
+sourceDirectory in Paradox := sourceDirectory.value / "main" / "paradox"
+ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Paradox)
+
+paradoxMaterialTheme in Paradox ~= {
+  _.withRepository(uri("https://github.com/sfxcode/sapphire-core"))
+}
+
+// enablePlugins(SiteScaladocPlugin)
+
+enablePlugins(GhpagesPlugin)
+
+git.remoteRepo := "git@github.com:sfxcode/ssapphire-core.git"
+ghpagesNoJekyll := true
+

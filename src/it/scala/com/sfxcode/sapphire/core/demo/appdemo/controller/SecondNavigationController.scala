@@ -4,22 +4,22 @@ import javafx.event.ActionEvent
 
 import com.sfxcode.sapphire.core.controller.ViewController
 
-class Navigation2Controller extends ViewController {
+class SecondNavigationController extends ViewController {
 
   def mainWindowController: MainWindowController = {
     parent.asInstanceOf[MainWindowController]
   }
 
   def actionWorkspace1(event: ActionEvent) {
-    mainWindowController.showWorkspace1()
+    mainWindowController.showWorkspaceController()
   }
 
   def actionWorkspace2(event: ActionEvent) {
-    mainWindowController.showWorkspace2()
+    mainWindowController.showSecondWorkspaceController()
   }
 
   def actionWorkspace3(event: ActionEvent) {
-    mainWindowController.showWorkspace3()
+    mainWindowController.showThirdWorkspaceController()
   }
 
   def actionToggleNavigation(event: ActionEvent) {

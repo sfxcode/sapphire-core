@@ -1,11 +1,8 @@
 package com.sfxcode.sapphire.core.demo.appdemo
 
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
+// #application
 
 import com.sfxcode.sapphire.core.cdi.FXApp
-import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -18,15 +15,26 @@ object DemoApplication extends FXApp {
   override def applicationStage: Stage = new PrimaryStage {
     title = "Sapphire Controller Demo"
     scene = new Scene {
+      minHeight = 600
+      minWidth = 800
     }
   }
 }
+// #application
+
+// #applicationController
+
+import com.sfxcode.sapphire.core.controller.AppController
+import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
+
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Named
 
 @Named
 @ApplicationScoped
 class BaseApplicationController extends AppController {
 
-  def mainWindowController = getController[MainWindowController]()
+  def mainWindowController: MainWindowController = getController[MainWindowController]()
 
   def applicationDidLaunch() {
     logger.info("start " + this)
@@ -41,3 +49,4 @@ class BaseApplicationController extends AppController {
 
 }
 
+// #applicationController
