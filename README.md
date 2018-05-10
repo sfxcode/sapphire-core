@@ -2,9 +2,10 @@
 
 A JavaFX Application Framework for Scala User.
 
-## Version
+## Documentation
 
-Scala Version is 2.12.4
+Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.github.io/sapphire-core)
+
 
 ## Travis
 
@@ -14,13 +15,16 @@ Scala Version is 2.12.4
 
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg) ](https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion)
 
+
+## Demos
+
+Demos can be found under [sapphire-demo](http://sfxcode.github.io/sapphire-demo/) on github.
+
+
 ## Licence
 
 Apache 2 License.
 
-## Documentation
-
-Documentation can be found at [http://sfxcode.github.io/sapphire-core/](http://sfxcode.github.io/sapphire-core/)
 
 ### Demo
 
@@ -115,7 +119,3 @@ Expressions are resolved by JUEL.
 
 sapphire-core is deployed on bintray (jcenter).
 
-
-## Demos
-
-Demos can be found under [sapphire-demo](http://sfxcode.github.io/sapphire-demo/) on github.

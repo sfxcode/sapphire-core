@@ -4,7 +4,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-scalaVersion := "2.12.4"
+scalaVersion := "2.12.6"
 
 scalacOptions += "-deprecation"
 
@@ -24,7 +24,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.0.2" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.2.0" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.3" % "test"
 
@@ -34,9 +34,9 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
 
-libraryDependencies += "com.typesafe" % "config" % "1.3.2"
+libraryDependencies += "com.typesafe" % "config" % "1.3.3"
 
 // UI
 
@@ -46,9 +46,9 @@ libraryDependencies += "org.scalafx" %% "scalafx" % "8.0.144-R12"
 
 libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
-libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.1"
+libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.3"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.5"
 
 val DeltaspikeVersion = "1.8.1"
 
@@ -102,6 +102,6 @@ paradoxMaterialTheme in Paradox ~= {
 
 enablePlugins(GhpagesPlugin)
 
-git.remoteRepo := "git@github.com:sfxcode/ssapphire-core.git"
+git.remoteRepo := "git@github.com:sfxcode/sapphire-core.git"
 ghpagesNoJekyll := true
 

@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane
 import javax.enterprise.event.Observes
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.scene.{ContentDidChangeEvent, ContentManager}
+import com.sfxcode.sapphire.core.scene.{ ContentDidChangeEvent, ContentManager }
 import com.typesafe.scalalogging.LazyLogging
 
 import scalafx.Includes._
@@ -47,7 +47,6 @@ class MainWindowController extends ViewController with LazyLogging {
   }
   // #didGainVisibilityFirstTime
 
-
   // #switchController
 
   def showWorkspaceController() {
@@ -58,7 +57,6 @@ class MainWindowController extends ViewController with LazyLogging {
     workspaceManager.updatePaneContent(secondWorkspaceController)
   }
   // #switchController
-
 
   def showThirdWorkspaceController() {
     workspaceManager.updatePaneContent(thirdWorkspaceController)

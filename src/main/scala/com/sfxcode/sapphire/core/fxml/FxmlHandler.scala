@@ -1,14 +1,13 @@
 package com.sfxcode.sapphire.core.fxml
 
 import java.io.{IOException, InputStream}
-import javafx.fxml.FXMLLoader
-import javafx.scene.Parent
-import javafx.{fxml => jfxf, util => jfxu}
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Inject
 
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
-
+import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
+import javafx.{util => jfxu}
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Inject
 import scalafx.scene.layout.Pane
 
 @ApplicationScoped

@@ -34,9 +34,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   protected def updateBean(oldValue: FXBean[T], newValue: FXBean[T]) = {
     unbindAll()
-
     bindAll(newValue)
-
   }
 
   protected def unbindAll() {

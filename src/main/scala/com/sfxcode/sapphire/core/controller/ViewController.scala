@@ -5,7 +5,7 @@ import scala.language.implicitConversions
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.fxml.Initializable
-import javax.annotation.{PostConstruct, PreDestroy}
+import javax.annotation.{ PostConstruct, PreDestroy }
 import javax.inject.Inject
 
 import com.sfxcode.sapphire.core.cdi.BeanResolver

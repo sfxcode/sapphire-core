@@ -1,20 +1,24 @@
 package com.sfxcode.sapphire.core.value
 
 import java.time.LocalDate
-import javafx.beans.value.{ ChangeListener, ObservableValue }
 
 import com.sfxcode.sapphire.core.el.Expressions
+import com.sfxcode.sapphire.core.el.Expressions._
 import com.sfxcode.sapphire.core.value.PropertyType._
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
-
-import scala.collection.mutable
+import javafx.beans.value.{ ChangeListener, ObservableValue }
 import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
-import Expressions._
+
+import scala.collection.mutable
 
 class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()) extends ChangeListener[Any] with LazyLogging {
+
+  val childrenMap = new mutable.HashMap[String, FXBean[AnyRef]]
+  var parentBean: Option[FXBean[AnyRef]] = None
+
   val EmptyMemberInfo = FXBeanClassMemberInfo("name_ignored")
   val memberInfoMap: Map[String, FXBeanClassMemberInfo] = typeHints.map(info => (info.name, info)).toMap
   var trackChanges = true
@@ -46,6 +50,16 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       getValue(key)
   }
 
+  private def createChildForKey(key: String, value: Any): FXBean[AnyRef] = {
+    if (!childrenMap.contains(key)) {
+      val newBean = FXBean(value.asInstanceOf[AnyRef])
+      newBean.parentBean = Some(this.asInstanceOf[FXBean[AnyRef]])
+      newBean.trackChanges = trackChanges
+      childrenMap.+=(key -> newBean)
+    }
+    childrenMap(key)
+  }
+
   def updateValue(key: String, newValue: Any) {
     var valueToUpdate = newValue
     if (newValue == None)
@@ -59,8 +73,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
           val objectKey = key.substring(0, key.indexOf("."))
           val newKey = key.substring(key.indexOf(".") + 1)
           val value = getValue(objectKey)
-          val newBean = FXBean(value.asInstanceOf[AnyRef])
-          newBean.updateValue(newKey, newValue)
+          val childBean = createChildForKey(objectKey, value)
+          childBean.updateValue(newKey, newValue)
         } else
           ReflectionTools.setMemberValue(bean, key, valueToUpdate)
     }
@@ -76,8 +90,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)
       val value = getValue(objectKey)
-      val newBean = FXBean(value.asInstanceOf[AnyRef])
-      newBean.getProperty(newKey)
+      val childBean = createChildForKey(objectKey, value)
+      childBean.getProperty(newKey)
     } else {
       if ("_hasChanges".equals(key))
         return hasChangesProperty
@@ -182,10 +196,15 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       }
     }
 
-    expressionMap.keySet.foreach(k => {
-      if (k.contains(key))
-        updateObservableValue(expressionMap(k), getValue(k))
+    expressionMap.keySet.foreach(k => updateObservableValue(expressionMap(k), getValue(k)))
+
+    parentBean.foreach(bean => {
+      bean.childHasChanged(observable, oldValue, newValue)
     })
+  }
+
+  def childHasChanged(observable: ObservableValue[_], oldValue: Any, newValue: Any): Unit = {
+    expressionMap.keySet.foreach(k => updateObservableValue(expressionMap(k), getValue(k)))
   }
 
   def updateObservableValue(property: Property[_, _], value: Any) {
