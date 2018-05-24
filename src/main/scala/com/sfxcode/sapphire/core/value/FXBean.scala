@@ -85,7 +85,16 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     key.contains(ExpressionPrefix) || key.contains(FxmlExpressionPrefix)
   }
 
-  def getProperty(key: String): Property[_, _] = {
+  // property
+  def getStringProperty(key: String): StringProperty = getProperty(key).asInstanceOf[StringProperty]
+  def getBooleanProperty(key: String): BooleanProperty = getProperty(key).asInstanceOf[BooleanProperty]
+  def getIntegerProperty(key: String): IntegerProperty = getProperty(key).asInstanceOf[IntegerProperty]
+  def getLongProperty(key: String): LongProperty = getProperty(key).asInstanceOf[LongProperty]
+  def getFloatProperty(key: String): FloatProperty = getProperty(key).asInstanceOf[FloatProperty]
+  def getDoubleProperty(key: String): DoubleProperty = getProperty(key).asInstanceOf[DoubleProperty]
+  def getObjectProperty[S <: Any](key: String): ObjectProperty[S] = getProperty(key).asInstanceOf[ObjectProperty[S]]
+
+    def getProperty(key: String): Property[_, _] = {
     if (key.contains(".") && !isExpressionKey(key)) {
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)
