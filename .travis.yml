@@ -2,7 +2,7 @@
 # See http://about.travis-ci.org/docs/user/build-configuration/
 language: scala
 scala:
-   - 2.12.4
+   - 2.12.6
 branches:
   only:
     - master

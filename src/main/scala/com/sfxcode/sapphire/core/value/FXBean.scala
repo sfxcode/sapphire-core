@@ -94,7 +94,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   def getDoubleProperty(key: String): DoubleProperty = getProperty(key).asInstanceOf[DoubleProperty]
   def getObjectProperty[S <: Any](key: String): ObjectProperty[S] = getProperty(key).asInstanceOf[ObjectProperty[S]]
 
-    def getProperty(key: String): Property[_, _] = {
+  def getProperty(key: String): Property[_, _] = {
     if (key.contains(".") && !isExpressionKey(key)) {
       val objectKey = key.substring(0, key.indexOf("."))
       val newKey = key.substring(key.indexOf(".") + 1)

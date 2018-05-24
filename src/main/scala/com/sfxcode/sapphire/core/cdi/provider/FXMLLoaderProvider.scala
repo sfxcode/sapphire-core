@@ -5,9 +5,11 @@ import javafx.util.Callback
 import javax.enterprise.inject._
 import javax.inject.Inject
 
+import scala.language.implicitConversions
+
 class FXMLLoaderProvider {
 
-  implicit def callbackFromFunction[P, R](f: (P) => R): Callback[P, R] = (param: P) => f(param)
+  implicit def callbackFromFunction[P, R](f: P => R): Callback[P, R] = (param: P) => f(param)
 
   @Inject var instance: Instance[AnyRef] = _
 
