@@ -46,6 +46,9 @@ Expressions are resolved by [JUEL](http://juel.sourceforge.net).
  - [Tutorial Application](tutorial/application.md)
  - [Tutorial MainWindowController](tutorial/main_window.md)
  - [Tutorial Navigation](tutorial/navigation.md)
+ - [In Depth FXBean](detail/fxbean.md)
+ - [In Depth FxmlLoading](detail/fxml_loading.md)
+ - [In Depth ViewController](detail/view_controller.md)
 
 
 
