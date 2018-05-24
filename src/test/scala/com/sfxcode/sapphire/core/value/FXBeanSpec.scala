@@ -88,6 +88,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "evaluate expressions" in {
+
       val testBean = FXBean[TestBean](TestBean())
       testBean.getValue("result ${2*4}") must be equalTo "result 8"
       testBean.getValue("${_self.description().get()}") must be equalTo "desc"
@@ -101,45 +102,45 @@ class FXBeanSpec extends Specification with LazyLogging {
 
     "update expressions" in {
       val testBean = FXBean[TestBean](TestBean())
-      val observableAge = testBean.getProperty("${_self.age()}")
-      val observable = testBean.getProperty("${_self.doubleAge()}")
-      observableAge.asInstanceOf[IntegerProperty].getValue must be equalTo 42
-      observable.asInstanceOf[IntegerProperty].getValue must be equalTo 84
+      val observableAge = testBean.getIntegerProperty("${_self.age()}")
+      val observable = testBean.getIntegerProperty("${_self.doubleAge()}")
+      observableAge.getValue must be equalTo 42
+      observable.getValue must be equalTo 84
 
       testBean.updateValue("age", 40)
       // only member expressions updated by default
-      observableAge.asInstanceOf[IntegerProperty].getValue must be equalTo 40
-      observable.asInstanceOf[IntegerProperty].getValue must be equalTo 80 //
+      observableAge.getValue must be equalTo 40
+      observable.getValue must be equalTo 80 //
 
     }
 
     "update child expressions" in {
       val testBean = FXBean[ParentBean](ParentBean())
-      val observableName = testBean.getProperty("${_self.fullName()}")
-      observableName.asInstanceOf[StringProperty].getValue must be equalTo "parentName : [child] childName"
+      val observableName = testBean.getStringProperty("${_self.fullName()}")
+      observableName.getValue must be equalTo "parentName : [child] childName"
       testBean.updateValue("parentName", "parent")
-      observableName.asInstanceOf[StringProperty].getValue must be equalTo "parent : [child] childName"
+      observableName.getValue must be equalTo "parent : [child] childName"
       testBean.updateValue("child.childName", "child")
-      observableName.asInstanceOf[StringProperty].getValue must be equalTo "parent : [child] child"
+      observableName.getValue must be equalTo "parent : [child] child"
 
     }
 
     "get observable property" in {
       val testBean = FXBean[TestBean](TestBean())
 
-      val observable = testBean.getProperty("age")
-      observable.asInstanceOf[IntegerProperty].getValue must be equalTo 42
+      val observable = testBean.getIntegerProperty("age")
+      observable.getValue must be equalTo 42
 
     }
 
     "get observable expression property" in {
       val testBean = FXBean[ListClass](ListClass())
 
-      val observable = testBean.getProperty("${_self.list().size()}")
-      observable.asInstanceOf[IntegerProperty].getValue must be equalTo 2
+      val observable = testBean.getIntegerProperty("${_self.list().size()}")
+      observable.getValue must be equalTo 2
 
-      val observableString = testBean.getProperty("List count: ${_self.list().size()}")
-      observableString.asInstanceOf[StringProperty].getValue must be equalTo "List count: 2"
+      val observableString = testBean.getStringProperty("List count: ${_self.list().size()}")
+      observableString.getValue must be equalTo "List count: 2"
 
     }
 
@@ -150,7 +151,7 @@ class FXBeanSpec extends Specification with LazyLogging {
       book.updateValue("author.name", "M. Odersky")
       book.getValue("author.name") must be equalTo "M. Odersky"
 
-      val observable = book.getProperty("author.name").asInstanceOf[StringProperty]
+      val observable = book.getStringProperty("author.name")
       observable.getValue must be equalTo "M. Odersky"
 
       observable.set("Martin Odersky")
