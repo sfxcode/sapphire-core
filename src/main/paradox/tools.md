@@ -6,14 +6,14 @@ Some useful tools.
 
 [IntelliJ](https://www.jetbrains.com/idea/download) is my favorite IDE for Scala / JavaFX Coding. Even the Community Edition has all features for developing JavaFX Applications.
 
-![](../images/intellij.png)
+![](https://github.com/sfxcode/sapphire-core/blob/gh-pages/images/intellij.png)
 
 
 ## SceneBuilder
 
 Scenebuilder (backed by Gluon) can be found at the [Gluon Site](http://gluonhq.com/products/scene-builder/).
 
-![](../images/scenebuilder.png)
+![](https://github.com/sfxcode/sapphire-core/blob/gh-pages/images/scenebuilder.png)
 
 ## ScenicView
 
