@@ -17,12 +17,12 @@
 
 
 <meta name="description" content="sapphire-core">
-<link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Tutorial Application · Sapphire Core</title>
-<link rel="stylesheet" href="../assets/stylesheets/application.7a4cdee3.css">
-<link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
-<link rel="stylesheet" href="../lib/prettify/prettify.css">
-<script src="../lib/modernizr/modernizr.min.js"></script>
+<link rel="shortcut icon" href="assets/images/favicon.png">
+<title>Development Setup · Sapphire Core</title>
+<link rel="stylesheet" href="assets/stylesheets/application.7a4cdee3.css">
+<link rel="stylesheet" href="lib/material__tabs/dist/mdc.tabs.min.css">
+<link rel="stylesheet" href="lib/prettify/prettify.css">
+<script src="lib/modernizr/modernizr.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
 <style>
 body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}
@@ -30,7 +30,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
+<link rel="stylesheet" href="assets/stylesheets/paradox-material-theme.css">
 </head>
 <body
 >
@@ -41,7 +41,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 <nav class="md-header-nav md-grid">
 <div class="md-flex">
 <div class="md-flex__cell md-flex__cell--shrink">
-<a href="../index.html" title="Sapphire Core" class="md-header-nav__button md-logo">
+<a href="index.html" title="Sapphire Core" class="md-header-nav__button md-logo">
 <i class="md-icon">local_library</i>
 </a>
 </div>
@@ -54,7 +54,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-Tutorial Application
+Development Setup
 </span>
 </div>
 </div>
@@ -113,7 +113,7 @@ sfxcode/sapphire-core
 <span class="md-nav__button md-logo">
 <i class="md-icon">local_library</i>
 </span>
-<a href="../index.html" title="Sapphire Core">
+<a href="index.html" title="Sapphire Core">
 Sapphire Core
 </a>
 </label>
@@ -132,29 +132,28 @@ sfxcode/sapphire-core
 
 </div>
 <ul>
-  <li><a href="../features.html" class="page">Features</a></li>
-  <li><a href="../development.html" class="page">Development Setup</a></li>
-  <li><a href="../tools.html" class="page">Development Tools</a></li>
-  <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
-  <li><a href="../tutorial/application.html" class="active page">Tutorial Application</a></li>
-  <li><a href="../tutorial/main_window.html" class="page">Tutorial Main Window</a></li>
-  <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
-  <li><a href="../detail/fxbean.html" class="page">In Depth FXBean</a></li>
-  <li><a href="../detail/fxml_loading.html" class="page">In Depth FxmlLoading</a></li>
-  <li><a href="../detail/view_controller.html" class="page">In Depth ViewController</a></li>
-  <li><a href="../extension.html" class="page">Sapphire Extension</a></li>
-  <li><a href="../sample/basic.html" class="page">Samples Basic</a></li>
-  <li><a href="../sample/advanced.html" class="page">Samples Advanced</a></li>
-  <li><a href="../changes.html" class="page">Version History</a></li>
+  <li><a href="features.html" class="page">Features</a></li>
+  <li><a href="development.html" class="active page">Development Setup</a></li>
+  <li><a href="tools.html" class="page">Development Tools</a></li>
+  <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
+  <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
+  <li><a href="tutorial/main_window.html" class="page">Tutorial Main Window</a></li>
+  <li><a href="tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
+  <li><a href="detail/fxbean.html" class="page">In Depth FXBean</a></li>
+  <li><a href="detail/fxml_loading.html" class="page">In Depth FxmlLoading</a></li>
+  <li><a href="detail/view_controller.html" class="page">In Depth ViewController</a></li>
+  <li><a href="extension.html" class="page">Sapphire Extension</a></li>
+  <li><a href="sample/basic.html" class="page">Samples Basic</a></li>
+  <li><a href="sample/advanced.html" class="page">Samples Advanced</a></li>
+  <li><a href="changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="toc">Table of contents</label>
 <ul>
-  <li><a href="../tutorial/application.html#tutorial-application" class="header">Tutorial Application</a>
+  <li><a href="development.html#development-setup" class="header">Development Setup</a>
   <ul>
-    <li><a href="../tutorial/application.html#application-object" class="header">Application object</a></li>
-    <li><a href="../tutorial/application.html#applicationcontroller" class="header">ApplicationController</a></li>
-    <li><a href="../tutorial/application.html#mainwindowcontroller" class="header">MainWindowController</a></li>
+    <li><a href="development.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
+    <li><a href="development.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -173,11 +172,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="toc">Table of contents</label>
 <ul>
-  <li><a href="../tutorial/application.html#tutorial-application" class="header">Tutorial Application</a>
+  <li><a href="development.html#development-setup" class="header">Development Setup</a>
   <ul>
-    <li><a href="../tutorial/application.html#application-object" class="header">Application object</a></li>
-    <li><a href="../tutorial/application.html#applicationcontroller" class="header">ApplicationController</a></li>
-    <li><a href="../tutorial/application.html#mainwindowcontroller" class="header">MainWindowController</a></li>
+    <li><a href="development.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
+    <li><a href="development.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -188,66 +186,28 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#tutorial-application" name="tutorial-application" class="anchor"><span class="anchor-link"></span></a>Tutorial Application</h1>
-<h2><a href="#application-object" name="application-object" class="anchor"><span class="anchor-link"></span></a>Application object</h2>
-<p>A sapphire application must contain an Application object that extends FXApp.</p>
-<p>applicationStage must be implemented.</p>
-<pre class="prettyprint"><code class="language-scala"><br/>import com.sfxcode.sapphire.core.cdi.FXApp
-
-import scalafx.application.JFXApp
-import scalafx.application.JFXApp.PrimaryStage
-import scalafx.scene.Scene
-import scalafx.stage.Stage
-
-object DemoApplication extends FXApp {
-  JFXApp.AutoShow = true
-
-  override def applicationStage: Stage = new PrimaryStage {
-    title = &quot;Sapphire Controller Demo&quot;
-    scene = new Scene {
-      minHeight = 600
-      minWidth = 800
-    }
+<h1><a href="#development-setup" name="development-setup" class="anchor"><span class="anchor-link"></span></a>Development Setup</h1>
+<p>Some tips and tricks.</p>
+<h2><a href="#dcevm-and-hotswapagent" name="dcevm-and-hotswapagent" class="anchor"><span class="anchor-link"></span></a>DCEVM and HotSwapAgent</h2>
+<p><a href="http://dcevm.github.io/">DCEVM</a> together with <a href="http://hotswapagent.org/">HotSwapAgent</a> can speedup your development. It enhance the ability of reloading of changed classes especially with scala.</p>
+<h3><a href="#intellij-plugin" name="intellij-plugin" class="anchor"><span class="anchor-link"></span></a>IntelliJ Plugin</h3>
+<p>An IntelliJ Plugin can be found at <a href="https://github.com/dmitry-zhuravlev/hotswap-agent-intellij-plugin">hotswap-agent-intellij-plugin</a>.</p>
+<h2><a href="#hot-scene-reloading" name="hot-scene-reloading" class="anchor"><span class="anchor-link"></span></a>Hot Scene Reloading</h2>
+<h3><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h3>
+<p>Create a new method in your ApplicationController:</p>
+<pre class="prettyprint"><code class="language-scala">  def replacePrimarySceneContent(): Unit = {
+    val newMainWindowController = getController[MainWindowController]()
+    replaceSceneContent(newMainWindowController)
   }
-}</code></pre>
-<h2><a href="#applicationcontroller" name="applicationcontroller" class="anchor"><span class="anchor-link"></span></a>ApplicationController</h2>
-<p>Application controller is used for startup purposes.</p>
-<p>Normally the main scene content is replaced by a ViewController.</p>
-<p>Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
-<pre class="prettyprint"><code class="language-scala"><br/>import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
-
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
-
-@Named
-@ApplicationScoped
-class BaseApplicationController extends AppController {
-
-  def mainWindowController: MainWindowController = getController[MainWindowController]()
-
-  def applicationDidLaunch() {
-    logger.info(&quot;start &quot; + this)
-    reload()
-  }
-
-  // live reloading of scene content for rapid development
-  def reload(): Unit = {
-    applicationEnvironment.loadResourceBundle(&quot;com/sfxcode/sapphire/core/demo/appdemo/bundles/demo&quot;)
-    replaceSceneContent(mainWindowController)
-  }
-
-}
 </code></pre>
-<h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
-<p>The following code snippet loads the MainWindowController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
-<pre class="prettyprint"><code class="language-scala">  def mainWindowController = getController[MainWindowController]()
-
+<p>Create a Button anywhere in your application and an corresponding action:</p>
+<pre class="prettyprint"><code class="language-scala">  def actionReload(event: ActionEvent) {
+    getBean[ApplicationController]().replacePrimarySceneContent()
+  }
 </code></pre>
-<p>This pattern for Controller-Loading is commonly used in sapphire-core Framework.</p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/tutorial/application.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/development.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -263,7 +223,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../tutorial/setup.html" title="Tutorial Setup" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="features.html" title="Features" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -272,17 +232,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Tutorial Setup
+Features
 </span>
 </div>
 </a>
-<a href="../tutorial/main_window.html" title="Tutorial Main Window" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="tools.html" title="Development Tools" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Tutorial Main Window
+Development Tools
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
@@ -305,11 +265,11 @@ and
 </footer>
 
 </div>
-<script src="../assets/javascripts/application.5165553b.js"></script>
-<script src="../assets/javascripts/paradox-material-theme.js"></script>
-<script>app.initialize({version:"0.17",url:{base:"../."}})</script>
-<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
-<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script src="assets/javascripts/application.5165553b.js"></script>
+<script src="assets/javascripts/paradox-material-theme.js"></script>
+<script>app.initialize({version:"0.17",url:{base:"."}})</script>
+<script type="text/javascript" src="lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="lib/prettify/lang-scala.js"></script>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function(event) {
 window.prettyPrint && prettyPrint();

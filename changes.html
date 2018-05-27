@@ -18,7 +18,7 @@
 
 <meta name="description" content="sapphire-core">
 <link rel="shortcut icon" href="assets/images/favicon.png">
-<title>Sapphire Core</title>
+<title>Version History · Sapphire Core</title>
 <link rel="stylesheet" href="assets/stylesheets/application.7a4cdee3.css">
 <link rel="stylesheet" href="lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="lib/prettify/prettify.css">
@@ -50,7 +50,12 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 </div>
 <div class="md-flex__cell md-flex__cell--stretch">
 <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
 Sapphire Core
+</span>
+<span class="md-header-nav__topic">
+Version History
+</span>
 </div>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
@@ -140,16 +145,15 @@ sfxcode/sapphire-core
   <li><a href="extension.html" class="page">Sapphire Extension</a></li>
   <li><a href="sample/basic.html" class="page">Samples Basic</a></li>
   <li><a href="sample/advanced.html" class="page">Samples Advanced</a></li>
-  <li><a href="changes.html" class="page">Version History</a></li>
+  <li><a href="changes.html" class="active page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="toc">Table of contents</label>
 <ul>
-  <li><a href="index.html#sapphire-core" class="header">Sapphire Core</a>
+  <li><a href="changes.html#version-history" class="header">Version History</a>
   <ul>
-    <li><a href="index.html#frameworks" class="header">Frameworks</a></li>
-    <li><a href="index.html#setup" class="header">Setup</a></li>
-    <li><a href="index.html#licence" class="header">Licence</a></li>
+    <li><a href="changes.html#current-version" class="header">Current Version</a></li>
+    <li><a href="changes.html#history" class="header">History</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -168,11 +172,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="toc">Table of contents</label>
 <ul>
-  <li><a href="index.html#sapphire-core" class="header">Sapphire Core</a>
+  <li><a href="changes.html#version-history" class="header">Version History</a>
   <ul>
-    <li><a href="index.html#frameworks" class="header">Frameworks</a></li>
-    <li><a href="index.html#setup" class="header">Setup</a></li>
-    <li><a href="index.html#licence" class="header">Licence</a></li>
+    <li><a href="changes.html#current-version" class="header">Current Version</a></li>
+    <li><a href="changes.html#history" class="header">History</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -183,37 +186,48 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#sapphire-core" name="sapphire-core" class="anchor"><span class="anchor-link"></span></a>Sapphire Core</h1>
-<p>A JavaFX (ScalaFX) Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.</p>
-<h2><a href="#frameworks" name="frameworks" class="anchor"><span class="anchor-link"></span></a>Frameworks</h2>
-<h3><a href="#javafx" name="javafx" class="anchor"><span class="anchor-link"></span></a>JavaFX</h3>
-<p>Java UI Application Framework as replacement for Swing.</p>
-<p>Sapphire depends on JavaFX 8, which is included in JDK 8.</p>
-<p><a href="http://www.oracle.com/technetwork/java/javafx/overview/index.html">http://www.oracle.com/technetwork/java/javafx/overview/index.html</a></p>
-<h3><a href="#scalafx" name="scalafx" class="anchor"><span class="anchor-link"></span></a>ScalaFX</h3>
-<p>Sapphire depends on <a href="http://www.scalafx.org/">ScalaFX</a>, A DSL for JavaFX written in Scala.</p>
-<h3><a href="#dependency-injection" name="dependency-injection" class="anchor"><span class="anchor-link"></span></a>Dependency Injection</h3>
-<p>Sapphire use <a href="http://deltaspike.apache.org">Apache Deltaspike</a> as CDI Abstraction Layer (1.8.x).</p>
-<p>The default <a href="https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injection">CDI</a> implementation depends on <a href="http://openwebbeans.apache.org">Apache OpenWebBeans</a> (2.0.x).</p>
-<h3><a href="#expression-language" name="expression-language" class="anchor"><span class="anchor-link"></span></a>Expression Language</h3>
-<p>Expressions are resolved by <a href="http://juel.sourceforge.net">JUEL</a>.</p>
-<h2><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h2>
-<h3><a href="#repository" name="repository" class="anchor"><span class="anchor-link"></span></a>Repository</h3>
-<pre><code>resolvers += &quot;sfxcode-bintray&quot; at &quot;https://dl.bintray.com/sfxcode/maven&quot;
+<h1><a href="#version-history" name="version-history" class="anchor"><span class="anchor-link"></span></a>Version History</h1>
+<h2><a href="#current-version" name="current-version" class="anchor"><span class="anchor-link"></span></a>Current Version</h2>
+<h3><a href="#download" name="download" class="anchor"><span class="anchor-link"></span></a>Download</h3>
+<p><a href="https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion"> <img src="https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg" alt="Download" /> </a></p>
+<h2><a href="#history" name="history" class="anchor"><span class="anchor-link"></span></a>History</h2>
+<pre class="prettyprint"><code class="language-md"># Changes #
 
+## Versions
+
+### 1.3.3
+
+* FXBean Fixes
+* FXBean property methods added e.g. getStringProperty
+
+
+### 1.3.0
+
+* Paradox Documentation
+* Lifecycle refactored (canGainVisibility)
+* ViewController children controller added
+
+
+### 1.1.0
+
+* ScalaFxmlLoading
+* ScalaViewController
+
+### 1.0.8
+
+* integration tests
+* deltaspike 1.5.2
+
+### 1.0.7
+
+* internationalization
+* travis integration
+* test cleanup
+* Integration tests moved to it
 </code></pre>
-<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.nosql" %% "sapphire-core" % "1.3.3"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
-  &lt;groupId&gt;com.sfxcode.nosql&lt;/groupId&gt;
-  &lt;artifactId&gt;sapphire-core_2.12&lt;/artifactId&gt;
-  &lt;version&gt;1.3.3&lt;/version&gt;
-&lt;/dependency&gt;</code></pre></dd><dt>Gradle</dt><dd><pre class="prettyprint"><code class="language-gradle">dependencies {
-  compile group: 'com.sfxcode.nosql', name: 'sapphire-core_2.12', version: '1.3.3'
-}</code></pre></dd></dl>
-<h2><a href="#licence" name="licence" class="anchor"><span class="anchor-link"></span></a>Licence</h2>
-<p><a href="https://github.com/sfxcode/sapphire-core/blob/master/LICENSE">Apache 2</a></p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/changes.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -229,17 +243,17 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="features.html" title="Features" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="sample/advanced.html" title="Samples Advanced" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
-Next
+Previous
 </span>
-Features
+Samples Advanced
 </span>
-</div>
-<div class="md-flex__cell md-flex__cell--shrink">
-<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
 </div>
 </a>
 </nav>
