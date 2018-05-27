@@ -38,7 +38,7 @@ it:runMain com.sfxcode.sapphire.core.demo.appdemo.DemoApplication
 
 ## Technology Stack
 
-### Java / JDK 1.8 u152
+### Java / JDK 1.8
 
 Sapphire runs agains the latest JDK 8 version.
 
@@ -55,7 +55,7 @@ Sapphire depends on JavaFX 8, which is included in JDK 8.
 
 A DSL for JavaFX written in Scala.
 
-[https://code.google.com/p/scalafx/](https://code.google.com/p/scalafx)
+[ScalaFX Website](http://www.scalafx.org/)
 
 
 ### Dependency Injection

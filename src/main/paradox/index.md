@@ -1,8 +1,9 @@
-# sapphire-core
+# Sapphire Core
 
 A JavaFX (ScalaFX) Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.
 
-## Additional Documentation
+## Frameworks
+
 ### JavaFX
 
 Java UI Application Framework as replacement for Swing.
@@ -27,7 +28,16 @@ The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injectio
 
 Expressions are resolved by [JUEL](http://juel.sourceforge.net).
 
-## Dependency Setup
+## Setup
+
+### Repository
+
+```
+resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
+
+```
+
+### Artifact
 
 @@dependency[sbt,Maven,Gradle] {
   group="com.sfxcode.nosql"
@@ -42,6 +52,8 @@ Expressions are resolved by [JUEL](http://juel.sourceforge.net).
 @@@ index
 
  - [Features](features.md)
+ - [Development Setup](development.md)
+ - [Development Tools](tools.md)
  - [Tutorial Setup](tutorial/setup.md)
  - [Tutorial Application](tutorial/application.md)
  - [Tutorial MainWindowController](tutorial/main_window.md)
@@ -49,6 +61,12 @@ Expressions are resolved by [JUEL](http://juel.sourceforge.net).
  - [In Depth FXBean](detail/fxbean.md)
  - [In Depth FxmlLoading](detail/fxml_loading.md)
  - [In Depth ViewController](detail/view_controller.md)
+ - [Extension](extension.md)
+ - [Example Basic](sample/basic.md)
+ - [Example Extended](sample/advanced.md)
+ - [Changes ](changes.md)
+
+
 
 
 
