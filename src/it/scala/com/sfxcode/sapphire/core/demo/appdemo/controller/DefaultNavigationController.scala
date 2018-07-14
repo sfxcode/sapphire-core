@@ -1,11 +1,13 @@
 package com.sfxcode.sapphire.core.demo.appdemo.controller
 
+import com.sfxcode.sapphire.core.controller.ViewController
+import com.sfxcode.sapphire.core.demo.appdemo.ApplicationController
 import javafx.event.ActionEvent
 
-import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.appdemo.BaseApplicationController
-
 class DefaultNavigationController extends ViewController {
+
+  def applicationController:ApplicationController =   applicationEnvironment.applicationController.asInstanceOf[ApplicationController]
+
 
   def mainWindowController: MainWindowController = {
     parent.asInstanceOf[MainWindowController]
@@ -28,11 +30,15 @@ class DefaultNavigationController extends ViewController {
   }
 
   def actionReload(event: ActionEvent) {
-    getBean[BaseApplicationController]().reload()
+    getBean[ApplicationController]().reload()
   }
 
   def actionToggleNavigation(event: ActionEvent) {
     mainWindowController.toggleNavigation()
+  }
+
+  def actionExit(event: ActionEvent): Unit = {
+    applicationController.exit()
   }
 
 }

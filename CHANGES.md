@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.3.4
+
+* appController exit method
+
+
 ### 1.3.3
 
 * FXBean Fixes

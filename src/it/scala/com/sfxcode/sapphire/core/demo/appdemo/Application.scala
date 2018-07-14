@@ -32,7 +32,7 @@ import javax.inject.Named
 
 @Named
 @ApplicationScoped
-class BaseApplicationController extends AppController {
+class ApplicationController extends AppController {
 
   def mainWindowController: MainWindowController = getController[MainWindowController]()
 
