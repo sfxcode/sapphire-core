@@ -1,3 +1,5 @@
+import sbt.url
+
 import scala.sys.process._
 
 name := "sapphire-core"
@@ -70,8 +72,6 @@ libraryDependencies += "de.odysseus.juel" % "juel-spi" % JuelVersion
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
-bintrayReleaseOnPublish in ThisBuild := true
-
 enablePlugins(BuildInfoPlugin)
 
 buildInfoPackage := "com.sfxcode.sapphire.core"
@@ -104,4 +104,31 @@ enablePlugins(GhpagesPlugin)
 
 git.remoteRepo := "git@github.com:sfxcode/sapphire-core.git"
 ghpagesNoJekyll := true
+
+
+// publish
+
+releaseCrossBuild := true
+
+bintrayReleaseOnPublish in ThisBuild := true
+
+publishMavenStyle := true
+
+homepage := Some(url("https://github.com/sfxcode/sapphire-core"))
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/sfxcode/sapphire-core"),
+    "scm:https://github.com/sfxcode/sapphire-core.git"
+  )
+)
+
+developers := List(
+  Developer(
+    id    = "sfxcode",
+    name  = "Tom Lamers",
+    email = "tom@sfxcode.com",
+    url   = url("https://github.com/sfxcode")
+  )
+)
 
