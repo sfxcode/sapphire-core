@@ -2,6 +2,13 @@
 
 ## Versions
 
+### 1.4.0
+* OpenJFX 11
+* Java 11
+* drop scala 2.11 support
+* scala 2.12.7
+* scalafx 11-R16
+
 ### 1.3.4
 
 * appController exit method

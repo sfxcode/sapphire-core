@@ -8,9 +8,9 @@ A JavaFX (ScalaFX) Application Framework for Scala User. It combines scala progr
 
 Java UI Application Framework as replacement for Swing.
 
-Sapphire depends on JavaFX 8, which is included in JDK 8.
+Sapphire depends on OpenJFX 11.
 
-[http://www.oracle.com/technetwork/java/javafx/overview/index.html](http://www.oracle.com/technetwork/java/javafx/overview/index.html)
+[https://openjfx.io](https://openjfx.io)
 
 
 ### ScalaFX
@@ -20,7 +20,7 @@ Sapphire depends on  [ScalaFX](http://www.scalafx.org/), a DSL for JavaFX writte
 
 ### Dependency Injection
 
-Sapphire use [Apache Deltaspike](http://deltaspike.apache.org) as CDI Abstraction Layer (1.8.x).
+Sapphire use [Apache Deltaspike](http://deltaspike.apache.org) as CDI Abstraction Layer (1.9.x).
 
 The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injection) implementation depends on [Apache OpenWebBeans](http://openwebbeans.apache.org) (2.0.x).
 
@@ -40,7 +40,7 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
 ### Artifact
 
 @@dependency[sbt,Maven,Gradle] {
-  group="com.sfxcode.nosql"
+  group="com.sfxcode.sapphire"
   artifact="sapphire-core_2.12"
   version="$app-version$"
 }
