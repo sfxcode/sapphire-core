@@ -38,17 +38,17 @@ it:runMain com.sfxcode.sapphire.core.demo.appdemo.DemoApplication
 
 ## Technology Stack
 
-### Java / JDK 1.8
+### Java / JDK 11
 
-Sapphire runs agains the latest JDK 8 version.
+Sapphire runs agains the latest JDK 11 version.
 
 ### JavaFX
 
 Java UI Application Framework as replacement for Swing.
 
-Sapphire depends on JavaFX 8, which is included in JDK 8.
+Sapphire depends on OpenJFX 11
 
-[http://www.oracle.com/technetwork/java/javafx/overview/index.html](http://www.oracle.com/technetwork/java/javafx/overview/index.html)
+[https://openjfx.io](https://openjfx.io)
 
 
 ### ScalaFX

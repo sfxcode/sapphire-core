@@ -8,13 +8,9 @@ organization := "com.sfxcode.sapphire"
 
 scalaVersion := "2.12.7"
 
-crossScalaVersions := Seq("2.12.7", "2.11.11")
-
-
 scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
-
 
 lazy val sapphire_core_root = Project(id = "sapphire-core", base = file(".")).
   configs(IntegrationTest).
