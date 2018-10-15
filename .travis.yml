@@ -2,7 +2,7 @@
 # See http://about.travis-ci.org/docs/user/build-configuration/
 language: scala
 scala:
-   - 2.12.6
+   - 2.12.7
 branches:
   only:
     - master
@@ -11,8 +11,4 @@ notifications:
     recipients:
       - tom@sfxcode.com
 jdk:
-  - oraclejdk8
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+  - openjdk11
