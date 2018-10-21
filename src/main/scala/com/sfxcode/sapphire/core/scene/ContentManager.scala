@@ -110,7 +110,7 @@ class ContentManager extends LazyLogging {
 
       try {
         newController.didGainVisibility()
-        parentController.managedChildren.add(newController)
+        parentController.addChildViewController(newController)
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
