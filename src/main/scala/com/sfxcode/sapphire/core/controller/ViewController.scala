@@ -27,15 +27,20 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   val managedParent = new ObjectProperty[ViewController]()
 
-  val managedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
+  protected val managedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
 
-  val unmanagedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
+  protected val unmanagedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
 
   def parent: ViewController = managedParent.value
 
   def addChildViewController(viewController: ViewController): Unit = {
     if (!managedChildren.contains(viewController))
       managedChildren.add(viewController)
+  }
+
+  def removeChildViewController(viewController: ViewController): Unit = {
+    if (!managedChildren.contains(viewController))
+      managedChildren.remove(viewController)
   }
 
   var gainVisibility = false

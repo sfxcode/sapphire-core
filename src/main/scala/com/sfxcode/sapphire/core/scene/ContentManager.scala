@@ -84,7 +84,7 @@ class ContentManager extends LazyLogging {
       if (oldController != null) {
         removePaneContent(oldController.rootPane)
         oldController.managedParent.value = null
-        parentController.managedChildren.remove(oldController)
+        parentController.removeChildViewController(oldController)
         try {
           oldController.didLooseVisibility()
         } catch {
