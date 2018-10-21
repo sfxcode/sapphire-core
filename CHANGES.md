@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.4.1
+* sbt 1.2.6
+* child controller handling
+
 ### 1.4.0
 * OpenJFX 11
 * Java 11
