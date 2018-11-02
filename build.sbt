@@ -27,7 +27,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.5" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.1" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.2" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 
@@ -43,17 +43,19 @@ osName := (System.getProperty("os.name") match {
   case _ => throw new Exception("Unknown platform!")
 })
 
-libraryDependencies += "org.openjfx" % "javafx-base" % "11" classifier osName.value
+val javaVersion = "11"
 
-libraryDependencies += "org.openjfx" % "javafx-controls" % "11" classifier osName.value
+libraryDependencies += "org.openjfx" % "javafx-base" % javaVersion classifier osName.value
 
-libraryDependencies += "org.openjfx" % "javafx-fxml" % "11" classifier osName.value
+libraryDependencies += "org.openjfx" % "javafx-controls" % javaVersion classifier osName.value
 
-libraryDependencies += "org.openjfx" % "javafx-graphics" % "11" classifier osName.value
+libraryDependencies += "org.openjfx" % "javafx-fxml" % javaVersion classifier osName.value
 
-libraryDependencies += "org.openjfx" % "javafx-media" % "11" classifier osName.value
+libraryDependencies += "org.openjfx" % "javafx-graphics" % javaVersion classifier osName.value
 
-libraryDependencies += "org.openjfx" % "javafx-web" % "11" classifier osName.value
+libraryDependencies += "org.openjfx" % "javafx-media" % javaVersion classifier osName.value
+
+libraryDependencies += "org.openjfx" % "javafx-web" % javaVersion classifier osName.value
 
 
 // Environment

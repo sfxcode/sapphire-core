@@ -5,9 +5,10 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0"
-            styleClass="workspace3" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sfxcode.sapphire.core.demo.appdemo.controller.ThirdWorkspaceController">
+
+<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+            styleClass="workspace3"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.appdemo.controller.ThirdWorkspaceController">
     <children>
         <VBox>
         <Label layoutX="79.0" layoutY="126.0" text="%demo.workspace3.text"/>

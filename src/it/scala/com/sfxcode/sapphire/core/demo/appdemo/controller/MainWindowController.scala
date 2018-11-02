@@ -22,6 +22,8 @@ class MainWindowController extends ViewController with LazyLogging {
   lazy val defaultNavigationController = getController[DefaultNavigationController]()
   lazy val secondNavigationController = getController[SecondNavigationController]()
 
+  lazy val statusBarController = new StatusBarController()
+
   // #controllerLoading
 
   // #fxmlBinding
@@ -44,6 +46,7 @@ class MainWindowController extends ViewController with LazyLogging {
     // enable stack based navigation for the workspaceManager
     workspaceManager.enableStack()
     navigationManager = ContentManager(navigationPane, this, defaultNavigationController)
+    updatePaneContent(statusPane, statusBarController)
   }
   // #didGainVisibilityFirstTime
 
@@ -63,9 +66,10 @@ class MainWindowController extends ViewController with LazyLogging {
   }
 
   def toggleNavigation() {
-    navigationManager.switchToLast()
-    println(getViewController[DefaultNavigationController]())
-    println(getViewController[MainWindowController]())
+    if (navigationManager.actualController == defaultNavigationController)
+      navigationManager.updatePaneContent(secondNavigationController)
+    else
+      navigationManager.updatePaneContent(defaultNavigationController)
   }
 
   // #cdi

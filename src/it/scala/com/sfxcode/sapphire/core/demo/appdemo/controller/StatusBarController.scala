@@ -13,13 +13,21 @@ import scalafx.scene.layout.AnchorPane
 @ApplicationScoped
 class StatusBarController extends ViewController {
 
-  val testContent = new Group {
+  val button = new Button {
+    text = "State"
+    id = "state"
+  }
 
-    children = List(
-      new Button {
-        text = "State"
-        id = "state"
-      })
+
+  override def didGainVisibilityFirstTime(): Unit = {
+    super.didGainVisibilityFirstTime()
+    button.setOnAction(_ => {
+      println("Button pressed!")
+    })
+  }
+
+  val testContent = new Group {
+    children = List(button)
   }
 
   rootPane = new AnchorPane {
