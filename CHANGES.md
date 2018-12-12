@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.4.2
+* scala 2.12.8
+* openwebbeans 2.0.8
+* sbt 1.2.7
+
 ### 1.4.1
 * sbt 1.2.6
 * child controller handling

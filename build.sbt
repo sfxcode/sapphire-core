@@ -6,7 +6,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-scalaVersion := "2.12.7"
+scalaVersion := "2.12.8"
 
 scalacOptions += "-deprecation"
 
@@ -43,7 +43,7 @@ osName := (System.getProperty("os.name") match {
   case _ => throw new Exception("Unknown platform!")
 })
 
-val javaVersion = "11"
+val javaVersion = "11.0.1"
 
 libraryDependencies += "org.openjfx" % "javafx-base" % javaVersion classifier osName.value
 
@@ -74,7 +74,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.7"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.8"
 
 val DeltaspikeVersion = "1.9.0"
 

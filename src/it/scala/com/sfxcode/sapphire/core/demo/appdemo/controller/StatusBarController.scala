@@ -18,7 +18,6 @@ class StatusBarController extends ViewController {
     id = "state"
   }
 
-
   override def didGainVisibilityFirstTime(): Unit = {
     super.didGainVisibilityFirstTime()
     button.setOnAction(_ => {
