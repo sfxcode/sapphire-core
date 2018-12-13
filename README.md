@@ -60,11 +60,11 @@ A DSL for JavaFX written in Scala.
 
 ### Dependency Injection
 
-Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.8.0).
+Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.9.x).
 
 [http://deltaspike.apache.org](http://deltaspike.apache.org)
 
-The default implementation depends on Apache OpenWebBeans (2.0.0).
+The default implementation depends on Apache OpenWebBeans (2.0.x).
 
 [http://openwebbeans.apache.org](http://openwebbeans.apache.org)
 
