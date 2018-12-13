@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="sapphire-core">
-<meta name="generator" content="Paradox, paradox-material-theme=1.4.1, mkdocs-material=3.0.3">
+<meta name="generator" content="Paradox, paradox-material-theme=1.4.2, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -165,7 +165,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.4.1
+<i class="md-icon" title="Version">label_outline</i> 1.4.2
 </label>
 </li>
 </ul>
@@ -201,7 +201,9 @@ sfxcode/sapphire-core
 &lt;?import javafx.scene.layout.AnchorPane?&gt;
 &lt;?import javafx.scene.layout.HBox?&gt;
 
-&lt;AnchorPane prefHeight=&quot;40.0&quot; xmlns=&quot;http://javafx.com/javafx/8.0.121&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot; fx:controller=&quot;com.sfxcode.sapphire.core.demo.appdemo.controller.DefaultNavigationController&quot;&gt;
+&lt;AnchorPane prefHeight=&quot;40.0&quot;
+            xmlns=&quot;http://javafx.com/javafx/8.0.121&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot;
+            fx:controller=&quot;com.sfxcode.sapphire.core.demo.appdemo.controller.DefaultNavigationController&quot;&gt;
     &lt;children&gt;
         &lt;HBox layoutY=&quot;-10.0&quot; prefHeight=&quot;40.0&quot; spacing=&quot;10.0&quot; AnchorPane.bottomAnchor=&quot;0.0&quot; AnchorPane.leftAnchor=&quot;0.0&quot; AnchorPane.rightAnchor=&quot;-44.0&quot; AnchorPane.topAnchor=&quot;0.0&quot;&gt;
             &lt;children&gt;
@@ -209,7 +211,8 @@ sfxcode/sapphire-core
                 &lt;Button onAction=&quot;#actionShowSecondWorkspaceController&quot; text=&quot;Workspace 2&quot; /&gt;
                 &lt;Button onAction=&quot;#actionShowThirdWorkspaceController&quot; text=&quot;Workspace 3&quot; /&gt;
                 &lt;Button onAction=&quot;#actionReload&quot; text=&quot;Reload&quot; /&gt;
-                &lt;Button onAction=&quot;#actionLoadWorkspaceFromStack&quot; text=&quot;Workspace From Stack&quot; /&gt;
+                &lt;Button onAction=&quot;#actionLoadWorkspaceFromStack&quot; text=&quot;Last From Stack&quot; /&gt;
+                &lt;Button onAction=&quot;#actionToggleNavigation&quot; text=&quot;Toggle Nav&quot; /&gt;
                 &lt;Button onAction=&quot;#actionExit&quot; text=&quot;Exit&quot; /&gt;
             &lt;/children&gt;
             &lt;padding&gt;
@@ -217,7 +220,7 @@ sfxcode/sapphire-core
             &lt;/padding&gt;
         &lt;/HBox&gt;
     &lt;/children&gt;
-&lt;/AnchorPane&gt;</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.1/src/it/resources/com/sfxcode/sapphire/core/demo/appdemo/controller/DefaultNavigation.fxml">Full source at GitHub</a>
+&lt;/AnchorPane&gt;</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.2/src/it/resources/com/sfxcode/sapphire/core/demo/appdemo/controller/DefaultNavigation.fxml">Full source at GitHub</a>
 <h2><a href="#navigationcontroller" name="navigationcontroller" class="anchor"><span class="anchor-link"></span></a>NavigationController</h2>
 <pre class="prettyprint"><code class="language-scala">package com.sfxcode.sapphire.core.demo.appdemo.controller
 
@@ -262,7 +265,7 @@ class DefaultNavigationController extends ViewController {
   }
 
 }
-</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.1/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/DefaultNavigationController.scala">Full source at GitHub</a>
+</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.2/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/DefaultNavigationController.scala">Full source at GitHub</a>
 </div>
 <div>
 <a href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/tutorial/navigation.md" title="Edit this page" class="md-source-file md-edit">
@@ -271,7 +274,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.4.1
+1.4.2
 </span>
 </div>
 </article>
