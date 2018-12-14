@@ -11,6 +11,12 @@ It is an adapter for Java/Scala Beans (Maps) for automatic JavaFX Binding. FXBea
 - FXBean creates Properties needed for Binding on demand
 - FXBean has change management by default
 
+@@@ note { title=Hint }
+
+Use Sapphire Includes for implicit Bean to FXBean Conversion
+
+@@@
+
 ## Example
 
 ```scala
@@ -31,7 +37,7 @@ book.updateValue("title", "Programming In Scala 3.0") // title is updated, title
 val newTitle = book.getValue("title")  // "Programming In Scala 3.0"
 val newTitleFromProperty = titleProperty.getValue  // "Programming In Scala 3.0"
 
-// getValue and updateValue for underlying by dot syntax
+// getValue and updateValue for underlying class by dot syntax
 val authorName = book.getValue("author.name")  // "Martin Odersky"
 
 

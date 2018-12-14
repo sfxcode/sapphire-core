@@ -1,6 +1,6 @@
 # Samples Advanced
 
-Basic [sapphire-core](https://github.com/sfxcode/sapphire-core) and [sapphire-extension](https://github.com/sfxcode/sapphire-extension) examples.
+Advanced [sapphire-core](https://github.com/sfxcode/sapphire-core) examples.
 
 ## sapphire-jfoenix-demo
 
