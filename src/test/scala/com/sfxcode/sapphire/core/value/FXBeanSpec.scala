@@ -167,6 +167,33 @@ class FXBeanSpec extends Specification with LazyLogging {
       book.getValue("test.test") must be equalTo 4
 
     }
+
+    "handle changes in " in {
+      val testBean = FXBean[ParentBean](ParentBean())
+
+      testBean.hasChanges must beFalse
+
+      testBean.updateValue("parentName", "newName")
+      testBean.getValue("parentName") must be equalTo "newName"
+      testBean.hasChanges must beTrue
+
+      testBean.revert()
+      testBean.getValue("parentName") must be equalTo "parentName"
+      testBean.hasChanges must beFalse
+
+      testBean.updateValue("child.childName", "newName")
+      testBean.getValue("child.childName") must be equalTo "newName"
+      testBean.hasChanges must beTrue
+      testBean.updateValue("parentName", "newName")
+      testBean.updateValue("parentName", "parentName")
+      testBean.hasChanges must beTrue
+
+
+      testBean.revert()
+      testBean.getValue("child.childName") must be equalTo "childName"
+
+      testBean.hasChanges must beFalse
+    }
   }
 
 }

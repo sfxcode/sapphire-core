@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import java.lang
 import java.time.LocalDate
 
 import com.sfxcode.sapphire.core.el.Expressions
@@ -7,7 +8,7 @@ import com.sfxcode.sapphire.core.el.Expressions._
 import com.sfxcode.sapphire.core.value.PropertyType._
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
-import javafx.beans.value.{ ChangeListener, ObservableValue }
+import javafx.beans.value.{ChangeListener, ObservableValue}
 import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
@@ -240,6 +241,11 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     }
   }
 
+  def hasManagedChanges: lang.Boolean = {
+    val childrenChangeCount:Int = childrenMap.values.map(bean => bean.changeManagementMap.size).foldLeft(0)(_ + _)
+    (changeManagementMap.size + childrenChangeCount)  > 0
+  }
+
   def preserveChanges(key: String, oldValue: Any, newValue: Any) {
     if (trackChanges) {
       if (changeManagementMap.contains(key)) {
@@ -248,7 +254,11 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
       } else {
         changeManagementMap.put(key, oldValue)
       }
-      hasChangesProperty.setValue(changeManagementMap.size > 0)
+      hasChangesProperty.setValue(hasManagedChanges)
+      if (parentBean.isDefined) {
+        parentBean.get.hasChangesProperty.setValue(parentBean.get.hasManagedChanges || hasManagedChanges)
+      }
+
     }
   }
 
@@ -261,16 +271,18 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
         val oldValue = changeManagementMap(key)
         updateValue(key, oldValue)
       })
-      clearChanges()
+      childrenMap.keySet.foreach(key => {
+        childrenMap(key).revert()
+      })
       trackChanges = true
+      clearChanges()
     }
-    // Todo
   }
 
   def clearChanges() {
     if (trackChanges) {
       changeManagementMap.clear()
-      hasChangesProperty.setValue(changeManagementMap.size > 0)
+      hasChangesProperty.setValue(hasManagedChanges)
     }
   }
 
