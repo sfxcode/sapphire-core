@@ -20,7 +20,7 @@
 
 <meta name="description" content="sapphire-core">
 <link rel="shortcut icon" href="assets/images/favicon.png">
-<title>Development Setup · Sapphire Core</title>
+<title>Hot Reloading · Sapphire Core</title>
 <link rel="stylesheet" href="assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="lib/prettify/prettify.css">
@@ -56,7 +56,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-Development Setup
+Hot Reloading
 </span>
 </div>
 </div>
@@ -136,7 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="features.html" class="page">Features</a></li>
-  <li><a href="development.html" class="active page">Development Setup</a></li>
+  <li><a href="development.html" class="active page">Hot Reloading</a></li>
   <li><a href="tools.html" class="page">Development Tools</a></li>
   <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
   <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
@@ -153,7 +153,7 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="development.html#development-setup" class="header">Development Setup</a>
+  <li><a href="development.html#hot-reloading" class="header">Hot Reloading</a>
   <ul>
     <li><a href="development.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
     <li><a href="development.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
@@ -178,7 +178,7 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="development.html#development-setup" class="header">Development Setup</a>
+  <li><a href="development.html#hot-reloading" class="header">Hot Reloading</a>
   <ul>
     <li><a href="development.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
     <li><a href="development.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
@@ -192,25 +192,39 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#development-setup" name="development-setup" class="anchor"><span class="anchor-link"></span></a>Development Setup</h1>
-<p>Some tips and tricks.</p>
+<h1><a href="#hot-reloading" name="hot-reloading" class="anchor"><span class="anchor-link"></span></a>Hot Reloading</h1>
+<p>Some tips and tricks to speed your development.</p>
 <h2><a href="#dcevm-and-hotswapagent" name="dcevm-and-hotswapagent" class="anchor"><span class="anchor-link"></span></a>DCEVM and HotSwapAgent</h2>
 <p><a href="http://dcevm.github.io/">DCEVM</a> together with <a href="http://hotswapagent.org/">HotSwapAgent</a> can speedup your development. It enhance the ability of reloading of changed classes especially with scala.</p>
 <h3><a href="#intellij-plugin" name="intellij-plugin" class="anchor"><span class="anchor-link"></span></a>IntelliJ Plugin</h3>
 <p>An IntelliJ Plugin can be found at <a href="https://github.com/dmitry-zhuravlev/hotswap-agent-intellij-plugin">hotswap-agent-intellij-plugin</a>.</p>
 <h2><a href="#hot-scene-reloading" name="hot-scene-reloading" class="anchor"><span class="anchor-link"></span></a>Hot Scene Reloading</h2>
+<p>Reloading can be used for:</p>
+<ul>
+  <li>CSS</li>
+  <li>FXML</li>
+  <li>Bundle Content</li>
+</ul>
 <h3><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h3>
 <p>Create a new method in your ApplicationController:</p>
-<pre class="prettyprint"><code class="language-scala">  def replacePrimarySceneContent(): Unit = {
-    val newMainWindowController = getController[MainWindowController]()
-    replaceSceneContent(newMainWindowController)
-  }
-</code></pre>
+<pre class="prettyprint"><code class="language-scala">// live reloading of scene content for rapid development
+def reload(): Unit = {
+  // CSS
+  StyleManager.getInstance().stylesheetContainerMap.clear()
+
+  // Bundle
+  applicationEnvironment.loadResourceBundle(&quot;com/sfxcode/sapphire/core/demo/appdemo/bundles/demo&quot;)
+
+  // FXML
+  replaceSceneContent(mainWindowController)
+}</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.3/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L45-L55">Full source at GitHub</a>
 <p>Create a Button anywhere in your application and an corresponding action:</p>
 <pre class="prettyprint"><code class="language-scala">  def actionReload(event: ActionEvent) {
-    getBean[ApplicationController]().replacePrimarySceneContent()
+    getBean[ApplicationController]().reload()
   }
 </code></pre>
+<h3><a href="#intellij" name="intellij" class="anchor"><span class="anchor-link"></span></a>IntelliJ</h3>
+<p>Very useful for compile on save is the <a href="https://plugins.jetbrains.com/plugin/7642-save-actions">Save Actions Plugin</a></p>
 </div>
 <div>
 <a href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/development.md" title="Edit this page" class="md-source-file md-edit">

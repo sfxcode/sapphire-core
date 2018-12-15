@@ -136,7 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
-  <li><a href="../development.html" class="page">Development Setup</a></li>
+  <li><a href="../development.html" class="page">Hot Reloading</a></li>
   <li><a href="../tools.html" class="page">Development Tools</a></li>
   <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
   <li><a href="../tutorial/application.html" class="active page">Tutorial Application</a></li>
@@ -199,7 +199,7 @@ sfxcode/sapphire-core
 <p>A sapphire application must contain an Application object that extends FXApp.</p>
 <p>applicationStage must be implemented.</p>
 <pre class="prettyprint"><code class="language-scala"><br/>import com.sfxcode.sapphire.core.cdi.FXApp
-
+import com.sun.javafx.css.StyleManager
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
@@ -239,12 +239,19 @@ class ApplicationController extends AppController {
 
   // live reloading of scene content for rapid development
   def reload(): Unit = {
+    // CSS
+    StyleManager.getInstance().stylesheetContainerMap.clear()
+
+    // Bundle
     applicationEnvironment.loadResourceBundle(&quot;com/sfxcode/sapphire/core/demo/appdemo/bundles/demo&quot;)
+
+    // FXML
     replaceSceneContent(mainWindowController)
   }
 
+
 }
-</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.3/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L26-L51">Full source at GitHub</a>
+</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.3/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L26-L60">Full source at GitHub</a>
 <h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
 <p>The following code snippet loads the MainWindowController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
 <pre class="prettyprint"><code class="language-scala">  def mainWindowController = getController[MainWindowController]()
