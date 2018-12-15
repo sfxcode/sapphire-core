@@ -83,10 +83,11 @@ Expressions are resolved by JUEL.
 - Parameter Provider
 - Configuration Provider
 - FXML Loading
+- [Hot Reloding](https://sfxcode.github.io/sapphire-core/development.html)
 
 ### Bean Enhancement
 
-- Every Java / Scala Bean can be used for FXBean
+- Every Java / Scala Bean can be used for [FXBean](https://sfxcode.github.io/sapphire-core/detail/fxbean.html)
 - FXBean has additional support for java/scala Maps
 - FXBean resolves Expressions on bean
 - FXBean creates Properties needed for Binding on demand
