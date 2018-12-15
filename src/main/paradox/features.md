@@ -7,6 +7,7 @@
 - Parameter Provider
 - Configuration Provider
 - FXML Loading
+- Hot Reload
 
 ## Bean Enhancement
 

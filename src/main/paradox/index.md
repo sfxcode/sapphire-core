@@ -53,6 +53,7 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
 
  - [Features](features.md)
  - [Development Setup](development.md)
+ - [Hot Reloading](development.md)
  - [Development Tools](tools.md)
  - [Tutorial Setup](tutorial/setup.md)
  - [Tutorial Application](tutorial/application.md)

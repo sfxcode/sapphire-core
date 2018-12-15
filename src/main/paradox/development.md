@@ -1,6 +1,6 @@
-# Development Setup
+# Hot Reloading
 
-Some tips and tricks.
+Some tips and tricks to speed your development.
 
 ## DCEVM and HotSwapAgent
 
@@ -13,21 +13,27 @@ An IntelliJ Plugin can be found at [hotswap-agent-intellij-plugin](https://githu
 
 ## Hot Scene Reloading
 
+Reloading can be used for:
+
+* CSS
+* FXML
+* Bundle Content
+
 ### Setup
 
 Create a new method in your ApplicationController:
 
-```scala
-  def replacePrimarySceneContent(): Unit = {
-    val newMainWindowController = getController[MainWindowController]()
-    replaceSceneContent(newMainWindowController)
-  }
-```
+@@snip [Application](../../it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala)  { #hotReloading }
+
 
 Create a Button anywhere in your application and an corresponding action:
 
 ```scala
   def actionReload(event: ActionEvent) {
-    getBean[ApplicationController]().replacePrimarySceneContent()
+    getBean[ApplicationController]().reload()
   }
 ```
+
+### IntelliJ
+
+Very useful for compile on save is the [Save Actions Plugin](https://plugins.jetbrains.com/plugin/7642-save-actions)
