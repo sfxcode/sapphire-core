@@ -2,6 +2,9 @@
 
 ## Versions
 
+### 1.4.3
+* FXBean Change management for complex case classes
+
 ### 1.4.2
 * scala 2.12.8
 * openwebbeans 2.0.8

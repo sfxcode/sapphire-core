@@ -188,7 +188,6 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean.updateValue("parentName", "parentName")
       testBean.hasChanges must beTrue
 
-
       testBean.revert()
       testBean.getValue("child.childName") must be equalTo "childName"
 

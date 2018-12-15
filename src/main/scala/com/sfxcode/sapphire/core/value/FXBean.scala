@@ -8,7 +8,7 @@ import com.sfxcode.sapphire.core.el.Expressions._
 import com.sfxcode.sapphire.core.value.PropertyType._
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
-import javafx.beans.value.{ChangeListener, ObservableValue}
+import javafx.beans.value.{ ChangeListener, ObservableValue }
 import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
@@ -242,8 +242,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
   def hasManagedChanges: lang.Boolean = {
-    val childrenChangeCount:Int = childrenMap.values.map(bean => bean.changeManagementMap.size).foldLeft(0)(_ + _)
-    (changeManagementMap.size + childrenChangeCount)  > 0
+    val childrenChangeCount: Int = childrenMap.values.map(bean => bean.changeManagementMap.size).foldLeft(0)(_ + _)
+    (changeManagementMap.size + childrenChangeCount) > 0
   }
 
   def preserveChanges(key: String, oldValue: Any, newValue: Any) {
@@ -283,6 +283,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
     if (trackChanges) {
       changeManagementMap.clear()
       hasChangesProperty.setValue(hasManagedChanges)
+      childrenMap.values.foreach(_.clearChanges())
     }
   }
 
