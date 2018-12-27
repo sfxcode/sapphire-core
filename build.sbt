@@ -25,9 +25,9 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.5" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.6" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.2" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.3" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 
@@ -60,7 +60,7 @@ libraryDependencies += "org.openjfx" % "javafx-web" % javaVersion classifier osN
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.3"
 
@@ -74,7 +74,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.8"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.9"
 
 val DeltaspikeVersion = "1.9.0"
 

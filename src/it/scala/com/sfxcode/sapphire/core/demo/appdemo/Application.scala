@@ -55,7 +55,6 @@ class ApplicationController extends AppController {
   }
   // #hotReloading
 
-
 }
 
 // #applicationController

@@ -10,7 +10,7 @@
     <children>
         <HBox layoutY="-10.0" prefHeight="40.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button fx:id="" mnemonicParsing="false" onAction="#actionWorkspace1" text="First Workspace" />
+                <Button mnemonicParsing="false" onAction="#actionWorkspace1" text="First Workspace" />
                 <Button mnemonicParsing="false" onAction="#actionWorkspace2" text="Second Workspace" />
                 <Button mnemonicParsing="false" onAction="#actionWorkspace3" text="Third Workspace" />
                 <Button mnemonicParsing="false" onAction="#actionToggleNavigation" text="Toggle Navigation" />
