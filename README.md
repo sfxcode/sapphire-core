@@ -22,7 +22,7 @@ Demos can be found under [sapphire-demo](http://sfxcode.github.io/sapphire-demo/
 
 ## Template
 
-[Giter 8 template](http://www.foundweekends.org/giter8/): [sapphire-sbt](https://github.com/sfxcode/sapphire-sbt.g8).
+[Giter8 template](http://www.foundweekends.org/giter8/): [sapphire-sbt](https://github.com/sfxcode/sapphire-sbt.g8).
 
 ### Usage
 
