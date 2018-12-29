@@ -20,6 +20,15 @@ Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.gi
 
 Demos can be found under [sapphire-demo](http://sfxcode.github.io/sapphire-demo/) on github.
 
+## Template
+
+[Giter 8 template](http://www.foundweekends.org/giter8/): [sapphire-sbt](https://github.com/sfxcode/sapphire-sbt.g8).
+
+### Usage
+
+g8 https://github.com/sfxcode/sapphire-sbt.g8
+
+
 
 ## Licence
 
