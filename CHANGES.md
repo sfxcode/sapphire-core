@@ -2,6 +2,13 @@
 
 ## Versions
 
+### 1.4.5
+* javafx 11.0.2
+* org.apache.openwebbeans:openwebbeans-impl : 2.0.9 -> 2.0.10
+* org.specs2:specs2-core:test               : 4.3.6 -> 4.4.0
+* sbt 1.2.8
+
+
 ### 1.4.4
 
 * com.typesafe.scala-logging:scala-logging  : 3.9.0 -> 3.9.2
