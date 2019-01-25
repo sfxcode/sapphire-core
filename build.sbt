@@ -25,7 +25,7 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.3.6" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.4.0" % "test"
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.3" % "test"
 
@@ -43,7 +43,7 @@ osName := (System.getProperty("os.name") match {
   case _ => throw new Exception("Unknown platform!")
 })
 
-val javaVersion = "11.0.1"
+val javaVersion = "11.0.2"
 
 libraryDependencies += "org.openjfx" % "javafx-base" % javaVersion classifier osName.value
 
@@ -74,7 +74,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.9"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.10"
 
 val DeltaspikeVersion = "1.9.0"
 
