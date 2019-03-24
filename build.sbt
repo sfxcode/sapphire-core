@@ -25,9 +25,9 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.4.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.5.1" % "test"
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.4" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.5" % "test"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 
