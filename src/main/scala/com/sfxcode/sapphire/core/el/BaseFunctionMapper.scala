@@ -1,12 +1,12 @@
 package com.sfxcode.sapphire.core.el
 
 import java.lang.reflect.Method
-import javax.el.FunctionMapper
 
+import com.sfxcode.sapphire.core.BuildInfo
+import javax.el.FunctionMapper
 import com.sfxcode.sapphire.core.value.FXBean
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
-
 import scalafx.collections.ObservableMap
 
 class BaseFunctionMapper extends FunctionMapper with LazyLogging {
@@ -62,9 +62,9 @@ object BaseFunctionMapper {
 object DefaultFunctions {
   private val conf = ConfigFactory.load()
 
-  def frameworkName() = conf.getString("sapphire.core.name")
+  def frameworkName() = BuildInfo.name
 
-  def frameworkVersion() = conf.getString("sapphire.core.version")
+  def frameworkVersion() = BuildInfo.version
 
   def boolString(value: Boolean, trueValue: String, falseValue: String): String = {
     if (value)
