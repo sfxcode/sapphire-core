@@ -1,6 +1,11 @@
 import sbt.url
 
 import scala.sys.process._
+import scala.xml.{Comment, Elem}
+
+
+import scala.xml.transform.{RewriteRule, RuleTransformer}
+import scala.xml.{Node => XmlNode, NodeSeq => XmlNodeSeq, _}
 
 name := "sapphire-core"
 
@@ -10,7 +15,15 @@ crossScalaVersions := Seq("2.12.8", "2.11.12")
 
 scalaVersion := crossScalaVersions.value.head
 
+val JavaFXVersion = "12.0.1"
+val ScalaFXVersion = "12.0.1-R17"
 
+val osName = System.getProperty("os.name") match {
+  case n if n.startsWith("Linux") => "linux"
+  case n if n.startsWith("Mac") => "mac"
+  case n if n.startsWith("Windows") => "win"
+  case _ => throw new Exception("Unknown platform!")
+}
 
 javacOptions ++= Seq(
   "-target", "1.8",
@@ -25,11 +38,44 @@ lazy val sapphire_core_root = Project(id = "sapphire-core", base = file(".")).
   configs(IntegrationTest).
   settings(Defaults.itSettings: _*)
 
+
+lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/login")).settings(
+  name:= "sapphire-login-demo",
+  description := "Sapphire Login Demo",
+  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+  mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
+
+).dependsOn(sapphire_core_root)
+
+addCommandAlias("run-login-demo", "sapphire-login-demo/run")
+
+lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/issues")).settings(
+  name:= "sapphire-issues-demo",
+  description := "Sapphire Issues Demo",
+  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+  mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
+
+).dependsOn(sapphire_core_root)
+
+addCommandAlias("run-issues-demo", "sapphire-issues-demo/run")
+
+
+lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial")).settings(
+  name:= "sapphire-tutorial",
+  description := "Sapphire Tutorial",
+  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+  mainClass := Some("com.sfxcode.sapphire.core.demo.tutorial.Application")
+
+).dependsOn(sapphire_core_root)
+
+addCommandAlias("run-tutorial", "sapphire-tutorial/run")
+
 // resolvers
 
 resolvers += "sonatype-snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 
 // Test
@@ -44,15 +90,7 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 
 // Compile
 
-val JavaFXVersion = "12.0.1"
-val ScalaFXVersion = "12.0.1-R17"
 
-val osName = System.getProperty("os.name") match {
-  case n if n.startsWith("Linux") => "linux"
-  case n if n.startsWith("Mac") => "mac"
-  case n if n.startsWith("Windows") => "win"
-  case _ => throw new Exception("Unknown platform!")
-}
 
 libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
   m => "org.openjfx" % s"javafx-$m" % JavaFXVersion % Provided classifier osName)
@@ -138,6 +176,23 @@ ghpagesNoJekyll := true
 
 // publish
 
+// Use `pomPostProcess` to remove dependencies marked as "provided" from publishing in POM
+// This is to avoid dependency on wrong OS version JavaFX libraries [Issue #289]
+// See also [https://stackoverflow.com/questions/27835740/sbt-exclude-certain-dependency-only-during-publish]
+
+pomPostProcess := { node: XmlNode =>
+  new RuleTransformer(new RewriteRule {
+    override def transform(node: XmlNode): XmlNodeSeq = node match {
+      case e: Elem if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided") =>
+        val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
+        val artifact = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
+        val version = e.child.filter(_.label == "version").flatMap(_.text).mkString
+        Comment(s"provided dependency $organization#$artifact;$version has been omitted")
+      case _ => node
+    }
+  }).transform(node).head
+}
+
 releaseCrossBuild := true
 
 bintrayReleaseOnPublish in ThisBuild := true
@@ -161,4 +216,19 @@ developers := List(
     url   = url("https://github.com/sfxcode")
   )
 )
+
+packageOptions += {
+  Package.ManifestAttributes(
+    "Created-By" -> "Simple Build Tool",
+    "Built-By" -> "sfxcode",
+    "Build-Jdk" -> System.getProperty("java.version"),
+    "Specification-Title" -> name.value,
+    "Specification-Version" -> version.value,
+    "Specification-Vendor" -> organization.value,
+    "Implementation-Title" -> name.value,
+    "Implementation-Version" -> version.value,
+    "Implementation-Vendor-Id" -> organization.value,
+    "Implementation-Vendor" -> organization.value
+  )
+}
 

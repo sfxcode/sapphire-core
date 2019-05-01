@@ -1,0 +1,30 @@
+
+.navigation {
+    -fx-background-color: derive(cadetblue, 60%);
+    -fx-font-size: 14px;
+}
+
+.status {
+    -fx-background-color: derive(lightgray, 30%);
+    -fx-font-size: 12px;
+}
+
+.workspace2 {
+    -fx-background-color: azure;
+    -fx-font-size: 16px;
+}
+
+.workspace {
+    -fx-background-color: beige;
+    -fx-font-size: 13px;
+}
+
+.personPane {
+    -fx-font-size: 11px;
+}
+
+
+
+
+
+

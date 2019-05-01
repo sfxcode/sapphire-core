@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            styleClass="workspace2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/null"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.SecondWorkspaceController">
+    <children>
+        <Label layoutX="79.0" layoutY="126.0" text="Workspace 2"/>
+    </children>
+    <stylesheets>
+        <URL value="@default.css"/>
+    </stylesheets>
+</AnchorPane>
