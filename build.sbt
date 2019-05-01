@@ -6,7 +6,16 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-scalaVersion := "2.12.8"
+crossScalaVersions := Seq("2.12.8", "2.11.12")
+
+scalaVersion := crossScalaVersions.value.head
+
+
+
+javacOptions ++= Seq(
+  "-target", "1.8",
+  "-source", "1.8",
+  "-Xlint:deprecation")
 
 scalacOptions += "-deprecation"
 
@@ -25,48 +34,45 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.5.1" % "test"
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.5.1" % Test
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.5" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.5" % Test
 
-libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
+
+
 
 // Compile
 
+val JavaFXVersion = "12.0.1"
+val ScalaFXVersion = "12.0.1-R17"
 
-val osName: SettingKey[String] = SettingKey[String]("osName")
-
-osName := (System.getProperty("os.name") match {
-  case name if name.startsWith("Linux") => "linux"
-  case name if name.startsWith("Mac") => "mac"
-  case name if name.startsWith("Windows") => "win"
+val osName = System.getProperty("os.name") match {
+  case n if n.startsWith("Linux") => "linux"
+  case n if n.startsWith("Mac") => "mac"
+  case n if n.startsWith("Windows") => "win"
   case _ => throw new Exception("Unknown platform!")
-})
+}
 
-val javaVersion = "11.0.2"
-
-libraryDependencies += "org.openjfx" % "javafx-base" % javaVersion classifier osName.value
-
-libraryDependencies += "org.openjfx" % "javafx-controls" % javaVersion classifier osName.value
-
-libraryDependencies += "org.openjfx" % "javafx-fxml" % javaVersion classifier osName.value
-
-libraryDependencies += "org.openjfx" % "javafx-graphics" % javaVersion classifier osName.value
-
-libraryDependencies += "org.openjfx" % "javafx-media" % javaVersion classifier osName.value
-
-libraryDependencies += "org.openjfx" % "javafx-web" % javaVersion classifier osName.value
-
+libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+  m => "org.openjfx" % s"javafx-$m" % JavaFXVersion % Provided classifier osName)
 
 // Environment
 
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
+lazy val scalaLoggingVersion = SettingKey[String]("scalaLoggingVersion")
 
-libraryDependencies += "com.typesafe" % "config" % "1.3.3"
+scalaLoggingVersion := (scalaBinaryVersion.value match {
+  case "2.11" => "3.9.0"
+  case _ => "3.9.2"
+})
+
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion.value
+
+libraryDependencies += "com.typesafe" % "config" % "1.3.4"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % "11-R16"
+libraryDependencies += "org.scalafx" %% "scalafx" % ScalaFXVersion
 
 // CDI
 

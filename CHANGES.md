@@ -2,6 +2,12 @@
 
 ## Versions
 
+### 1.5.0
+* JavaFX 12.0.1
+* ScalaFX 12.0.1-R17
+* re-enable scala 2.11
+* Java 11, 12
+
 ### 1.4.5
 * javafx 11.0.2
 * org.apache.openwebbeans:openwebbeans-impl : 2.0.9 -> 2.0.10
