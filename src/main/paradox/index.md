@@ -2,13 +2,17 @@
 
 A JavaFX (ScalaFX) Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.
 
+## Cross Build
+
+Build and tested against Scala 2.11/2.12 and JDK 11/12
+
 ## Frameworks
 
 ### JavaFX
 
 Java UI Application Framework as replacement for Swing.
 
-Sapphire depends on OpenJFX 11.
+Sapphire depends on OpenJFX 12.
 
 [https://openjfx.io](https://openjfx.io)
 
