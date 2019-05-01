@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="description" content="sapphire-core">
-<meta name="generator" content="Paradox, paradox-material-theme=1.4.3, mkdocs-material=3.0.3">
+<meta name="generator" content="Paradox, paradox-material-theme=v1.5.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
 <meta name="lang:clipboard.copied" content="Copied to clipboard">
@@ -166,7 +166,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.4.3
+<i class="md-icon" title="Version">label_outline</i> v1.5.0
 </label>
 </li>
 </ul>
@@ -198,7 +198,7 @@ sfxcode/sapphire-core
 <h2><a href="#application-object" name="application-object" class="anchor"><span class="anchor-link"></span></a>Application object</h2>
 <p>A sapphire application must contain an Application object that extends FXApp.</p>
 <p>applicationStage must be implemented.</p>
-<pre class="prettyprint"><code class="language-scala"><br/>import com.sfxcode.sapphire.core.cdi.FXApp
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L4-L22" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>import com.sfxcode.sapphire.core.cdi.FXApp
 import com.sun.javafx.css.StyleManager
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -215,12 +215,12 @@ object DemoApplication extends FXApp {
       minWidth = 800
     }
   }
-}</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.3/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L4-L22">Full source at GitHub</a>
+}</code></pre>
 <h2><a href="#applicationcontroller" name="applicationcontroller" class="anchor"><span class="anchor-link"></span></a>ApplicationController</h2>
 <p>Application controller is used for startup purposes.</p>
 <p>Normally the main scene content is replaced by a ViewController.</p>
 <p>Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
-<pre class="prettyprint"><code class="language-scala"><br/>import com.sfxcode.sapphire.core.controller.AppController
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L26-L59" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>import com.sfxcode.sapphire.core.controller.AppController
 import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
 
 import javax.enterprise.context.ApplicationScoped
@@ -249,9 +249,8 @@ class ApplicationController extends AppController {
     replaceSceneContent(mainWindowController)
   }
 
-
 }
-</code></pre><a href="https://github.com/sfxcode/sapphire-core/tree/v1.4.3/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L26-L60">Full source at GitHub</a>
+</code></pre>
 <h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
 <p>The following code snippet loads the MainWindowController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
 <pre class="prettyprint"><code class="language-scala">  def mainWindowController = getController[MainWindowController]()
@@ -266,7 +265,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.4.3
+v1.5.0
 </span>
 </div>
 </article>
