@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="40.0"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sfxcode.sapphire.core.demo.appdemo.controller.SecondNavigationController">
+            fx:controller="com.sfxcode.sapphire.core.test.integration.controller.SecondNavigationController">
     <children>
         <HBox layoutY="-10.0" prefHeight="40.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>

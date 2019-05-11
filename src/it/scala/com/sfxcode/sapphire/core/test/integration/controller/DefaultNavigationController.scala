@@ -1,7 +1,7 @@
-package com.sfxcode.sapphire.core.demo.appdemo.controller
+package com.sfxcode.sapphire.core.test.integration.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.appdemo.ApplicationController
+import com.sfxcode.sapphire.core.test.integration.ApplicationController
 import javafx.event.ActionEvent
 
 class DefaultNavigationController extends ViewController {

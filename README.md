@@ -35,15 +35,30 @@ g8 https://github.com/sfxcode/sapphire-sbt.g8
 Apache 2 License.
 
 
-### Demo
+## Demos
 
-Simple Demo can be found in the it directory.
+### Tutorial
 
-Start in SBT Console:
+Start from Console:
 
 ```
-it:runMain com.sfxcode.sapphire.core.demo.appdemo.DemoApplication
+sbt run-tutorial
 ```
+
+### Login
+
+Start from Console:
+
+```
+sbt run-login
+```
+
+### Issues
+
+```
+sbt run-issues
+```
+
 
 ## Technology Stack
 

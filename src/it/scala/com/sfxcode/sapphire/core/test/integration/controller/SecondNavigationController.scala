@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.demo.appdemo.controller
+package com.sfxcode.sapphire.core.test.integration.controller
 
 import javafx.event.ActionEvent
 

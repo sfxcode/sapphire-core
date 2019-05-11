@@ -30,6 +30,9 @@ javacOptions ++= Seq(
   "-source", "1.8",
   "-Xlint:deprecation")
 
+javacOptions in test += "-Dorg.apache.deltaspike.ProjectStage=Test"
+
+
 scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
@@ -48,7 +51,7 @@ lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/logi
 
 ).dependsOn(sapphire_core_root)
 
-addCommandAlias("run-login-demo", "sapphire-login-demo/run")
+addCommandAlias("run-login", "sapphire-login-demo/run")
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/issues")).settings(
   name:= "sapphire-issues-demo",
@@ -59,7 +62,7 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/is
 
 ).dependsOn(sapphire_core_root)
 
-addCommandAlias("run-issues-demo", "sapphire-issues-demo/run")
+addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
 
 lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial")).settings(
@@ -183,7 +186,8 @@ ghpagesNoJekyll := true
 pomPostProcess := { node: XmlNode =>
   new RuleTransformer(new RewriteRule {
     override def transform(node: XmlNode): XmlNodeSeq = node match {
-      case e: Elem if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided") =>
+      case e: Elem if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided")
+        && e.child.exists(c => c.label == "groupId" && c.text == "org.openjfx")=>
         val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
         val artifact = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
         val version = e.child.filter(_.label == "version").flatMap(_.text).mkString

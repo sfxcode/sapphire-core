@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.demo.appdemo
+package com.sfxcode.sapphire.core.test.integration
 
 // #application
 
@@ -25,8 +25,7 @@ object DemoApplication extends FXApp {
 // #applicationController
 
 import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
-
+import com.sfxcode.sapphire.core.test.integration.controller.MainWindowController
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
