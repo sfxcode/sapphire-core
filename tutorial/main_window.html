@@ -194,36 +194,18 @@ sfxcode/sapphire-core
 <div class="md-content__searchable">
 <h1><a href="#tutorial-main-window" name="tutorial-main-window" class="anchor"><span class="anchor-link"></span></a>Tutorial Main Window</h1>
 <h2><a href="#mainwindow-fxml-file" name="mainwindow-fxml-file" class="anchor"><span class="anchor-link"></span></a>MainWindow FXML File</h2>
-<p>The MainWindowController in the ApplicationController needs a valid FXML File. The bindings for Navigation, Workspace and StatusBar Controller uses the <strong>fx:id</strong> values.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/resources/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindow.fxml" target="_blank" title="Go to snippet source"></a><code class="language-fxml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;?import java.net.*?&gt;
-&lt;?import javafx.scene.layout.*?&gt;
-
-&lt;AnchorPane xmlns=&quot;http://javafx.com/javafx/8&quot; xmlns:fx=&quot;http://javafx.com/fxml/1&quot; fx:controller=&quot;com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController&quot;&gt;
-    &lt;children&gt;
-        &lt;BorderPane AnchorPane.bottomAnchor=&quot;0.0&quot; AnchorPane.leftAnchor=&quot;0.0&quot;
-                    AnchorPane.rightAnchor=&quot;0.0&quot; AnchorPane.topAnchor=&quot;0.0&quot;&gt;
-            &lt;top&gt;
-                &lt;AnchorPane fx:id=&quot;navigationPane&quot;
-                            minHeight=&quot;40.0&quot; maxHeight=&quot;40.0&quot;
-                            styleClass=&quot;navigation&quot; /&gt;
-            &lt;/top&gt;
-            &lt;center&gt;
-                &lt;AnchorPane fx:id=&quot;workspacePane&quot;
-                            prefHeight=&quot;520.0&quot; prefWidth=&quot;800.0&quot;/&gt;
-            &lt;/center&gt;
-            &lt;bottom&gt;
-                &lt;AnchorPane fx:id=&quot;statusPane&quot;
-                            minHeight=&quot;20.0&quot; maxHeight=&quot;20.0&quot;
-                            styleClass=&quot;status&quot; /&gt;
-            &lt;/bottom&gt;
-        &lt;/BorderPane&gt;
-    &lt;/children&gt;
-    &lt;stylesheets&gt;
-        &lt;URL value=&quot;@MainWindow.css&quot; /&gt;
-    &lt;/stylesheets&gt;
-&lt;/AnchorPane&gt;</code></pre>
+<p>The MainWindowController in the /controller/MainWindowController needs a valid FXML File. The bindings for Navigation, Workspace and StatusBar Controller uses the <strong>fx:id</strong> values.</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/paradox/tutorial/main_window.xml" target="_blank" title="Go to snippet source"></a><code class="language-xml">&lt;BorderPane&gt;
+    &lt;top&gt;
+        &lt;AnchorPane fx:id=&quot;navigationPane&quot; /&gt;
+    &lt;/top&gt;
+    &lt;center&gt;
+        &lt;AnchorPane fx:id=&quot;workspacePane&quot;/&gt;
+    &lt;/center&gt;
+    &lt;bottom&gt;
+        &lt;AnchorPane fx:id=&quot;statusPane&quot;/&gt;
+    &lt;/bottom&gt;
+&lt;/BorderPane&gt;</code></pre>
 <h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
 <p>For adding SubController and displaying their UI content following steps are needed:</p>
 <ol>
@@ -235,47 +217,39 @@ sfxcode/sapphire-core
   <li>Optional CDI based Functions / Injection Points</li>
 </ol>
 <h3><a href="#prepare-subcontroller" name="prepare-subcontroller" class="anchor"><span class="anchor-link"></span></a>Prepare SubController</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindowController.scala#L16-L26" target="_blank" title="Go to snippet source"></a><code class="language-scala">// workspaces
-lazy val workspaceController = getController[WorkspaceController]()
-lazy val secondWorkspaceController = getController[SecondWorkspaceController]()
-lazy val thirdWorkspaceController = getController[ThirdWorkspaceController]()
-
-// navigation
-lazy val defaultNavigationController = getController[DefaultNavigationController]()
-lazy val secondNavigationController = getController[SecondNavigationController]()
-
-lazy val statusBarController = new StatusBarController()
-</code></pre>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L16-L25" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val workspaceController: WorkspaceController =
+  getController[WorkspaceController]()
+lazy val barChartController: BarChartController =
+  getController[BarChartController]()
+lazy val personController: PersonController =
+  getController[PersonController]()
+lazy val navigationController: NavigationController =
+  getController[NavigationController]()
+lazy val statusBarController: StatusBarController =
+  getBean[StatusBarController]()</code></pre>
 <h3><a href="#connect-with-fxml-identifier" name="connect-with-fxml-identifier" class="anchor"><span class="anchor-link"></span></a>Connect with FXML identifier</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindowController.scala#L30-L35" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L29-L34" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
 var workspacePane: Pane = _
 @FXML
 var statusPane: Pane = _
 @FXML
 var navigationPane: Pane = _</code></pre>
 <h3><a href="#contentmanager" name="contentmanager" class="anchor"><span class="anchor-link"></span></a>ContentManager</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindowController.scala#L39-L40" target="_blank" title="Go to snippet source"></a><code class="language-scala">var workspaceManager: ContentManager = _
-var navigationManager: ContentManager = _</code></pre>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L38-L40" target="_blank" title="Go to snippet source"></a><code class="language-scala">var workspaceManager: ContentManager = _
+var navigationManager: ContentManager = _
+var statusBarManager: ContentManager = _</code></pre>
 <h3><a href="#init-controller" name="init-controller" class="anchor"><span class="anchor-link"></span></a>Init Controller</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindowController.scala#L44-L50" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime() {
-  workspaceManager = ContentManager(workspacePane, this, workspaceController)
-  // enable stack based navigation for the workspaceManager
-  workspaceManager.enableStack()
-  navigationManager = ContentManager(navigationPane, this, defaultNavigationController)
-  updatePaneContent(statusPane, statusBarController)
-}</code></pre>
-<h3><a href="#switch-controller-optional-" name="switch-controller-optional-" class="anchor"><span class="anchor-link"></span></a>Switch Controller (optional)</h3>
-<p>Prepare helper functions for workspace view changes.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindowController.scala#L54-L61" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>def showWorkspaceController() {
-  workspaceManager.updatePaneContent(workspaceController)
-}
-
-def showSecondWorkspaceController() {
-  workspaceManager.updatePaneContent(secondWorkspaceController)
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L44-L51" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime() {
+  navigationManager =
+    ContentManager(navigationPane, this, navigationController)
+  statusBarManager =
+    ContentManager(statusPane, this, statusBarController)
+  workspaceManager =
+    ContentManager(workspacePane, this, workspaceController)
 }</code></pre>
 <h3><a href="#cdi-optional-" name="cdi-optional-" class="anchor"><span class="anchor-link"></span></a>CDI (optional)</h3>
 <p>Make use of CDI Observers, Injection Points, &hellip;</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/controller/MainWindowController.scala#L76-L78" target="_blank" title="Go to snippet source"></a><code class="language-scala">def listenToChanges(@Observes event: ContentDidChangeEvent) {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L55-L57" target="_blank" title="Go to snippet source"></a><code class="language-scala">def listenToChanges(@Observes event: ContentDidChangeEvent) {
   logger.debug(event.toString)
 }</code></pre>
 </div>

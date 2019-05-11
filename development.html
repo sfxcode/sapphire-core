@@ -196,8 +196,6 @@ sfxcode/sapphire-core
 <p>Some tips and tricks to speed your development.</p>
 <h2><a href="#dcevm-and-hotswapagent" name="dcevm-and-hotswapagent" class="anchor"><span class="anchor-link"></span></a>DCEVM and HotSwapAgent</h2>
 <p><a href="http://dcevm.github.io/">DCEVM</a> together with <a href="http://hotswapagent.org/">HotSwapAgent</a> can speedup your development. It enhance the ability of reloading of changed classes especially with scala.</p>
-<h3><a href="#intellij-plugin" name="intellij-plugin" class="anchor"><span class="anchor-link"></span></a>IntelliJ Plugin</h3>
-<p>An IntelliJ Plugin can be found at <a href="https://github.com/dmitry-zhuravlev/hotswap-agent-intellij-plugin">hotswap-agent-intellij-plugin</a>.</p>
 <h2><a href="#hot-scene-reloading" name="hot-scene-reloading" class="anchor"><span class="anchor-link"></span></a>Hot Scene Reloading</h2>
 <p>Reloading can be used for:</p>
 <ul>
@@ -207,17 +205,17 @@ sfxcode/sapphire-core
 </ul>
 <h3><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h3>
 <p>Create a new method in your ApplicationController:</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L45-L55" target="_blank" title="Go to snippet source"></a><code class="language-scala">// live reloading of scene content for rapid development
-def reload(): Unit = {
-  // CSS
-  StyleManager.getInstance().stylesheetContainerMap.clear()
-
-  // Bundle
-  applicationEnvironment.loadResourceBundle(&quot;com/sfxcode/sapphire/core/demo/appdemo/bundles/demo&quot;)
-
-  // FXML
-  replaceSceneContent(mainWindowController)
-}</code></pre>
+<pre class="prettyprint"><code class="language-scala"> def reload(): Unit = {
+    // Styling
+    reloadStyles()
+    // Resources
+    applicationEnvironment.clearResourceBundleCache()
+    applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
+    // FXML
+    val newMainWindowController = getController[MainWindowController]()
+    replaceSceneContent(newMainWindowController)
+  }
+</code></pre>
 <p>Create a Button anywhere in your application and an corresponding action:</p>
 <pre class="prettyprint"><code class="language-scala">  def actionReload(event: ActionEvent) {
     getBean[ApplicationController]().reload()

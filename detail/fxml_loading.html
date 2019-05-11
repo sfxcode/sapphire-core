@@ -211,7 +211,6 @@ sfxcode/sapphire-core
 
 class MainWindowController extends ViewController with LazyLogging {
 
-  // #controllerLoading
   // workspaces
   lazy val workspaceController = getController[WorkspaceController]()
   // navigation
@@ -227,8 +226,15 @@ class MainWindowController extends ViewController with LazyLogging {
 <pre class="prettyprint"><code class="language-scala">  lazy val controller = 
      getController[WorkspaceController](&quot;/fxml/special/path/special_name.fxml&quot;)
 </code></pre>
-<p>WorkspaceController fxml must be saved at <code>/fxml/special/path/special_name.fxml</code>.</p>
-<h3><a href="#option-2-define-path-in-application-conf-" name="option-2-define-path-in-application-conf-" class="anchor"><span class="anchor-link"></span></a>Option 2: Define path in application.conf:</h3>
+<p>@FxmlLoader(path=&ldquo;/fxml/widget/Person.fxml&rdquo;) class PersonController extends AbstractViewController { WorkspaceController fxml must be saved at <code>/fxml/special/path/special_name.fxml</code>.</p>
+<h3><a href="#option-2-define-path-in-fxmlloader-annotation-" name="option-2-define-path-in-fxmlloader-annotation-" class="anchor"><span class="anchor-link"></span></a>Option 2: Define path in FxmlLoader Annotation:</h3>
+<pre class="prettyprint"><code class="language-scala">@FxmlLoader(path=&quot;/fxml/widget/Person.fxml&quot;)
+class PersonController extends AbstractViewController {
+  // some stuff ...
+}
+</code></pre>
+<p>WorkspaceController fxml must be saved at <code>/fxml/widget/Person.fxml</code>.</p>
+<h3><a href="#option-3-define-path-in-application-conf-" name="option-3-define-path-in-application-conf-" class="anchor"><span class="anchor-link"></span></a>Option 3: Define path in application.conf:</h3>
 <pre><code>sapphire.core.fxml.basePath=&quot;/fxml/&quot; 
 </code></pre>
 <p>WorkspaceController fxml must be saved at <code>/fxml/Workspace.fxml</code>.</p>

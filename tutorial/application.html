@@ -198,59 +198,65 @@ sfxcode/sapphire-core
 <h2><a href="#application-object" name="application-object" class="anchor"><span class="anchor-link"></span></a>Application object</h2>
 <p>A sapphire application must contain an Application object that extends FXApp.</p>
 <p>applicationStage must be implemented.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L4-L22" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>import com.sfxcode.sapphire.core.cdi.FXApp
-import com.sun.javafx.css.StyleManager
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
+
+import com.sfxcode.sapphire.core.BuildInfo
+import com.sfxcode.sapphire.core.cdi.FXApp
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.stage.Stage
 
-object DemoApplication extends FXApp {
+object Application extends FXApp {
+
   JFXApp.AutoShow = true
 
-  override def applicationStage: Stage = new PrimaryStage {
-    title = &quot;Sapphire Controller Demo&quot;
-    scene = new Scene {
-      minHeight = 600
-      minWidth = 800
+  override def applicationStage: Stage = {
+    new PrimaryStage {
+      title = &quot;%s Tutorial (%s)&quot;.format(BuildInfo.name, BuildInfo.version)
+      minHeight = 400
+      minWidth = 600
+      scene = new Scene {
+      }
     }
   }
-}</code></pre>
+}
+</code></pre>
 <h2><a href="#applicationcontroller" name="applicationcontroller" class="anchor"><span class="anchor-link"></span></a>ApplicationController</h2>
 <p>Application controller is used for startup purposes.</p>
 <p>Normally the main scene content is replaced by a ViewController.</p>
 <p>Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/it/scala/com/sfxcode/sapphire/core/demo/appdemo/Application.scala#L26-L59" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.appdemo.controller.MainWindowController
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
+import com.sfxcode.sapphire.core.controller.AppController
+import com.sfxcode.sapphire.core.demo.tutorial.controller.MainWindowController
 
 @Named
 @ApplicationScoped
 class ApplicationController extends AppController {
 
-  def mainWindowController: MainWindowController = getController[MainWindowController]()
+  lazy val mainWindowController: MainWindowController =
+    getController[MainWindowController]()
 
   def applicationDidLaunch() {
     logger.info(&quot;start &quot; + this)
-    reload()
-  }
-
-  // live reloading of scene content for rapid development
-  def reload(): Unit = {
-    // CSS
-    StyleManager.getInstance().stylesheetContainerMap.clear()
-
-    // Bundle
-    applicationEnvironment.loadResourceBundle(&quot;com/sfxcode/sapphire/core/demo/appdemo/bundles/demo&quot;)
-
-    // FXML
+    applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
     replaceSceneContent(mainWindowController)
   }
 
-}
-</code></pre>
+  def reload(): Unit = {
+    // Styling
+    reloadStyles()
+    // Resources
+    applicationEnvironment.clearResourceBundleCache()
+    applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
+    // FXML
+    val newMainWindowController = getController[MainWindowController]()
+    replaceSceneContent(newMainWindowController)
+  }
+}</code></pre>
 <h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
 <p>The following code snippet loads the MainWindowController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
 <pre class="prettyprint"><code class="language-scala">  def mainWindowController = getController[MainWindowController]()
