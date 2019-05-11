@@ -3,12 +3,10 @@
 
 ## MainWindow FXML File
 
-The MainWindowController in the ApplicationController needs a valid FXML File.
+The MainWindowController in the /controller/MainWindowController needs a valid FXML File.
 The bindings for Navigation, Workspace and StatusBar Controller uses the **fx:id** values.
 
-
-@@snip [MainWindow](../../../it/resources/com/sfxcode/sapphire/core/test/integration/controller/MainWindow.fxml)
-
+@@snip [Fxml](main_window.xml)
 
 ## MainWindowController
 
@@ -23,28 +21,23 @@ For adding SubController and displaying their UI content following steps are nee
 
 ### Prepare SubController
 
-@@snip [MainWindowController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/MainWindowController.scala) { #controllerLoading }
+@@snip [MainWindowController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala) { #controllerLoading }
 
 ### Connect with FXML identifier
 
-@@snip [MainWindowController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/MainWindowController.scala) { #fxmlBinding }
+@@snip [MainWindowController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainWindowController.scala) { #fxmlBinding }
 
 ### ContentManager
 
-@@snip [MainWindowController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/MainWindowController.scala) { #contentManager }
+@@snip [MainWindowController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainWindowController.scala) { #contentManager }
 
 ### Init Controller
 
-@@snip [MainWindowController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/MainWindowController.scala) { #didGainVisibilityFirstTime}
+@@snip [MainWindowController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainWindowController.scala) { #didGainVisibilityFirstTime}
 
-### Switch Controller (optional)
-
-Prepare helper functions for workspace view changes.
-
-@@snip [MainWindowController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/MainWindowController.scala) { #switchController}
 
 ### CDI (optional)
 
 Make use of CDI Observers, Injection Points, ...
 
-@@snip [MainWindowController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/MainWindowController.scala) { #cdi}
+@@snip [MainWindowController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainWindowController.scala) { #cdi}

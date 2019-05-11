@@ -2,20 +2,26 @@
 
 Basic [sapphire-core](https://github.com/sfxcode/sapphire-core) examples.
 
-## sapphire-demo
+### Tutorial
 
-There is a Demo Project with sample applications on github: [sapphire-demo](https://github.com/sfxcode/sapphire-demo)
+Tutorial Application.
+
+![](../images/demo/tutorial.png)
 
 ### Login Demo
 
 JavaFX Login Demo pimped by Sapphire.
 
+![](../images/demo/login.png)
+
+
 ### Issues Demo
 
 JavaFX Issues Demo pimped by Sapphire.
 
-### Tutorial
+![](../images/demo/issues.png)
 
-Tutorial Application.
+
+
 
 

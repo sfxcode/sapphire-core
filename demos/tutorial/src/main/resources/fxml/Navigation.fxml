@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.NavigationController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.NavigationController">
     <children>
-        <HBox layoutY="-10.0" prefHeight="40.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0"
-              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox layoutY="-10.0" prefHeight="40.0" prefWidth="600.0" spacing="10.0" styleClass="navigation" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#actionToggleWorkspace" text="%navigation.toggle"/>
-                <Button mnemonicParsing="false" onAction="#actionShowPersonController" text="FXBean Demo"/>
-                <Button mnemonicParsing="false" onAction="#actionClickButton" text="Navigation Button  3"/>
+                <Button mnemonicParsing="false" onAction="#actionToggleWorkspace" text="%navigation.toggle" />
+                <Button mnemonicParsing="false" onAction="#actionShowPersonController" text="FXBean Demo" />
+                <Button mnemonicParsing="false" onAction="#actionClickButton" text="Action Button" />
+                <Button mnemonicParsing="false" id="debugButton" onAction="#actionReload" text="[Debug] Reload" />
             </children>
             <padding>
-                <Insets left="10.0" top="5.0"/>
+                <Insets left="10.0" top="7.0" />
             </padding>
         </HBox>
     </children>
+    <stylesheets>
+        <URL value="@default.css" />
+    </stylesheets>
 </AnchorPane>

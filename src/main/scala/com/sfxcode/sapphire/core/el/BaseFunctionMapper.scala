@@ -1,16 +1,17 @@
 package com.sfxcode.sapphire.core.el
 
 import java.lang.reflect.Method
+import java.util.Date
 
 import com.sfxcode.sapphire.core.BuildInfo
+import com.sfxcode.sapphire.core.base.ConfigValues
 import javax.el.FunctionMapper
 import com.sfxcode.sapphire.core.value.FXBean
-import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
 import scalafx.collections.ObservableMap
 
 class BaseFunctionMapper extends FunctionMapper with LazyLogging {
-  val map = ObservableMap[String, Method]()
+  val map: ObservableMap[String, Method] = ObservableMap[String, Method]()
 
   def resolveFunction(prefix: String, localName: String): Method = {
     map(key(prefix, localName))
@@ -31,7 +32,8 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
     var method: Method = null
     try {
       method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
-    } catch {
+    }
+    catch {
       case e: Exception => logger.warn(e.getMessage, e)
     }
     if (method != null)
@@ -54,17 +56,17 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
     result.addFunction(SapphireFunctionPrefix, "boolString", clazz, "boolString", classOf[Boolean], classOf[String], classOf[String])
+    result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
     result
   }
 
 }
 
-object DefaultFunctions {
-  private val conf = ConfigFactory.load()
+object DefaultFunctions extends ConfigValues {
 
-  def frameworkName() = BuildInfo.name
+  def frameworkName(): String = BuildInfo.name
 
-  def frameworkVersion() = BuildInfo.version
+  def frameworkVersion(): String = BuildInfo.version
 
   def boolString(value: Boolean, trueValue: String, falseValue: String): String = {
     if (value)
@@ -82,8 +84,10 @@ object DefaultFunctions {
     }
   }
 
-  def now = new java.util.Date
+  def now:Date = new Date
 
-  def nowAsString = dateString(new java.util.Date)
+  def nowAsString: String = dateString(new java.util.Date)
+
+  def configString(path:String):String = configStringValue(path)
 
 }

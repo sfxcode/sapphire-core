@@ -3,12 +3,12 @@ package com.sfxcode.sapphire.core.value
 import java.lang
 import java.time.LocalDate
 
+import com.sfxcode.sapphire.core.base.ConfigValues
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.el.Expressions._
 import com.sfxcode.sapphire.core.value.PropertyType._
-import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
-import javafx.beans.value.{ ChangeListener, ObservableValue }
+import javafx.beans.value.{ChangeListener, ObservableValue}
 import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
@@ -242,7 +242,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 
   def hasManagedChanges: lang.Boolean = {
-    val childrenChangeCount: Int = childrenMap.values.map(bean => bean.changeManagementMap.size).foldLeft(0)(_ + _)
+    val childrenChangeCount: Int = childrenMap.values.map(bean => bean.changeManagementMap.size).sum
     (changeManagementMap.size + childrenChangeCount) > 0
   }
 
@@ -292,8 +292,8 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 }
 
-object FXBean {
-  var defaultDateConverter = new DateStringConverter(ConfigFactory.load().getString("sapphire.core.value.defaultDateConverterPattern"))
+object FXBean extends ConfigValues{
+  var defaultDateConverter = new DateStringConverter(configStringValue("sapphire.core.value.defaultDateConverterPattern"))
 
   def apply[T <: AnyRef](bean: T, typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()): FXBean[T] = {
     new FXBean[T](bean, typeHints)

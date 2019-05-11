@@ -8,7 +8,6 @@ import com.sfxcode.sapphire.core.controller.AppController
 import com.sfxcode.sapphire.core.demo.login.controller.{ LoginController, ProfileController }
 import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value.FXBean
-import com.typesafe.config.ConfigFactory
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.stage.Stage
@@ -16,7 +15,6 @@ import scalafx.stage.Stage
 object Application extends FXApp {
 
   override def applicationStage: Stage = {
-    val conf = ConfigFactory.load()
     new PrimaryStage {
       title = "%s Login Demo (%s)".format(BuildInfo.name, BuildInfo.version)
       minWidth = 390

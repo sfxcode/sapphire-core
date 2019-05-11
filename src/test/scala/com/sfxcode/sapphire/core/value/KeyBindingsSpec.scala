@@ -2,9 +2,6 @@ package com.sfxcode.sapphire.core.value
 
 import org.specs2.mutable.Specification
 
-/**
- * Created by tom on 18.08.14.
- */
 
 class KeyBindingsSpec extends Specification {
 

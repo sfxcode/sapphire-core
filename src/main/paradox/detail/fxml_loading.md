@@ -24,7 +24,6 @@ package controller
 
 class MainWindowController extends ViewController with LazyLogging {
 
-  // #controllerLoading
   // workspaces
   lazy val workspaceController = getController[WorkspaceController]()
   // navigation
@@ -46,11 +45,22 @@ WorkspaceController fxml must be saved at ```/controller/Workspace.fxml```.
   lazy val controller = 
      getController[WorkspaceController]("/fxml/special/path/special_name.fxml")
 ```
-
+@FxmlLoader(path="/fxml/widget/Person.fxml")
+class PersonController extends AbstractViewController {
 WorkspaceController fxml must be saved at ```/fxml/special/path/special_name.fxml```.
 
+### Option 2: Define path in FxmlLoader Annotation:
 
-### Option 2: Define path in application.conf:
+```scala
+@FxmlLoader(path="/fxml/widget/Person.fxml")
+class PersonController extends AbstractViewController {
+  // some stuff ...
+}
+```
+WorkspaceController fxml must be saved at ```/fxml/widget/Person.fxml```.
+
+
+### Option 3: Define path in application.conf:
 
 ```
 sapphire.core.fxml.basePath="/fxml/" 

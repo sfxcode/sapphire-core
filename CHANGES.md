@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.5.1
+* ConfigValues trait added
+* dropped ConfigurationProvider
+* Annotation for Fxml added: FxmlLoader
+
 ### 1.5.0
 * JavaFX 12.0.1
 * ScalaFX 12.0.1-R17

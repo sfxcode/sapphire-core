@@ -37,9 +37,7 @@ scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-lazy val sapphire_core_root = Project(id = "sapphire-core", base = file(".")).
-  configs(IntegrationTest).
-  settings(Defaults.itSettings: _*)
+lazy val sapphire_core_root = Project(id = "sapphire-core", base = file("."))
 
 
 lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/login")).settings(

@@ -1,22 +1,25 @@
 package com.sfxcode.sapphire.core.fxml
 
+import java.lang.annotation.Annotation
 import java.net.URL
 import java.util.ResourceBundle
-import javax.inject.Inject
 
+import com.sfxcode.sapphire.core.base.ConfigValues
+import javax.inject.Inject
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.scene.NodeLocator
-import com.typesafe.config.ConfigFactory
+import com.sun.tools.javac.code.Symbol.ClassSymbol
 
 import scala.reflect.ClassTag
-import scala.reflect.runtime.{ universe => ru }
+import scala.reflect.runtime.{universe => ru}
 import scalafx.scene.Scene
 import scalafx.scene.layout.Pane
 import scalafx.stage.Stage
 
-trait FxmlLoading extends NodeLocator {
+
+trait FxmlLoading extends NodeLocator with ConfigValues {
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
 
   @Inject
@@ -51,9 +54,16 @@ trait FxmlLoading extends NodeLocator {
 
   protected def guessFxmlPath[T <: ViewController](path: String, ct: ClassTag[T]): String = {
     var result = path.toString
-    if (path.isEmpty) {
-      val basePath = ConfigFactory.load().getString("sapphire.core.fxml.basePath")
+
+    // check annotatation value
+    if (result.isEmpty)
+      result = FxmlLoader.pathValue(ct)
+
+    if (result.isEmpty) {
+      // check configuration base path
+      val basePath = configStringValue("sapphire.core.fxml.basePath")
       if (basePath.isEmpty) {
+        // use runtime package name
         val guessed = ct.runtimeClass.getName.replace(".", "/").replace("Controller", "")
         result = "/%s.fxml".format(guessed)
       } else {

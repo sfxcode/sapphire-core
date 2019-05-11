@@ -1,35 +1,44 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
+import com.sfxcode.sapphire.core.demo.tutorial.ApplicationController
 import javafx.event.ActionEvent
 import javafx.scene.control.Button
-
 import scalafx.Includes._
 
-/**
- * Created by tom on 20.10.15.
- */
 class NavigationController extends AbstractViewController {
 
   def actionClickButton(event: ActionEvent) {
     logger.debug(event.toString)
-    val source = event.getSource
 
     // resolve controller by getViewController lookup
     val controller = getViewController[StatusBarController]()
-    controller.foreach(c => c.updateLabel(event.getSource.asInstanceOf[Button]))
+    controller.foreach(c => {
+      val button = event.getSource.asInstanceOf[Button]
+      c.updateLabel(button)
+    })
   }
 
   def actionToggleWorkspace(event: ActionEvent) {
     actionClickButton(event)
-    if (workspaceManager.actualController == mainWindowController.workspaceController)
-      workspaceManager.updatePaneContent(mainWindowController.secondWorkspaceController)
+    val actualController = workspaceManager.actualController
+    val barChartController = mainWindowController.barChartController
+    val workspaceController = mainWindowController.workspaceController
+    if (actualController == workspaceController) {
+      workspaceManager.updatePaneContent(barChartController)
+    }
     else
-      workspaceManager.updatePaneContent(mainWindowController.workspaceController)
+      workspaceManager.updatePaneContent(workspaceController)
   }
 
   def actionShowPersonController(event: ActionEvent): Unit = {
     actionClickButton(event)
-    workspaceManager.updatePaneContent(mainWindowController.personController)
+    val personController = mainWindowController.personController
+    workspaceManager.updatePaneContent(personController)
+  }
+
+  def actionReload(event: ActionEvent): Unit = {
+    actionClickButton(event)
+    getBean[ApplicationController]().reload()
   }
 
 }

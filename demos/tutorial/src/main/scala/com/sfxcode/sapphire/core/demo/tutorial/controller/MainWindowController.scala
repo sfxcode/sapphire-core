@@ -12,31 +12,48 @@ import scalafx.Includes._
 
 class MainWindowController extends ViewController with LazyLogging {
 
-  lazy val workspaceController = getController[WorkspaceController]()
-  lazy val secondWorkspaceController = getController[SecondWorkspaceController]()
-  lazy val personController = getController[PersonController]()
-  lazy val navigationController = getController[NavigationController]()
-  lazy val statusBarController = getBean[StatusBarController]()
+  // #controllerLoading
+  lazy val workspaceController: WorkspaceController =
+    getController[WorkspaceController]()
+  lazy val barChartController: BarChartController =
+    getController[BarChartController]()
+  lazy val personController: PersonController =
+    getController[PersonController]()
+  lazy val navigationController: NavigationController =
+    getController[NavigationController]()
+  lazy val statusBarController: StatusBarController =
+    getBean[StatusBarController]()
+  // #controllerLoading
 
+  // #fxmlBinding
   @FXML
   var workspacePane: Pane = _
   @FXML
   var statusPane: Pane = _
   @FXML
   var navigationPane: Pane = _
+  // #fxmlBinding
 
+  // #contentManager
   var workspaceManager: ContentManager = _
   var navigationManager: ContentManager = _
   var statusBarManager: ContentManager = _
+  // #contentManager
 
+  // #didGainVisibilityFirstTime
   override def didGainVisibilityFirstTime() {
-    navigationManager = ContentManager(navigationPane, this, navigationController)
-    statusBarManager = ContentManager(statusPane, this, statusBarController)
-    workspaceManager = ContentManager(workspacePane, this, workspaceController)
+    navigationManager =
+      ContentManager(navigationPane, this, navigationController)
+    statusBarManager =
+      ContentManager(statusPane, this, statusBarController)
+    workspaceManager =
+      ContentManager(workspacePane, this, workspaceController)
   }
+  // #didGainVisibilityFirstTime
 
+  // #cdi
   def listenToChanges(@Observes event: ContentDidChangeEvent) {
     logger.debug(event.toString)
   }
-
+  // #cdi
 }

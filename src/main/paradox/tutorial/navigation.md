@@ -3,10 +3,10 @@
 ## Navigation FXML File
 
 
-@@snip [Navigation](../../../it/resources/com/sfxcode/sapphire/core/test/integration/controller/DefaultNavigation.fxml)
+@@snip [Fxml](navigation.xml)
 
 
 ## NavigationController
 
 
-@@snip [NavigationController](../../../it/scala/com/sfxcode/sapphire/core/test/integration/controller/DefaultNavigationController.scala)
+@@snip [NavigationController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/NavigationController.scala)

@@ -7,7 +7,6 @@ import javax.inject.Named
 import com.sfxcode.sapphire.core.cdi.FXApp
 import com.sfxcode.sapphire.core.controller.AppController
 import com.sfxcode.sapphire.core.demo.issues.controller.IssueTrackingLiteController
-import com.typesafe.config.ConfigFactory
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.scene.paint.Color._
@@ -16,7 +15,6 @@ import scalafx.stage.Stage
 object Application extends FXApp {
 
   override def applicationStage: Stage = {
-    val conf = ConfigFactory.load()
     new PrimaryStage {
       title = "%s Issue Tracking Lite Sample (%s)".format(BuildInfo.name, BuildInfo.version)
       minHeight = 500

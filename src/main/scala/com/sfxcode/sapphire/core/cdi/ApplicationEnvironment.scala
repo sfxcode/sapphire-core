@@ -39,6 +39,11 @@ class ApplicationEnvironment extends Serializable {
     resourceBundle = ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
   }
 
+  def clearResourceBundleCache(): Unit = {
+    val classLoader = Thread.currentThread().getContextClassLoader
+    ResourceBundle.clearCache(classLoader)
+  }
+
   def registerController(controller: ViewController): Unit = {
     controllerMap.put(controller.getClass.getName, controller)
     val simpleName: String = controller.getClass.getSimpleName

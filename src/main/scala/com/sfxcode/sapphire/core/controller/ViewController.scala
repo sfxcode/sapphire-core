@@ -1,29 +1,24 @@
 package com.sfxcode.sapphire.core.controller
 
-import scala.language.implicitConversions
-
 import java.net.URL
 import java.util.ResourceBundle
-import javafx.fxml.Initializable
-import javax.annotation.{ PostConstruct, PreDestroy }
-import javax.inject.Inject
 
+import com.sfxcode.sapphire.core.base.ConfigValues
 import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
-import com.typesafe.config.Config
 import com.typesafe.scalalogging.LazyLogging
-
-import scala.reflect.ClassTag
+import javafx.fxml.Initializable
+import javax.annotation.{PostConstruct, PreDestroy}
 import scalafx.beans.property.ObjectProperty
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.layout.Pane
 
-abstract class ViewController extends FxmlLoading with BeanResolver with ActionEvents with Initializable with LazyLogging {
+import scala.language.implicitConversions
+import scala.reflect.ClassTag
+
+abstract class ViewController extends FxmlLoading with BeanResolver with ActionEvents with Initializable with LazyLogging with ConfigValues {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
-
-  @Inject
-  var configuration: Config = _
 
   val managedParent = new ObjectProperty[ViewController]()
 
