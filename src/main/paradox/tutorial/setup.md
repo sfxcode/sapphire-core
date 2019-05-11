@@ -2,11 +2,11 @@
 
 ## Sources
 
-The sources for this tutorial are in the [Integration Tests Directory](https://github.com/sfxcode/sapphire-core/tree/master/src/it) of sapphire-core in the appdemo package.
+The sources for this tutorial are in the [Github Tutorial Directory](https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial) of sapphire-core in the appdemo package.
 
 ## Simple Build Tool Setup
 
-@@snip [Changes.md](../../../../src/test/public/sample.sbt)
+@@snip [sbt](../../../../src/test/public/sample.sbt)
 
 ## IDE
 
