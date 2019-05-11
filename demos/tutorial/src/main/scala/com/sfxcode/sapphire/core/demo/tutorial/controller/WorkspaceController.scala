@@ -13,8 +13,7 @@ class WorkspaceController extends AbstractViewController {
     PieChart.Data("Grapefruit", 20),
     PieChart.Data("Oranges", 30),
     PieChart.Data("Plums", 10),
-    PieChart.Data("Apples", 40)
-  )
+    PieChart.Data("Apples", 40))
 
   override def didInitialize(): Unit = {
     super.didInitialize()

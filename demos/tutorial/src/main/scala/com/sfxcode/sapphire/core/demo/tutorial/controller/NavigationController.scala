@@ -25,8 +25,7 @@ class NavigationController extends AbstractViewController {
     val workspaceController = mainWindowController.workspaceController
     if (actualController == workspaceController) {
       workspaceManager.updatePaneContent(barChartController)
-    }
-    else
+    } else
       workspaceManager.updatePaneContent(workspaceController)
   }
 

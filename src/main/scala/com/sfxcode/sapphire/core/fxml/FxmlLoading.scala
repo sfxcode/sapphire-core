@@ -13,11 +13,10 @@ import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.sun.tools.javac.code.Symbol.ClassSymbol
 
 import scala.reflect.ClassTag
-import scala.reflect.runtime.{universe => ru}
+import scala.reflect.runtime.{ universe => ru }
 import scalafx.scene.Scene
 import scalafx.scene.layout.Pane
 import scalafx.stage.Stage
-
 
 trait FxmlLoading extends NodeLocator with ConfigValues {
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)

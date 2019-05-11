@@ -8,7 +8,7 @@ import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.el.Expressions._
 import com.sfxcode.sapphire.core.value.PropertyType._
 import com.typesafe.scalalogging.LazyLogging
-import javafx.beans.value.{ChangeListener, ObservableValue}
+import javafx.beans.value.{ ChangeListener, ObservableValue }
 import scalafx.beans.property._
 import scalafx.collections.ObservableMap
 import scalafx.util.converter.DateStringConverter
@@ -292,7 +292,7 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
   }
 }
 
-object FXBean extends ConfigValues{
+object FXBean extends ConfigValues {
   var defaultDateConverter = new DateStringConverter(configStringValue("sapphire.core.value.defaultDateConverterPattern"))
 
   def apply[T <: AnyRef](bean: T, typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()): FXBean[T] = {

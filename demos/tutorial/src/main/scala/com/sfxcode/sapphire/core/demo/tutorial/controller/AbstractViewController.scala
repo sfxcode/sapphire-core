@@ -17,7 +17,6 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
 
   def statusBarController: StatusBarController = getBean[StatusBarController]()
 
-
   def workspaceManager: ContentManager = mainWindowController.workspaceManager
 
 }

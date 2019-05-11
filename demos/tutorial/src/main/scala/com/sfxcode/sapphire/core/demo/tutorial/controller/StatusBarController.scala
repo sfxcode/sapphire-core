@@ -7,7 +7,7 @@ import javax.inject.Named
 import scalafx.Includes._
 import scalafx.event.ActionEvent
 import scalafx.geometry.Insets
-import scalafx.scene.control.{Button, Label}
+import scalafx.scene.control.{ Button, Label }
 import scalafx.scene.layout.HBox
 
 @Named

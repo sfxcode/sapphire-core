@@ -11,7 +11,7 @@ import scalafx.scene.Scene
 import scalafx.scene.shape.Rectangle
 import scalafx.stage.Stage
 
-abstract class FXApp extends JFXApp with ConfigValues{
+abstract class FXApp extends JFXApp with ConfigValues {
 
   init(applicationStage)
 

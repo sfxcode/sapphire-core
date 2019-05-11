@@ -8,7 +8,7 @@ import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
 import javafx.fxml.Initializable
-import javax.annotation.{PostConstruct, PreDestroy}
+import javax.annotation.{ PostConstruct, PreDestroy }
 import scalafx.beans.property.ObjectProperty
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.layout.Pane

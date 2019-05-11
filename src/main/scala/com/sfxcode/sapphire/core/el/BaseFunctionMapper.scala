@@ -32,8 +32,7 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
     var method: Method = null
     try {
       method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
-    }
-    catch {
+    } catch {
       case e: Exception => logger.warn(e.getMessage, e)
     }
     if (method != null)
@@ -84,10 +83,10 @@ object DefaultFunctions extends ConfigValues {
     }
   }
 
-  def now:Date = new Date
+  def now: Date = new Date
 
   def nowAsString: String = dateString(new java.util.Date)
 
-  def configString(path:String):String = configStringValue(path)
+  def configString(path: String): String = configStringValue(path)
 
 }

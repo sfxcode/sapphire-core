@@ -2,7 +2,6 @@ package com.sfxcode.sapphire.core.value
 
 import org.specs2.mutable.Specification
 
-
 class KeyBindingsSpec extends Specification {
 
   "KeyBindings" should {

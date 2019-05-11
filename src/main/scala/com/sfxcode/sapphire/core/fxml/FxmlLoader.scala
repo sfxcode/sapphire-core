@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.fxml
-import scala.reflect.runtime.{universe => ru}
+import scala.reflect.runtime.{ universe => ru }
 import ru._
 
 case class FxmlLoader(path: String) extends scala.annotation.StaticAnnotation
 
-object FxmlLoader  {
+object FxmlLoader {
 
   def pathValue(clazzTag: scala.reflect.ClassTag[_]): String = {
     var result = ""
@@ -20,6 +20,5 @@ object FxmlLoader  {
     }
     result
   }
-
 
 }

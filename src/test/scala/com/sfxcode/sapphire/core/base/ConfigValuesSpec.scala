@@ -13,10 +13,8 @@ class ConfigValuesSpec extends Specification with ConfigValues {
     }
 
     "evaluate values" in {
-      configIntValues("test.list.int") must be equalTo List(1,2,3)
+      configIntValues("test.list.int") must be equalTo List(1, 2, 3)
     }
-
-
 
   }
 }

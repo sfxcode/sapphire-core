@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 import com.sfxcode.sapphire.core.controller.AppController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainWindowController
+import javax.enterprise.inject.Produces
 
 @Named
 @ApplicationScoped
@@ -28,4 +29,11 @@ class ApplicationController extends AppController {
     val newMainWindowController = getController[MainWindowController]()
     replaceSceneContent(newMainWindowController)
   }
+
+  @Produces
+  def applicationName: ApplicationName = {
+    ApplicationName(configStringValue("application.name"))
+  }
 }
+
+case class ApplicationName(name: String)
