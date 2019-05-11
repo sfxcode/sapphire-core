@@ -15,10 +15,20 @@ Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.gi
 
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg) ](https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion)
 
-
 ## Demos
 
-Demos can be found under [sapphire-demo](http://sfxcode.github.io/sapphire-demo/) on github.
+
+### Tutorial
+
+Tutorial Application.
+
+### Login Demo
+
+JavaFX Login Demo pimped by Sapphire.
+
+### Issues Demo
+
+JavaFX Issues Demo pimped by Sapphire.
 
 ## Template
 
