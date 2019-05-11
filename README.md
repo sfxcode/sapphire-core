@@ -15,21 +15,6 @@ Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.gi
 
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg) ](https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion)
 
-## Demos
-
-
-### Tutorial
-
-Tutorial Application.
-
-### Login Demo
-
-JavaFX Login Demo pimped by Sapphire.
-
-### Issues Demo
-
-JavaFX Issues Demo pimped by Sapphire.
-
 ## Template
 
 [Giter8 template](http://www.foundweekends.org/giter8/): [sapphire-sbt](https://github.com/sfxcode/sapphire-sbt.g8).
@@ -37,8 +22,6 @@ JavaFX Issues Demo pimped by Sapphire.
 ### Usage
 
 g8 https://github.com/sfxcode/sapphire-sbt.g8
-
-
 
 ## Licence
 
