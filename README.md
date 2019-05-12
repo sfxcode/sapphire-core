@@ -15,7 +15,7 @@ Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.gi
 
 [ ![Download](https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg) ](https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion)
 
-## Template
+## Giter8 Template
 
 [Giter8 template](http://www.foundweekends.org/giter8/): [sapphire-sbt](https://github.com/sfxcode/sapphire-sbt.g8).
 

@@ -19,7 +19,7 @@ Sapphire depends on OpenJFX 12.
 
 ### ScalaFX
 
-Sapphire depends on  [ScalaFX](http://www.scalafx.org/), a DSL for JavaFX written in Scala.
+Sapphire depends on [ScalaFX](http://www.scalafx.org/), a DSL for JavaFX written in Scala.
 
 
 ### Dependency Injection
@@ -32,7 +32,9 @@ The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injectio
 
 Expressions are resolved by [JUEL](http://juel.sourceforge.net).
 
-## Setup
+## Maven
+
+Sapphire is published to Bintray and linked to Maven Central.
 
 ### Repository
 
@@ -48,6 +50,18 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
   artifact="sapphire-core_2.12"
   version="$app-version$"
 }
+
+## Getting started
+
+### Setup Base Application with Giter8
+
+```
+g8 https://github.com/sfxcode/sapphire-sbt.g8
+```
+
+### Demos
+
+Explore demos and Tutorial in project demo directory.
 
 ## Licence
 
@@ -70,9 +84,6 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
  - [Example Basic](sample/basic.md)
  - [Example Extended](sample/advanced.md)
  - [Changes ](changes.md)
-
-
-
 
 
 @@@

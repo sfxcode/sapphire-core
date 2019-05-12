@@ -2,8 +2,7 @@
 
 ## Features
 
-- load fxml by controller name (convention over configuration
-- load fxml by custom name
+- load fxml by different pattern (convention over configuration)
 - CDI powered ViewController (FXMLLoader, FXMLLoaderProvider)
 - ViewController rootPane is bound to fxml root element
 
@@ -37,9 +36,14 @@ class MainWindowController extends ViewController with LazyLogging {
 WorkspaceController fxml must be saved at ```/controller/Workspace.fxml```.
 
 
-## Custom fxml path
+## Different FXML-Path lookup pattern
 
-### Option 1: Define path in getController:
+@@@ note { title=Hint }
+
+In case of mixing this pattern, FXML-Path is resolved from Pattern 1 to 3
+@@@
+
+### Pattern 1: Define path in getController:
 
 ```scala
   lazy val controller = 
@@ -49,7 +53,7 @@ WorkspaceController fxml must be saved at ```/controller/Workspace.fxml```.
 class PersonController extends AbstractViewController {
 WorkspaceController fxml must be saved at ```/fxml/special/path/special_name.fxml```.
 
-### Option 2: Define path in FxmlLoader Annotation:
+### Pattern 2: Define path in FxmlLoader Annotation:
 
 ```scala
 @FxmlLoader(path="/fxml/widget/Person.fxml")
@@ -60,7 +64,7 @@ class PersonController extends AbstractViewController {
 WorkspaceController fxml must be saved at ```/fxml/widget/Person.fxml```.
 
 
-### Option 3: Define path in application.conf:
+### Pattern 3: Define path in application.conf:
 
 ```
 sapphire.core.fxml.basePath="/fxml/" 

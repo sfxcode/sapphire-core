@@ -4,9 +4,22 @@
 
 The sources for this tutorial are in the [Github Tutorial Directory](https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial) of sapphire-core in the appdemo package.
 
-## Simple Build Tool Setup
+## Setup
 
-@@snip [sbt](../../../../src/test/public/sample.sbt)
+Easy Project Setup by usibg the sapphire-core giter8 template.
+See giter8 Documentation for g8 setup.
+
+[Giter8 template](http://www.foundweekends.org/giter8/) for [sapphire-core](https://sfxcode.github.io/sapphire-core).
+
+### Usage
+
+g8 https://github.com/sfxcode/sapphire-sbt.g8
+
+### Base Project Structure
+
+![](../images/tutorial/stucture.png)
+
+
 
 ## IDE
 

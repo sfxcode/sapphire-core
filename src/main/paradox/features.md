@@ -29,6 +29,8 @@
 - Node Locator
 - Controller CDI Additions
 
-## FXML Support
+## First Class FXML Support
 
-- Simple load from controller
+- Simple load from controller pattern
+- Different fxml path options
+- Controller Lookup by CDI

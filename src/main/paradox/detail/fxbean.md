@@ -30,11 +30,17 @@ val book = FXBean[Book](scalaBook)
 // getValue and updateValue are used for bean property access and modification
 // getProperty, getStringProperty ... 
 // are used for automatic create a JavaFX Property
-val title = book.getValue("title")  // "Programming In Scala"
+val title = book.getValue("title")
+// "Programming In Scala"
+
 val titleProperty = book.getStringProperty("title")
 
-book.updateValue("title", "Programming In Scala 3.0") // title is updated, titleProperty as well
-val newTitle = book.getValue("title")  // "Programming In Scala 3.0"
+book.updateValue("title", "Programming In Scala 3.0")
+// title is updated, titleProperty as well
+
+val newTitle = book.getValue("title")
+// "Programming In Scala 3.0"
+
 val newTitleFromProperty = titleProperty.getValue  // "Programming In Scala 3.0"
 
 // getValue and updateValue for underlying class by dot syntax
