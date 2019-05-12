@@ -232,6 +232,7 @@ import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 import com.sfxcode.sapphire.core.controller.AppController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainWindowController
+import javax.enterprise.inject.Produces
 
 @Named
 @ApplicationScoped
@@ -256,7 +257,14 @@ class ApplicationController extends AppController {
     val newMainWindowController = getController[MainWindowController]()
     replaceSceneContent(newMainWindowController)
   }
-}</code></pre>
+
+  @Produces
+  def applicationName: ApplicationName = {
+    ApplicationName(configStringValue(&quot;application.name&quot;))
+  }
+}
+
+case class ApplicationName(name: String)</code></pre>
 <h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
 <p>The following code snippet loads the MainWindowController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
 <pre class="prettyprint"><code class="language-scala">  def mainWindowController = getController[MainWindowController]()

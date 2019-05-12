@@ -152,7 +152,8 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="index.html#cross-build" class="header">Cross Build</a></li>
     <li><a href="index.html#frameworks" class="header">Frameworks</a></li>
-    <li><a href="index.html#setup" class="header">Setup</a></li>
+    <li><a href="index.html#maven" class="header">Maven</a></li>
+    <li><a href="index.html#getting-started" class="header">Getting started</a></li>
     <li><a href="index.html#licence" class="header">Licence</a></li>
   </ul></li>
 </ul>
@@ -179,7 +180,8 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="index.html#cross-build" class="header">Cross Build</a></li>
     <li><a href="index.html#frameworks" class="header">Frameworks</a></li>
-    <li><a href="index.html#setup" class="header">Setup</a></li>
+    <li><a href="index.html#maven" class="header">Maven</a></li>
+    <li><a href="index.html#getting-started" class="header">Getting started</a></li>
     <li><a href="index.html#licence" class="header">Licence</a></li>
   </ul></li>
 </ul>
@@ -207,18 +209,25 @@ sfxcode/sapphire-core
 <p>The default <a href="https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injection">CDI</a> implementation depends on <a href="http://openwebbeans.apache.org">Apache OpenWebBeans</a> (2.0.x).</p>
 <h3><a href="#expression-language" name="expression-language" class="anchor"><span class="anchor-link"></span></a>Expression Language</h3>
 <p>Expressions are resolved by <a href="http://juel.sourceforge.net">JUEL</a>.</p>
-<h2><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h2>
+<h2><a href="#maven" name="maven" class="anchor"><span class="anchor-link"></span></a>Maven</h2>
+<p>Sapphire is published to Bintray and linked to Maven Central.</p>
 <h3><a href="#repository" name="repository" class="anchor"><span class="anchor-link"></span></a>Repository</h3>
 <pre><code>resolvers += &quot;sfxcode-bintray&quot; at &quot;https://dl.bintray.com/sfxcode/maven&quot;
 
 </code></pre>
-<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "v1.5.0"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
+<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "v1.5.1"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
   &lt;groupId&gt;com.sfxcode.sapphire&lt;/groupId&gt;
   &lt;artifactId&gt;sapphire-core_2.12&lt;/artifactId&gt;
-  &lt;version&gt;v1.5.0&lt;/version&gt;
+  &lt;version&gt;v1.5.1&lt;/version&gt;
 &lt;/dependency&gt;</code></pre></dd><dt>Gradle</dt><dd><pre class="prettyprint"><code class="language-gradle">dependencies {
-  compile group: 'com.sfxcode.sapphire', name: 'sapphire-core_2.12', version: 'v1.5.0'
+  compile group: 'com.sfxcode.sapphire', name: 'sapphire-core_2.12', version: 'v1.5.1'
 }</code></pre></dd></dl>
+<h2><a href="#getting-started" name="getting-started" class="anchor"><span class="anchor-link"></span></a>Getting started</h2>
+<h3><a href="#setup-base-application-with-giter8" name="setup-base-application-with-giter8" class="anchor"><span class="anchor-link"></span></a>Setup Base Application with Giter8</h3>
+<pre><code>g8 https://github.com/sfxcode/sapphire-sbt.g8
+</code></pre>
+<h3><a href="#demos" name="demos" class="anchor"><span class="anchor-link"></span></a>Demos</h3>
+<p>Explore demos and Tutorial in project demo directory.</p>
 <h2><a href="#licence" name="licence" class="anchor"><span class="anchor-link"></span></a>Licence</h2>
 <p><a href="https://github.com/sfxcode/sapphire-core/blob/master/LICENSE">Apache 2</a></p>
 </div>

@@ -156,7 +156,7 @@ sfxcode/sapphire-core
   <li><a href="../tutorial/setup.html#tutorial-setup" class="header">Tutorial Setup</a>
   <ul>
     <li><a href="../tutorial/setup.html#sources" class="header">Sources</a></li>
-    <li><a href="../tutorial/setup.html#simple-build-tool-setup" class="header">Simple Build Tool Setup</a></li>
+    <li><a href="../tutorial/setup.html#setup" class="header">Setup</a></li>
     <li><a href="../tutorial/setup.html#ide" class="header">IDE</a></li>
     <li><a href="../tutorial/setup.html#fxml-editor" class="header">FXML Editor</a></li>
     <li><a href="../tutorial/setup.html#scene-graph-visualization" class="header">Scene Graph Visualization</a></li>
@@ -184,7 +184,7 @@ sfxcode/sapphire-core
   <li><a href="../tutorial/setup.html#tutorial-setup" class="header">Tutorial Setup</a>
   <ul>
     <li><a href="../tutorial/setup.html#sources" class="header">Sources</a></li>
-    <li><a href="../tutorial/setup.html#simple-build-tool-setup" class="header">Simple Build Tool Setup</a></li>
+    <li><a href="../tutorial/setup.html#setup" class="header">Setup</a></li>
     <li><a href="../tutorial/setup.html#ide" class="header">IDE</a></li>
     <li><a href="../tutorial/setup.html#fxml-editor" class="header">FXML Editor</a></li>
     <li><a href="../tutorial/setup.html#scene-graph-visualization" class="header">Scene Graph Visualization</a></li>
@@ -201,40 +201,13 @@ sfxcode/sapphire-core
 <h1><a href="#tutorial-setup" name="tutorial-setup" class="anchor"><span class="anchor-link"></span></a>Tutorial Setup</h1>
 <h2><a href="#sources" name="sources" class="anchor"><span class="anchor-link"></span></a>Sources</h2>
 <p>The sources for this tutorial are in the <a href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial">Github Tutorial Directory</a> of sapphire-core in the appdemo package.</p>
-<h2><a href="#simple-build-tool-setup" name="simple-build-tool-setup" class="anchor"><span class="anchor-link"></span></a>Simple Build Tool Setup</h2>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/test/public/sample.sbt" target="_blank" title="Go to snippet source"></a><code class="language-sbt">name := &quot;project-name&quot;
-
-organization := &quot;your.organization&quot;
-
-version := &quot;1.0.0&quot;
-
-scalaVersion := &quot;2.12.8&quot;
-
-resolvers += &quot;sfxcode-bintray&quot; at &quot;https://dl.bintray.com/sfxcode/maven&quot;
-
-val JavaFXVersion = &quot;12.0.1&quot;
-
-val osName = System.getProperty(&quot;os.name&quot;) match {
-  case n if n.startsWith(&quot;Linux&quot;) =&gt; &quot;linux&quot;
-  case n if n.startsWith(&quot;Mac&quot;) =&gt; &quot;mac&quot;
-  case n if n.startsWith(&quot;Windows&quot;) =&gt; &quot;win&quot;
-  case _ =&gt; throw new Exception(&quot;Unknown platform!&quot;)
-}
-
-libraryDependencies ++= Seq(&quot;base&quot;, &quot;controls&quot;, &quot;fxml&quot;, &quot;graphics&quot;, &quot;media&quot;, &quot;swing&quot;, &quot;web&quot;).map(
-  m =&gt; &quot;org.openjfx&quot; % s&quot;javafx-$m&quot; % JavaFXVersion % Provided classifier osName)
-
-
-// Test
-
-libraryDependencies += &quot;org.specs2&quot; %% &quot;specs2-core&quot; % &quot;4.5.1&quot; % Test
-
-// Compile
-
-libraryDependencies += &quot;com.sfxcode.sapphire&quot; %% &quot;sapphire-core&quot; % &quot;1.5.0&quot;
-
-libraryDependencies += &quot;ch.qos.logback&quot; % &quot;logback-classic&quot; % &quot;1.2.3&quot;
-</code></pre>
+<h2><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h2>
+<p>Easy Project Setup by usibg the sapphire-core giter8 template. See giter8 Documentation for g8 setup.</p>
+<p><a href="http://www.foundweekends.org/giter8/">Giter8 template</a> for <a href="https://sfxcode.github.io/sapphire-core">sapphire-core</a>.</p>
+<h3><a href="#usage" name="usage" class="anchor"><span class="anchor-link"></span></a>Usage</h3>
+<p>g8 <a href="https://github.com/sfxcode/sapphire-sbt.g8">https://github.com/sfxcode/sapphire-sbt.g8</a></p>
+<h3><a href="#base-project-structure" name="base-project-structure" class="anchor"><span class="anchor-link"></span></a>Base Project Structure</h3>
+<p><img src="../images/tutorial/stucture.png" /></p>
 <h2><a href="#ide" name="ide" class="anchor"><span class="anchor-link"></span></a>IDE</h2>
 <p><a href="https://www.jetbrains.com/idea/download">IntelliJ IDEA Community Edition</a> or other IDE with Scala support.</p>
 <h2><a href="#fxml-editor" name="fxml-editor" class="anchor"><span class="anchor-link"></span></a>FXML Editor</h2>
