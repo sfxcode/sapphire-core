@@ -20,7 +20,7 @@
 
 <meta name="description" content="sapphire-core">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Tutorial Main Window · Sapphire Core</title>
+<title>Development · Sapphire Core</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="../lib/prettify/prettify.css">
@@ -56,7 +56,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-Tutorial Main Window
+Development
 </span>
 </div>
 </div>
@@ -136,7 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
-  <li><a href="../development/index.html" class="page">Development</a>
+  <li><a href="../development/index.html" class="active page">Development</a>
   <ul>
     <li><a href="../development/tools.html" class="page">Development Tools</a></li>
     <li><a href="../development/development.html" class="page">Hot Reloading</a></li>
@@ -145,7 +145,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_window.html" class="active page">Tutorial Main Window</a></li>
+    <li><a href="../tutorial/main_window.html" class="page">Tutorial Main Window</a></li>
     <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="../detail/index.html" class="page">In Depth</a>
@@ -160,14 +160,6 @@ sfxcode/sapphire-core
   <li><a href="../changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">Table of contents</label>
-<ul>
-  <li><a href="../tutorial/main_window.html#tutorial-main-window" class="header">Tutorial Main Window</a>
-  <ul>
-    <li><a href="../tutorial/main_window.html#mainwindow-fxml-file" class="header">MainWindow FXML File</a></li>
-    <li><a href="../tutorial/main_window.html#mainwindowcontroller" class="header">MainWindowController</a></li>
-  </ul></li>
-</ul>
 </nav>
 
 </nav>
@@ -181,89 +173,29 @@ sfxcode/sapphire-core
 </div>
 </div>
 </div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">Table of contents</label>
-<ul>
-  <li><a href="../tutorial/main_window.html#tutorial-main-window" class="header">Tutorial Main Window</a>
-  <ul>
-    <li><a href="../tutorial/main_window.html#mainwindow-fxml-file" class="header">MainWindow FXML File</a></li>
-    <li><a href="../tutorial/main_window.html#mainwindowcontroller" class="header">MainWindowController</a></li>
-  </ul></li>
-</ul>
-</nav>
-
-</div>
-</div>
-</div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#tutorial-main-window" name="tutorial-main-window" class="anchor"><span class="anchor-link"></span></a>Tutorial Main Window</h1>
-<h2><a href="#mainwindow-fxml-file" name="mainwindow-fxml-file" class="anchor"><span class="anchor-link"></span></a>MainWindow FXML File</h2>
-<p>The MainWindowController in the /controller/MainWindowController needs a valid FXML File. The bindings for Navigation, Workspace and StatusBar Controller uses the <strong>fx:id</strong> values.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/tutorial/main_window.xml" target="_blank" title="Go to snippet source"></a><code class="language-xml">&lt;BorderPane&gt;
-    &lt;top&gt;
-        &lt;AnchorPane fx:id=&quot;navigationPane&quot; /&gt;
-    &lt;/top&gt;
-    &lt;center&gt;
-        &lt;AnchorPane fx:id=&quot;workspacePane&quot;/&gt;
-    &lt;/center&gt;
-    &lt;bottom&gt;
-        &lt;AnchorPane fx:id=&quot;statusPane&quot;/&gt;
-    &lt;/bottom&gt;
-&lt;/BorderPane&gt;</code></pre>
-<h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
-<p>For adding SubController and displaying their UI content following steps are needed:</p>
-<ol>
-  <li>Prepare SubController</li>
-  <li>Connect with FXML identifier</li>
-  <li>Define ContentManager</li>
-  <li>Load Controller in the MainWindowController LifeCycle</li>
-  <li>Optional Prepare Functions for Controller switching</li>
-  <li>Optional CDI based Functions / Injection Points</li>
-</ol>
-<h3><a href="#prepare-subcontroller" name="prepare-subcontroller" class="anchor"><span class="anchor-link"></span></a>Prepare SubController</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L16-L25" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val workspaceController: WorkspaceController =
-  getController[WorkspaceController]()
-lazy val barChartController: BarChartController =
-  getController[BarChartController]()
-lazy val personController: PersonController =
-  getController[PersonController]()
-lazy val navigationController: NavigationController =
-  getController[NavigationController]()
-lazy val statusBarController: StatusBarController =
-  getBean[StatusBarController]()</code></pre>
-<h3><a href="#connect-with-fxml-identifier" name="connect-with-fxml-identifier" class="anchor"><span class="anchor-link"></span></a>Connect with FXML identifier</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L29-L34" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
-var workspacePane: Pane = _
-@FXML
-var statusPane: Pane = _
-@FXML
-var navigationPane: Pane = _</code></pre>
-<h3><a href="#contentmanager" name="contentmanager" class="anchor"><span class="anchor-link"></span></a>ContentManager</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L38-L40" target="_blank" title="Go to snippet source"></a><code class="language-scala">var workspaceManager: ContentManager = _
-var navigationManager: ContentManager = _
-var statusBarManager: ContentManager = _</code></pre>
-<h3><a href="#init-controller" name="init-controller" class="anchor"><span class="anchor-link"></span></a>Init Controller</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L44-L51" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime() {
-  navigationManager =
-    ContentManager(navigationPane, this, navigationController)
-  statusBarManager =
-    ContentManager(statusPane, this, statusBarController)
-  workspaceManager =
-    ContentManager(workspacePane, this, workspaceController)
-}</code></pre>
-<h3><a href="#cdi-optional-" name="cdi-optional-" class="anchor"><span class="anchor-link"></span></a>CDI (optional)</h3>
-<p>Make use of CDI Observers, Injection Points, &hellip;</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainWindowController.scala#L55-L57" target="_blank" title="Go to snippet source"></a><code class="language-scala">def listenToChanges(@Observes event: ContentDidChangeEvent) {
-  logger.debug(event.toString)
-}</code></pre>
+<h1><a href="#development" name="development" class="anchor"><span class="anchor-link"></span></a>Development</h1>
+<div class="toc ">
+<ul>
+  <li><a href="../development/tools.html" class="page">Development Tools</a>
+  <ul>
+    <li><a href="../development/tools.html#intellij-ide" class="header">IntelliJ IDE</a></li>
+    <li><a href="../development/tools.html#scenebuilder" class="header">SceneBuilder</a></li>
+    <li><a href="../development/tools.html#scenicview" class="header">ScenicView</a></li>
+    <li><a href="../development/tools.html#sbt-plugins" class="header">SBT Plugins</a></li>
+  </ul></li>
+  <li><a href="../development/development.html" class="page">Hot Reloading</a>
+  <ul>
+    <li><a href="../development/development.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
+    <li><a href="../development/development.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
+  </ul></li>
+</ul>
+</div>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/tutorial/main_window.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/development/index.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -279,7 +211,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../tutorial/application.html" title="Tutorial Application" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../features.html" title="Features" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -288,17 +220,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Tutorial Application
+Features
 </span>
 </div>
 </a>
-<a href="../tutorial/navigation.html" title="Tutorial Navigation" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../development/tools.html" title="Development Tools" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Tutorial Navigation
+Development Tools
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
