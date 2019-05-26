@@ -72,10 +72,9 @@ Explore demos and Tutorial in project demo directory.
  - [Features](features.md)
  - [Development](development/index.md)
  - [Tutorial](tutorial/index.md)
- - [In Depth FXBean](detail/index.md)
+ - [Core Concepts](detail/index.md)
+ - [Examples](sample/index.md)
  - [Extension](extension.md)
- - [Example Basic](sample/basic.md)
- - [Example Extended](sample/advanced.md)
  - [Changes ](changes.md)
 
 

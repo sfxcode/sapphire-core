@@ -1,4 +1,4 @@
-# In Depth
+# Core Concepts
 
 @@toc { depth=2 }
 
