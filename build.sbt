@@ -118,7 +118,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.10"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.11"
 
 val DeltaspikeVersion = "1.9.0"
 
