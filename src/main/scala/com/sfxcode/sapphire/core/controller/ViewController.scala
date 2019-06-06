@@ -11,7 +11,9 @@ import javafx.fxml.Initializable
 import javax.annotation.{ PostConstruct, PreDestroy }
 import scalafx.beans.property.ObjectProperty
 import scalafx.collections.ObservableBuffer
+import scalafx.scene.Scene
 import scalafx.scene.layout.Pane
+import scalafx.stage.Stage
 
 import scala.language.implicitConversions
 import scala.reflect.ClassTag
@@ -20,7 +22,13 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
+  val windowController = new ObjectProperty[WindowController]()
+
   val managedParent = new ObjectProperty[ViewController]()
+
+  def stage: Stage = windowController.get.stage
+
+  def scene: Scene = windowController.get.scene
 
   protected val managedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
 
@@ -102,6 +110,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
         if (viewController.canGainVisibility)
           try {
             viewController.managedParent.value = this
+            viewController.windowController.set(windowController.get)
             viewController.willGainVisibility()
             pane.getChildren.add(viewController.rootPane)
             viewController.didGainVisibility()
@@ -123,7 +132,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def updateFromStateMap(map: Map[String, Any]): Unit = {}
 
-  def actualSceneController: ViewController = applicationEnvironment.actualSceneController
+  def actualSceneController: ViewController = windowController.get.actualSceneController
 
   def isActualSceneController: Boolean = this == actualSceneController
 

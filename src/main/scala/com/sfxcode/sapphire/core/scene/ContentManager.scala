@@ -75,11 +75,12 @@ class ContentManager extends LazyLogging {
         }
 
       try {
+        newController.windowController.set(parentController.windowController.value)
+        contentWillChange.fire(ContentWillChangeEvent(contentPane, parentController, newController, actualController))
         newController.willGainVisibility()
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
-      contentWillChange.fire(ContentWillChangeEvent(contentPane, parentController, newController, actualController))
 
       if (oldController != null) {
         removePaneContent(oldController.rootPane)
@@ -110,12 +111,13 @@ class ContentManager extends LazyLogging {
 
       try {
         newController.didGainVisibility()
+        contentChanged.fire(ContentDidChangeEvent(contentPane, parentController, newController, actualController))
+
         parentController.addChildViewController(newController)
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
 
-      contentChanged.fire(ContentDidChangeEvent(contentPane, parentController, newController, actualController))
       actualController = newController
     }
   }
@@ -124,7 +126,13 @@ class ContentManager extends LazyLogging {
 
 object ContentManager {
 
-  def apply(contentPane: Pane, parentController: ViewController = null, startController: ViewController = null): ContentManager = {
+  def apply(contentPane: Pane, parentController: ViewController, startController: ViewController = null): ContentManager = {
+
+    if (contentPane == null)
+      throw new IllegalArgumentException("contentPane must not be NULL")
+
+    if (parentController == null)
+      throw new IllegalArgumentException("parentController must not be NULL")
 
     val result = BeanProvider.getContextualReference("contentManager", false, classOf[ContentManager])
     result.contentPane = contentPane

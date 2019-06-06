@@ -1,6 +1,5 @@
 package com.sfxcode.sapphire.core.fxml
 
-import java.lang.annotation.Annotation
 import java.net.URL
 import java.util.ResourceBundle
 
@@ -10,13 +9,10 @@ import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.scene.NodeLocator
-import com.sun.tools.javac.code.Symbol.ClassSymbol
 
 import scala.reflect.ClassTag
 import scala.reflect.runtime.{ universe => ru }
-import scalafx.scene.Scene
 import scalafx.scene.layout.Pane
-import scalafx.stage.Stage
 
 trait FxmlLoading extends NodeLocator with ConfigValues {
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
@@ -29,10 +25,6 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
 
   @Inject
   var converterFactory: ConverterProvider = _
-
-  def stage: Stage = applicationEnvironment.stage
-
-  def scene: Scene = applicationEnvironment.scene
 
   var fxml: AnyRef = _
   var rootPane: Pane = _

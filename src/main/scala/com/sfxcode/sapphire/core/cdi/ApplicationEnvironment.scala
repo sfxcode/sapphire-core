@@ -24,15 +24,9 @@ class ApplicationEnvironment extends Serializable {
 
   var fxmlExpressionResolver = new FxmlExpressionResolver[String, Any]
 
-  var stage: Stage = _
-
-  var scene: Scene = _
-
   var applicationController: AppController = _
 
   var resourceBundle: ResourceBundle = _
-
-  var actualSceneController: ViewController = _
 
   def loadResourceBundle(path: String): Unit = {
     val classLoader = Thread.currentThread().getContextClassLoader
