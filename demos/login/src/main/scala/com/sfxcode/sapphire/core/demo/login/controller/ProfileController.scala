@@ -5,10 +5,11 @@ import javafx.event.ActionEvent
 import com.sfxcode.sapphire.core.demo.login.LoginApplicationController
 import com.sfxcode.sapphire.core.value._
 import com.sfxcode.sapphire.core.demo.login.model.User
+import scalafx.scene.control.{CheckBox, TextField}
 
 class ProfileController extends ViewController {
 
-  lazy val userAdapter = FXBeanAdapter[User](this)
+  lazy val userAdapter: FXBeanAdapter[User] = FXBeanAdapter[User](this)
 
   override def didGainVisibility() {
     super.didGainVisibility()
@@ -35,7 +36,14 @@ class ProfileController extends ViewController {
   }
 
   def debugUserData() {
+
     println(locateTextField("user"))
+
+    println(locateSFX[javafx.scene.control.TextField, TextField]("user"))
+
+    val checkBox = locateSFX[javafx.scene.control.CheckBox, CheckBox]("#subscribed")
+    checkBox.foreach(cb => println(cb.selected.value))
+
     println(applicationController().applicationUser.get.bean)
   }
 }
