@@ -54,11 +54,9 @@ trait NodeLocator {
       if (constructors.length == 1) {
         val instance = constructors.head.newInstance(option.get)
         Some(instance.asInstanceOf[B])
-      }
-      else
+      } else
         None
-    }
-    else
+    } else
       None
   }
 

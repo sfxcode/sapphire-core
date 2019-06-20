@@ -23,6 +23,8 @@ class FXBeanPerformanceSpec extends Specification with LazyLogging {
 
       val time = System.currentTimeMillis() - start
 
+      logger.debug("time : %s".format(time))
+
       time must be lessThan 1000
 
     }

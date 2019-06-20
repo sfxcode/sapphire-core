@@ -2,9 +2,9 @@ package com.sfxcode.sapphire.core.controller
 
 import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
 import com.sun.javafx.css.StyleManager
+import javax.annotation.PreDestroy
 import javax.enterprise.event.Observes
 import scalafx.application.Platform
-import scalafx.scene.Scene
 import scalafx.stage.Stage
 
 abstract class AppController extends MainWindowController {
@@ -29,8 +29,14 @@ abstract class AppController extends MainWindowController {
     StyleManager.getInstance().stylesheetContainerMap.clear()
   }
 
-  def exit(): Unit = {
+  @PreDestroy
+  def preDestroy(): Unit = shutdown()
+
+  def shutdown(): Unit = {
     applicationWillStop()
+  }
+
+  def exit(): Unit = {
     Platform.exit()
   }
 

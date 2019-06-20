@@ -3,13 +3,13 @@ package com.sfxcode.sapphire.core.controller
 import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
-import com.sfxcode.sapphire.core.scene.{ ContentDidChangeEvent, ContentWillChangeEvent, NodeLocator }
+import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
 import javax.enterprise.event.Event
 import javax.inject.Inject
 import scalafx.beans.property.ObjectProperty
 import scalafx.collections.ObservableMap
-import scalafx.scene.{ Parent, Scene }
+import scalafx.scene.{Parent, Scene}
 import scalafx.stage.Stage
 
 case class SceneControllerWillChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
@@ -36,7 +36,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   def scene: Scene = sceneProperty.value
 
-  def isMainWindow:Boolean
+  def isMainWindow: Boolean
 
   def actualSceneController: ViewController = sceneControllerProperty.value
 

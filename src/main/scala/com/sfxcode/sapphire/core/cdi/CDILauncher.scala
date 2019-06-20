@@ -7,16 +7,16 @@ object CDILauncher {
 
   def init() {
     if (!initialized) {
-      val CdiContainer = CdiContainerLoader.getCdiContainer
-      CdiContainer.boot()
+      val container = CdiContainerLoader.getCdiContainer
+      container.boot()
       initialized = true
     }
   }
 
   def shutdown() {
     if (initialized) {
-      val CdiContainer = CdiContainerLoader.getCdiContainer
-      CdiContainer.shutdown()
+      val container = CdiContainerLoader.getCdiContainer
+      container.shutdown()
       initialized = false
     }
   }
