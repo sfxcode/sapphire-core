@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.demo.login.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import javafx.event.ActionEvent
 import com.sfxcode.sapphire.core.demo.login.LoginApplicationController
-import com.sfxcode.sapphire.core.value._
 import com.sfxcode.sapphire.core.demo.login.model.User
+import com.sfxcode.sapphire.core.value._
+import javafx.event.ActionEvent
 import scalafx.scene.control.{CheckBox, TextField}
 
 class ProfileController extends ViewController {

@@ -1,10 +1,7 @@
 import sbt.url
 
-import scala.xml.{Comment, Elem}
-
-
 import scala.xml.transform.{RewriteRule, RuleTransformer}
-import scala.xml.{Node => XmlNode, NodeSeq => XmlNodeSeq, _}
+import scala.xml.{Comment, Elem, Node => XmlNode, NodeSeq => XmlNodeSeq}
 
 name := "sapphire-core"
 
@@ -44,6 +41,7 @@ lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/logi
   description := "Sapphire Login Demo",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
     m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
   mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
 
 ).dependsOn(sapphire_core_root)
@@ -55,6 +53,7 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/is
   description := "Sapphire Issues Demo",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
     m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
   mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
 
 ).dependsOn(sapphire_core_root)
@@ -67,6 +66,7 @@ lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial
   description := "Sapphire Tutorial",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
     m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
   mainClass := Some("com.sfxcode.sapphire.core.demo.tutorial.Application")
 
 ).dependsOn(sapphire_core_root)
