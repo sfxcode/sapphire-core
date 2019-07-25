@@ -1,11 +1,10 @@
 package com.sfxcode.sapphire.core.demo.issues.model
 
-import com.sfxcode.sapphire.core.value.FXBean
-import scalafx.collections.ObservableBuffer
-import scalafx.collections.ObservableMap._
 import java.util.concurrent.atomic.AtomicInteger
-import com.sfxcode.sapphire.core.value.FXBeanCollections._
+
 import com.sfxcode.sapphire.core.Includes._
+import com.sfxcode.sapphire.core.value.FXBean
+import com.sfxcode.sapphire.core.value.FXBeanCollections._
 
 case class Issue(id: String, projectName: String, var status: String, var synopsis: String, var description: String)
 

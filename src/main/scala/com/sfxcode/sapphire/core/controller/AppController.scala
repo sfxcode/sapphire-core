@@ -2,10 +2,10 @@ package com.sfxcode.sapphire.core.controller
 
 import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
 import com.sun.javafx.css.StyleManager
+import javafx.application.Platform
+import javafx.stage.Stage
 import javax.annotation.PreDestroy
 import javax.enterprise.event.Observes
-import scalafx.application.Platform
-import scalafx.stage.Stage
 
 abstract class AppController extends MainWindowController {
 

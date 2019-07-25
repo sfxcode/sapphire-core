@@ -1,19 +1,17 @@
 package com.sfxcode.sapphire.core.cdi.provider
 
+import com.typesafe.scalalogging.LazyLogging
+import javafx.collections.{FXCollections, ObservableMap}
 import javafx.util.StringConverter
 import javafx.util.converter.DefaultStringConverter
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
-import com.typesafe.scalalogging.LazyLogging
-
-import scalafx.collections.ObservableMap
-
 @Named
 @ApplicationScoped
 class ConverterProvider extends Serializable with LazyLogging {
 
-  val converterMap: ObservableMap[String, StringConverter[_]] = ObservableMap[String, StringConverter[_]]()
+  val converterMap: ObservableMap[String, StringConverter[_]] = FXCollections.emptyObservableMap[String, StringConverter[_]]()
 
   def getConverterByName[T](name: String, forceNew: Boolean = false): StringConverter[T] = {
 
@@ -21,8 +19,8 @@ class ConverterProvider extends Serializable with LazyLogging {
     if (!name.contains("."))
       className = "javafx.util.converter." + guessConverterName(name)
 
-    if (!forceNew && converterMap.contains(className)) {
-      converterMap(className).asInstanceOf[StringConverter[T]]
+    if (!forceNew && converterMap.containsKey(className)) {
+      converterMap.get(className).asInstanceOf[StringConverter[T]]
     } else {
 
       var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]

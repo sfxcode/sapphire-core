@@ -1,8 +1,7 @@
 package com.sfxcode.sapphire.core.test
 
 import com.sfxcode.sapphire.core.controller.ViewController
-
-import scalafx.scene.layout.HBox
+import javafx.scene.layout.HBox
 
 class TestViewController extends ViewController {
 

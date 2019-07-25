@@ -1,20 +1,15 @@
 package com.sfxcode.sapphire.core.demo.issues.controller
 
-import javafx.event.ActionEvent
-import javafx.fxml.FXML
-import javafx.scene.control.{ Button, ListView, TableView }
-import javafx.scene.layout.AnchorPane
-import javax.inject.Inject
-
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.issues.EmptyName
-import com.sfxcode.sapphire.core.demo.issues.model.{ Issue, IssueDataBase }
+import com.sfxcode.sapphire.core.demo.issues.model.{Issue, IssueDataBase}
 import com.sfxcode.sapphire.core.value._
 import com.typesafe.scalalogging.LazyLogging
-
-import scalafx.Includes._
-import scalafx.collections.ObservableBuffer
-import scalafx.scene.control.SelectionMode
+import javafx.event.ActionEvent
+import javafx.fxml.FXML
+import javafx.scene.control.{Button, ListView, SelectionMode, TableView}
+import javafx.scene.layout.AnchorPane
+import javax.inject.Inject
 
 class IssueTrackingLiteController extends ViewController with LazyLogging {
 

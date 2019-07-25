@@ -1,12 +1,8 @@
 package com.sfxcode.sapphire.core.scene
 
-import javafx.scene.Node
-import scalafx.delegate.SFXDelegate
-import scalafx.scene.Scene
-import scalafx.scene.control._
-import scalafx.stage.Stage
-
-import scala.reflect.ClassTag
+import javafx.scene.control._
+import javafx.scene.{Node, Scene}
+import javafx.stage.Stage
 
 trait NodeLocator {
 
@@ -16,12 +12,11 @@ trait NodeLocator {
 
   def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
     if (parent == null) {
-      val delegate = scene.delegate
-      val lookupResult = delegate.lookup(nodeId)
+      val lookupResult = scene.lookup(nodeId)
       if (lookupResult != null)
         Some(lookupResult)
       else {
-        val lookupByIdResult = delegate.lookup("#" + nodeId)
+        val lookupByIdResult = scene.lookup("#" + nodeId)
         Option(lookupByIdResult)
       }
     } else {
@@ -44,36 +39,22 @@ trait NodeLocator {
       None
   }
 
-  def locateSFX[A <: Node, B <: SFXDelegate[A]](nodeId: String, parent: Node = null)(implicit ct: ClassTag[B]): Option[B] = {
-    val option = locate[A](nodeId, parent)
-    if (option.isDefined) {
-      val constructors = ct.runtimeClass.getConstructors.filter(c => {
-        c.getParameters.length == 1 && "delegate".equals(c.getParameters.head.getName)
-      })
 
-      if (constructors.length == 1) {
-        val instance = constructors.head.newInstance(option.get)
-        Some(instance.asInstanceOf[B])
-      } else
-        None
-    } else
-      None
-  }
 
   def locateTextField(nodeId: String, parent: Node = null): Option[TextField] = {
-    locateSFX[javafx.scene.control.TextField, TextField](nodeId, parent)
+    locate[TextField](nodeId, parent)
   }
 
   def locateLabel(nodeId: String, parent: Node = null): Option[Label] = {
-    locateSFX[javafx.scene.control.Label, Label](nodeId, parent)
+    locate[Label](nodeId, parent)
   }
 
   def locateComboBox[T <: Any](nodeId: String, parent: Node = null): Option[ComboBox[T]] = {
-    locateSFX[javafx.scene.control.ComboBox[T], ComboBox[T]](nodeId, parent)
+    locate[ComboBox[T]](nodeId, parent)
   }
 
   def locateButton(nodeId: String, parent: Node = null): Option[Button] = {
-    locateSFX[javafx.scene.control.Button, Button](nodeId, parent)
+    locate[Button](nodeId, parent)
   }
 
 }

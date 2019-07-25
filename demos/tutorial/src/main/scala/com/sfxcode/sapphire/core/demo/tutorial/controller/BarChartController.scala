@@ -1,9 +1,7 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import javafx.fxml.FXML
-import scalafx.Includes._
-import scalafx.collections.ObservableBuffer
-import scalafx.scene.chart.XYChart
+import javafx.scene.chart.XYChart
 
 class BarChartController extends AbstractViewController {
 

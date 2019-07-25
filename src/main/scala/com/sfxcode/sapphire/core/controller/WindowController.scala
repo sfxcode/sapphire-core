@@ -5,13 +5,14 @@ import java.util.ResourceBundle
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
+import javafx.beans.property.SimpleObjectProperty
+import javafx.collections.{FXCollections, ObservableMap}
+import javafx.scene.{Parent, Scene}
+import javafx.stage.Stage
 import javax.enterprise.event.Event
 import javax.inject.Inject
-import scalafx.beans.property.ObjectProperty
-import scalafx.collections.ObservableMap
-import scalafx.scene.{Parent, Scene}
-import scalafx.stage.Stage
 
+import scala.collection.JavaConverters._
 case class SceneControllerWillChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
 
 case class SceneControllerDidChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
@@ -22,23 +23,23 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent] = _
 
-  var stageProperty = new ObjectProperty[Stage]()
+  var stageProperty = new SimpleObjectProperty[Stage]()
 
-  var sceneProperty = new ObjectProperty[Scene]()
+  var sceneProperty = new SimpleObjectProperty[Scene]()
 
-  var sceneControllerProperty = new ObjectProperty[ViewController]()
+  var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
 
-  val sceneMap: ObservableMap[Parent, Scene] = ObservableMap[Parent, Scene]()
+  val sceneMap: ObservableMap[Parent, Scene] = FXCollections.emptyObservableMap[Parent, Scene]()
 
   def setStage(stage: Stage)
 
-  def stage: Stage = stageProperty.value
+  def stage: Stage = stageProperty.getValue
 
-  def scene: Scene = sceneProperty.value
+  def scene: Scene = sceneProperty.getValue
 
   def isMainWindow: Boolean
 
-  def actualSceneController: ViewController = sceneControllerProperty.value
+  def actualSceneController: ViewController = sceneControllerProperty.getValue
 
   def replaceSceneContent(newController: ViewController, resize: Boolean = true) {
     val oldController = actualSceneController
@@ -86,7 +87,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   def replaceSceneContentWithNode(content: Parent, resize: Boolean = true) {
 
-    val newScene = sceneMap.getOrElse(content, {
+    val newScene = sceneMap.asScala.getOrElse(content, {
       val scene = new Scene(content)
       sceneMap.put(content, scene)
       scene

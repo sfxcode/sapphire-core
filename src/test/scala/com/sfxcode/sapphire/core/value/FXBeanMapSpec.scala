@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.value.FXBeanClassMemberInfo._
+import javafx.beans.property.StringProperty
 import org.specs2.mutable.Specification
 
 import scala.collection.mutable
-import scalafx.beans.property.StringProperty
 
 class FXBeanMapSpec extends Specification {
 

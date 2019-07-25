@@ -1,24 +1,22 @@
 package com.sfxcode.sapphire.core.cdi
 
-import java.util.{ Locale, ResourceBundle }
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
+import java.util.{Locale, ResourceBundle}
 
-import com.sfxcode.sapphire.core.controller.{ AppController, ViewController }
+import com.sfxcode.sapphire.core.controller.{AppController, ViewController}
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
+import javafx.collections.{FXCollections, ObservableMap}
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Named
 
 import scala.reflect.ClassTag
-import scalafx.collections.ObservableMap
-import scalafx.scene.Scene
-import scalafx.stage.Stage
 
 @Named
 @ApplicationScoped
 class ApplicationEnvironment extends Serializable {
 
-  var controllerMap: ObservableMap[String, ViewController] = ObservableMap[String, ViewController]()
+  var controllerMap: ObservableMap[String, ViewController] = FXCollections.emptyObservableMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
@@ -47,8 +45,8 @@ class ApplicationEnvironment extends Serializable {
 
   def getController[T <: ViewController](implicit ct: ClassTag[T]): Option[T] = {
     val key = ct.runtimeClass.getName
-    if (controllerMap.isDefinedAt(key)) {
-      Some(controllerMap(key).asInstanceOf[T])
+    if (controllerMap.containsKey(key)) {
+      Some(controllerMap.get(key).asInstanceOf[T])
     } else {
       None
     }

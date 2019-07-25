@@ -1,12 +1,14 @@
 package com.sfxcode.sapphire.core.value
 
+import javafx.collections.FXCollections
+
+import scala.collection.JavaConverters._
 import scala.reflect.runtime.universe._
-import scalafx.collections.ObservableMap
 
 class KeyBindings {
-  val bindingMap = ObservableMap[String, String]()
+  val bindingMap = FXCollections.emptyObservableMap[String, String]()
 
-  def apply(key: String) = bindingMap(key)
+  def apply(key: String): String = bindingMap.get(key)
 
   def add(nodeKey: String, memberKey: String): KeyBindings = {
     bindingMap.put(nodeKey, memberKey)
@@ -27,7 +29,7 @@ class KeyBindings {
     this
   }
 
-  def keys = bindingMap.keys
+  def keys = bindingMap.keySet().asScala
 
 }
 

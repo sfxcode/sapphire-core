@@ -1,15 +1,13 @@
 package com.sfxcode.sapphire.core.scene
 
-import javax.enterprise.event.Event
-import javax.inject.{ Inject, Named }
-
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
+import javafx.beans.property.{SimpleBooleanProperty, SimpleIntegerProperty}
+import javafx.scene.Node
+import javafx.scene.layout.Pane
+import javax.enterprise.event.Event
+import javax.inject.{Inject, Named}
 import org.apache.deltaspike.core.api.provider.BeanProvider
-
-import scalafx.beans.property.{ BooleanProperty, IntegerProperty }
-import scalafx.scene.Node
-import scalafx.scene.layout.Pane
 
 case class ContentWillChangeEvent(pane: Pane, parentController: ViewController, newController: ViewController, oldController: ViewController)
 
@@ -18,8 +16,8 @@ case class ContentDidChangeEvent(pane: Pane, parentController: ViewController, n
 @Named
 class ContentManager extends LazyLogging {
   private val controllerStack = ControllerStack(this)
-  val stackSize = IntegerProperty(0)
-  var useStack = BooleanProperty(false)
+  val stackSize = new SimpleIntegerProperty(0)
+  var useStack = new SimpleBooleanProperty(false)
 
   var contentPane: Pane = _
 
@@ -40,18 +38,18 @@ class ContentManager extends LazyLogging {
 
   def addToStack(viewController: ViewController): Unit = {
     controllerStack.push(viewController)
-    stackSize.value = controllerStack.size
+    stackSize.setValue(controllerStack.size)
   }
 
   def loadFromStack(): Option[ViewController] = {
     val result = controllerStack.pop()
-    stackSize.value = controllerStack.size
+    stackSize.setValue(controllerStack.size)
     result
   }
 
   def loadFromStackUntil[T <: ViewController](): Option[T] = {
     val result = controllerStack.popUntil[T]()
-    stackSize.value = controllerStack.size
+    stackSize.setValue(controllerStack.size)
     result
   }
 
@@ -75,7 +73,7 @@ class ContentManager extends LazyLogging {
         }
 
       try {
-        newController.windowController.set(parentController.windowController.value)
+        newController.windowController.set(parentController.windowController.getValue)
         contentWillChange.fire(ContentWillChangeEvent(contentPane, parentController, newController, actualController))
         newController.willGainVisibility()
       } catch {
@@ -84,7 +82,7 @@ class ContentManager extends LazyLogging {
 
       if (oldController != null) {
         removePaneContent(oldController.rootPane)
-        oldController.managedParent.value = null
+        oldController.managedParent.setValue(null)
         parentController.removeChildViewController(oldController)
         try {
           oldController.didLooseVisibility()
@@ -94,11 +92,11 @@ class ContentManager extends LazyLogging {
       }
 
       lastController = oldController
-      if (useStack.value && pushToStack)
+      if (useStack.getValue && pushToStack)
         controllerStack.push(oldController)
 
       addPaneContent(newController.rootPane)
-      newController.managedParent.value = parentController
+      newController.managedParent.setValue(parentController)
 
       if (!newController.gainVisibility) {
         try {

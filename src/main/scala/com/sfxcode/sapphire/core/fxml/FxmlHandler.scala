@@ -1,14 +1,14 @@
 package com.sfxcode.sapphire.core.fxml
 
-import java.io.{ IOException, InputStream }
+import java.io.{IOException, InputStream}
 
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
-import javafx.{ util => jfxu }
+import javafx.scene.layout.Pane
+import javafx.{util => jfxu}
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
-import scalafx.scene.layout.Pane
 
 @ApplicationScoped
 class FxmlHandler {

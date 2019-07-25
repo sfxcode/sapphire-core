@@ -3,25 +3,24 @@ package com.sfxcode.sapphire.core.el
 import java.lang.reflect.Method
 import java.util.Date
 
-import com.sfxcode.sapphire.core.BuildInfo
 import com.sfxcode.sapphire.core.base.ConfigValues
-import javax.el.FunctionMapper
 import com.sfxcode.sapphire.core.value.FXBean
 import com.typesafe.scalalogging.LazyLogging
-import scalafx.collections.ObservableMap
+import javafx.collections.{FXCollections, ObservableMap}
+import javax.el.FunctionMapper
 
 class BaseFunctionMapper extends FunctionMapper with LazyLogging {
-  val map: ObservableMap[String, Method] = ObservableMap[String, Method]()
+  val map: ObservableMap[String, Method] = FXCollections.emptyObservableMap[String, Method]()
 
   def resolveFunction(prefix: String, localName: String): Method = {
-    map(key(prefix, localName))
+    map.get(key(prefix, localName))
   }
 
   def addFunction(prefix: String, localName: String, method: Method): Option[Method] = {
     val functionKey = key(prefix, localName)
-    if (map.contains(functionKey))
+    if (map.containsKey(functionKey))
       logger.warn("function override for key: %s".format(functionKey))
-    map.put(functionKey, method)
+    Some(map.put(functionKey, method))
   }
 
   def key(prefix: String, localName: String): String = {

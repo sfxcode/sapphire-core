@@ -1,9 +1,8 @@
 package com.sfxcode.sapphire.core.scene
 
+import javafx.beans.property.Property
 import javafx.scene.Node
 
-import scalafx.beans.property.Property
-
 trait NodePropertyResolving {
-  def resolve(node: Node): Option[Property[_, _ <: Any]]
+  def resolve(node: Node): Option[Property[_]]
 }

@@ -1,15 +1,12 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
+import com.sfxcode.sapphire.core.demo.tutorial.model.{Person, PersonFactory}
+import com.sfxcode.sapphire.core.fxml.FxmlLoader
+import com.sfxcode.sapphire.core.value.{FXBean, FXBeanAdapter, KeyBindings}
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.TableView
 import javafx.scene.layout.GridPane
-import com.sfxcode.sapphire.core.Includes._
-import com.sfxcode.sapphire.core.demo.tutorial.model.{ Person, PersonFactory }
-import com.sfxcode.sapphire.core.fxml.FxmlLoader
-import com.sfxcode.sapphire.core.value.{ FXBean, FXBeanAdapter, KeyBindings }
-import scalafx.Includes._
-import scalafx.collections.ObservableBuffer
 
 @FxmlLoader(path = "/fxml/widget/Person.fxml")
 class PersonController extends AbstractViewController {

@@ -4,15 +4,15 @@ import java.net.URL
 import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.base.ConfigValues
-import javax.inject.Inject
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.scene.NodeLocator
+import javafx.scene.layout.Pane
+import javax.inject.Inject
 
 import scala.reflect.ClassTag
-import scala.reflect.runtime.{ universe => ru }
-import scalafx.scene.layout.Pane
+import scala.reflect.runtime.{universe => ru}
 
 trait FxmlLoading extends NodeLocator with ConfigValues {
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)

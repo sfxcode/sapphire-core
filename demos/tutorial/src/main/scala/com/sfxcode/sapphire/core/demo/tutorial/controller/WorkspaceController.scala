@@ -1,8 +1,7 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import javafx.fxml.FXML
-import scalafx.collections.ObservableBuffer
-import scalafx.scene.chart.PieChart
+import javafx.scene.chart.PieChart
 
 class WorkspaceController extends AbstractViewController {
 

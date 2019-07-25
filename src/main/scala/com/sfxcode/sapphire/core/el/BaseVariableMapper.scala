@@ -1,14 +1,13 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el.{ ValueExpression, VariableMapper }
-
-import scalafx.collections.ObservableMap
+import javafx.collections.FXCollections
+import javax.el.{ValueExpression, VariableMapper}
 
 class BaseVariableMapper extends VariableMapper {
-  val map = ObservableMap[String, ValueExpression]()
+  val map = FXCollections.emptyObservableMap[String, ValueExpression]()
 
   def resolveVariable(variable: String): ValueExpression = {
-    map.getOrElse(variable, null)
+    map.getOrDefault(variable, null)
   }
 
   def removeVariable(variable: String) {

@@ -2,13 +2,11 @@ package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
+import javafx.event.ActionEvent
+import javafx.scene.control.{Button, Label}
+import javafx.scene.layout.HBox
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
-import scalafx.Includes._
-import scalafx.event.ActionEvent
-import scalafx.geometry.Insets
-import scalafx.scene.control.{ Button, Label }
-import scalafx.scene.layout.HBox
 
 @Named
 @ApplicationScoped

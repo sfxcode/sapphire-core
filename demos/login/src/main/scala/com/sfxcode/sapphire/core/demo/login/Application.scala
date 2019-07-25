@@ -1,16 +1,14 @@
 package com.sfxcode.sapphire.core.demo.login
 
-import com.sfxcode.sapphire.core.BuildInfo
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
 import com.sfxcode.sapphire.core.cdi.FXApp
 import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.login.controller.{ LoginController, ProfileController }
+import com.sfxcode.sapphire.core.demo.login.controller.{LoginController, ProfileController}
 import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value.FXBean
-import scalafx.application.JFXApp.PrimaryStage
-import scalafx.scene.Scene
-import scalafx.stage.Stage
+import javafx.scene.Scene
+import javafx.stage.Stage
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Named
 
 object Application extends FXApp {
 

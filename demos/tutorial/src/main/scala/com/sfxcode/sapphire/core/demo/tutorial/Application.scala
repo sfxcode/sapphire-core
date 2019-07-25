@@ -1,11 +1,8 @@
 package com.sfxcode.sapphire.core.demo.tutorial
 
-import com.sfxcode.sapphire.core.BuildInfo
 import com.sfxcode.sapphire.core.cdi.FXApp
-import scalafx.application.JFXApp
-import scalafx.application.JFXApp.PrimaryStage
-import scalafx.scene.Scene
-import scalafx.stage.Stage
+import javafx.scene.Scene
+import javafx.stage.Stage
 
 object Application extends FXApp {
 
