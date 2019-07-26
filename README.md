@@ -6,6 +6,9 @@ A JavaFX Application Framework for Scala User.
 
 Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.github.io/sapphire-core)
 
+## VMOpts
+
+--module-path /projects/sdk/javafx-sdk-11.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.base,javafx.media
 
 ## Travis
 

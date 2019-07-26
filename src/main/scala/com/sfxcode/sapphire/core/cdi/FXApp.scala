@@ -7,6 +7,7 @@ import javafx.scene.Scene
 import javafx.scene.layout.HBox
 import javafx.stage.Stage
 import javax.enterprise.util.AnnotationLiteral
+import org.apache.deltaspike.core.api.provider.BeanProvider
 
 class FXApp extends Application with ConfigValues {
 
@@ -62,8 +63,8 @@ class FXApp extends Application with ConfigValues {
   override def start(stage: Stage): Unit = {
     CDILauncher.init()
     ////
-    ////     val fxApp = BeanProvider.getContextualReference(classOf[ApplicationLauncher], false)
-    ////     fxApp.launch(stage, startupLiteral)
+    val fxApp = BeanProvider.getContextualReference(classOf[ApplicationLauncher], false)
+    fxApp.launch(stage, startupLiteral)
     stage.show()
 
   }
