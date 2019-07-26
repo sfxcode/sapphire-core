@@ -11,7 +11,7 @@ crossScalaVersions := Seq("2.12.8", "2.11.12")
 
 scalaVersion := crossScalaVersions.value.head
 
-val JavaFXVersion = "12.0.1"
+val JavaFXVersion = "11.0.2"
 val ScalaFXVersion = "12.0.1-R17"
 
 val osName = System.getProperty("os.name") match {
@@ -111,7 +111,7 @@ libraryDependencies += "com.typesafe" % "config" % "1.3.4"
 
 // UI
 
-libraryDependencies += "org.scalafx" %% "scalafx" % ScalaFXVersion
+// libraryDependencies += "org.scalafx" %% "scalafx" % ScalaFXVersion
 
 // CDI
 

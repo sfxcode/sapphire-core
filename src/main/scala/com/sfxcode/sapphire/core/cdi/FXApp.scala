@@ -2,21 +2,26 @@ package com.sfxcode.sapphire.core.cdi
 
 import com.sfxcode.sapphire.core.base.ConfigValues
 import com.sfxcode.sapphire.core.cdi.annotation._
-import com.sfxcode.sapphire.core.cdi.provider.ApplicationParametersProvider
 import javafx.application.Application
+import javafx.scene.Scene
+import javafx.scene.layout.HBox
 import javafx.stage.Stage
 import javax.enterprise.util.AnnotationLiteral
-import org.apache.deltaspike.core.api.provider.BeanProvider
 
-abstract class FXApp extends Application with ConfigValues {
+class FXApp extends Application with ConfigValues {
 
-  init(applicationStage)
+  //init(applicationStage)
 
   def applicationStage: Stage = createPrimaryStage
 
   def createPrimaryStage: Stage = {
     val result = new Stage()
     result.setWidth(configIntValue("sapphire.core.defaultStage.width"))
+    result.setHeight(configIntValue("sapphire.core.defaultStage.height"))
+    val region = new HBox()
+    val scene = new Scene(region)
+    result.setScene(scene)
+
 
     //    stageWidth: Int
     //  } = configIntValue("sapphire.core.defaultStage.width"),
@@ -32,16 +37,13 @@ abstract class FXApp extends Application with ConfigValues {
     result
   }
 
-  def init(primaryStage: Stage) {
-    CDILauncher.init()
-    val parameterProvider = BeanProvider.getContextualReference(classOf[ApplicationParametersProvider], false)
+  override def init {
+    //val parameterProvider = BeanProvider.getContextualReference(classOf[ApplicationParametersProvider], false)
     // TODO
     //parameterProvider.setParameters(parameters)
 
     applicationWillLaunch()
 
-    val fxApp = BeanProvider.getContextualReference(classOf[ApplicationLauncher], false)
-    fxApp.launch(primaryStage, startupLiteral)
   }
 
   def applicationWillLaunch() {}
@@ -52,9 +54,18 @@ abstract class FXApp extends Application with ConfigValues {
     new AnnotationLiteral[Startup] {}
   }
 
-  def stopApp(): Unit = {
+  override def stop(): Unit = {
     applicationWillTerminate()
     CDILauncher.shutdown()
+  }
+
+  override def start(stage: Stage): Unit = {
+    CDILauncher.init()
+    ////
+    ////     val fxApp = BeanProvider.getContextualReference(classOf[ApplicationLauncher], false)
+    ////     fxApp.launch(stage, startupLiteral)
+    stage.show()
+
   }
 }
 
