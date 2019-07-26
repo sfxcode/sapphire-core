@@ -16,16 +16,16 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   val hasBeanProperty = new SimpleBooleanProperty(false)
 
-  hasBeanProperty <== beanProperty =!= null
+  hasBeanProperty.bind(beanProperty.isNotNull)
 
-  beanProperty.onChange((_, oldValue, newValue) => updateBean(oldValue, newValue))
+  beanProperty.addListener((_, oldValue, newValue) => updateBean(oldValue, newValue))
 
-  val nodeCache = FXCollections.emptyObservableMap[String, Option[javafx.scene.Node]]()
+  val nodeCache = FXCollections.observableHashMap[String, Option[javafx.scene.Node]]()
 
-  val converterMap = FXCollections.emptyObservableMap[StringProperty, StringConverter[_]]()
-  val bindingMap = FXCollections.emptyObservableMap[Property[_], String]()
+  val converterMap = FXCollections.observableHashMap[StringProperty, StringConverter[_]]()
+  val bindingMap = FXCollections.observableHashMap[Property[_ <: Any], String]()
 
-  val boundProperties = FXCollections.emptyObservableMap[Property[_], Property[_]]()
+  val boundProperties = FXCollections.observableHashMap[Property[_], Property[_]]()
 
   if (parent == null)
     parent = viewController.rootPane
@@ -47,14 +47,14 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   }
 
   protected def bindAll(bean: FXBean[T]) {
-    if (hasBeanProperty.getValue)
-      bindingMap.keySet().asScala.foreach(property => bindBidirectional(bean, property, bindingMap.get(property)))
+    //    if (hasBeanProperty.getValue)
+    //      bindingMap.keySet().asScala.foreach(property => bindBidirectional(bean, property, bindingMap.get(property)))
   }
 
   def addBinding(property: Property[_], beanKey: String, converter: Option[StringConverter[T]] = None) {
     if (converter.isDefined && property.isInstanceOf[StringProperty])
       converterMap.put(property.asInstanceOf[StringProperty], converter.get)
-    bindingMap.put(property.asInstanceOf[Property[_]], beanKey)
+    bindingMap.put(property.asInstanceOf[Property[Any]], beanKey)
   }
 
   def addBindings(keyBindings: KeyBindings) {
@@ -99,36 +99,36 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     converterMap.put(property, converter)
   }
 
-  protected def bindBidirectional(bean: FXBean[T], property: Property[_], beanKey: String) {
-    val observable = bean.getProperty(beanKey)
-    observable match {
-      case beanProperty: Property[Any, Any] => property match {
-        case stringProperty: StringProperty => bindBidirectionalFromStringProperty(stringProperty, observable, beanKey)
-        case p: Property[Any, Any] => bindBidirectionalFromProperty(p, beanProperty)
-      }
-      case _ =>
-    }
-  }
+  //  protected def bindBidirectional(bean: FXBean[T], property: Property[_], beanKey: String) {
+  //    val observable = bean.getProperty(beanKey)
+  //    observable match {
+  //      case beanProperty: Property[_] => property match {
+  //        case stringProperty: StringProperty => bindBidirectionalFromStringProperty(stringProperty, observable, beanKey)
+  //        case p: Property[_] => bindBidirectionalFromProperty(p, beanProperty)
+  //      }
+  //      case _ =>
+  //    }
+  //  }
 
-  protected def bindBidirectionalFromStringProperty(stringProperty: StringProperty, beanProperty: Property[_], beanKey: String) {
-    val converter = converterMap.asScala.get(stringProperty)
-    if (converter.isDefined) {
-      val c = converter.get
-      val bp = beanProperty.asInstanceOf[jfxbp.Property[_]]
-      stringProperty.bindBidirectional(bp, c)
-      boundProperties.put(stringProperty, beanProperty)
-    } else
-      beanProperty match {
-        case sp: StringProperty =>
-          stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[_]], viewController.converterFactory.getConverterByName[Any]("DefaultStringConverter"))
-          boundProperties.put(stringProperty, beanProperty)
-      }
-  }
-
-  protected def bindBidirectionalFromProperty(nodeProperty: Property[_], beanProperty: Property[_]) {
-    nodeProperty.bindBidirectional(beanProperty)
-    boundProperties.put(nodeProperty, beanProperty)
-  }
+  //  protected def bindBidirectionalFromStringProperty[T](stringProperty: StringProperty, beanProperty: Property[T], beanKey: String) {
+  //    val converter = converterMap.asScala.get(stringProperty)
+  //    if (converter.isDefined) {
+  //      val c = converter.get
+  //      val bp = beanProperty.asInstanceOf[jfxbp.Property[T]]
+  //      stringProperty.bindBidirectional[T](bp, c)
+  //      boundProperties.put(stringProperty, beanProperty)
+  //    } else
+  //      beanProperty match {
+  //        case sp: StringProperty =>
+  //          stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[_]], viewController.converterFactory.getConverterByName[Any]("DefaultStringConverter"))
+  //          boundProperties.put(stringProperty, beanProperty)
+  //      }
+  //  }
+  //
+  //  protected def bindBidirectionalFromProperty[T <:Any](nodeProperty: Property[T], beanProperty: Property[T]) {
+  //    nodeProperty.bindBidirectional(beanProperty)
+  //    boundProperties.put(nodeProperty, beanProperty)
+  //  }
 
   def revert() {
     if (hasBeanProperty.getValue)

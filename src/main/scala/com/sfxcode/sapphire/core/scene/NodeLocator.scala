@@ -39,8 +39,6 @@ trait NodeLocator {
       None
   }
 
-
-
   def locateTextField(nodeId: String, parent: Node = null): Option[TextField] = {
     locate[TextField](nodeId, parent)
   }

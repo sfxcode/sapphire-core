@@ -28,7 +28,6 @@ trait ValueIncludes {
     FXCollections.observableList[FXBean[T]](collection.map(item => FXBean[T](item)).toList.asJava)
   }
 
-
   implicit def observableListToCollection[T <: AnyRef](buffer: ObservableList[FXBean[T]]): Iterable[T] = {
     buffer.asScala.map(item => item.bean)
   }

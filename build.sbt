@@ -36,42 +36,42 @@ parallelExecution in Test := false
 lazy val sapphire_core_root = Project(id = "sapphire-core", base = file("."))
 
 
-lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/login")).settings(
-  name:= "sapphire-login-demo",
-  description := "Sapphire Login Demo",
-  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
-    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
-  mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
-
-).dependsOn(sapphire_core_root)
-
-addCommandAlias("run-login", "sapphire-login-demo/run")
-
-lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/issues")).settings(
-  name:= "sapphire-issues-demo",
-  description := "Sapphire Issues Demo",
-  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
-    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
-  mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
-
-).dependsOn(sapphire_core_root)
-
-addCommandAlias("run-issues", "sapphire-issues-demo/run")
-
-
-lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial")).settings(
-  name:= "sapphire-tutorial",
-  description := "Sapphire Tutorial",
-  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
-    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
-  mainClass := Some("com.sfxcode.sapphire.core.demo.tutorial.Application")
-
-).dependsOn(sapphire_core_root)
-
-addCommandAlias("run-tutorial", "sapphire-tutorial/run")
+//lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/login")).settings(
+//  name:= "sapphire-login-demo",
+//  description := "Sapphire Login Demo",
+//  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+//    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+//  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+//  mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
+//
+//).dependsOn(sapphire_core_root)
+//
+//addCommandAlias("run-login", "sapphire-login-demo/run")
+//
+//lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/issues")).settings(
+//  name:= "sapphire-issues-demo",
+//  description := "Sapphire Issues Demo",
+//  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+//    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+//  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+//  mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
+//
+//).dependsOn(sapphire_core_root)
+//
+//addCommandAlias("run-issues", "sapphire-issues-demo/run")
+//
+//
+//lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial")).settings(
+//  name:= "sapphire-tutorial",
+//  description := "Sapphire Tutorial",
+//  libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
+//    m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+//  libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+//  mainClass := Some("com.sfxcode.sapphire.core.demo.tutorial.Application")
+//
+//).dependsOn(sapphire_core_root)
+//
+//addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // resolvers
 

@@ -1,8 +1,6 @@
 package com.sfxcode.sapphire.core.demo.login.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.login.LoginApplicationController
-import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value._
 import javafx.event.ActionEvent
 import javafx.scene.control.{CheckBox, TextField}

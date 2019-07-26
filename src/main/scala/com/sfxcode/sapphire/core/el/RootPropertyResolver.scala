@@ -8,7 +8,7 @@ import javax.el.{ELContext, ELResolver, PropertyNotFoundException}
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
 class RootPropertyResolver extends ELResolver {
-  val map = FXCollections.emptyObservableMap[String, AnyRef]()
+  val map = FXCollections.observableHashMap[String, AnyRef]()
 
   def setValue(context: ELContext, base: Any, property: Any, value: AnyRef) {
     if (resolve(context, base, property))

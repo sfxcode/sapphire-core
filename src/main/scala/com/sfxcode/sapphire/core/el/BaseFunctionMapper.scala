@@ -10,24 +10,24 @@ import javafx.collections.{FXCollections, ObservableMap}
 import javax.el.FunctionMapper
 
 class BaseFunctionMapper extends FunctionMapper with LazyLogging {
-  val map: ObservableMap[String, Method] = FXCollections.emptyObservableMap[String, Method]()
+  val map: ObservableMap[String, Method] = FXCollections.observableHashMap[String, Method]()
 
   def resolveFunction(prefix: String, localName: String): Method = {
     map.get(key(prefix, localName))
   }
 
-  def addFunction(prefix: String, localName: String, method: Method): Option[Method] = {
+  def addFunction(prefix: String, localName: String, method: Method): Unit = {
     val functionKey = key(prefix, localName)
     if (map.containsKey(functionKey))
       logger.warn("function override for key: %s".format(functionKey))
-    Some(map.put(functionKey, method))
+    map.put(functionKey, method)
   }
 
   def key(prefix: String, localName: String): String = {
     "%s:%s".format(prefix, localName)
   }
 
-  def addFunction(prefix: String, localName: String, clazz: Class[_], methodName: String, args: Class[_]*): Option[Method] = {
+  def addFunction(prefix: String, localName: String, clazz: Class[_], methodName: String, args: Class[_]*): Unit = {
     var method: Method = null
     try {
       method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
@@ -36,8 +36,6 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
     }
     if (method != null)
       addFunction(prefix, localName, method)
-    else
-      None
   }
 
 }
@@ -61,8 +59,8 @@ object BaseFunctionMapper {
 }
 
 object DefaultFunctions extends ConfigValues {
-
-  def frameworkName(): String = BuildInfo.name
+  // todo
+  def frameworkName(): String = com.sfxcode.sapphire.core.BuildInfo.name
 
   def frameworkVersion(): String = BuildInfo.version
 

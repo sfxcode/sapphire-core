@@ -3,10 +3,11 @@ package com.sfxcode.sapphire.core.value
 import javafx.collections.FXCollections
 
 import scala.collection.JavaConverters._
+import scala.collection.mutable
 import scala.reflect.runtime.universe._
 
 class KeyBindings {
-  val bindingMap = FXCollections.emptyObservableMap[String, String]()
+  val bindingMap = FXCollections.observableHashMap[String, String]()
 
   def apply(key: String): String = bindingMap.get(key)
 
@@ -29,7 +30,7 @@ class KeyBindings {
     this
   }
 
-  def keys = bindingMap.keySet().asScala
+  def keys: mutable.Set[String] = bindingMap.keySet().asScala
 
 }
 

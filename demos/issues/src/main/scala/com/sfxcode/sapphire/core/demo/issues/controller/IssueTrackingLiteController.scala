@@ -1,8 +1,6 @@
 package com.sfxcode.sapphire.core.demo.issues.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.issues.EmptyName
-import com.sfxcode.sapphire.core.demo.issues.model.{Issue, IssueDataBase}
 import com.sfxcode.sapphire.core.value._
 import com.typesafe.scalalogging.LazyLogging
 import javafx.event.ActionEvent

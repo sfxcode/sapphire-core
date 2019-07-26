@@ -31,9 +31,9 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def scene: Scene = windowController.get.scene
 
-  protected val managedChildren = FXCollections.emptyObservableList[ViewController]()
+  protected val managedChildren = FXCollections.observableArrayList[ViewController]()
 
-  protected val unmanagedChildren = FXCollections.emptyObservableList[ViewController]()
+  protected val unmanagedChildren = FXCollections.observableArrayList[ViewController]()
 
   def parent: ViewController = managedParent.getValue
 

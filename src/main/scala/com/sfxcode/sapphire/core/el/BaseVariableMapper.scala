@@ -4,7 +4,7 @@ import javafx.collections.FXCollections
 import javax.el.{ValueExpression, VariableMapper}
 
 class BaseVariableMapper extends VariableMapper {
-  val map = FXCollections.emptyObservableMap[String, ValueExpression]()
+  val map = FXCollections.observableHashMap[String, ValueExpression]()
 
   def resolveVariable(variable: String): ValueExpression = {
     map.getOrDefault(variable, null)

@@ -27,10 +27,10 @@ class FXBean[T <: AnyRef](val bean: T, val typeHints: List[FXBeanClassMemberInfo
 
   lazy val hasChangesProperty = new SimpleBooleanProperty(bean, "_hasChanges", false)
 
-  lazy val propertyMap: ObservableMap[String, Property[_]] = FXCollections.emptyObservableMap[String, Property[_]]()
-  lazy val expressionMap: ObservableMap[String, Property[_]] = FXCollections.emptyObservableMap[String, Property[_]]()
+  lazy val propertyMap: ObservableMap[String, Property[_]] = FXCollections.observableHashMap[String, Property[_]]()
+  lazy val expressionMap: ObservableMap[String, Property[_]] = FXCollections.observableHashMap[String, Property[_]]()
 
-  lazy val changeManagementMap: ObservableMap[String, Any] = FXCollections.emptyObservableMap[String, Any]()
+  lazy val changeManagementMap: ObservableMap[String, Any] = FXCollections.observableHashMap[String, Any]()
 
   def apply(key: String): Any = {
     getValue(key)

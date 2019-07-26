@@ -1,6 +1,5 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
-import com.sfxcode.sapphire.core.demo.tutorial.model.{Person, PersonFactory}
 import com.sfxcode.sapphire.core.fxml.FxmlLoader
 import com.sfxcode.sapphire.core.value.{FXBean, FXBeanAdapter, KeyBindings}
 import javafx.event.ActionEvent

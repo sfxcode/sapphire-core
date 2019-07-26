@@ -2,8 +2,6 @@ package com.sfxcode.sapphire.core.demo.login
 
 import com.sfxcode.sapphire.core.cdi.FXApp
 import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.login.controller.{LoginController, ProfileController}
-import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value.FXBean
 import javafx.scene.Scene
 import javafx.stage.Stage

@@ -29,7 +29,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
 
-  val sceneMap: ObservableMap[Parent, Scene] = FXCollections.emptyObservableMap[Parent, Scene]()
+  val sceneMap: ObservableMap[Parent, Scene] = FXCollections.observableHashMap[Parent, Scene]()
 
   def setStage(stage: Stage)
 

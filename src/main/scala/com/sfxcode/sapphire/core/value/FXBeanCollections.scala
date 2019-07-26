@@ -1,19 +1,21 @@
 package com.sfxcode.sapphire.core.value
 
+import java.util
+
 import javafx.collections._
 
 object FXBeanCollections {
 
   def observableMap[K, V <: AnyRef]: ObservableMap[K, FXBean[V]] = {
-    FXCollections.emptyObservableMap[K, FXBean[V]]()
+    FXCollections.observableHashMap[K, FXBean[V]]()
   }
 
   def observableBuffer[T <: AnyRef]: ObservableList[FXBean[T]] = {
-    FXCollections.emptyObservableList[FXBean[T]]()
+    FXCollections.observableArrayList[FXBean[T]]()
   }
 
   def observableHashSet[T <: AnyRef]: ObservableSet[FXBean[T]] = {
-    FXCollections.emptyObservableSet[FXBean[T]]()
+    FXCollections.observableSet(new util.HashSet[FXBean[T]]())
   }
 
 }
