@@ -3,11 +3,12 @@ package com.sfxcode.sapphire.core.cdi
 import com.sfxcode.sapphire.core.base.ConfigValues
 import com.sfxcode.sapphire.core.cdi.annotation._
 import com.sfxcode.sapphire.core.cdi.provider.ApplicationParametersProvider
+import javafx.application.Application
 import javafx.stage.Stage
 import javax.enterprise.util.AnnotationLiteral
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
-abstract class FXApp extends ConfigValues {
+abstract class FXApp extends Application with ConfigValues {
 
   init(applicationStage)
 

@@ -59,10 +59,10 @@ object BaseFunctionMapper {
 }
 
 object DefaultFunctions extends ConfigValues {
-  // todo
+
   def frameworkName(): String = com.sfxcode.sapphire.core.BuildInfo.name
 
-  def frameworkVersion(): String = BuildInfo.version
+  def frameworkVersion(): String = com.sfxcode.sapphire.core.BuildInfo.version
 
   def boolString(value: Boolean, trueValue: String, falseValue: String): String = {
     if (value)
