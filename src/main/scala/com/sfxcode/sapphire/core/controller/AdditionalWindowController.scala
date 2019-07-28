@@ -6,6 +6,6 @@ abstract class AdditionalWindowController extends WindowController {
 
   val mainWindowController = new ObjectProperty[WindowController]()
 
-  override def isMainWindow: Boolean = false
+  def name: String
 
 }

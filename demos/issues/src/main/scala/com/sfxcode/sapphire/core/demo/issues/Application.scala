@@ -1,12 +1,11 @@
 package com.sfxcode.sapphire.core.demo.issues
 
-import com.sfxcode.sapphire.core.BuildInfo
+import com.sfxcode.sapphire.core.cdi.FXApp
+import com.sfxcode.sapphire.core.controller.DefaultWindowController
+import com.sfxcode.sapphire.core.demo.issues.controller.IssueTrackingLiteController
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
-import com.sfxcode.sapphire.core.cdi.FXApp
-import com.sfxcode.sapphire.core.controller.AppController
-import com.sfxcode.sapphire.core.demo.issues.controller.IssueTrackingLiteController
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
 import scalafx.scene.paint.Color._
@@ -34,7 +33,7 @@ case class EmptyName(name: String)
 
 @Named
 @ApplicationScoped
-class ApplicationController extends AppController {
+class ApplicationController extends DefaultWindowController {
   lazy val mainController = getController[IssueTrackingLiteController]()
 
   def applicationDidLaunch() {

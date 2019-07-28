@@ -1,18 +1,16 @@
 package com.sfxcode.sapphire.core.cdi
 
-import java.util.{ Locale, ResourceBundle }
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
+import java.util.{Locale, ResourceBundle}
 
-import com.sfxcode.sapphire.core.controller.{ AppController, ViewController }
+import com.sfxcode.sapphire.core.controller.{DefaultWindowController, ViewController}
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
+import javax.enterprise.context.ApplicationScoped
+import javax.inject.Named
+import scalafx.collections.ObservableMap
 
 import scala.reflect.ClassTag
-import scalafx.collections.ObservableMap
-import scalafx.scene.Scene
-import scalafx.stage.Stage
 
 @Named
 @ApplicationScoped
@@ -24,7 +22,7 @@ class ApplicationEnvironment extends Serializable {
 
   var fxmlExpressionResolver = new FxmlExpressionResolver[String, Any]
 
-  var applicationController: AppController = _
+  var defaultWindowController: DefaultWindowController = _
 
   var resourceBundle: ResourceBundle = _
 

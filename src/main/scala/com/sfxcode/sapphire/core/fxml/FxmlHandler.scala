@@ -1,11 +1,11 @@
 package com.sfxcode.sapphire.core.fxml
 
-import java.io.{ IOException, InputStream }
+import java.io.{IOException, InputStream}
 
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
-import javafx.{ util => jfxu }
+import javafx.{util => jfxu}
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 import scalafx.scene.layout.Pane
@@ -38,7 +38,8 @@ class FxmlHandler {
     try {
       inputStream = getClass.getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
-      fxmlLoader.setResources(applicationEnvironment.applicationController.resourceBundleForView(path))
+      val bundle = applicationEnvironment.defaultWindowController.resourceBundleForView(path)
+      fxmlLoader.setResources(bundle)
 
       fxmlLoader.load(inputStream).asInstanceOf[Parent]
 

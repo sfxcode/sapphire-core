@@ -2,8 +2,8 @@
 
 ## Application Environment powered by CDI
 
-- Application Controller
-- UI Controller loading
+- WindowController
+- ViewController
 - Parameter Provider
 - Configuration Provider
 - FXML Loading
@@ -12,7 +12,7 @@
 ## Bean Enhancement
 
 - Every Java / Scala Bean can be used for FXBean
-- FXBean has additional support for java/scala Maps
+- FXBean has additional support for Java/Scala Maps
 - FXBean resolves Expressions on bean
 - FXBean creates Properties needed for Binding on demand
 - FXBean has change management by default
@@ -22,6 +22,12 @@
 - Bindings by form id
 - Binding with converter
 - Adapter Pattern (FXBean Adapter)
+
+## WindowController
+
+- Stage
+- Scene
+- Replace Scene Content
 
 ## ViewController
 

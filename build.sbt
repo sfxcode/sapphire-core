@@ -11,7 +11,7 @@ crossScalaVersions := Seq("2.12.8", "2.11.12")
 
 scalaVersion := crossScalaVersions.value.head
 
-val JavaFXVersion = "12.0.1"
+val JavaFXVersion = "12.0.2"
 val ScalaFXVersion = "12.0.1-R17"
 
 val osName = System.getProperty("os.name") match {
@@ -71,6 +71,21 @@ lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial
 
 ).dependsOn(sapphire_core_root)
 
+lazy val docs = (project in file("docs"))
+  .enablePlugins(ParadoxSitePlugin)
+  .enablePlugins(ParadoxMaterialThemePlugin)
+  .enablePlugins(GhpagesPlugin)
+  .settings(
+    name := "sapphire core docs",
+    publish / skip := true,
+    ghpagesNoJekyll := true,
+    git.remoteRepo := "git@github.com:sfxcode/simple-mongo.git",
+    Compile / paradoxMaterialTheme ~= {
+      _.withRepository(uri("https://github.com/sfxcode/sapphire-core"))
+
+    }
+  )
+
 addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // resolvers
@@ -80,9 +95,9 @@ resolvers += "sonatype-snapshots" at "http://oss.sonatype.org/content/repositori
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.5.1" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.6.0" % Test
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.6" % Test
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 

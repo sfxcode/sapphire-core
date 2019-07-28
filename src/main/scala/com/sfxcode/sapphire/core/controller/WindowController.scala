@@ -30,13 +30,15 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   val sceneMap: ObservableMap[Parent, Scene] = ObservableMap[Parent, Scene]()
 
-  def setStage(stage: Stage)
-
+  def setStage(stage: Stage): Unit = {
+    stageProperty.set(stage)
+    sceneProperty.set(new Scene(stage.getScene))
+  }
   def stage: Stage = stageProperty.value
 
   def scene: Scene = sceneProperty.value
 
-  def isMainWindow: Boolean
+  def isMainWindow: Boolean = false
 
   def actualSceneController: ViewController = sceneControllerProperty.value
 

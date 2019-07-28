@@ -6,7 +6,7 @@ A sapphire application must contain an Application object that extends FXApp.
 
 applicationStage must be implemented.
 
-@@snip [Application](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala)
+@@snip [Application](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala)
 
 
 ## ApplicationController
@@ -17,7 +17,7 @@ Normally the main scene content is replaced by a ViewController.
 
 Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.
 
-@@snip [ApplicationController](../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala)
+@@snip [ApplicationController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala)
 
 ## MainWindowController
 
