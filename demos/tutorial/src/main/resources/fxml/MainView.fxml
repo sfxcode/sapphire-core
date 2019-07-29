@@ -14,7 +14,7 @@
             </top>
             <center>
                 <AnchorPane fx:id="workspacePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                            prefHeight="200.0"/>
+                            prefHeight="600.0" prefWidth="600.0"/>
             </center>
             <bottom>
                 <AnchorPane fx:id="statusPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
