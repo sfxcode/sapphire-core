@@ -1,17 +1,13 @@
 package com.sfxcode.sapphire.core.demo.issues.controller
 
-import javafx.event.ActionEvent
-import javafx.fxml.FXML
-import javafx.scene.control.{ Button, ListView, TableView }
-import javafx.scene.layout.AnchorPane
-import javax.inject.Inject
-
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.demo.issues.EmptyName
-import com.sfxcode.sapphire.core.demo.issues.model.{ Issue, IssueDataBase }
 import com.sfxcode.sapphire.core.value._
 import com.typesafe.scalalogging.LazyLogging
-
+import javafx.event.ActionEvent
+import javafx.fxml.FXML
+import javafx.scene.control.{Button, ListView, TableView}
+import javafx.scene.layout.AnchorPane
+import javax.inject.Inject
 import scalafx.Includes._
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.SelectionMode
@@ -55,7 +51,7 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
 
   override def didGainVisibility() {
     super.didGainVisibility()
-    logger.debug(applicationEnvironment.controllerMap.toString())
+    logger.debug(applicationEnvironment.viewControllerMap.toString())
     issueAdapter.addBindings(KeyBindings("synopsis", "description"))
     issueAdapter.addBinding(saveButton.visibleProperty(), "_hasChanges")
 
