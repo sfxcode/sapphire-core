@@ -2,6 +2,8 @@ package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
+import javafx.geometry.Insets
+import javafx.scene.control.{Button, Label}
 import javafx.scene.layout.HBox
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
@@ -11,41 +13,36 @@ import javax.inject.Named
 class StatusBarController extends ViewController with LazyLogging {
 
   rootPane = new HBox()
-  //  val actionLabel: Label = new Label {
-  //    text = "Status Bar Action Label ..."
-  //    padding = Insets(5)
-  //  }
-  //
-  //  val statusLabel: Label = new Label {
-  //    text = "Status Bar Status Label ..."
-  //    padding = Insets(5)
-  //  }
-  //
-  //  rootPane = new HBox {
-  //    id = "statusBar"
-  //    padding = Insets(5)
-  //    spacing = 10
-  //    children = List(
-  //      new Button {
-  //        text = "Status Button 1"
-  //        onAction = handleButtonAction(this)
-  //      },
-  //      new Button {
-  //        text = "Status Button 2"
-  //        onAction = handleButtonAction(this)
-  //      },
-  //      statusLabel,
-  //      actionLabel)
-  //  }
-  //
-  //  def handleButtonAction(button: Button): ActionEvent => Unit =
-  //    (_: ActionEvent) => {
-  //      logger.debug("%s".format(button.text))
-  //      updateLabel(button)
-  //    }
-  //
-  //  def updateLabel(button: Button): Unit = {
-  //    actionLabel.text = "%s clicked".format(button.getText)
-  //  }
+
+  val actionLabel: Label = new Label("Status Bar Action Label ...")
+  actionLabel.setPadding(new Insets(5))
+
+  val statusLabel: Label = new Label("Status Bar Status Label ...")
+  statusLabel.setPadding(new Insets(5))
+
+  val statusButton = new Button("Status Button 1")
+  statusButton.setOnAction(_ => {
+    logger.debug("%s".format(statusButton.getText))
+    updateLabel(statusButton)
+  })
+
+  val statusButton2 = new Button("Status Button 2")
+  statusButton2.setOnAction(_ => {
+    logger.debug("%s".format(statusButton2.getText))
+    updateLabel(statusButton2)
+  })
+
+  val box = new HBox()
+  box.setId("statusBar")
+  box.setPadding(new Insets(10))
+  box.setSpacing(10.0)
+
+  box.getChildren.addAll(statusButton, statusButton2, statusLabel, actionLabel)
+
+  rootPane = box
+
+  def updateLabel(button: Button): Unit = {
+    actionLabel.setText("%s clicked".format(button.getText))
+  }
 
 }

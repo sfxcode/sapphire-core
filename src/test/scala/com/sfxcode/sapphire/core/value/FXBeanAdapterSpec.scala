@@ -14,11 +14,11 @@ class FXBeanAdapterSpec extends Specification {
       adapter.viewController must haveSuperclass[ViewController]
     }
 
-    //    "be updated with FXBean" in {
-    //      adapter.hasBeanProperty.getValue must beFalse
-    //      adapter.beanProperty.getValue = testPerson
-    //      adapter.hasBeanProperty.getValue must beTrue
-    //    }
+    "be updated with FXBean" in {
+      adapter.hasBeanProperty.get must beFalse
+      adapter.beanProperty.setValue(testPerson)
+      adapter.hasBeanProperty.get must beTrue
+    }
   }
 
 }

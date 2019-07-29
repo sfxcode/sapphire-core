@@ -39,7 +39,7 @@ class PersonController extends AbstractViewController with ValueIncludes {
 
   def selectPerson(person: FXBean[Person]): Unit = {
     adapter.beanProperty.setValue(person)
-    //statusBarController.statusLabel.setText("%s selected".format(person.getValue("name")))
+    statusBarController.statusLabel.setText("%s selected".format(person.getValue("name")))
   }
 
   def actionRevert(event: ActionEvent): Unit = {

@@ -5,6 +5,7 @@ import com.sfxcode.sapphire.core.demo.login.LoginApplicationController
 import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value._
 import javafx.event.ActionEvent
+import javafx.scene.control.CheckBox
 
 class ProfileController extends ViewController {
 
@@ -36,12 +37,11 @@ class ProfileController extends ViewController {
 
   def debugUserData() {
 
-    println(locateTextField("user"))
+    val maybeTextField = locateTextField("user")
+    println(maybeTextField)
 
-    //    println(locateSFX[javafx.scene.control.TextField, TextField]("user"))
-    //
-    //    val checkBox = locateSFX[javafx.scene.control.CheckBox, CheckBox]("#subscribed")
-    //    checkBox.foreach(cb => println(cb.selected.value))
+    val checkBoxOption = locate[CheckBox]("#subscribed")
+    checkBoxOption.foreach(cb => println(cb.selectedProperty.get))
 
     println(applicationController().applicationUser.get.bean)
   }

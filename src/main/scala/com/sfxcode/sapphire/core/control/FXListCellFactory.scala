@@ -1,9 +1,8 @@
 package com.sfxcode.sapphire.core.control
 
+import com.sfxcode.sapphire.core.value.FXBean
 import javafx.scene.control._
 import javafx.util.Callback
-
-import com.sfxcode.sapphire.core.value.FXBean
 
 import scala.beans.BeanProperty
 
@@ -12,7 +11,6 @@ class FXListCellFactory[S <: AnyRef] extends Callback[ListView[FXBean[S]], ListC
   var property = ""
 
   def call(column: ListView[FXBean[S]]): ListCell[FXBean[S]] = {
-    // FXListCell[S](property)Con
     new FXListCell[FXBean[S]](property)
   }
 

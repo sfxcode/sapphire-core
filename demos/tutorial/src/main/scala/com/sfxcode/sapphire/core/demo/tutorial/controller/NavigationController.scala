@@ -13,7 +13,7 @@ class NavigationController extends AbstractViewController {
     val controller = getViewController[StatusBarController]()
     controller.foreach(c => {
       val button = event.getSource.asInstanceOf[Button]
-      //c.updateLabel(button)
+      c.updateLabel(button)
     })
   }
 
