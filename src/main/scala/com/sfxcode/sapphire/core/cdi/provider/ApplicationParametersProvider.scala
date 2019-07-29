@@ -1,9 +1,8 @@
 package com.sfxcode.sapphire.core.cdi.provider
 
+import javafx.application.Application.Parameters
 import javax.enterprise.inject.Produces
 import javax.inject.Singleton
-
-import scalafx.application.JFXApp.Parameters
 
 @Singleton
 class ApplicationParametersProvider {

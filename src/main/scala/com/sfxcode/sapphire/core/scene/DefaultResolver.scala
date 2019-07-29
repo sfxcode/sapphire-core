@@ -1,15 +1,13 @@
 package com.sfxcode.sapphire.core.scene
 
+import javafx.beans.property.Property
 import javafx.scene.Node
 import javafx.scene.control._
 import javafx.scene.text.Text
 
-import scalafx.Includes._
-import scalafx.beans.property.Property
-
 class DefaultResolver extends NodePropertyResolving {
 
-  def resolve(node: Node): Option[Property[_, _ <: Any]] = {
+  def resolve(node: Node): Option[Property[_]] = {
     node match {
       case label: Label => Some(label.textProperty())
       case text: Text => Some(text.textProperty())

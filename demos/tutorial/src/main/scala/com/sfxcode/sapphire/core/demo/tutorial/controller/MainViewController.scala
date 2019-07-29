@@ -6,9 +6,8 @@ import com.typesafe.scalalogging.LazyLogging
 import javafx.fxml.FXML
 import javafx.scene.layout.Pane
 import javax.enterprise.event.Observes
-import scalafx.Includes._
 
-class MainViewController extends ViewController with LazyLogging {
+class MainWindowController extends ViewController with LazyLogging {
 
   // #controllerLoading
   lazy val workspaceController: WorkspaceController =

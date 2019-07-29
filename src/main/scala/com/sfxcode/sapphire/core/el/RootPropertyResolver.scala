@@ -2,14 +2,13 @@ package com.sfxcode.sapphire.core.el
 
 import java.beans.FeatureDescriptor
 import java.util
-import javax.el.{ ELContext, ELResolver, PropertyNotFoundException }
 
+import javafx.collections.FXCollections
+import javax.el.{ELContext, ELResolver, PropertyNotFoundException}
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
-import scalafx.collections.ObservableMap
-
 class RootPropertyResolver extends ELResolver {
-  val map = ObservableMap[String, AnyRef]()
+  val map = FXCollections.observableHashMap[String, AnyRef]()
 
   def setValue(context: ELContext, base: Any, property: Any, value: AnyRef) {
     if (resolve(context, base, property))
@@ -19,8 +18,8 @@ class RootPropertyResolver extends ELResolver {
   def getValue(context: ELContext, base: Any, property: Any): AnyRef = {
     if (resolve(context, base, property)) {
       val propertyString: String = property.toString
-      if (map.contains(propertyString))
-        return map(propertyString)
+      if (map.containsKey(propertyString))
+        return map.get(propertyString)
       else {
         val result = BeanProvider.getContextualReference(propertyString, true)
         if (result == null)

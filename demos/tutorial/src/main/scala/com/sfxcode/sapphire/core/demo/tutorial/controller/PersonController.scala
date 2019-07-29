@@ -1,18 +1,16 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
+import com.sfxcode.sapphire.core.demo.tutorial.model.{Person, PersonFactory}
+import com.sfxcode.sapphire.core.fxml.FxmlLoader
+import com.sfxcode.sapphire.core.value.{FXBean, FXBeanAdapter, KeyBindings, ValueIncludes}
+import javafx.collections.ObservableList
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.TableView
 import javafx.scene.layout.GridPane
-import com.sfxcode.sapphire.core.Includes._
-import com.sfxcode.sapphire.core.demo.tutorial.model.{ Person, PersonFactory }
-import com.sfxcode.sapphire.core.fxml.FxmlLoader
-import com.sfxcode.sapphire.core.value.{ FXBean, FXBeanAdapter, KeyBindings }
-import scalafx.Includes._
-import scalafx.collections.ObservableBuffer
 
 @FxmlLoader(path = "/fxml/widget/Person.fxml")
-class PersonController extends AbstractViewController {
+class PersonController extends AbstractViewController with ValueIncludes {
 
   @FXML
   var tableView: TableView[FXBean[Person]] = _
@@ -22,7 +20,7 @@ class PersonController extends AbstractViewController {
 
   lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this)
 
-  def items: ObservableBuffer[FXBean[Person]] = PersonFactory.personList
+  def items: ObservableList[FXBean[Person]] = PersonFactory.personList
 
   override def didGainVisibilityFirstTime(): Unit = {
     super.didGainVisibilityFirstTime()
@@ -34,14 +32,14 @@ class PersonController extends AbstractViewController {
     adapter.addConverter("age", "IntegerStringConverter")
 
     tableView.setItems(items)
-    tableView.getSelectionModel.selectedItemProperty.onChange((_, _, newValue) => selectPerson(newValue))
+    tableView.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectPerson(newValue))
 
     editPane.visibleProperty().bind(adapter.hasBeanProperty)
   }
 
   def selectPerson(person: FXBean[Person]): Unit = {
-    adapter.beanProperty.value = person
-    statusBarController.statusLabel.setText("%s selected".format(person.getValue("name")))
+    adapter.beanProperty.setValue(person)
+    //statusBarController.statusLabel.setText("%s selected".format(person.getValue("name")))
   }
 
   def actionRevert(event: ActionEvent): Unit = {

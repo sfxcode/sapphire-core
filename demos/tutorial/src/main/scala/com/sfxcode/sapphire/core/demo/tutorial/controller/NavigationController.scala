@@ -3,7 +3,6 @@ package com.sfxcode.sapphire.core.demo.tutorial.controller
 import com.sfxcode.sapphire.core.demo.tutorial.ApplicationController
 import javafx.event.ActionEvent
 import javafx.scene.control.Button
-import scalafx.Includes._
 
 class NavigationController extends AbstractViewController {
 
@@ -14,7 +13,7 @@ class NavigationController extends AbstractViewController {
     val controller = getViewController[StatusBarController]()
     controller.foreach(c => {
       val button = event.getSource.asInstanceOf[Button]
-      c.updateLabel(button)
+      //c.updateLabel(button)
     })
   }
 

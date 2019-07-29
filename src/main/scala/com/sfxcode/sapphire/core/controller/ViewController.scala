@@ -7,14 +7,15 @@ import com.sfxcode.sapphire.core.base.ConfigValues
 import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
+import javafx.beans.property.SimpleObjectProperty
+import javafx.collections.FXCollections
 import javafx.fxml.Initializable
-import javax.annotation.{ PostConstruct, PreDestroy }
-import scalafx.beans.property.ObjectProperty
-import scalafx.collections.ObservableBuffer
-import scalafx.scene.Scene
-import scalafx.scene.layout.Pane
-import scalafx.stage.Stage
+import javafx.scene.Scene
+import javafx.scene.layout.Pane
+import javafx.stage.Stage
+import javax.annotation.{PostConstruct, PreDestroy}
 
+import scala.collection.JavaConverters._
 import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
@@ -22,19 +23,19 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
-  val windowController = new ObjectProperty[WindowController]()
+  val windowController = new SimpleObjectProperty[WindowController]()
 
-  val managedParent = new ObjectProperty[ViewController]()
+  val managedParent = new SimpleObjectProperty[ViewController]()
 
   def stage: Stage = windowController.get.stage
 
   def scene: Scene = windowController.get.scene
 
-  protected val managedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
+  protected val managedChildren = FXCollections.observableArrayList[ViewController]()
 
-  protected val unmanagedChildren: ObservableBuffer[ViewController] = ObservableBuffer[ViewController]()
+  protected val unmanagedChildren = FXCollections.observableArrayList[ViewController]()
 
-  def parent: ViewController = managedParent.value
+  def parent: ViewController = managedParent.getValue
 
   def addChildViewController(viewController: ViewController): Unit = {
     if (!managedChildren.contains(viewController))
@@ -73,8 +74,8 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   def canGainVisibility: Boolean = true
 
   def willGainVisibility(): Unit = {
-    managedChildren.foreach(_.willGainVisibility())
-    unmanagedChildren.foreach(_.willGainVisibility())
+    managedChildren.asScala.foreach(_.willGainVisibility())
+    unmanagedChildren.asScala.foreach(_.willGainVisibility())
   }
 
   def didGainVisibilityFirstTime(): Unit = {
@@ -82,20 +83,20 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   }
 
   def didGainVisibility(): Unit = {
-    managedChildren.foreach(_.didGainVisibility())
-    unmanagedChildren.foreach(_.didGainVisibility())
+    managedChildren.asScala.foreach(_.didGainVisibility())
+    unmanagedChildren.asScala.foreach(_.didGainVisibility())
   }
 
   def shouldLooseVisibility: Boolean = true
 
   def willLooseVisibility(): Unit = {
-    managedChildren.foreach(_.willLooseVisibility())
-    unmanagedChildren.foreach(_.willLooseVisibility())
+    managedChildren.asScala.foreach(_.willLooseVisibility())
+    unmanagedChildren.asScala.foreach(_.willLooseVisibility())
   }
 
   def didLooseVisibility(): Unit = {
-    managedChildren.foreach(_.didLooseVisibility())
-    unmanagedChildren.foreach(_.didLooseVisibility())
+    managedChildren.asScala.foreach(_.didLooseVisibility())
+    unmanagedChildren.asScala.foreach(_.didLooseVisibility())
   }
 
   def updatePaneContent(pane: Pane, viewController: ViewController): Boolean = {
@@ -109,7 +110,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
       } else {
         if (viewController.canGainVisibility)
           try {
-            viewController.managedParent.value = this
+            viewController.managedParent.setValue(this)
             viewController.windowController.set(windowController.get)
             viewController.willGainVisibility()
             pane.getChildren.add(viewController.rootPane)
