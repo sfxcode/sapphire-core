@@ -2,6 +2,7 @@ package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
+import javafx.scene.layout.HBox
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
@@ -9,6 +10,7 @@ import javax.inject.Named
 @ApplicationScoped
 class StatusBarController extends ViewController with LazyLogging {
 
+  rootPane = new HBox()
   //  val actionLabel: Label = new Label {
   //    text = "Status Bar Action Label ..."
   //    padding = Insets(5)

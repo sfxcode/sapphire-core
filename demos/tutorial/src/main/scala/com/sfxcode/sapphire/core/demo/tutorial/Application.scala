@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.demo.tutorial
 
-import com.sfxcode.sapphire.core.cdi.FXApp
+import com.sfxcode.sapphire.core.application.FXApp
+import javafx.stage.Stage
 
-class Application extends FXApp {
+object Application extends FXApp {
 
-  //JFXApp.AutoShow = true
-  //override def start(stage: Stage) =
+  override def stage: Stage = createDefaultStage
 }
 
