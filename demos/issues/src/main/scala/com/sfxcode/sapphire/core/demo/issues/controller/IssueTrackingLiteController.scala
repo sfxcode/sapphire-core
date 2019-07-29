@@ -1,16 +1,18 @@
 package com.sfxcode.sapphire.core.demo.issues.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
+import com.sfxcode.sapphire.core.demo.issues.EmptyName
+import com.sfxcode.sapphire.core.demo.issues.model.{Issue, IssueDataBase}
 import com.sfxcode.sapphire.core.value._
 import com.typesafe.scalalogging.LazyLogging
+import javafx.collections.FXCollections
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
-import javafx.scene.control.{Button, ListView, TableView}
+import javafx.scene.control.{Button, ListView, SelectionMode, TableView}
 import javafx.scene.layout.AnchorPane
 import javax.inject.Inject
-import scalafx.Includes._
-import scalafx.collections.ObservableBuffer
-import scalafx.scene.control.SelectionMode
+
+import scala.collection.JavaConverters._
 
 class IssueTrackingLiteController extends ViewController with LazyLogging {
 
@@ -34,8 +36,8 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
 
   lazy val issueAdapter = FXBeanAdapter[Issue](this, detailPane)
 
-  val displayedProjectNames = new ObservableBuffer[String]()
-  val displayedIssues = new ObservableBuffer[String]()
+  val displayedProjectNames = FXCollections.observableArrayList[String]
+  val displayedIssues = FXCollections.observableArrayList[String]
 
   override def didGainVisibilityFirstTime(): Unit = {
     super.didGainVisibilityFirstTime()
@@ -43,20 +45,20 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
     deleteButton.setVisible(false)
     saveButton.setVisible(false)
 
-    list.getSelectionModel.setSelectionMode(SelectionMode.Single)
-    list.getSelectionModel.selectedItemProperty.onChange((_, oldValue, newValue) => updateProject(oldValue, newValue))
-    table.getSelectionModel.selectedItemProperty.onChange((_, _, newValue) => selectIssue(newValue))
+    list.getSelectionModel.setSelectionMode(SelectionMode.SINGLE)
+    list.getSelectionModel.selectedItemProperty.addListener((_, oldValue, newValue) => updateProject(oldValue, newValue))
+    table.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectIssue(newValue))
 
   }
 
   override def didGainVisibility() {
     super.didGainVisibility()
-    logger.debug(applicationEnvironment.viewControllerMap.toString())
+    logger.debug(applicationEnvironment.controllerMap.toString())
     issueAdapter.addBindings(KeyBindings("synopsis", "description"))
     issueAdapter.addBinding(saveButton.visibleProperty(), "_hasChanges")
 
     // issueAdapter.parent = detailPane
-    displayedProjectNames.++=(IssueDataBase.projectNames.sortBy(name => name))
+    displayedProjectNames.addAll(IssueDataBase.projectNames.sorted())
     list.setItems(displayedProjectNames)
 
     detailPane.visibleProperty.bind(issueAdapter.hasBeanProperty)
@@ -64,10 +66,10 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
   }
 
   def selectedProjectName: Option[String] = {
-    val selected = list.getSelectionModel.selectedItem
-    if (selected.value == null)
+    val selected = list.getSelectionModel.getSelectedItem
+    if (selected == null)
       return None
-    Some(selected.value)
+    Some(selected)
   }
 
   def actionCreateIssue(event: ActionEvent) {
@@ -80,7 +82,7 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
 
   def actionDeleteIssue(event: ActionEvent) {
     selectedProjectName.foreach(projectName => {
-      IssueDataBase.deleteIssue(issueAdapter.beanProperty.value.bean.id)
+      IssueDataBase.deleteIssue(issueAdapter.beanProperty.getValue.bean.id)
       updateProject(projectName, projectName)
     })
   }
@@ -93,7 +95,7 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
     issue match {
       case issue: FXBean[Issue] =>
         issueAdapter.revert()
-        issueAdapter.beanProperty.value = issue
+        issueAdapter.beanProperty.setValue(issue)
       case _ =>
         issueAdapter.unset()
     }
@@ -107,8 +109,8 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
   def projectSelected(projectName: String) {
     projectName match {
       case name: String =>
-        val newItems = IssueDataBase.projectsMap(projectName)
-        newItems.foreach(item => table.getItems.add(item))
+        val newItems = IssueDataBase.projectsMap.get(projectName)
+        newItems.asScala.foreach(item => table.getItems.add(item))
     }
   }
 

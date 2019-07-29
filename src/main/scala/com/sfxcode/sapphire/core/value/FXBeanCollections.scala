@@ -10,7 +10,7 @@ object FXBeanCollections {
     FXCollections.observableHashMap[K, FXBean[V]]()
   }
 
-  def observableBuffer[T <: AnyRef]: ObservableList[FXBean[T]] = {
+  def observableList[T <: AnyRef]: ObservableList[FXBean[T]] = {
     FXCollections.observableArrayList[FXBean[T]]()
   }
 

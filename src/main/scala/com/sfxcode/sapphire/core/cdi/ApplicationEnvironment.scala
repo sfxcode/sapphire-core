@@ -6,9 +6,9 @@ import com.sfxcode.sapphire.core.controller.{DefaultWindowController, ViewContro
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
+import javafx.collections.{FXCollections, ObservableMap}
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
-import scalafx.collections.ObservableMap
 
 import scala.reflect.ClassTag
 
@@ -16,7 +16,7 @@ import scala.reflect.ClassTag
 @ApplicationScoped
 class ApplicationEnvironment extends Serializable {
 
-  var viewControllerMap: ObservableMap[String, ViewController] = ObservableMap[String, ViewController]()
+  var controllerMap: ObservableMap[String, ViewController] = FXCollections.observableHashMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
@@ -37,7 +37,7 @@ class ApplicationEnvironment extends Serializable {
   }
 
   def registerController(controller: ViewController): Unit = {
-    viewControllerMap.put(controller.getClass.getName, controller)
+    controllerMap.put(controller.getClass.getName, controller)
     val simpleName: String = controller.getClass.getSimpleName
     val expressionName = "%s%s".format(simpleName.head.toLower, simpleName.tail)
     Expressions.register(expressionName, controller)
@@ -45,8 +45,8 @@ class ApplicationEnvironment extends Serializable {
 
   def getController[T <: ViewController](implicit ct: ClassTag[T]): Option[T] = {
     val key = ct.runtimeClass.getName
-    if (viewControllerMap.isDefinedAt(key)) {
-      Some(viewControllerMap(key).asInstanceOf[T])
+    if (controllerMap.containsKey(key)) {
+      Some(controllerMap.get(key).asInstanceOf[T])
     } else {
       None
     }

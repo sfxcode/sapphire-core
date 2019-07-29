@@ -7,12 +7,11 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.12.8", "2.11.12")
+crossScalaVersions := Seq("2.12.8", "2.13.0")
 
 scalaVersion := crossScalaVersions.value.head
 
 val JavaFXVersion = "12.0.2"
-val ScalaFXVersion = "12.0.1-R17"
 
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux") => "linux"
@@ -122,10 +121,6 @@ scalaLoggingVersion := (scalaBinaryVersion.value match {
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion.value
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.4"
-
-// UI
-
-libraryDependencies += "org.scalafx" %% "scalafx" % ScalaFXVersion
 
 // CDI
 

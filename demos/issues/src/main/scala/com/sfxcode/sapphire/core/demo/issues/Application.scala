@@ -1,31 +1,14 @@
 package com.sfxcode.sapphire.core.demo.issues
 
-import com.sfxcode.sapphire.core.cdi.FXApp
+import com.sfxcode.sapphire.core.application.FXApp
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.issues.controller.IssueTrackingLiteController
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
-import scalafx.application.JFXApp.PrimaryStage
-import scalafx.scene.Scene
-import scalafx.scene.paint.Color._
-import scalafx.stage.Stage
+
 
 object Application extends FXApp {
-
-  override def applicationStage: Stage = {
-    new PrimaryStage {
-      title = "%s Issue Tracking Lite Sample (%s)".format(BuildInfo.name, BuildInfo.version)
-      minHeight = 500
-      width = 800
-      height = 600
-      scene = new Scene {
-        scene = new Scene {
-          fill = LightBlue
-        }
-      }
-    }
-  }
 
 }
 

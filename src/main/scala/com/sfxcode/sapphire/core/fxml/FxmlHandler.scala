@@ -38,7 +38,7 @@ class FxmlHandler {
     try {
       inputStream = getClass.getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
-      fxmlLoader.setResources(applicationEnvironment.applicationController.resourceBundleForView(path))
+      fxmlLoader.setResources(applicationEnvironment.defaultWindowController.resourceBundleForView(path))
 
       fxmlLoader.load(inputStream).asInstanceOf[Parent]
 

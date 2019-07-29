@@ -29,4 +29,3 @@ class FXApplication extends javafx.application.Application {
   }
 }
 
-

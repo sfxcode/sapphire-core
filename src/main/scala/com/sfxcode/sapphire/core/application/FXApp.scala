@@ -8,7 +8,7 @@ import javafx.stage.Stage
 
 trait FXApp extends ConfigValues {
 
-  def stage: Stage
+  def stage: Stage = createDefaultStage
 
   def main(args: Array[String]): Unit = {
     FXApp.App = this
@@ -20,13 +20,39 @@ trait FXApp extends ConfigValues {
   def applicationWillTerminate() {}
 
   def createDefaultStage: Stage = {
-    val result = new Stage()
-    result.setMinWidth(configIntValue("sapphire.core.defaultStage.width", 800))
-    result.setMinHeight(configIntValue("sapphire.core.defaultStage.height", 600))
+    val stage = new Stage()
+    stage.setWidth(width)
+    stage.setHeight(height)
+    if (forceMinWidth)
+      stage.setMinWidth(width)
+    if (forceMinHeight)
+      stage.setMinHeight(height)
+    if (forceMaxWidth)
+      stage.setMaxWidth(width)
+    if (forceMaxHeight)
+      stage.setMaxHeight(height)
+    stage.setTitle(title)
+    initStage(stage)
     val scene = new Scene(new HBox())
-    result.setScene(scene)
-    result
+    stage.setScene(scene)
+    stage
   }
+
+  def initStage(stage: Stage) {}
+
+  def title: String = configStringValue("sapphire.core.defaultStage.title", "SFX Application")
+
+  def width: Int = configIntValue("sapphire.core.defaultStage.width", 800)
+
+  def height: Int = configIntValue("sapphire.core.defaultStage.height", 600)
+
+  def forceMinWidth: Boolean = true
+
+  def forceMinHeight: Boolean = true
+
+  def forceMaxWidth: Boolean = false
+
+  def forceMaxHeight: Boolean = false
 
 }
 
