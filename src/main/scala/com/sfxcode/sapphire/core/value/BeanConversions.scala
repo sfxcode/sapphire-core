@@ -4,7 +4,7 @@ import javafx.collections.{FXCollections, ObservableList}
 
 import scala.collection.JavaConverters._
 
-trait ValueIncludes {
+trait BeanConversions {
 
   implicit def beanToFXBean[T <: AnyRef](bean: T): FXBean[T] = FXBean(bean)
 
@@ -25,7 +25,7 @@ trait ValueIncludes {
   }
 
   implicit def collectionToObservableList[T <: AnyRef](collection: Iterable[T]): ObservableList[FXBean[T]] = {
-    FXCollections.observableList[FXBean[T]](collection.map(item => FXBean[T](item)).toList.asJava)
+    FXCollections.observableArrayList[FXBean[T]](collection.map(item => FXBean[T](item)).toList.asJava)
   }
 
   implicit def observableListToCollection[T <: AnyRef](buffer: ObservableList[FXBean[T]]): Iterable[T] = {

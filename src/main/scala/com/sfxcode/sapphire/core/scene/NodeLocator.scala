@@ -10,7 +10,7 @@ trait NodeLocator {
 
   def scene: Scene
 
-  def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
+  private def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
     if (parent == null) {
       val lookupResult = scene.lookup(nodeId)
       if (lookupResult != null)

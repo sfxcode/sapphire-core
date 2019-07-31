@@ -5,23 +5,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0"
-            prefWidth="530.0" styleClass="person" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane styleClass="person" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+            AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.PersonController">
     <children>
-        <BorderPane prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+        <BorderPane maxHeight="300" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
              <TableView fx:id="tableView" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="150.0" text="ID">
+                  <TableColumn prefWidth="50.0" text="ID">
                     <cellValueFactory>
                         <FXValueFactory property="id" />
                     </cellValueFactory>
                         </TableColumn>
-                  <TableColumn prefWidth="150.0" text="Name">
+                  <TableColumn prefWidth="100.0" text="Name">
                       <cellValueFactory>
                           <FXValueFactory property="name" />
                       </cellValueFactory>
@@ -40,7 +38,7 @@
             </TableView>
          </center>
          <bottom>
-            <VBox id="personDetail" prefHeight="150.0" spacing="10.0" BorderPane.alignment="CENTER">
+             <VBox id="personDetail" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label id="person" prefHeight="16.0" prefWidth="226.0" text="Please select Person" />
                   <GridPane id="personPane" fx:id="editPane" maxWidth="250.0">
@@ -64,7 +62,7 @@
                   </GridPane>
                </children>
                <padding>
-                  <Insets left="5.0" top="5.0" />
+                   <Insets left="5.0" top="5.0" bottom="5.0"/>
                </padding></VBox>
          </bottom>
       </BorderPane>

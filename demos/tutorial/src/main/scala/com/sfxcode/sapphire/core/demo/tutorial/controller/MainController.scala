@@ -7,7 +7,7 @@ import javafx.fxml.FXML
 import javafx.scene.layout.Pane
 import javax.enterprise.event.Observes
 
-class MainViewController extends ViewController with LazyLogging {
+class MainController extends ViewController with LazyLogging {
 
   // #controllerLoading
   lazy val workspaceController: WorkspaceController =

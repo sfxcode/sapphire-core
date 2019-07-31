@@ -19,11 +19,11 @@ class FXApplication extends javafx.application.Application {
     applicationStage.show()
   }
 
-  override def init: Unit = {
+  override def init(): Unit = {
     CDILauncher.init()
   }
 
-  override def stop() {
+  override def stop(): Unit = {
     FXApp.App.applicationWillTerminate()
     CDILauncher.shutdown()
   }

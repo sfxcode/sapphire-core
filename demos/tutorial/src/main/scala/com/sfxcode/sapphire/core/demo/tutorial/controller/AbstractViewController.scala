@@ -11,8 +11,8 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
     statusBarController.statusLabel.setText("%s loaded".format(getClass.getSimpleName))
   }
 
-  def mainWindowController: MainViewController = {
-    parent.asInstanceOf[MainViewController]
+  def mainWindowController: MainController = {
+    parent.asInstanceOf[MainController]
   }
 
   def statusBarController: StatusBarController = getBean[StatusBarController]()

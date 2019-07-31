@@ -4,6 +4,7 @@ import javafx.beans.property.Property
 import javafx.scene.Node
 
 import scala.collection.mutable.ArrayBuffer
+import scala.util.control.Breaks._
 
 class NodePropertyResolver {
   val resolverBuffer = new ArrayBuffer[NodePropertyResolving]()
@@ -14,13 +15,17 @@ class NodePropertyResolver {
   }
 
   def resolve(node: Node): Option[Property[_]] = {
-    resolverBuffer.foreach(r => {
-      val result = r.resolve(node)
-      if (result.isDefined) {
-        return result
-      }
-    })
-    None
+    var maybeProperty: Option[Property[_]] = None
+    breakable {
+      resolverBuffer.foreach(r => {
+        val result = r.resolve(node)
+        if (result.isDefined) {
+          maybeProperty = result
+          break()
+        }
+      })
+    }
+    maybeProperty
   }
 
 }

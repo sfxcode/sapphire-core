@@ -1,14 +1,13 @@
 package com.sfxcode.sapphire.core.demo.login.controller
 
-import javafx.fxml.FXML
-import javafx.scene.control._
-
-import com.sfxcode.sapphire.core.Includes._
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.login.LoginApplicationController
 import com.sfxcode.sapphire.core.demo.login.model.UserDatabase
+import com.sfxcode.sapphire.core.value.BeanConversions
+import javafx.fxml.FXML
+import javafx.scene.control._
 
-class LoginController extends ViewController {
+class LoginController extends ViewController with BeanConversions {
 
   @FXML
   var email: TextField = _

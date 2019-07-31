@@ -27,12 +27,13 @@ class ConverterProvider extends Serializable with LazyLogging {
 
       try {
         val converterClass = Class.forName(className)
-        val converter = converterClass.newInstance()
+        val converter = converterClass.getDeclaredConstructor().newInstance()
         if (converter != null) {
           result = converter.asInstanceOf[StringConverter[T]]
         }
       } catch {
         case e: Exception =>
+          logger.warn(e.getMessage)
           logger.warn("use default converter for name: " + className)
       }
       converterMap.put(className, result)

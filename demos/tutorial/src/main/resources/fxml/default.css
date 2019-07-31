@@ -39,8 +39,6 @@
 .workspace {
     -fx-background-color: #BBDEFB;
     -fx-font-size: 13px;
-    -fx-padding: 5px 5px 5px 5px;
-
 }
 
 .barchart {

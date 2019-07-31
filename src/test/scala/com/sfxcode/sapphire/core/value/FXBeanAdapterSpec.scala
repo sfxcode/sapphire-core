@@ -16,7 +16,7 @@ class FXBeanAdapterSpec extends Specification {
 
     "be updated with FXBean" in {
       adapter.hasBeanProperty.get must beFalse
-      adapter.beanProperty.setValue(testPerson)
+      adapter.set(testPerson)
       adapter.hasBeanProperty.get must beTrue
     }
   }

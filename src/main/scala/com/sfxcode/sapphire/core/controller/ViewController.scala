@@ -8,7 +8,7 @@ import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty
-import javafx.collections.FXCollections
+import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.Initializable
 import javafx.scene.Scene
 import javafx.scene.layout.Pane
@@ -31,9 +31,9 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def scene: Scene = windowController.get.scene
 
-  protected val managedChildren = FXCollections.observableArrayList[ViewController]()
+  protected val managedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
 
-  protected val unmanagedChildren = FXCollections.observableArrayList[ViewController]()
+  protected val unmanagedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
 
   def parent: ViewController = managedParent.getValue
 

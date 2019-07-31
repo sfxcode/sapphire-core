@@ -53,7 +53,7 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
 
   override def didGainVisibility() {
     super.didGainVisibility()
-    logger.debug(applicationEnvironment.controllerMap.toString())
+    logger.debug(applicationEnvironment.viewControllerMap.toString())
     issueAdapter.addBindings(KeyBindings("synopsis", "description"))
     issueAdapter.addBinding(saveButton.visibleProperty(), "_hasChanges")
 
@@ -95,9 +95,9 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
     issue match {
       case issue: FXBean[Issue] =>
         issueAdapter.revert()
-        issueAdapter.beanProperty.setValue(issue)
+        issueAdapter.set(issue)
       case _ =>
-        issueAdapter.unset()
+        issueAdapter.unset
     }
   }
 

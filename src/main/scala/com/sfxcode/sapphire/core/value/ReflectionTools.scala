@@ -3,23 +3,27 @@ package com.sfxcode.sapphire.core.value
 import com.typesafe.scalalogging.LazyLogging
 
 import scala.reflect.runtime.universe._
-import scala.reflect.runtime.{ universe => ru }
+import scala.reflect.runtime.{universe => ru}
 
 object ReflectionTools extends LazyLogging {
-  val typeMirror = ru.runtimeMirror(this.getClass.getClassLoader)
+  val typeMirror: ru.Mirror = ru.runtimeMirror(this.getClass.getClassLoader)
 
   def getFieldType(target: Any, name: String, showMethods: Boolean = false): Option[Type] = {
 
     val classMember = typeMirror.classSymbol(target.getClass).toType.members.find(m => !m.isMethod && m.name.toString.trim.equals(name))
     if (classMember.isDefined)
-      return Some(classMember.get.typeSignature)
-
-    if (showMethods) {
-      val traitMember = typeMirror.classSymbol(target.getClass).toType.members.find(m => m.name.toString.trim.equals(name))
-      if (traitMember.isDefined)
-        return Some(traitMember.get.typeSignature)
+      Some(classMember.get.typeSignature)
+    else {
+      if (showMethods) {
+        val traitMember = typeMirror.classSymbol(target.getClass).toType.members.find(m => m.name.toString.trim.equals(name))
+        if (traitMember.isDefined)
+          Some(traitMember.get.typeSignature)
+        else {
+          None
+        }
+      }
+      None
     }
-    None
   }
 
   def getFieldMirror(target: Any, name: String): FieldMirror = {
@@ -46,14 +50,13 @@ object ReflectionTools extends LazyLogging {
       try {
         fieldMirror.set(value)
       } catch {
-        case e: Exception => logger.debug("can not update %s for field %s".format(value, name))
+        case _: Exception => logger.debug("can not update %s for field %s".format(value, name))
       }
     }
 
   }
 
   def getMembers[T <: AnyRef]()(implicit t: TypeTag[T]): List[Symbol] = {
-    val bindings = new KeyBindings
     typeOf[T].members.collect {
       case m: MethodSymbol if m.isCaseAccessor => m
     }.toList

@@ -38,7 +38,7 @@ trait FXApp extends ConfigValues {
     stage
   }
 
-  def initStage(stage: Stage) {}
+  def initStage(stage: Stage): Unit = {}
 
   def title: String = configStringValue("sapphire.core.defaultStage.title", "SFX Application")
 

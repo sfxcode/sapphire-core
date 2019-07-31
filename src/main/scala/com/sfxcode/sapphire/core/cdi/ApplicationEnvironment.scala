@@ -16,7 +16,7 @@ import scala.reflect.ClassTag
 @ApplicationScoped
 class ApplicationEnvironment extends Serializable {
 
-  var controllerMap: ObservableMap[String, ViewController] = FXCollections.observableHashMap[String, ViewController]()
+  var viewControllerMap: ObservableMap[String, ViewController] = FXCollections.observableHashMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
@@ -37,7 +37,7 @@ class ApplicationEnvironment extends Serializable {
   }
 
   def registerController(controller: ViewController): Unit = {
-    controllerMap.put(controller.getClass.getName, controller)
+    viewControllerMap.put(controller.getClass.getName, controller)
     val simpleName: String = controller.getClass.getSimpleName
     val expressionName = "%s%s".format(simpleName.head.toLower, simpleName.tail)
     Expressions.register(expressionName, controller)
@@ -45,8 +45,8 @@ class ApplicationEnvironment extends Serializable {
 
   def getController[T <: ViewController](implicit ct: ClassTag[T]): Option[T] = {
     val key = ct.runtimeClass.getName
-    if (controllerMap.containsKey(key)) {
-      Some(controllerMap.get(key).asInstanceOf[T])
+    if (viewControllerMap.containsKey(key)) {
+      Some(viewControllerMap.get(key).asInstanceOf[T])
     } else {
       None
     }

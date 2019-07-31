@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.demo.tutorial
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
-import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
+import com.sfxcode.sapphire.core.demo.tutorial.controller.MainController
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
@@ -10,8 +10,8 @@ import javax.inject.Named
 @ApplicationScoped
 class ApplicationController extends DefaultWindowController {
 
-  lazy val mainWindowController: MainViewController =
-    getController[MainViewController]()
+  lazy val mainWindowController: MainController =
+    getController[MainController]()
 
   def applicationDidLaunch() {
     logger.info("start " + this)
@@ -26,7 +26,7 @@ class ApplicationController extends DefaultWindowController {
     applicationEnvironment.clearResourceBundleCache()
     applicationEnvironment.loadResourceBundle("bundles/application")
     // FXML
-    val newMainWindowController = getController[MainViewController]()
+    val newMainWindowController = getController[MainController]()
     replaceSceneContent(newMainWindowController)
   }
 

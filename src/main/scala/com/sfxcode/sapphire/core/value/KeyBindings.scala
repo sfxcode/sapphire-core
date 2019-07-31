@@ -1,13 +1,13 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.collections.FXCollections
+import javafx.collections.{FXCollections, ObservableMap}
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 import scala.reflect.runtime.universe._
 
 class KeyBindings {
-  val bindingMap = FXCollections.observableHashMap[String, String]()
+  val bindingMap: ObservableMap[String, String] = FXCollections.observableHashMap[String, String]()
 
   def apply(key: String): String = bindingMap.get(key)
 
