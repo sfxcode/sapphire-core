@@ -8,6 +8,7 @@ Build and tested against Scala 2.12/2.13 and JDK 11/12
 
 ## Frameworks
 
+
 ### JavaFX
 
 Java UI Application Framework as replacement for Swing.
