@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="description" content="sapphire-core">
+<meta name="description" content="sapphire core docs">
 <meta name="generator" content="Paradox, paradox-material-theme=0.6.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -18,7 +18,7 @@
 <meta name="lang:search.tokenizer" content="[\s\-]+">
 
 
-<meta name="description" content="sapphire-core">
+<meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
 <title>Tutorial Navigation · Sapphire Core</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
@@ -145,7 +145,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_window.html" class="page">Tutorial Main Window</a></li>
+    <li><a href="../tutorial/main_window.html" class="page">Tutorial Main Controller</a></li>
     <li><a href="../tutorial/navigation.html" class="active page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
@@ -177,7 +177,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.5.1
+<i class="md-icon" title="Version">label_outline</i> 1.6.0
 </label>
 </li>
 </ul>
@@ -206,7 +206,7 @@ sfxcode/sapphire-core
 <div class="md-content__searchable">
 <h1><a href="#tutorial-navigation" name="tutorial-navigation" class="anchor"><span class="anchor-link"></span></a>Tutorial Navigation</h1>
 <h2><a href="#navigation-fxml-file" name="navigation-fxml-file" class="anchor"><span class="anchor-link"></span></a>Navigation FXML File</h2>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/tutorial/navigation.xml" target="_blank" title="Go to snippet source"></a><code class="language-xml">&lt;AnchorPane fx:controller=&quot;NavigationController&quot;&gt;
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/tutorial/navigation.xml" target="_blank" title="Go to snippet source"></a><code class="language-xml">&lt;AnchorPane fx:controller=&quot;NavigationController&quot;&gt;
     &lt;children&gt;
         &lt;HBox&gt;
             &lt;children&gt;
@@ -229,12 +229,11 @@ sfxcode/sapphire-core
     &lt;/stylesheets&gt;
 &lt;/AnchorPane&gt;</code></pre>
 <h2><a href="#navigationcontroller" name="navigationcontroller" class="anchor"><span class="anchor-link"></span></a>NavigationController</h2>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/NavigationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial.controller
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/NavigationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.demo.tutorial.ApplicationController
 import javafx.event.ActionEvent
 import javafx.scene.control.Button
-import scalafx.Includes._
 
 class NavigationController extends AbstractViewController {
 
@@ -274,13 +273,13 @@ class NavigationController extends AbstractViewController {
 }</code></pre>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/tutorial/navigation.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/tutorial/navigation.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.5.1
+1.6.0
 </span>
 </div>
 </article>
@@ -290,7 +289,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../tutorial/main_window.html" title="Tutorial Main Window" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../tutorial/main_window.html" title="Tutorial Main Controller" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -299,7 +298,7 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Tutorial Main Window
+Tutorial Main Controller
 </span>
 </div>
 </a>

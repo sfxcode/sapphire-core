@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="description" content="sapphire-core">
+<meta name="description" content="sapphire core docs">
 <meta name="generator" content="Paradox, paradox-material-theme=0.6.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -18,7 +18,7 @@
 <meta name="lang:search.tokenizer" content="[\s\-]+">
 
 
-<meta name="description" content="sapphire-core">
+<meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 <title>Features · Sapphire Core</title>
 <link rel="stylesheet" href="assets/stylesheets/application.451f80e5.css">
@@ -145,7 +145,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="tutorial/main_window.html" class="page">Tutorial Main Window</a></li>
+    <li><a href="tutorial/main_window.html" class="page">Tutorial Main Controller</a></li>
     <li><a href="tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
@@ -170,6 +170,7 @@ sfxcode/sapphire-core
     <li><a href="features.html#application-environment-powered-by-cdi" class="header">Application Environment powered by CDI</a></li>
     <li><a href="features.html#bean-enhancement" class="header">Bean Enhancement</a></li>
     <li><a href="features.html#scala-javafx-bean-binding" class="header">Scala JavaFX Bean Binding</a></li>
+    <li><a href="features.html#windowcontroller" class="header">WindowController</a></li>
     <li><a href="features.html#viewcontroller" class="header">ViewController</a></li>
     <li><a href="features.html#first-class-fxml-support" class="header">First Class FXML Support</a></li>
   </ul></li>
@@ -180,7 +181,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.5.1
+<i class="md-icon" title="Version">label_outline</i> 1.6.0
 </label>
 </li>
 </ul>
@@ -198,6 +199,7 @@ sfxcode/sapphire-core
     <li><a href="features.html#application-environment-powered-by-cdi" class="header">Application Environment powered by CDI</a></li>
     <li><a href="features.html#bean-enhancement" class="header">Bean Enhancement</a></li>
     <li><a href="features.html#scala-javafx-bean-binding" class="header">Scala JavaFX Bean Binding</a></li>
+    <li><a href="features.html#windowcontroller" class="header">WindowController</a></li>
     <li><a href="features.html#viewcontroller" class="header">ViewController</a></li>
     <li><a href="features.html#first-class-fxml-support" class="header">First Class FXML Support</a></li>
   </ul></li>
@@ -213,8 +215,8 @@ sfxcode/sapphire-core
 <h1><a href="#features" name="features" class="anchor"><span class="anchor-link"></span></a>Features</h1>
 <h2><a href="#application-environment-powered-by-cdi" name="application-environment-powered-by-cdi" class="anchor"><span class="anchor-link"></span></a>Application Environment powered by CDI</h2>
 <ul>
-  <li>Application Controller</li>
-  <li>UI Controller loading</li>
+  <li>WindowController</li>
+  <li>ViewController</li>
   <li>Parameter Provider</li>
   <li>Configuration Provider</li>
   <li>FXML Loading</li>
@@ -223,7 +225,7 @@ sfxcode/sapphire-core
 <h2><a href="#bean-enhancement" name="bean-enhancement" class="anchor"><span class="anchor-link"></span></a>Bean Enhancement</h2>
 <ul>
   <li>Every Java / Scala Bean can be used for FXBean</li>
-  <li>FXBean has additional support for java/scala Maps</li>
+  <li>FXBean has additional support for Java/Scala Maps</li>
   <li>FXBean resolves Expressions on bean</li>
   <li>FXBean creates Properties needed for Binding on demand</li>
   <li>FXBean has change management by default</li>
@@ -233,6 +235,12 @@ sfxcode/sapphire-core
   <li>Bindings by form id</li>
   <li>Binding with converter</li>
   <li>Adapter Pattern (FXBean Adapter)</li>
+</ul>
+<h2><a href="#windowcontroller" name="windowcontroller" class="anchor"><span class="anchor-link"></span></a>WindowController</h2>
+<ul>
+  <li>Stage</li>
+  <li>Scene</li>
+  <li>Replace Scene Content</li>
 </ul>
 <h2><a href="#viewcontroller" name="viewcontroller" class="anchor"><span class="anchor-link"></span></a>ViewController</h2>
 <ul>
@@ -248,13 +256,13 @@ sfxcode/sapphire-core
 </ul>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/features.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/features.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.5.1
+1.6.0
 </span>
 </div>
 </article>

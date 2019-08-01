@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="description" content="sapphire-core">
+<meta name="description" content="sapphire core docs">
 <meta name="generator" content="Paradox, paradox-material-theme=0.6.0, mkdocs-material=3.0.3">
 
 <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -18,7 +18,7 @@
 <meta name="lang:search.tokenizer" content="[\s\-]+">
 
 
-<meta name="description" content="sapphire-core">
+<meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="assets/images/favicon.png">
 <title>Sapphire Core</title>
 <link rel="stylesheet" href="assets/stylesheets/application.451f80e5.css">
@@ -140,7 +140,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="tutorial/main_window.html" class="page">Tutorial Main Window</a></li>
+    <li><a href="tutorial/main_window.html" class="page">Tutorial Main Controller</a></li>
     <li><a href="tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
@@ -175,7 +175,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.5.1
+<i class="md-icon" title="Version">label_outline</i> 1.6.0
 </label>
 </li>
 </ul>
@@ -206,21 +206,22 @@ sfxcode/sapphire-core
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
 <h1><a href="#sapphire-core" name="sapphire-core" class="anchor"><span class="anchor-link"></span></a>Sapphire Core</h1>
-<p>A JavaFX (ScalaFX) Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.</p>
+<p>A JavaFX Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.</p>
 <h2><a href="#cross-build" name="cross-build" class="anchor"><span class="anchor-link"></span></a>Cross Build</h2>
-<p>Build and tested against Scala 2.11/2.12 and JDK 11/12</p>
+<p>Build and tested against Scala 2.12/2.13 and JDK 11/12</p>
 <h2><a href="#frameworks" name="frameworks" class="anchor"><span class="anchor-link"></span></a>Frameworks</h2>
 <h3><a href="#javafx" name="javafx" class="anchor"><span class="anchor-link"></span></a>JavaFX</h3>
 <p>Java UI Application Framework as replacement for Swing.</p>
-<p>Sapphire depends on OpenJFX 12.</p>
+<p>Sapphire depends on OpenJFX 11/12.</p>
 <p><a href="https://openjfx.io">https://openjfx.io</a></p>
-<h3><a href="#scalafx" name="scalafx" class="anchor"><span class="anchor-link"></span></a>ScalaFX</h3>
-<p>Sapphire depends on <a href="http://www.scalafx.org/">ScalaFX</a>, a DSL for JavaFX written in Scala.</p>
 <h3><a href="#dependency-injection" name="dependency-injection" class="anchor"><span class="anchor-link"></span></a>Dependency Injection</h3>
 <p>Sapphire use <a href="http://deltaspike.apache.org">Apache Deltaspike</a> as CDI Abstraction Layer (1.9.x).</p>
 <p>The default <a href="https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injection">CDI</a> implementation depends on <a href="http://openwebbeans.apache.org">Apache OpenWebBeans</a> (2.0.x).</p>
 <h3><a href="#expression-language" name="expression-language" class="anchor"><span class="anchor-link"></span></a>Expression Language</h3>
 <p>Expressions are resolved by <a href="http://juel.sourceforge.net">JUEL</a>.</p>
+<h3><a href="#scalafx" name="scalafx" class="anchor"><span class="anchor-link"></span></a>ScalaFX</h3>
+<p>Until Version 1.5.x Sapphire depends on <a href="http://www.scalafx.org/">ScalaFX</a>, a DSL for JavaFX written in Scala.</p>
+<p>Version 1.6.x and newer versions are built without ScalaFX dependency, because ScalaFX (as a wrapper library) is not really needed for sapphire functionality. However, it can be used on top of this framework when it is useful.</p>
 <h2><a href="#maven" name="maven" class="anchor"><span class="anchor-link"></span></a>Maven</h2>
 <p>Sapphire is published to Bintray and linked to Maven Central.</p>
 <h3><a href="#repository" name="repository" class="anchor"><span class="anchor-link"></span></a>Repository</h3>
@@ -244,13 +245,13 @@ sfxcode/sapphire-core
 <p><a href="https://github.com/sfxcode/sapphire-core/blob/master/LICENSE">Apache 2</a></p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.5.1/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.5.1
+1.6.0
 </span>
 </div>
 </article>
