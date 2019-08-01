@@ -17,8 +17,6 @@ Sapphire depends on OpenJFX 11/12.
 
 [https://openjfx.io](https://openjfx.io)
 
-
-
 ### Dependency Injection
 
 Sapphire use [Apache Deltaspike](http://deltaspike.apache.org) as CDI Abstraction Layer (1.9.x).
@@ -53,7 +51,7 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
 @@dependency[sbt,Maven,Gradle] {
   group="com.sfxcode.sapphire"
   artifact="sapphire-core_2.12"
-  version="$app-version$"
+  version="$project.version$"
 }
 
 ## Getting started

@@ -6,10 +6,6 @@ A JavaFX Application Framework for Scala User.
 
 Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.github.io/sapphire-core)
 
-## VMOpts
-
---module-path /projects/sdk/javafx-sdk-11.0.2/lib --add-modules=javafx.controls,javafx.fxml,javafx.graphics,javafx.base,javafx.media
-
 ## Travis
 
 [![Build Status](https://travis-ci.org/sfxcode/sapphire-core.svg?branch=master)](https://travis-ci.org/sfxcode/sapphire-core)
@@ -21,6 +17,10 @@ Documentation under [https://sfxcode.github.io/sapphire-core](https://sfxcode.gi
 ## Giter8 Template
 
 [Giter8 template](http://www.foundweekends.org/giter8/): [sapphire-sbt](https://github.com/sfxcode/sapphire-sbt.g8).
+
+## Cross Build
+
+Build and tested against Scala 2.12/2.13 and JDK 11/12
 
 ### Usage
 
@@ -85,6 +85,16 @@ The default implementation depends on Apache OpenWebBeans (2.0.x).
 Expressions are resolved by JUEL.
 
 [http://juel.sourceforge.net](http://juel.sourceforge.net)
+
+### ScalaFX (optional dependency)
+
+A DSL for JavaFX written in Scala.
+
+[ScalaFX Website](http://www.scalafx.org/)
+
+ScalaFX plays very nice on top of sapphire-core applications.
+
+ScalaFX support Scala versions up to 2.12.x
 
 ## Features
 
