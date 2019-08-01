@@ -78,7 +78,7 @@ lazy val docs = (project in file("docs"))
     name := "sapphire core docs",
     publish / skip := true,
     ghpagesNoJekyll := true,
-    git.remoteRepo := "git@github.com:sfxcode/simple-mongo.git",
+    git.remoteRepo := "git@github.com:sfxcode/sapphire-core.git",
     Compile / paradoxMaterialTheme ~= {
       _.withRepository(uri("https://github.com/sfxcode/sapphire-core"))
 
