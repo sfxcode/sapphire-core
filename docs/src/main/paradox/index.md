@@ -1,10 +1,10 @@
 # Sapphire Core
 
-A JavaFX (ScalaFX) Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.
+A JavaFX  Application Framework for Scala User. It combines scala programming patterns with MVC for building complex JavaFX Applications.
 
 ## Cross Build
 
-Build and tested against Scala 2.11/2.12 and JDK 11/12
+Build and tested against Scala 2.12/2.13 and JDK 11/12
 
 ## Frameworks
 
@@ -12,14 +12,10 @@ Build and tested against Scala 2.11/2.12 and JDK 11/12
 
 Java UI Application Framework as replacement for Swing.
 
-Sapphire depends on OpenJFX 12.
+Sapphire depends on OpenJFX 11/12.
 
 [https://openjfx.io](https://openjfx.io)
 
-
-### ScalaFX
-
-Sapphire depends on [ScalaFX](http://www.scalafx.org/), a DSL for JavaFX written in Scala.
 
 
 ### Dependency Injection
@@ -31,6 +27,14 @@ The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injectio
 ### Expression Language
 
 Expressions are resolved by [JUEL](http://juel.sourceforge.net).
+
+### ScalaFX
+
+Until Version 1.5.x Sapphire depends on [ScalaFX](http://www.scalafx.org/), a DSL for JavaFX written in Scala.
+
+Version 1.6.x and newer versions are built without ScalaFX dependency, because ScalaFX (as a wrapper library) is not really needed for sapphire functionality.
+However, it can be used on top of this framework when it is useful.
+
 
 ## Maven
 

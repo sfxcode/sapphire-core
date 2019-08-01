@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.6.0
+* scalafx dependency removed
+* SceneExtensions, CollectionExtensions added
+* * Includes removed
+
 ### 1.5.1
 * ConfigValues trait added
 * dropped ConfigurationProvider

@@ -1,43 +1,43 @@
-# Tutorial Main Window
+# Tutorial Main Controller
 
 
-## MainWindow FXML File
+## Main FXML File
 
-The MainWindowController in the /controller/MainWindowController needs a valid FXML File.
+The MainController in the /controller/MainController needs a valid FXML File.
 The bindings for Navigation, Workspace and StatusBar Controller uses the **fx:id** values.
 
 @@snip [Fxml](main_window.xml)
 
-## MainWindowController
+## MainController
 
 For adding SubController and displaying their UI content following steps are needed:
 
 1. Prepare SubController
 2. Connect with FXML identifier
 3. Define ContentManager
-4. Load Controller in the MainWindowController LifeCycle
+4. Load Controller in the MainController LifeCycle
 5. Optional Prepare Functions for Controller switching
 6. Optional CDI based Functions / Injection Points
 
 ### Prepare SubController
 
-@@snip [MainWindowController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainViewController.scala) { #controllerLoading }
+@@snip [MainController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainController.scala) { #controllerLoading }
 
 ### Connect with FXML identifier
 
-@@snip [MainWindowController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainViewController.scala) { #fxmlBinding }
+@@snip [MainController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainController.scala) { #fxmlBinding }
 
 ### ContentManager
 
-@@snip [MainWindowController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainViewController.scala) { #contentManager }
+@@snip [MainController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainController.scala) { #contentManager }
 
 ### Init Controller
 
-@@snip [MainWindowController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainViewController.scala) { #didGainVisibilityFirstTime}
+@@snip [MainController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainController.scala) { #didGainVisibilityFirstTime}
 
 
 ### CDI (optional)
 
 Make use of CDI Observers, Injection Points, ...
 
-@@snip [MainWindowController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainViewController.scala) { #cdi}
+@@snip [MainController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainController.scala) { #cdi}

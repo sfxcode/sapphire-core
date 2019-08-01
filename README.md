@@ -70,14 +70,6 @@ Sapphire depends on OpenJFX 12
 
 [https://openjfx.io](https://openjfx.io)
 
-
-### ScalaFX
-
-A DSL for JavaFX written in Scala.
-
-[ScalaFX Website](http://www.scalafx.org/)
-
-
 ### Dependency Injection
 
 Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.9.x).
