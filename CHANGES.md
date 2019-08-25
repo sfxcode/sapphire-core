@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.6.1
+* ExtendedObservableList addChangeListener, addInvalidationListener
+* Dependency Updates
+
 ### 1.6.0
 * scalafx dependency removed
 * SceneExtensions, CollectionExtensions added

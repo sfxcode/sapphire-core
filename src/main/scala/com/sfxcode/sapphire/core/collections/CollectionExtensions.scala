@@ -1,7 +1,8 @@
 package com.sfxcode.sapphire.core.collections
 
 import com.sfxcode.sapphire.core.collections.CollectionExtensions.ChangeState.ChangeState
-import javafx.collections.{FXCollections, MapChangeListener, ObservableList, ObservableMap}
+import javafx.beans.{InvalidationListener, Observable}
+import javafx.collections._
 
 import scala.collection.JavaConverters._
 
@@ -25,6 +26,23 @@ object CollectionExtensions {
     def foreach[U](f: A => U): Unit = {
       list.asScala.foreach(f)
     }
+
+    def addChangeListener(f: ListChangeListener.Change[_ <: A] => Unit): Unit = {
+      list.addListener(new ListChangeListener[A] {
+        override def onChanged(change: ListChangeListener.Change[_ <: A]): Unit = {
+          f(change)
+        }
+      })
+    }
+
+    def addInvalidationListener(f: Observable => Unit): Unit = {
+      list.addListener(new InvalidationListener {
+        override def invalidated(observable: Observable): Unit = {
+          f(observable)
+        }
+      })
+    }
+
   }
 
   implicit class ExtendedObservableMap[K, V](val map: ObservableMap[K, V]) extends AnyVal {

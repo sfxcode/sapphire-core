@@ -3,20 +3,21 @@ package com.sfxcode.sapphire.core.scene
 import javafx.scene.Node
 
 object SceneExtensions {
+  val PrimaryButtonName = "PRIMARY"
 
   implicit class ExtendedNode(val node: Node) extends AnyVal {
 
-    def onMouseClicked(action: => Unit): Unit = {
+    def onPrimaryButtonClicked(action: => Unit): Unit = {
       node.setOnMouseClicked(event => {
-        if (event.isPrimaryButtonDown) {
+        if (PrimaryButtonName.equals(event.getButton.name())) {
           action
         }
       })
     }
 
-    def onMouseDoubleClicked(action: => Unit): Unit = {
+    def onPrimaryButtonDoubleClicked(action: => Unit): Unit = {
       node.setOnMouseClicked(event => {
-        if (event.isPrimaryButtonDown && 2 == event.getClickCount) {
+        if (PrimaryButtonName.equals(event.getButton.name()) && 2 == event.getClickCount) {
           action
         }
       })

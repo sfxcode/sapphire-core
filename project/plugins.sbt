@@ -16,7 +16,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-license-report" % "1.2.0")
 
 // Paradox handling
 
-addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.6.0")
+addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.6.3")
 
 addSbtPlugin("io.github.jonas" % "sbt-paradox-material-theme" % "0.6.0")
 
