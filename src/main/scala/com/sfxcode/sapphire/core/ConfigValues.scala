@@ -1,7 +1,8 @@
-package com.sfxcode.sapphire.core.base
+package com.sfxcode.sapphire.core
 
-import com.typesafe.config.{ Config, ConfigFactory }
+import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.LazyLogging
+
 import scala.collection.JavaConverters._
 
 trait ConfigValues extends LazyLogging {

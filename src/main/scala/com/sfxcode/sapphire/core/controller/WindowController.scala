@@ -2,17 +2,16 @@ package com.sfxcode.sapphire.core.controller
 
 import java.util.ResourceBundle
 
+import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty
-import javafx.collections.{FXCollections, ObservableMap}
+import javafx.collections.ObservableMap
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 import javax.enterprise.event.Event
 import javax.inject.Inject
-
-import scala.collection.JavaConverters._
 case class SceneControllerWillChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
 
 case class SceneControllerDidChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
@@ -29,7 +28,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
 
-  val sceneMap: ObservableMap[Parent, Scene] = FXCollections.observableHashMap[Parent, Scene]()
+  val sceneMap: ObservableMap[Parent, Scene] = Map[Parent, Scene]()
 
   def setStage(stage: Stage): Unit = {
     stageProperty.set(stage)
@@ -90,7 +89,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   def replaceSceneContentWithNode(content: Parent, resize: Boolean = true) {
 
-    val newScene = sceneMap.asScala.getOrElse(content, {
+    val newScene = sceneMap.getOrElse(content, {
       val scene = new Scene(content)
       sceneMap.put(content, scene)
       scene

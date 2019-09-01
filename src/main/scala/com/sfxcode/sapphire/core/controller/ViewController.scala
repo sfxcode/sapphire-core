@@ -3,7 +3,8 @@ package com.sfxcode.sapphire.core.controller
 import java.net.URL
 import java.util.ResourceBundle
 
-import com.sfxcode.sapphire.core.base.ConfigValues
+import com.sfxcode.sapphire.core.CollectionExtensions._
+import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
@@ -15,7 +16,6 @@ import javafx.scene.layout.Pane
 import javafx.stage.Stage
 import javax.annotation.{PostConstruct, PreDestroy}
 
-import scala.collection.JavaConverters._
 import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
@@ -74,8 +74,8 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   def canGainVisibility: Boolean = true
 
   def willGainVisibility(): Unit = {
-    managedChildren.asScala.foreach(_.willGainVisibility())
-    unmanagedChildren.asScala.foreach(_.willGainVisibility())
+    managedChildren.foreach(_.willGainVisibility())
+    unmanagedChildren.foreach(_.willGainVisibility())
   }
 
   def didGainVisibilityFirstTime(): Unit = {
@@ -83,20 +83,20 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   }
 
   def didGainVisibility(): Unit = {
-    managedChildren.asScala.foreach(_.didGainVisibility())
-    unmanagedChildren.asScala.foreach(_.didGainVisibility())
+    managedChildren.foreach(_.didGainVisibility())
+    unmanagedChildren.foreach(_.didGainVisibility())
   }
 
   def shouldLooseVisibility: Boolean = true
 
   def willLooseVisibility(): Unit = {
-    managedChildren.asScala.foreach(_.willLooseVisibility())
-    unmanagedChildren.asScala.foreach(_.willLooseVisibility())
+    managedChildren.foreach(_.willLooseVisibility())
+    unmanagedChildren.foreach(_.willLooseVisibility())
   }
 
   def didLooseVisibility(): Unit = {
-    managedChildren.asScala.foreach(_.didLooseVisibility())
-    unmanagedChildren.asScala.foreach(_.didLooseVisibility())
+    managedChildren.foreach(_.didLooseVisibility())
+    unmanagedChildren.foreach(_.didLooseVisibility())
   }
 
   def updatePaneContent(pane: Pane, viewController: ViewController): Boolean = {

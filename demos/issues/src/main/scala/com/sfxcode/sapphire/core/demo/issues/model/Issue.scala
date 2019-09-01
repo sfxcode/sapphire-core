@@ -2,7 +2,7 @@ package com.sfxcode.sapphire.core.demo.issues.model
 
 import java.util.concurrent.atomic.AtomicInteger
 
-import com.sfxcode.sapphire.core.collections.CollectionExtensions._
+import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.value.FXBeanCollections._
 import com.sfxcode.sapphire.core.value.{BeanConversions, FXBean}
 import javafx.collections.{FXCollections, ObservableList}

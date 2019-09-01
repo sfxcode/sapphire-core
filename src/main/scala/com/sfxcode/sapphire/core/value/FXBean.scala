@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.value
 import java.lang
 import java.time.LocalDate
 
-import com.sfxcode.sapphire.core.base.ConfigValues
+import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.el.Expressions._
 import com.sfxcode.sapphire.core.value.PropertyType._

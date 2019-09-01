@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.fxml
 import java.net.URL
 import java.util.ResourceBundle
 
-import com.sfxcode.sapphire.core.base.ConfigValues
+import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController

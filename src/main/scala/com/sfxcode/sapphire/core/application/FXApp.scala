@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.application
 
-import com.sfxcode.sapphire.core.base.ConfigValues
+import com.sfxcode.sapphire.core.ConfigValues
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.layout.HBox

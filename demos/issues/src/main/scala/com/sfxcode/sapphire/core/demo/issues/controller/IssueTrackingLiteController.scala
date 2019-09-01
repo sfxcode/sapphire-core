@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.demo.issues.controller
 
+import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.issues.EmptyName
 import com.sfxcode.sapphire.core.demo.issues.model.{Issue, IssueDataBase}
@@ -11,8 +12,6 @@ import javafx.fxml.FXML
 import javafx.scene.control.{Button, ListView, SelectionMode, TableView}
 import javafx.scene.layout.AnchorPane
 import javax.inject.Inject
-
-import scala.collection.JavaConverters._
 
 class IssueTrackingLiteController extends ViewController with LazyLogging {
 
@@ -110,7 +109,7 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
     projectName match {
       case name: String =>
         val newItems = IssueDataBase.projectsMap.get(projectName)
-        newItems.asScala.foreach(item => table.getItems.add(item))
+        newItems.foreach(item => table.getItems.add(item))
     }
   }
 

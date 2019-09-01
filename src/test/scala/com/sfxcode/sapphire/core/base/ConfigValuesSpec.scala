@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.base
 
+import com.sfxcode.sapphire.core.ConfigValues
 import org.specs2.mutable.Specification
 
 class ConfigValuesSpec extends Specification with ConfigValues {

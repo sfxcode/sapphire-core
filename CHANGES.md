@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.6.2
+* CollectionExtensions: add implicits
+* fix Map Changes Bug
+* remove SceneExtensions
+
 ### 1.6.1
 * ExtendedObservableList addChangeListener, addInvalidationListener
 * Dependency Updates
@@ -33,8 +38,8 @@
 
 * com.typesafe.scala-logging:scala-logging  : 3.9.0 -> 3.9.2
 * org.apache.openwebbeans:openwebbeans-impl : 2.0.8 -> 2.0.9
-* org.json4s:json4s-native:test             : 3.6.2 -> 3.6.3
-* org.specs2:specs2-core:test               : 4.3.5 -> 4.3.6
+* org.json4s:json4s-native                  : 3.6.2 -> 3.6.3
+* org.specs2:specs2-core                    : 4.3.5 -> 4.3.6
 
 ### 1.4.3
 * FXBean Change management for complex case classes
