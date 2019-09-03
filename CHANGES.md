@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.6.4
+* FXMLLoader suppport ContextClassLoader for Stream loading fallback
+* use import scala.language.implicitConversions to mark implicits
+
 ### 1.6.3
 * Fix Bug in FXMLoading
 

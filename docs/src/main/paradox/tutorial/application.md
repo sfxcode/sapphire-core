@@ -4,7 +4,6 @@
 
 A sapphire application must contain an Application object that extends FXApp.
 
-applicationStage must be implemented.
 
 @@snip [Application](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala)
 

@@ -36,7 +36,7 @@ class FxmlHandler {
       fxmlLoader.setControllerFactory(defaultCallback.get)
 
     try {
-      inputStream = getClass.getResourceAsStream(path)
+      inputStream = getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
       fxmlLoader.setResources(applicationEnvironment.defaultWindowController.resourceBundleForView(path))
 
@@ -60,6 +60,21 @@ class FxmlHandler {
         }
       }
     }
+  }
+
+  def getResourceAsStream(path: String): InputStream = {
+    var result: InputStream = getClass.getResourceAsStream(path)
+
+    if (result == null) {
+      val rootPath = {
+        if (path.startsWith("/"))
+          path.substring(1)
+        else
+          path
+      }
+      result = Thread.currentThread.getContextClassLoader.getResourceAsStream(rootPath)
+    }
+    result
   }
 
 }

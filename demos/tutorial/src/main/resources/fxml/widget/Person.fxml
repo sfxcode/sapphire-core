@@ -68,6 +68,6 @@
       </BorderPane>
     </children>
     <stylesheets>
-        <URL value="@../default.css" />
+        <URL value="@/fxml/default.css"/>
     </stylesheets>
 </AnchorPane>

@@ -5,6 +5,7 @@ import javafx.beans.{InvalidationListener, Observable}
 import javafx.collections._
 
 import scala.collection.JavaConverters._
+import scala.language.implicitConversions
 
 object CollectionExtensions {
 
