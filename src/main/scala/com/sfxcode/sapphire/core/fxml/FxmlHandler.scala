@@ -44,7 +44,7 @@ class FxmlHandler {
 
       val controller = fxmlLoader.getController[AnyRef]
 
-      val rootPane = new Pane(fxmlLoader.getRoot[javafx.scene.layout.Pane])
+      val rootPane = fxmlLoader.getRoot[javafx.scene.layout.Pane]
       (controller, rootPane)
 
     } catch {

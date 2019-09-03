@@ -2,6 +2,9 @@
 
 ## Versions
 
+### 1.6.3
+* Fix Bug in FXMLoading
+
 ### 1.6.2
 * CollectionExtensions: add implicits
 * fix Map Changes Bug
