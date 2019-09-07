@@ -32,6 +32,7 @@ class KeyBindings {
 
   def keys: mutable.Set[String] = bindingMap.keySet().asScala
 
+  override def toString: String = super.toString + " Bindings: " + bindingMap
 }
 
 object KeyBindings {

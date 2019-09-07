@@ -8,9 +8,9 @@
   </appender>
 
 
-    <logger name="com.sfxcode.sapphire.core" level="trace" />
+    <logger name="com.sfxcode.sapphire" level="debug"/>
 
-    <root level="error">
+    <root level="warn">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

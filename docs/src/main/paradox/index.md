@@ -27,14 +27,6 @@ The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injectio
 
 Expressions are resolved by [JUEL](http://juel.sourceforge.net).
 
-### ScalaFX
-
-Until Version 1.5.x Sapphire depends on [ScalaFX](http://www.scalafx.org/), a DSL for JavaFX written in Scala.
-
-Version 1.6.x and newer versions are built without ScalaFX dependency, because ScalaFX (as a wrapper library) is not really needed for sapphire functionality.
-However, it can be used on top of this framework when it is useful.
-
-
 ## Maven
 
 Sapphire is published to Bintray and linked to Maven Central.
@@ -78,6 +70,7 @@ Explore demos and Tutorial in project demo directory.
  - [Core Concepts](detail/index.md)
  - [Examples](sample/index.md)
  - [Extension](extension.md)
+ - [ScalaFX](scalafx.md)
  - [Changes ](changes.md)
 
 

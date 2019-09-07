@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.6.5
+* FXBeanAdapter refactor conver methods to KeyConverter
+* Refactor FXBean by extending BeanProperties
+* KeyConverter add meyhods for standrd JavaFX Converters
+
 ### 1.6.4
 * FXMLLoader suppport ContextClassLoader for Stream loading fallback
 * use import scala.language.implicitConversions to mark implicits

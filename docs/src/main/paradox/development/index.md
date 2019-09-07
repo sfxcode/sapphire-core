@@ -5,6 +5,6 @@
 @@@ index
 
  - [Development Tools](tools.md)
- - [Hot Reloading](development.md)
+ - [Hot Reloading](hot_reload.md)
 
 @@@

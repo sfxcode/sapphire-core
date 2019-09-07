@@ -1,4 +1,4 @@
-# In Depth FXBean
+# FXBean
 
 FXBean is one of the core concepts of this framework.
 It is an adapter for Java/Scala Beans (Maps) for automatic JavaFX Binding. FXBean does all the JavaFX Property Binding for your Application.

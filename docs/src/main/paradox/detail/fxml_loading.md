@@ -1,4 +1,4 @@
-# In Depth FxmlLoading
+# FxmlLoading
 
 ## Features
 

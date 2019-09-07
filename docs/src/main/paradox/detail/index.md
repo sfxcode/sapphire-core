@@ -4,8 +4,10 @@
 
 @@@ index
 
- - [FXBean](fxbean.md)
- - [FxmlLoading](fxml_loading.md)
  - [ViewController](view_controller.md)
+ - [FXBean](fxbean.md)
+ - [FXBean Adapter](fxbean_adapter.md)
+ - [KeyBindings](bindings.md)
+ - [FxmlLoading](fxml_loading.md)
 -
 @@@

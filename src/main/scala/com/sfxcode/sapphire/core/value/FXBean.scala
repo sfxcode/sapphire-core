@@ -86,7 +86,6 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
     expressionMap.keySet.asScala.foreach(k => updateObservableValue(expressionMap.get(k), getValue(k)))
   }
 
-
   def preserveChanges(key: String, oldValue: Any, newValue: Any) {
     if (trackChanges) {
       if (changeManagementMap.containsKey(key)) {
@@ -102,7 +101,6 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
 
     }
   }
-
 
   def revert() {
     if (trackChanges) {

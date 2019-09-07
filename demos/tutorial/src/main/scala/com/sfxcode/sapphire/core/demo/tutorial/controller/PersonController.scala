@@ -15,34 +15,49 @@ class PersonController extends AbstractViewController with BeanConversions {
   @FXML
   var tableView: TableView[FXBean[Person]] = _
 
+  // #adapter_create
   @FXML
   var editPane: GridPane = _
 
-  lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this)
+  // second parameter parent Node is optional,
+  // but sometimes needed for the correct NodeLocator lookup
+  lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this, editPane)
+
+  // #adapter_create
 
   def items: ObservableList[FXBean[Person]] = PersonFactory.personList
 
+  // #bindings
   override def didGainVisibilityFirstTime(): Unit = {
     super.didGainVisibilityFirstTime()
 
-    val bindingList = List("id", "name", "age")
-    val bindings = KeyBindings(bindingList)
+    // #bindingList #labels
+    val bindings = KeyBindings("id", "name", "age", "test")
+    // Expression Binding Example
     bindings.add("person", "Person ${_self.name()} with age of ${_self.age()}")
+
     adapter.addBindings(bindings)
-    adapter.addConverter("age", "IntegerStringConverter")
+    // Converter Example
+    adapter.addIntConverter("age")
+    // #bindingList #labels
 
-    tableView.setItems(items)
-    tableView.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectPerson(newValue))
-
+    tableView.setItems(items) // #labels
+    tableView.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectPerson(newValue)) // #labels
     editPane.visibleProperty().bind(adapter.hasBeanProperty)
   }
 
+  // #bindings
+
+  // #adapter_use
   def selectPerson(person: FXBean[Person]): Unit = {
     adapter.set(person)
-    statusBarController.statusLabel.setText("%s selected".format(person.getValue("name")))
+    statusBarController.statusLabel.setText("%s selected".format(person.getValue("name"))) // #labels
   }
 
   def actionRevert(event: ActionEvent): Unit = {
     adapter.revert()
   }
+
+  // #adapter_use
+
 }

@@ -179,7 +179,6 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
     }
   }
 
-
   def hasManagedChanges: lang.Boolean = {
     val childrenChangeCount: Int = childrenMap.values.map(bean => bean.changeManagementMap.size).sum
     (changeManagementMap.size + childrenChangeCount) > 0

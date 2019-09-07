@@ -82,15 +82,14 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       val result = viewController.applicationEnvironment.nodePropertyResolver.resolve(node.get)
       logger.debug("resolved property for %s : %s".format(key, result))
       result
-    } else
+    } else {
+      logger.warn("can not resolve property for key %s - try to create FXBeanAdapter with parent node".format(key))
       None
+    }
+
   }
 
   def addDate2Converter(keys: String*): Unit = keys.foreach(addConverter(_, FXBean.defaultDateConverter))
-
-
-
-
 
   protected def bindBidirectional[S](bean: FXBean[T], property: Property[S], beanKey: String) {
     val observable = bean.getProperty(beanKey)

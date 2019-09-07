@@ -1,4 +1,4 @@
-# In Depth ViewController
+# ViewController
 
 The ViewController is the core pattern for component based application design.
 

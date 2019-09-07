@@ -56,7 +56,7 @@
                         <TextField id="name" prefHeight="26.0" prefWidth="153.0" GridPane.columnIndex="1" />
                         <Label text="Name" />
                         <Label text="Age" GridPane.rowIndex="1" />
-                        <TextField id="age" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                         <TextField fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                         <Button mnemonicParsing="false" onAction="#actionRevert" text="revert current data" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>

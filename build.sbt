@@ -95,8 +95,6 @@ libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 
-
-
 // Compile
 
 
@@ -106,14 +104,8 @@ libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "sw
 
 // Environment
 
-lazy val scalaLoggingVersion = SettingKey[String]("scalaLoggingVersion")
 
-scalaLoggingVersion := (scalaBinaryVersion.value match {
-  case "2.11" => "3.9.0"
-  case _ => "3.9.2"
-})
-
-libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion.value
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
 libraryDependencies += "com.typesafe" % "config" % "1.3.4"
 
@@ -142,6 +134,8 @@ libraryDependencies += "de.odysseus.juel" % "juel-api" % JuelVersion
 libraryDependencies += "de.odysseus.juel" % "juel-impl" % JuelVersion
 
 libraryDependencies += "de.odysseus.juel" % "juel-spi" % JuelVersion
+
+
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
