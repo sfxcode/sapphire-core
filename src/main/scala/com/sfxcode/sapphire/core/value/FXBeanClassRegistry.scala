@@ -88,6 +88,7 @@ object FXBeanClassRegistry {
 case class FXBeanClassMemberInfo(name: String, signature: PropertyValue = TypeUnknown, isOption: Boolean = false, javaClass: Class[_] = classOf[java.lang.String])
 
 object FXBeanClassMemberInfo {
+  val EmptyTypeHints = List[FXBeanClassMemberInfo]()
 
   def stringInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeString, isOption)
 
