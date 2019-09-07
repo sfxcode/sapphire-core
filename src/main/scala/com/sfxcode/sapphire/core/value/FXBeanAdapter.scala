@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
@@ -10,7 +11,7 @@ import javafx.util.StringConverter
 
 import scala.collection.JavaConverters._
 
-class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) extends LazyLogging {
+class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null) extends KeyConverter with LazyLogging {
 
   val beanProperty = new SimpleObjectProperty[FXBean[T]]()
 
@@ -22,14 +23,14 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   val nodeCache: ObservableMap[String, Option[Node]] = FXCollections.observableHashMap[String, Option[javafx.scene.Node]]()
 
-  val converterMap: ObservableMap[StringProperty, StringConverter[_]] = FXCollections.observableHashMap[StringProperty, StringConverter[_]]()
-
   val bindingMap: ObservableMap[Property[_], String] = FXCollections.observableHashMap[Property[_ <: Any], String]()
 
   val boundProperties: ObservableMap[Property[_], Property[_]] = FXCollections.observableHashMap[Property[_], Property[_]]()
 
   if (parent == null)
     parent = viewController.rootPane
+
+  def converterProvider: ConverterProvider = viewController.converterFactory
 
   def set(newValue: FXBean[T]): Unit = beanProperty.setValue(newValue)
 
@@ -85,26 +86,11 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       None
   }
 
-  def addConverterForKeys(keys: List[String], converterName: String, forceNew: Boolean = false): Unit = {
-    keys.foreach(key => {
-      addConverter(key, converterName, forceNew)
-    })
-  }
+  def addDate2Converter(keys: String*): Unit = keys.foreach(addConverter(_, FXBean.defaultDateConverter))
 
-  def addConverter(key: String, converterName: String, forceNew: Boolean = false) {
-    val converter = viewController.converterFactory.getConverterByName(converterName, forceNew).asInstanceOf[StringConverter[_]]
-    addConverter(key, converter)
-  }
 
-  def addConverter[S](beanKey: String, converter: StringConverter[S]) {
-    val property = guessPropertyForNode(beanKey)
-    if (property.isDefined && property.get.isInstanceOf[StringProperty])
-      addConverter(property.get.asInstanceOf[StringProperty], converter)
-  }
 
-  def addConverter[S](property: StringProperty, converter: StringConverter[S]) {
-    converterMap.put(property, converter)
-  }
+
 
   protected def bindBidirectional[S](bean: FXBean[T], property: Property[S], beanKey: String) {
     val observable = bean.getProperty(beanKey)
