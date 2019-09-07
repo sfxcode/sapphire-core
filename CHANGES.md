@@ -3,9 +3,9 @@
 ## Versions
 
 ### 1.6.5
-* FXBeanAdapter refactor conver methods to KeyConverter
+* FXBeanAdapter refactor convert methods to KeyConverter
 * Refactor FXBean by extending BeanProperties
-* KeyConverter add meyhods for standrd JavaFX Converters
+* KeyConverter add meyhods for standard JavaFX Converters
 
 ### 1.6.4
 * FXMLLoader suppport ContextClassLoader for Stream loading fallback
