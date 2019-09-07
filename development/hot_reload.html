@@ -20,7 +20,7 @@
 
 <meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Development Tools · Sapphire Core</title>
+<title>Hot Reloading · Sapphire Core</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="../lib/prettify/prettify.css">
@@ -56,7 +56,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-Development Tools
+Hot Reloading
 </span>
 </div>
 </div>
@@ -138,8 +138,8 @@ sfxcode/sapphire-core
   <li><a href="../features.html" class="page">Features</a></li>
   <li><a href="../development/index.html" class="page">Development</a>
   <ul>
-    <li><a href="../development/tools.html" class="active page">Development Tools</a></li>
-    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
+    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
+    <li><a href="../development/hot_reload.html" class="active page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="../tutorial/index.html" class="page">Tutorial</a>
   <ul>
@@ -168,12 +168,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../development/tools.html#development-tools" class="header">Development Tools</a>
+  <li><a href="../development/hot_reload.html#hot-reloading" class="header">Hot Reloading</a>
   <ul>
-    <li><a href="../development/tools.html#intellij-ide" class="header">IntelliJ IDE</a></li>
-    <li><a href="../development/tools.html#scenebuilder" class="header">SceneBuilder</a></li>
-    <li><a href="../development/tools.html#scenicview" class="header">ScenicView</a></li>
-    <li><a href="../development/tools.html#sbt-plugins" class="header">SBT Plugins</a></li>
+    <li><a href="../development/hot_reload.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
+    <li><a href="../development/hot_reload.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -195,12 +193,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../development/tools.html#development-tools" class="header">Development Tools</a>
+  <li><a href="../development/hot_reload.html#hot-reloading" class="header">Hot Reloading</a>
   <ul>
-    <li><a href="../development/tools.html#intellij-ide" class="header">IntelliJ IDE</a></li>
-    <li><a href="../development/tools.html#scenebuilder" class="header">SceneBuilder</a></li>
-    <li><a href="../development/tools.html#scenicview" class="header">ScenicView</a></li>
-    <li><a href="../development/tools.html#sbt-plugins" class="header">SBT Plugins</a></li>
+    <li><a href="../development/hot_reload.html#dcevm-and-hotswapagent" class="header">DCEVM and HotSwapAgent</a></li>
+    <li><a href="../development/hot_reload.html#hot-scene-reloading" class="header">Hot Scene Reloading</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -211,24 +207,40 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#development-tools" name="development-tools" class="anchor"><span class="anchor-link"></span></a>Development Tools</h1>
-<p>Some useful tools.</p>
-<h2><a href="#intellij-ide" name="intellij-ide" class="anchor"><span class="anchor-link"></span></a>IntelliJ IDE</h2>
-<p><a href="https://www.jetbrains.com/idea/download">IntelliJ</a> is my favorite IDE for Scala / JavaFX Coding. Even the Community Edition has all features for developing JavaFX Applications.</p>
-<p><img src="../images/intellij.png" /></p>
-<h2><a href="#scenebuilder" name="scenebuilder" class="anchor"><span class="anchor-link"></span></a>SceneBuilder</h2>
-<p>Scenebuilder (backed by Gluon) can be found at the <a href="http://gluonhq.com/products/scene-builder/">Gluon Site</a>.</p>
-<p><img src="../images/scenebuilder.png" /></p>
-<h2><a href="#scenicview" name="scenicview" class="anchor"><span class="anchor-link"></span></a>ScenicView</h2>
-<p><a href="http://fxexperience.com/scenic-view/">Scenic View</a> is a JavaFX application designed to make it simple to understand the current state of your application scenegraph, and to also easily manipulate properties of the scenegraph without having to keep editing your code. This lets you find bugs, and get things pixel perfect without having to do the compile-check-compile dance.</p>
-<h2><a href="#sbt-plugins" name="sbt-plugins" class="anchor"><span class="anchor-link"></span></a>SBT Plugins</h2>
-<h3><a href="#sbt-javafx" name="sbt-javafx" class="anchor"><span class="anchor-link"></span></a>sbt-javafx</h3>
-<p>(Simple Build Tool) plugin for building JavaFx Application</p>
-<p><a href="https://quadstingray.github.io/sbt-javafx/">Documentation</a></p>
-<p><a href="https://bintray.com/quadstingray/sbt-plugins/sbt-javafx/_latestVersion"> <img src="https://api.bintray.com/packages/quadstingray/sbt-plugins/sbt-javafx/images/download.svg" alt="Download" /> </a>  <a href="https://travis-ci.org/QuadStingray/sbt-javafx"><img src="https://travis-ci.org/QuadStingray/sbt-javafx.svg?branch=master" alt="Build Status" /></a> <a href="https://www.codacy.com/app/QuadStingray/sbt-javafx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=QuadStingray/sbt-javafx&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/b18d8cb66b5a47f3ad5485c848c5bda7" alt="Codacy Badge" /></a></p>
+<h1><a href="#hot-reloading" name="hot-reloading" class="anchor"><span class="anchor-link"></span></a>Hot Reloading</h1>
+<p>Some tips and tricks to speed your development.</p>
+<h2><a href="#dcevm-and-hotswapagent" name="dcevm-and-hotswapagent" class="anchor"><span class="anchor-link"></span></a>DCEVM and HotSwapAgent</h2>
+<p><a href="http://dcevm.github.io/">DCEVM</a> together with <a href="http://hotswapagent.org/">HotSwapAgent</a> can speedup your development. It enhance the ability of reloading of changed classes especially with scala.</p>
+<h2><a href="#hot-scene-reloading" name="hot-scene-reloading" class="anchor"><span class="anchor-link"></span></a>Hot Scene Reloading</h2>
+<p>Reloading can be used for:</p>
+<ul>
+  <li>CSS</li>
+  <li>FXML</li>
+  <li>Bundle Content</li>
+</ul>
+<h3><a href="#setup" name="setup" class="anchor"><span class="anchor-link"></span></a>Setup</h3>
+<p>Create a new method in your ApplicationController:</p>
+<pre class="prettyprint"><code class="language-scala"> def reload(): Unit = {
+    // Styling
+    reloadStyles()
+    // Resources
+    applicationEnvironment.clearResourceBundleCache()
+    applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
+    // FXML
+    val newMainWindowController = getController[MainWindowController]()
+    replaceSceneContent(newMainWindowController)
+  }
+</code></pre>
+<p>Create a Button anywhere in your application and an corresponding action:</p>
+<pre class="prettyprint"><code class="language-scala">  def actionReload(event: ActionEvent) {
+    getBean[ApplicationController]().reload()
+  }
+</code></pre>
+<h3><a href="#intellij" name="intellij" class="anchor"><span class="anchor-link"></span></a>IntelliJ</h3>
+<p>Very useful for compile on save is the <a href="https://plugins.jetbrains.com/plugin/7642-save-actions">Save Actions Plugin</a></p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/development/tools.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/development/hot_reload.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -244,7 +256,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../development/index.html" title="Development" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../development/tools.html" title="Development Tools" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -253,17 +265,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Development
+Development Tools
 </span>
 </div>
 </a>
-<a href="../development/hot_reload.html" title="Hot Reloading" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../tutorial/index.html" title="Tutorial" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Hot Reloading
+Tutorial
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">

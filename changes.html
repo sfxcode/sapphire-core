@@ -139,7 +139,7 @@ sfxcode/sapphire-core
   <li><a href="development/index.html" class="page">Development</a>
   <ul>
     <li><a href="development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="development/development.html" class="page">Hot Reloading</a></li>
+    <li><a href="development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="tutorial/index.html" class="page">Tutorial</a>
   <ul>
@@ -150,9 +150,11 @@ sfxcode/sapphire-core
   </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
   <ul>
-    <li><a href="detail/fxbean.html" class="page">In Depth FXBean</a></li>
-    <li><a href="detail/fxml_loading.html" class="page">In Depth FxmlLoading</a></li>
-    <li><a href="detail/view_controller.html" class="page">In Depth ViewController</a></li>
+    <li><a href="detail/view_controller.html" class="page">ViewController</a></li>
+    <li><a href="detail/fxbean.html" class="page">FXBean</a></li>
+    <li><a href="detail/fxbean_adapter.html" class="page">FXBean Adapter</a></li>
+    <li><a href="detail/bindings.html" class="page">KeyBindings</a></li>
+    <li><a href="detail/fxml_loading.html" class="page">FxmlLoading</a></li>
   </ul></li>
   <li><a href="sample/index.html" class="page">Examples</a>
   <ul>
@@ -160,6 +162,7 @@ sfxcode/sapphire-core
     <li><a href="sample/advanced.html" class="page">Samples Advanced</a></li>
   </ul></li>
   <li><a href="extension.html" class="page">Sapphire Extension</a></li>
+  <li><a href="scalafx.html" class="page">ScalaFX</a></li>
   <li><a href="changes.html" class="active page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -177,7 +180,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.0
+<i class="md-icon" title="Version">label_outline</i> 1.6.5
 </label>
 </li>
 </ul>
@@ -209,9 +212,30 @@ sfxcode/sapphire-core
 <h3><a href="#download" name="download" class="anchor"><span class="anchor-link"></span></a>Download</h3>
 <p><a href="https://bintray.com/sfxcode/maven/sapphire-core/_latestVersion"> <img src="https://api.bintray.com/packages/sfxcode/maven/sapphire-core/images/download.svg" alt="Download" /> </a></p>
 <h2><a href="#history" name="history" class="anchor"><span class="anchor-link"></span></a>History</h2>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/CHANGES.md" target="_blank" title="Go to snippet source"></a><code class="language-md"># Changes #
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/CHANGES.md" target="_blank" title="Go to snippet source"></a><code class="language-md"># Changes #
 
 ## Versions
+
+### 1.6.5
+* FXBeanAdapter refactor convert methods to KeyConverter
+* Refactor FXBean by extending BeanProperties
+* KeyConverter add meyhods for standard JavaFX Converters
+
+### 1.6.4
+* FXMLLoader suppport ContextClassLoader for Stream loading fallback
+* use import scala.language.implicitConversions to mark implicits
+
+### 1.6.3
+* Fix Bug in FXMLoading
+
+### 1.6.2
+* CollectionExtensions: add implicits
+* fix Map Changes Bug
+* remove SceneExtensions
+
+### 1.6.1
+* ExtendedObservableList addChangeListener, addInvalidationListener
+* Dependency Updates
 
 ### 1.6.0
 * scalafx dependency removed
@@ -240,8 +264,8 @@ sfxcode/sapphire-core
 
 * com.typesafe.scala-logging:scala-logging  : 3.9.0 -&gt; 3.9.2
 * org.apache.openwebbeans:openwebbeans-impl : 2.0.8 -&gt; 2.0.9
-* org.json4s:json4s-native:test             : 3.6.2 -&gt; 3.6.3
-* org.specs2:specs2-core:test               : 4.3.5 -&gt; 4.3.6
+* org.json4s:json4s-native                  : 3.6.2 -&gt; 3.6.3
+* org.specs2:specs2-core                    : 4.3.5 -&gt; 4.3.6
 
 ### 1.4.3
 * FXBean Change management for complex case classes
@@ -299,13 +323,13 @@ sfxcode/sapphire-core
 </code></pre>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/changes.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/changes.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.0
+1.6.5
 </span>
 </div>
 </article>
@@ -315,7 +339,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="extension.html" title="Sapphire Extension" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="scalafx.html" title="ScalaFX" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -324,7 +348,7 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Sapphire Extension
+ScalaFX
 </span>
 </div>
 </a>

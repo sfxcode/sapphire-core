@@ -139,7 +139,7 @@ sfxcode/sapphire-core
   <li><a href="development/index.html" class="page">Development</a>
   <ul>
     <li><a href="development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="development/development.html" class="page">Hot Reloading</a></li>
+    <li><a href="development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="tutorial/index.html" class="page">Tutorial</a>
   <ul>
@@ -150,9 +150,11 @@ sfxcode/sapphire-core
   </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
   <ul>
-    <li><a href="detail/fxbean.html" class="page">In Depth FXBean</a></li>
-    <li><a href="detail/fxml_loading.html" class="page">In Depth FxmlLoading</a></li>
-    <li><a href="detail/view_controller.html" class="page">In Depth ViewController</a></li>
+    <li><a href="detail/view_controller.html" class="page">ViewController</a></li>
+    <li><a href="detail/fxbean.html" class="page">FXBean</a></li>
+    <li><a href="detail/fxbean_adapter.html" class="page">FXBean Adapter</a></li>
+    <li><a href="detail/bindings.html" class="page">KeyBindings</a></li>
+    <li><a href="detail/fxml_loading.html" class="page">FxmlLoading</a></li>
   </ul></li>
   <li><a href="sample/index.html" class="page">Examples</a>
   <ul>
@@ -160,6 +162,7 @@ sfxcode/sapphire-core
     <li><a href="sample/advanced.html" class="page">Samples Advanced</a></li>
   </ul></li>
   <li><a href="extension.html" class="page">Sapphire Extension</a></li>
+  <li><a href="scalafx.html" class="page">ScalaFX</a></li>
   <li><a href="changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -171,7 +174,7 @@ sfxcode/sapphire-core
     <li><a href="features.html#bean-enhancement" class="header">Bean Enhancement</a></li>
     <li><a href="features.html#scala-javafx-bean-binding" class="header">Scala JavaFX Bean Binding</a></li>
     <li><a href="features.html#windowcontroller" class="header">WindowController</a></li>
-    <li><a href="features.html#viewcontroller" class="header">ViewController</a></li>
+    <li><a href="features.html#" class="header"><a href="detail/view_controller.html">ViewController</a></a></li>
     <li><a href="features.html#first-class-fxml-support" class="header">First Class FXML Support</a></li>
   </ul></li>
 </ul>
@@ -181,7 +184,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.0
+<i class="md-icon" title="Version">label_outline</i> 1.6.5
 </label>
 </li>
 </ul>
@@ -200,7 +203,7 @@ sfxcode/sapphire-core
     <li><a href="features.html#bean-enhancement" class="header">Bean Enhancement</a></li>
     <li><a href="features.html#scala-javafx-bean-binding" class="header">Scala JavaFX Bean Binding</a></li>
     <li><a href="features.html#windowcontroller" class="header">WindowController</a></li>
-    <li><a href="features.html#viewcontroller" class="header">ViewController</a></li>
+    <li><a href="features.html#" class="header"><a href="detail/view_controller.html">ViewController</a></a></li>
     <li><a href="features.html#first-class-fxml-support" class="header">First Class FXML Support</a></li>
   </ul></li>
 </ul>
@@ -216,25 +219,25 @@ sfxcode/sapphire-core
 <h2><a href="#application-environment-powered-by-cdi" name="application-environment-powered-by-cdi" class="anchor"><span class="anchor-link"></span></a>Application Environment powered by CDI</h2>
 <ul>
   <li>WindowController</li>
-  <li>ViewController</li>
+  <li><a href="detail/view_controller.html">ViewController</a></li>
   <li>Parameter Provider</li>
   <li>Configuration Provider</li>
-  <li>FXML Loading</li>
-  <li>Hot Reload</li>
+  <li><a href="detail/fxml_loading.html">FXML Loading</a></li>
+  <li><a href="development/hot_reload.html">Hot Reload</a></li>
 </ul>
 <h2><a href="#bean-enhancement" name="bean-enhancement" class="anchor"><span class="anchor-link"></span></a>Bean Enhancement</h2>
 <ul>
-  <li>Every Java / Scala Bean can be used for FXBean</li>
-  <li>FXBean has additional support for Java/Scala Maps</li>
-  <li>FXBean resolves Expressions on bean</li>
-  <li>FXBean creates Properties needed for Binding on demand</li>
-  <li>FXBean has change management by default</li>
+  <li>Every Java / Scala Bean can be used for <a href="detail/fxbean.html">FXBean</a></li>
+  <li><a href="detail/fxbean.html">FXBean</a> has additional support for Java/Scala Maps</li>
+  <li><a href="detail/fxbean.html">FXBean</a> resolves Expressions on bean</li>
+  <li><a href="detail/fxbean.html">FXBean</a> creates Properties needed for Binding on demand</li>
+  <li><a href="detail/fxbean.html">FXBean</a> has change management by default</li>
 </ul>
 <h2><a href="#scala-javafx-bean-binding" name="scala-javafx-bean-binding" class="anchor"><span class="anchor-link"></span></a>Scala JavaFX Bean Binding</h2>
 <ul>
   <li>Bindings by form id</li>
   <li>Binding with converter</li>
-  <li>Adapter Pattern (FXBean Adapter)</li>
+  <li>Adapter Pattern (<a href="detail/fxbean_adapter.html">FXBean Adapter</a>)</li>
 </ul>
 <h2><a href="#windowcontroller" name="windowcontroller" class="anchor"><span class="anchor-link"></span></a>WindowController</h2>
 <ul>
@@ -242,27 +245,27 @@ sfxcode/sapphire-core
   <li>Scene</li>
   <li>Replace Scene Content</li>
 </ul>
-<h2><a href="#viewcontroller" name="viewcontroller" class="anchor"><span class="anchor-link"></span></a>ViewController</h2>
+<h2><a href="#" name="" class="anchor"><span class="anchor-link"></span></a><a href="detail/view_controller.html">ViewController</a></h2>
 <ul>
   <li>Controller Lifecycle</li>
   <li>Node Locator</li>
   <li>Controller CDI Additions</li>
+  <li>Controller Lookup by CDI</li>
 </ul>
 <h2><a href="#first-class-fxml-support" name="first-class-fxml-support" class="anchor"><span class="anchor-link"></span></a>First Class FXML Support</h2>
 <ul>
   <li>Simple load from controller pattern</li>
   <li>Different fxml path options</li>
-  <li>Controller Lookup by CDI</li>
 </ul>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/features.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/features.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.0
+1.6.5
 </span>
 </div>
 </article>

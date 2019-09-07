@@ -134,7 +134,7 @@ sfxcode/sapphire-core
   <li><a href="development/index.html" class="page">Development</a>
   <ul>
     <li><a href="development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="development/development.html" class="page">Hot Reloading</a></li>
+    <li><a href="development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="tutorial/index.html" class="page">Tutorial</a>
   <ul>
@@ -145,9 +145,11 @@ sfxcode/sapphire-core
   </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
   <ul>
-    <li><a href="detail/fxbean.html" class="page">In Depth FXBean</a></li>
-    <li><a href="detail/fxml_loading.html" class="page">In Depth FxmlLoading</a></li>
-    <li><a href="detail/view_controller.html" class="page">In Depth ViewController</a></li>
+    <li><a href="detail/view_controller.html" class="page">ViewController</a></li>
+    <li><a href="detail/fxbean.html" class="page">FXBean</a></li>
+    <li><a href="detail/fxbean_adapter.html" class="page">FXBean Adapter</a></li>
+    <li><a href="detail/bindings.html" class="page">KeyBindings</a></li>
+    <li><a href="detail/fxml_loading.html" class="page">FxmlLoading</a></li>
   </ul></li>
   <li><a href="sample/index.html" class="page">Examples</a>
   <ul>
@@ -155,6 +157,7 @@ sfxcode/sapphire-core
     <li><a href="sample/advanced.html" class="page">Samples Advanced</a></li>
   </ul></li>
   <li><a href="extension.html" class="page">Sapphire Extension</a></li>
+  <li><a href="scalafx.html" class="page">ScalaFX</a></li>
   <li><a href="changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -175,7 +178,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.0
+<i class="md-icon" title="Version">label_outline</i> 1.6.5
 </label>
 </li>
 </ul>
@@ -219,21 +222,18 @@ sfxcode/sapphire-core
 <p>The default <a href="https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injection">CDI</a> implementation depends on <a href="http://openwebbeans.apache.org">Apache OpenWebBeans</a> (2.0.x).</p>
 <h3><a href="#expression-language" name="expression-language" class="anchor"><span class="anchor-link"></span></a>Expression Language</h3>
 <p>Expressions are resolved by <a href="http://juel.sourceforge.net">JUEL</a>.</p>
-<h3><a href="#scalafx" name="scalafx" class="anchor"><span class="anchor-link"></span></a>ScalaFX</h3>
-<p>Until Version 1.5.x Sapphire depends on <a href="http://www.scalafx.org/">ScalaFX</a>, a DSL for JavaFX written in Scala.</p>
-<p>Version 1.6.x and newer versions are built without ScalaFX dependency, because ScalaFX (as a wrapper library) is not really needed for sapphire functionality. However, it can be used on top of this framework when it is useful.</p>
 <h2><a href="#maven" name="maven" class="anchor"><span class="anchor-link"></span></a>Maven</h2>
 <p>Sapphire is published to Bintray and linked to Maven Central.</p>
 <h3><a href="#repository" name="repository" class="anchor"><span class="anchor-link"></span></a>Repository</h3>
 <pre><code>resolvers += &quot;sfxcode-bintray&quot; at &quot;https://dl.bintray.com/sfxcode/maven&quot;
 
 </code></pre>
-<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "1.6.0"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
+<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.sapphire" %% "sapphire-core" % "1.6.5"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
   &lt;groupId&gt;com.sfxcode.sapphire&lt;/groupId&gt;
   &lt;artifactId&gt;sapphire-core_2.12&lt;/artifactId&gt;
-  &lt;version&gt;1.6.0&lt;/version&gt;
+  &lt;version&gt;1.6.5&lt;/version&gt;
 &lt;/dependency&gt;</code></pre></dd><dt>Gradle</dt><dd><pre class="prettyprint"><code class="language-gradle">dependencies {
-  compile group: 'com.sfxcode.sapphire', name: 'sapphire-core_2.12', version: '1.6.0'
+  compile group: 'com.sfxcode.sapphire', name: 'sapphire-core_2.12', version: '1.6.5'
 }</code></pre></dd></dl>
 <h2><a href="#getting-started" name="getting-started" class="anchor"><span class="anchor-link"></span></a>Getting started</h2>
 <h3><a href="#setup-base-application-with-giter8" name="setup-base-application-with-giter8" class="anchor"><span class="anchor-link"></span></a>Setup Base Application with Giter8</h3>
@@ -245,13 +245,13 @@ sfxcode/sapphire-core
 <p><a href="https://github.com/sfxcode/sapphire-core/blob/master/LICENSE">Apache 2</a></p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.0
+1.6.5
 </span>
 </div>
 </article>

@@ -20,7 +20,7 @@
 
 <meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>In Depth FxmlLoading · Sapphire Core</title>
+<title>FxmlLoading · Sapphire Core</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="../lib/prettify/prettify.css">
@@ -56,7 +56,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-In Depth FxmlLoading
+FxmlLoading
 </span>
 </div>
 </div>
@@ -139,7 +139,7 @@ sfxcode/sapphire-core
   <li><a href="../development/index.html" class="page">Development</a>
   <ul>
     <li><a href="../development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="../development/development.html" class="page">Hot Reloading</a></li>
+    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="../tutorial/index.html" class="page">Tutorial</a>
   <ul>
@@ -150,9 +150,11 @@ sfxcode/sapphire-core
   </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
   <ul>
-    <li><a href="../detail/fxbean.html" class="page">In Depth FXBean</a></li>
-    <li><a href="../detail/fxml_loading.html" class="active page">In Depth FxmlLoading</a></li>
-    <li><a href="../detail/view_controller.html" class="page">In Depth ViewController</a></li>
+    <li><a href="../detail/view_controller.html" class="page">ViewController</a></li>
+    <li><a href="../detail/fxbean.html" class="page">FXBean</a></li>
+    <li><a href="../detail/fxbean_adapter.html" class="page">FXBean Adapter</a></li>
+    <li><a href="../detail/bindings.html" class="page">KeyBindings</a></li>
+    <li><a href="../detail/fxml_loading.html" class="active page">FxmlLoading</a></li>
   </ul></li>
   <li><a href="../sample/index.html" class="page">Examples</a>
   <ul>
@@ -160,12 +162,13 @@ sfxcode/sapphire-core
     <li><a href="../sample/advanced.html" class="page">Samples Advanced</a></li>
   </ul></li>
   <li><a href="../extension.html" class="page">Sapphire Extension</a></li>
+  <li><a href="../scalafx.html" class="page">ScalaFX</a></li>
   <li><a href="../changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../detail/fxml_loading.html#in-depth-fxmlloading" class="header">In Depth FxmlLoading</a>
+  <li><a href="../detail/fxml_loading.html#fxmlloading" class="header">FxmlLoading</a>
   <ul>
     <li><a href="../detail/fxml_loading.html#features" class="header">Features</a></li>
     <li><a href="../detail/fxml_loading.html#example" class="header">Example</a></li>
@@ -178,7 +181,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.0
+<i class="md-icon" title="Version">label_outline</i> 1.6.5
 </label>
 </li>
 </ul>
@@ -191,7 +194,7 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../detail/fxml_loading.html#in-depth-fxmlloading" class="header">In Depth FxmlLoading</a>
+  <li><a href="../detail/fxml_loading.html#fxmlloading" class="header">FxmlLoading</a>
   <ul>
     <li><a href="../detail/fxml_loading.html#features" class="header">Features</a></li>
     <li><a href="../detail/fxml_loading.html#example" class="header">Example</a></li>
@@ -206,7 +209,7 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#in-depth-fxmlloading" name="in-depth-fxmlloading" class="anchor"><span class="anchor-link"></span></a>In Depth FxmlLoading</h1>
+<h1><a href="#fxmlloading" name="fxmlloading" class="anchor"><span class="anchor-link"></span></a>FxmlLoading</h1>
 <h2><a href="#features" name="features" class="anchor"><span class="anchor-link"></span></a>Features</h2>
 <ul>
   <li>load fxml by different pattern (convention over configuration)</li>
@@ -252,13 +255,13 @@ class PersonController extends AbstractViewController {
 <p>WorkspaceController fxml must be saved at <code>/fxml/Workspace.fxml</code>.</p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.0/docs/src/main/paradox/detail/fxml_loading.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/detail/fxml_loading.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.0
+1.6.5
 </span>
 </div>
 </article>
@@ -268,7 +271,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../detail/fxbean.html" title="In Depth FXBean" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../detail/bindings.html" title="KeyBindings" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -277,17 +280,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-In Depth FXBean
+KeyBindings
 </span>
 </div>
 </a>
-<a href="../detail/view_controller.html" title="In Depth ViewController" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../sample/index.html" title="Examples" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-In Depth ViewController
+Examples
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
