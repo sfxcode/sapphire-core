@@ -7,7 +7,7 @@ import javafx.collections.ObservableList
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.TableView
-import javafx.scene.layout.GridPane
+import javafx.scene.layout.VBox
 
 @FxmlLoader(path = "/fxml/widget/Person.fxml")
 class PersonController extends AbstractViewController with BeanConversions {
@@ -17,11 +17,11 @@ class PersonController extends AbstractViewController with BeanConversions {
 
   // #adapter_create
   @FXML
-  var editPane: GridPane = _
+  var personBox: VBox = _
 
   // second parameter parent Node is optional,
   // but sometimes needed for the correct NodeLocator lookup
-  lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this, editPane)
+  lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this, personBox)
 
   // #adapter_create
 
@@ -43,7 +43,7 @@ class PersonController extends AbstractViewController with BeanConversions {
 
     tableView.setItems(items) // #labels
     tableView.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectPerson(newValue)) // #labels
-    editPane.visibleProperty().bind(adapter.hasBeanProperty)
+    personBox.visibleProperty().bind(adapter.hasBeanProperty)
   }
 
   // #bindings

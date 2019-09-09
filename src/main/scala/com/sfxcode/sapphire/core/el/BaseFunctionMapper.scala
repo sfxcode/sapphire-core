@@ -4,6 +4,7 @@ import java.lang.reflect.Method
 import java.util.Date
 
 import com.sfxcode.sapphire.core.ConfigValues
+import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.value.FXBean
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{FXCollections, ObservableMap}
@@ -53,12 +54,13 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
     result.addFunction(SapphireFunctionPrefix, "boolString", clazz, "boolString", classOf[Boolean], classOf[String], classOf[String])
     result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
+    result.addFunction(SapphireFunctionPrefix, "format", classOf[java.lang.String], "format", classOf[String], classOf[Array[Any]])
     result
   }
 
 }
 
-object DefaultFunctions extends ConfigValues {
+object DefaultFunctions extends ConfigValues with BeanResolver {
 
   def frameworkName(): String = com.sfxcode.sapphire.core.BuildInfo.name
 

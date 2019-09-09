@@ -62,8 +62,8 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
   def shutdown() {}
 
   override def initialize(loc: URL, res: ResourceBundle): Unit = {
-    location = loc
-    resources = res
+    location = Some(loc)
+    resources = Some(res)
     didInitialize()
   }
 

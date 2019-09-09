@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.6.6
+* FXMLLoading url and resources properties now Options
+* FXMLLoading i18n support [sapphire-core/issues/18](https://github.com/sfxcode/sapphire-core/issues/18)
+* ResourceBundleHolder added
+
 ### 1.6.5
 * FXBeanAdapter refactor convert methods to KeyConverter
 * Refactor FXBean by extending BeanProperties

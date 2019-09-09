@@ -3,11 +3,11 @@ package com.sfxcode.sapphire.core.fxml
 import java.net.URL
 import java.util.ResourceBundle
 
-import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.scene.NodeLocator
+import com.sfxcode.sapphire.core.{ConfigValues, ResourceBundleHolder}
 import javafx.scene.layout.Pane
 import javax.inject.Inject
 
@@ -26,10 +26,16 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
   @Inject
   var converterFactory: ConverterProvider = _
 
-  var fxml: AnyRef = _
+  //var fxml: AnyRef = _
   var rootPane: Pane = _
-  var location: URL = _
-  var resources: ResourceBundle = _
+  var location: Option[URL] = None
+  var resources: Option[ResourceBundle] = None
+
+  private lazy val recourceBundleHolder = ResourceBundleHolder(resources.getOrElse(applicationEnvironment.resourceBundle))
+
+  def i18n(key: String, params: Any*): String = {
+    recourceBundleHolder.message(key, params: _*)
+  }
 
   def getController[T <: ViewController](fxml: String = "")(implicit ct: ClassTag[T]): T = {
     val fxmlPath = guessFxmlPath(fxml, ct)
@@ -65,6 +71,6 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
     result
   }
 
-  def isLoadedFromFXML: Boolean = location != null
+  def isLoadedFromFXML: Boolean = location.isDefined
 
 }

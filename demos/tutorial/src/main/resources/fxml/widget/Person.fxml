@@ -38,10 +38,10 @@
             </TableView>
          </center>
          <bottom>
-             <VBox id="personDetail" spacing="10.0" BorderPane.alignment="CENTER">
+             <VBox id="personDetail" fx:id="personBox" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label id="person" prefHeight="16.0" prefWidth="226.0" text="Please select Person" />
-                  <GridPane id="personPane" fx:id="editPane" maxWidth="250.0">
+                   <GridPane id="personPane" maxWidth="250.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
