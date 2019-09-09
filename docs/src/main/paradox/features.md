@@ -13,7 +13,7 @@
 
 - Every Java / Scala Bean can be used for @ref:[FXBean](detail/fxbean.md)
 - @ref:[FXBean](detail/fxbean.md) has additional support for Java/Scala Maps
-- @ref:[FXBean](detail/fxbean.md) resolves Expressions on bean
+- @ref:[FXBean](detail/fxbean.md) resolves @ref:[Expressions](detail/expression_language.md) on bean
 - @ref:[FXBean](detail/fxbean.md) creates Properties needed for Binding on demand
 - @ref:[FXBean](detail/fxbean.md) has change management by default
 
@@ -40,3 +40,8 @@
 
 - Simple load from controller pattern
 - Different fxml path options
+
+## Additional
+
+- Internationalization Support (@ref:[i18n](detail/i18n.md))
+- Expression Language Support  (@ref:[JUEL](detail/expression_language.md))

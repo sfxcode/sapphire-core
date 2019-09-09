@@ -4,6 +4,10 @@ import java.text.SimpleDateFormat
 
 import org.specs2.mutable.Specification
 
+object CustomFunctionMapper {
+  def coolMethod(s: String): String = "test-" + s
+}
+
 class ExpressionsSpec extends Specification {
 
   "Expressions" should {
@@ -32,5 +36,12 @@ class ExpressionsSpec extends Specification {
 
     }
 
+    "add custom function" in {
+
+      val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.CustomFunctionMapper")
+      Expressions.context.functionMapper.addFunction("custom", "myCoolMethod", clazz, "coolMethod", classOf[String])
+      Expressions.getValue("${custom:myCoolMethod('123')}") must be equalTo "test-123"
+
+    }
   }
 }

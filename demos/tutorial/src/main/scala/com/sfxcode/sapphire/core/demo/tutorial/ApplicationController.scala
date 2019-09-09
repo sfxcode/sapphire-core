@@ -1,5 +1,7 @@
 package com.sfxcode.sapphire.core.demo.tutorial
 
+import java.util.{Locale, ResourceBundle}
+
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainController
 import javax.enterprise.context.ApplicationScoped
@@ -15,7 +17,9 @@ class ApplicationController extends DefaultWindowController {
 
   def applicationDidLaunch() {
     logger.info("start " + this)
+    // #Resources
     applicationEnvironment.loadResourceBundle("bundles/application")
+    // #Resources
     replaceSceneContent(mainWindowController)
   }
 
@@ -34,6 +38,22 @@ class ApplicationController extends DefaultWindowController {
   def applicationName: ApplicationName = {
     ApplicationName(configStringValue("application.name"))
   }
+
+  // #CustomBundle
+  // only example values ...
+  override def resourceBundleForView(viewPath: String): ResourceBundle = {
+    if (viewPath.contains("mySpecialViewName")) {
+      val path = "myCustomResourcePath"
+      val classLoader = Thread.currentThread().getContextClassLoader
+      ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
+    }
+    else {
+      super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
+    }
+  }
+
+  // #CustomBundle
+
 }
 
 case class ApplicationName(name: String)
