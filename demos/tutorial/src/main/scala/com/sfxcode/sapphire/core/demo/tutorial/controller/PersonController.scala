@@ -34,7 +34,7 @@ class PersonController extends AbstractViewController with BeanConversions {
     // #bindingList #labels
     val bindings = KeyBindings("id", "name", "age", "test")
     // Expression Binding Example
-    bindings.add("person", "Person ${_self.name()} with age of ${_self.age()}")
+    bindings.add("person", "${sf:i18n('personText', _self.name(), _self.age())}")
 
     adapter.addBindings(bindings)
     // Converter Example

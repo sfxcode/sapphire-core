@@ -6,6 +6,7 @@
 * FXMLLoading url and resources properties now Options
 * FXMLLoading i18n support [sapphire-core/issues/18](https://github.com/sfxcode/sapphire-core/issues/18)
 * ResourceBundleHolder added
+* Add i18n method to Expression Language
 
 ### 1.6.5
 * FXBeanAdapter refactor convert methods to KeyConverter

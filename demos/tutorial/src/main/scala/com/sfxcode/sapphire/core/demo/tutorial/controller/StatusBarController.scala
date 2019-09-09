@@ -42,7 +42,7 @@ class StatusBarController extends ViewController with LazyLogging {
   rootPane = box
 
   def updateLabel(button: Button): Unit = {
-    val str = i18n("clickedMessage1", button.getText, "!")
+    val str = i18n("clickedMessage", button.getText, "!")
     actionLabel.setText(str)
   }
 

@@ -3,12 +3,14 @@ package com.sfxcode.sapphire.core.el
 import java.lang.reflect.Method
 import java.util.Date
 
-import com.sfxcode.sapphire.core.ConfigValues
-import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.cdi.{ApplicationEnvironment, BeanResolver}
 import com.sfxcode.sapphire.core.value.FXBean
+import com.sfxcode.sapphire.core.{ConfigValues, ResourceBundleHolder}
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{FXCollections, ObservableMap}
 import javax.el.FunctionMapper
+
+import scala.annotation.varargs
 
 class BaseFunctionMapper extends FunctionMapper with LazyLogging {
   val map: ObservableMap[String, Method] = FXCollections.observableHashMap[String, Method]()
@@ -54,6 +56,7 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
     result.addFunction(SapphireFunctionPrefix, "boolString", clazz, "boolString", classOf[Boolean], classOf[String], classOf[String])
     result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
+    result.addFunction(SapphireFunctionPrefix, "i18n", clazz, "i18n", classOf[String], classOf[Array[Any]])
     result.addFunction(SapphireFunctionPrefix, "format", classOf[java.lang.String], "format", classOf[String], classOf[Array[Any]])
     result
   }
@@ -61,11 +64,16 @@ object BaseFunctionMapper {
 }
 
 object DefaultFunctions extends ConfigValues with BeanResolver {
+  private lazy val applicationEnvironment = getBean[ApplicationEnvironment]()
+  private lazy val recourceBundleHolder = ResourceBundleHolder(applicationEnvironment.resourceBundle)
 
   def frameworkName(): String = com.sfxcode.sapphire.core.BuildInfo.name
 
   def frameworkVersion(): String = com.sfxcode.sapphire.core.BuildInfo.version
 
+  @varargs def i18n(key: String, params: Any*): String = {
+    recourceBundleHolder.message(key, params: _*)
+  }
   def boolString(value: Boolean, trueValue: String, falseValue: String): String = {
     if (value)
       trueValue
