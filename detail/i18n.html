@@ -173,6 +173,7 @@ sfxcode/sapphire-core
   <li><a href="../detail/i18n.html#i18n-support" class="header">I18n Support</a>
   <ul>
     <li><a href="../detail/i18n.html#adding-default-application-resource-bundle" class="header">Adding Default (Application) Resource Bundle</a></li>
+    <li><a href="../detail/i18n.html#fxml-support" class="header">FXML Support</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -181,7 +182,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.6*
+<i class="md-icon" title="Version">label_outline</i> 1.6.6
 </label>
 </li>
 </ul>
@@ -197,6 +198,7 @@ sfxcode/sapphire-core
   <li><a href="../detail/i18n.html#i18n-support" class="header">I18n Support</a>
   <ul>
     <li><a href="../detail/i18n.html#adding-default-application-resource-bundle" class="header">Adding Default (Application) Resource Bundle</a></li>
+    <li><a href="../detail/i18n.html#fxml-support" class="header">FXML Support</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -215,16 +217,35 @@ sfxcode/sapphire-core
   <li>Expression Language</li>
 </ul>
 <h2><a href="#adding-default-application-resource-bundle" name="adding-default-application-resource-bundle" class="anchor"><span class="anchor-link"></span></a>Adding Default (Application) Resource Bundle</h2>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L19" target="_blank" title="Go to snippet source"></a><code class="language-scala">applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)</code></pre>
+<p>Normally you will add resources in the ApplicationController.</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.6/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L21" target="_blank" title="Go to snippet source"></a><code class="language-scala">applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)</code></pre>
+<p>The ApplicationEnvironment will hold the reference to the loaded resources.</p>
+<h2><a href="#fxml-support" name="fxml-support" class="anchor"><span class="anchor-link"></span></a>FXML Support</h2>
+<p>If there is a loaded resource, you can use it in the fxml files with the following pattern: %<key></p>
+<pre class="prettyprint"><code class="language-xml">&lt;Button mnemonicParsing=&quot;false&quot; onAction=&quot;#actionToggleWorkspace&quot; text=&quot;%navigation.toggle&quot; /&gt;
+</code></pre>
+<p>If you want a special resource bundle for one or more fxml files,<br/>you have to override <strong>resourceBundleForView</strong> in the ApplicationController.</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.6/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L43-L54" target="_blank" title="Go to snippet source"></a><code class="language-scala">// only example values ...
+override def resourceBundleForView(viewPath: String): ResourceBundle = {
+  if (viewPath.contains(&quot;mySpecialViewName&quot;)) {
+    val path = &quot;myCustomResourcePath&quot;
+    val classLoader = Thread.currentThread().getContextClassLoader
+    ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
+  }
+  else {
+    super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
+  }
+}
+</code></pre>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/detail/i18n.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.6/docs/src/main/paradox/detail/i18n.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.6*
+1.6.6
 </span>
 </div>
 </article>
