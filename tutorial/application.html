@@ -155,6 +155,8 @@ sfxcode/sapphire-core
     <li><a href="../detail/fxbean_adapter.html" class="page">FXBean Adapter</a></li>
     <li><a href="../detail/bindings.html" class="page">KeyBindings</a></li>
     <li><a href="../detail/fxml_loading.html" class="page">FxmlLoading</a></li>
+    <li><a href="../detail/expression_language.html" class="page">Expression Language</a></li>
+    <li><a href="../detail/i18n.html" class="page">I18n Support</a></li>
   </ul></li>
   <li><a href="../sample/index.html" class="page">Examples</a>
   <ul>
@@ -181,7 +183,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.5
+<i class="md-icon" title="Version">label_outline</i> 1.6.6*
 </label>
 </li>
 </ul>
@@ -212,7 +214,7 @@ sfxcode/sapphire-core
 <h1><a href="#tutorial-application" name="tutorial-application" class="anchor"><span class="anchor-link"></span></a>Tutorial Application</h1>
 <h2><a href="#application-object" name="application-object" class="anchor"><span class="anchor-link"></span></a>Application object</h2>
 <p>A sapphire application must contain an Application object that extends FXApp.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
 import com.sfxcode.sapphire.core.application.FXApp
 
@@ -230,7 +232,7 @@ object Application extends FXApp {
 <p>Application controller is used for startup purposes.</p>
 <p>Normally the main scene content is replaced by a ViewController.</p>
 <p>Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainController
@@ -247,7 +249,9 @@ class ApplicationController extends DefaultWindowController {
 
   def applicationDidLaunch() {
     logger.info(&quot;start &quot; + this)
+    // #Resources
     applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
+    // #Resources
     replaceSceneContent(mainWindowController)
   }
 
@@ -277,13 +281,13 @@ case class ApplicationName(name: String)</code></pre>
 <p>This pattern for Controller-Loading is commonly used in sapphire-core Framework.</p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.5/docs/src/main/paradox/tutorial/application.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/tutorial/application.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.5
+1.6.6*
 </span>
 </div>
 </article>
