@@ -29,15 +29,20 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
 
   def getValue(key: String): Any
 
-  def createSimpleStringPropertyForObject(value: Any, name: String): StringProperty = {
-    val propertyValue: String = value match {
+  protected def createPropertyForObject(value: Any, name: String): Any = {
+    val propertyValue: Any = value match {
       case d: java.util.Date => FXBean.defaultDateConverter.toString(d)
       case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
       case c: javax.xml.datatype.XMLGregorianCalendar => FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
+      case v: AnyRef => v
       case v: Any => v.toString
       case _ => ""
     }
-    new SimpleStringProperty(getBean, name, propertyValue)
+    propertyValue match {
+      case s: String => new SimpleStringProperty(getBean, name, s)
+      case v: AnyRef => new SimpleObjectProperty(getBean, name, v)
+      case _ => new SimpleStringProperty(getBean, name, "s")
+    }
   }
 
   def hasChanges: Boolean = hasChangesProperty.get()
@@ -122,7 +127,7 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
                 case TypeDouble => result = new SimpleDoubleProperty(getBean, info.name, value.asInstanceOf[Double])
                 case TypeBoolean => result = new SimpleBooleanProperty(getBean, info.name, value.asInstanceOf[Boolean])
                 case TypeLocalDate => result = new SimpleObjectProperty(getBean, info.name, value.asInstanceOf[LocalDate])
-                case _ => result = createSimpleStringPropertyForObject(value, info.name)
+                case _ => result = createPropertyForObject(value, info.name)
               }
 
               val property = result.asInstanceOf[Property[_]]
@@ -143,7 +148,7 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
                 case d: Double => result = new SimpleDoubleProperty(getBean, info.name, d)
                 case b: Boolean => result = new SimpleBooleanProperty(getBean, info.name, b)
                 case ld: LocalDate => result = new SimpleObjectProperty(getBean, info.name, ld)
-                case _ => result = createSimpleStringPropertyForObject(value, info.name)
+                case _ => result = createPropertyForObject(value, info.name)
               }
 
               val property = result.asInstanceOf[Property[_]]
