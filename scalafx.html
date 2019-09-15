@@ -168,6 +168,14 @@ sfxcode/sapphire-core
   <li><a href="changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="scalafx.html#scalafx" class="header">ScalaFX</a>
+  <ul>
+    <li><a href="scalafx.html#documentation" class="header">Documentation</a></li>
+    <li><a href="scalafx.html#usage" class="header">Usage</a></li>
+  </ul></li>
+</ul>
 </nav>
 
 </nav>
@@ -181,12 +189,46 @@ sfxcode/sapphire-core
 </div>
 </div>
 </div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="scalafx.html#scalafx" class="header">ScalaFX</a>
+  <ul>
+    <li><a href="scalafx.html#documentation" class="header">Documentation</a></li>
+    <li><a href="scalafx.html#usage" class="header">Usage</a></li>
+  </ul></li>
+</ul>
+</nav>
+
+</div>
+</div>
+</div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
 <h1><a href="#scalafx" name="scalafx" class="anchor"><span class="anchor-link"></span></a>ScalaFX</h1>
 <p>Until Version 1.5.x Sapphire depends on <a href="http://www.scalafx.org/">ScalaFX</a>, a DSL for JavaFX written in Scala.</p>
-<p>Version 1.6.x and newer versions are built without ScalaFX dependency, because ScalaFX (JavaFX UI DSL) is not really needed for sapphire functionality. However, it can be used on top of this framework as a very useful addition in writing JavaFX Applications.</p>
+<p>Version 1.6.x and newer versions are built without direct ScalaFX dependency, because ScalaFX (JavaFX UI DSL) is not basicly needed for sapphire functionality. However, it can be used on top of this framework as a very useful addition in writing JavaFX Applications.</p>
+<p>Most of my own applications use scalafx because of a very useful DSL and some nice wrapper functions around javafx with extended functionality and / or the more scala friendly syntax.</p>
+<h2><a href="#documentation" name="documentation" class="anchor"><span class="anchor-link"></span></a>Documentation</h2>
+<p>Documentation can be found at <a href="http://www.scalafx.org/docs/home/">www.scalafx.org/docs/home/</a></p>
+<p>Documentation is a little bit out of date, but there are also some other places to find useful information.</p>
+<ul>
+  <li><a href="https://github.com/scalafx/scalafx">Github</a></li>
+  <li><a href="https://github.com/scalafx/scalafx/blob/master/notes/12.0.2-R18.md">Release Notes</a></li>
+  <li><a href="https://stackoverflow.com/search?q=scalafx">Stackoverflow</a></li>
+  <li><a href="https://github.com/scalafx/ProScalaFX/">ProScalaFX</a></li>
+</ul>
+<h2><a href="#usage" name="usage" class="anchor"><span class="anchor-link"></span></a>Usage</h2>
+<p>Include following snippet in your build.sbt file:</p>
+<pre><code>libraryDependencies += &quot;org.scalafx&quot; %% &quot;scalafx&quot; % &quot;12.0.2-R18&quot;
+</code></pre>
+<p>In your classes add scalafx Includes to your imports:</p>
+<pre><code>import scalafx.Includes._
+</code></pre>
 </div>
 <div>
 <a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.6/docs/src/main/paradox/scalafx.md" title="Edit this page" class="md-source-file md-edit">

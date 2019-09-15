@@ -234,7 +234,7 @@ object Application extends FXApp {
 <p>Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
 <pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.6/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
-import java.util.{Locale, ResourceBundle}
+import java.util.{ Locale, ResourceBundle }
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainController
@@ -280,8 +280,7 @@ class ApplicationController extends DefaultWindowController {
       val path = &quot;myCustomResourcePath&quot;
       val classLoader = Thread.currentThread().getContextClassLoader
       ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-    }
-    else {
+    } else {
       super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
     }
   }
