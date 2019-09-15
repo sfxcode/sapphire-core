@@ -1,6 +1,11 @@
 # Sapphire Extension
 
-The [Sapphire Extension Framework](https://github.com/sfxcode/sapphire-extension) adds additional features to sapphire-core.
+The
+[Sapphire Extension Project](https://sfxcode.github.io/sapphire-extension)
+adds additional features to sapphire-core.
+
+It provides some useful helpers for javafx applications build on top of
+the sapphire-core framework.
 
 ## Features
 
