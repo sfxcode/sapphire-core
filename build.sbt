@@ -7,7 +7,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.12.9", "2.13.0")
+crossScalaVersions := Seq("2.13.0", "2.12.10")
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -31,6 +31,7 @@ lazy val sapphire_core_root = Project(id = "sapphire-core", base = file("."))
 
 
 lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/login")).settings(
+  scalaVersion := "2.13.0",
   name:= "sapphire-login-demo",
   description := "Sapphire Login Demo",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
@@ -43,6 +44,7 @@ lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/logi
 addCommandAlias("run-login", "sapphire-login-demo/run")
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/issues")).settings(
+  scalaVersion := "2.13.0",
   name:= "sapphire-issues-demo",
   description := "Sapphire Issues Demo",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
@@ -56,6 +58,7 @@ addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
 
 lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial")).settings(
+  scalaVersion := "2.13.0",
   name:= "sapphire-tutorial",
   description := "Sapphire Tutorial",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
@@ -70,6 +73,7 @@ lazy val docs = (project in file("docs"))
   .enablePlugins(ParadoxMaterialThemePlugin)
   .enablePlugins(GhpagesPlugin)
   .settings(
+    scalaVersion := "2.13.0",
     name := "sapphire core docs",
     publish / skip := true,
     ghpagesNoJekyll := true,
