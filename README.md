@@ -134,5 +134,11 @@ ScalaFX support Scala versions up to 2.12.x
 
 ## maven
 
-sapphire-core is deployed on bintray (jcenter).
+sapphire-core is deployed on bintray (jcenter) and maven central.
+
+## Supporters
+
+JetBrains is supporting this open source project with:
+
+[![Intellij IDEA](http://www.jetbrains.com/img/logos/logo_intellij_idea.png)](http://www.jetbrains.com/idea/)
 
