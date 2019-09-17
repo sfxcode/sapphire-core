@@ -46,8 +46,7 @@ class ApplicationController extends DefaultWindowController {
       val path = "myCustomResourcePath"
       val classLoader = Thread.currentThread().getContextClassLoader
       ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-    }
-    else {
+    } else {
       super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
     }
   }

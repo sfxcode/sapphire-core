@@ -11,7 +11,7 @@ crossScalaVersions := Seq("2.13.0", "2.12.10")
 
 scalaVersion := crossScalaVersions.value.head
 
-val JavaFXVersion = "12.0.2"
+val JavaFXVersion = "13"
 
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux") => "linux"
