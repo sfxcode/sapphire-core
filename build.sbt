@@ -7,11 +7,11 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.13.0", "2.12.10")
+crossScalaVersions := Seq("2.13.1", "2.12.10")
 
 scalaVersion := crossScalaVersions.value.head
 
-val JavaFXVersion = "13"
+val JavaFXVersion = "12.0.2"
 
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux") => "linux"
@@ -31,7 +31,7 @@ lazy val sapphire_core_root = Project(id = "sapphire-core", base = file("."))
 
 
 lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/login")).settings(
-  scalaVersion := "2.13.0",
+  scalaVersion := "2.13.1",
   name:= "sapphire-login-demo",
   description := "Sapphire Login Demo",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
@@ -44,7 +44,7 @@ lazy val demo_login = Project(id = "sapphire-login-demo",base = file("demos/logi
 addCommandAlias("run-login", "sapphire-login-demo/run")
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo",base = file("demos/issues")).settings(
-  scalaVersion := "2.13.0",
+  scalaVersion := "2.13.1",
   name:= "sapphire-issues-demo",
   description := "Sapphire Issues Demo",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
@@ -58,7 +58,7 @@ addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
 
 lazy val tutorial = Project(id = "sapphire-tutorial",base = file("demos/tutorial")).settings(
-  scalaVersion := "2.13.0",
+  scalaVersion := "2.13.1",
   name:= "sapphire-tutorial",
   description := "Sapphire Tutorial",
   libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(
@@ -73,7 +73,7 @@ lazy val docs = (project in file("docs"))
   .enablePlugins(ParadoxMaterialThemePlugin)
   .enablePlugins(GhpagesPlugin)
   .settings(
-    scalaVersion := "2.13.0",
+    scalaVersion := "2.13.1",
     name := "sapphire core docs",
     publish / skip := true,
     ghpagesNoJekyll := true,
@@ -81,19 +81,17 @@ lazy val docs = (project in file("docs"))
     Compile / paradoxMaterialTheme ~= {
       _.withRepository(uri("https://github.com/sfxcode/sapphire-core"))
 
-    }
+    },
+    (Compile / paradoxMarkdownToHtml / excludeFilter) := (Compile / paradoxMarkdownToHtml / excludeFilter).value ||
+      ParadoxPlugin.InDirectoryFilter((Compile / paradox / sourceDirectory).value / "includes")
   )
 
 addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
-// resolvers
-
-resolvers += "sonatype-snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
-
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.7.0" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.7.1" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
 

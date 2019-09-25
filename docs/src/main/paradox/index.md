@@ -50,9 +50,8 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
 
 ### Setup Base Application with Giter8
 
-```
-g8 https://github.com/sfxcode/sapphire-sbt.g8
-```
+@@include[giter8.md](includes/giter8.md)
+
 
 ### Demos
 

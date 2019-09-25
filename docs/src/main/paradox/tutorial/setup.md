@@ -13,7 +13,7 @@ See giter8 Documentation for g8 setup.
 
 ### Usage
 
-g8 https://github.com/sfxcode/sapphire-sbt.g8
+@@include[giter8.md](../includes/giter8.md)
 
 ### Base Project Structure
 
