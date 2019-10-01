@@ -23,10 +23,6 @@ abstract class DefaultWindowController extends WindowController {
 
   def applicationDidLaunch()
 
-  def applicationWillStop(): Unit = {
-    logger.debug("exit in Progress")
-  }
-
   def reloadStyles(): Unit = {
     StyleManager.getInstance().stylesheetContainerMap.clear()
   }
@@ -36,6 +32,10 @@ abstract class DefaultWindowController extends WindowController {
 
   def shutdown(): Unit = {
     applicationWillStop()
+  }
+
+  def applicationWillStop(): Unit = {
+    logger.debug("exit in Progress")
   }
 
   def exit(): Unit = {

@@ -38,6 +38,11 @@ class RootPropertyResolver extends ELResolver {
       null
   }
 
+  def resolve(context: ELContext, base: Any, property: Any): Boolean = {
+    context.setPropertyResolved(base == null && property.isInstanceOf[String])
+    context.isPropertyResolved
+  }
+
   def isReadOnly(context: ELContext, base: Any, property: Any): Boolean = false
 
   def getFeatureDescriptors(context: ELContext, base: Any): util.Iterator[FeatureDescriptor] = null
@@ -49,15 +54,14 @@ class RootPropertyResolver extends ELResolver {
       null
   }
 
-  override def invoke(context: ELContext, base: Any, method: Any, paramTypes: Array[Class[_]], params: Array[Object]): AnyRef = {
+  override def invoke(context: ELContext,
+                      base: Any,
+                      method: Any,
+                      paramTypes: Array[Class[_]],
+                      params: Array[Object]): AnyRef = {
     if (resolve(context, base, method))
       throw new NullPointerException("Cannot invoke method " + method + " on null")
     null
-  }
-
-  def resolve(context: ELContext, base: Any, property: Any): Boolean = {
-    context.setPropertyResolved(base == null && property.isInstanceOf[String])
-    context.isPropertyResolved
   }
 }
 

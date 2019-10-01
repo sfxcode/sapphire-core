@@ -39,12 +39,9 @@ class MainController extends ViewController with LazyLogging {
 
   // #didGainVisibilityFirstTime
   override def didGainVisibilityFirstTime() {
-    navigationManager =
-      ContentManager(navigationPane, this, navigationController)
-    statusBarManager =
-      ContentManager(statusPane, this, statusBarController)
-    workspaceManager =
-      ContentManager(workspacePane, this, workspaceController)
+    navigationManager = ContentManager(navigationPane, this, navigationController)
+    statusBarManager = ContentManager(statusPane, this, statusBarController)
+    workspaceManager = ContentManager(workspacePane, this, workspaceController)
   }
   // #didGainVisibilityFirstTime
 

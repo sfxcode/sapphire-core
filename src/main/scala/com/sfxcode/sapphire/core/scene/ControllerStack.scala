@@ -23,19 +23,6 @@ case class ControllerStack(contentManager: ContentManager) {
     None
   }
 
-  def popUntil[T <: ViewController](): Option[T] = {
-    while (stack.nonEmpty) {
-      val result = stack.pop()
-      result.controller match {
-        case controller: T => return Some(updateContent[T](result))
-        case _ =>
-      }
-    }
-    None
-  }
-
-  def size: Int = stack.size
-
   private def updateContent[T <: ViewController](controllerState: ControllerState): T = {
     val viewController: ViewController = controllerState.controller
     contentManager.updatePaneContent(viewController, pushToStack = false)
@@ -43,5 +30,18 @@ case class ControllerStack(contentManager: ContentManager) {
 
     viewController.asInstanceOf[T]
   }
+
+  def popUntil[T <: ViewController](): Option[T] = {
+    while (stack.nonEmpty) {
+      val result = stack.pop()
+      result.controller match {
+        case controller: T => return Some(updateContent[T](result))
+        case _             =>
+      }
+    }
+    None
+  }
+
+  def size: Int = stack.size
 
 }

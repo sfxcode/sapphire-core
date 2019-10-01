@@ -12,41 +12,37 @@ import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 import javax.enterprise.event.Event
 import javax.inject.Inject
-case class SceneControllerWillChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
 
-case class SceneControllerDidChangeEvent(windowController: WindowController, newController: ViewController, oldController: ViewController)
+case class SceneControllerWillChangeEvent(windowController: WindowController,
+                                          newController: ViewController,
+                                          oldController: ViewController)
+
+case class SceneControllerDidChangeEvent(windowController: WindowController,
+                                         newController: ViewController,
+                                         oldController: ViewController)
 
 abstract class WindowController extends FxmlLoading with NodeLocator with LazyLogging {
 
-  @Inject var sceneControllerWillChange: Event[SceneControllerWillChangeEvent] = _
-
-  @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent] = _
-
-  var stageProperty = new SimpleObjectProperty[Stage]()
-
-  var sceneProperty = new SimpleObjectProperty[Scene]()
-
-  var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
-
   val sceneMap: ObservableMap[Parent, Scene] = Map[Parent, Scene]()
+  @Inject var sceneControllerWillChange: Event[SceneControllerWillChangeEvent] = _
+  @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent] = _
+  var stageProperty = new SimpleObjectProperty[Stage]()
+  var sceneProperty = new SimpleObjectProperty[Scene]()
+  var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
 
   def setStage(stage: Stage): Unit = {
     stageProperty.set(stage)
     sceneProperty.set(stage.getScene)
   }
 
-  def stage: Stage = stageProperty.getValue
-
   def scene: Scene = sceneProperty.getValue
 
   def isMainWindow: Boolean
 
-  def actualSceneController: ViewController = sceneControllerProperty.getValue
-
   def replaceSceneContent(newController: ViewController, resize: Boolean = true) {
     val oldController = actualSceneController
     if (newController != null && newController != oldController && newController.canGainVisibility
-      && (oldController == null || oldController.shouldLooseVisibility)) {
+        && (oldController == null || oldController.shouldLooseVisibility)) {
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
@@ -87,6 +83,8 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
     }
   }
 
+  def actualSceneController: ViewController = sceneControllerProperty.getValue
+
   def replaceSceneContentWithNode(content: Parent, resize: Boolean = true) {
 
     val newScene = sceneMap.getOrElse(content, {
@@ -100,6 +98,8 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
     stage.sizeToScene()
 
   }
+
+  def stage: Stage = stageProperty.getValue
 
   def resourceBundleForView(viewPath: String): ResourceBundle = applicationEnvironment.resourceBundle
 

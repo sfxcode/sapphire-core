@@ -12,58 +12,24 @@ import javafx.collections.{FXCollections, ObservableMap}
 import scala.collection.mutable
 
 abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extends ChangeListener[Any] {
-  val childrenMap = new mutable.HashMap[String, FXBean[AnyRef]]
-  var parentBean: Option[FXBean[AnyRef]] = None
-
-  val EmptyMemberInfo = FXBeanClassMemberInfo("name_ignored")
-  val memberInfoMap: Map[String, FXBeanClassMemberInfo] = typeHints.map(info => (info.name, info)).toMap
-
   lazy val changeManagementMap: ObservableMap[String, Any] = FXCollections.observableHashMap[String, Any]()
   lazy val hasChangesProperty = new SimpleBooleanProperty(getBean, "_hasChanges", false)
-  var trackChanges = true
-
   lazy val expressionMap: ObservableMap[String, Property[_]] = FXCollections.observableHashMap[String, Property[_]]()
   lazy val propertyMap: ObservableMap[String, Property[_]] = FXCollections.observableHashMap[String, Property[_]]()
+  val childrenMap = new mutable.HashMap[String, FXBean[AnyRef]]
+  val EmptyMemberInfo = FXBeanClassMemberInfo("name_ignored")
+  val memberInfoMap: Map[String, FXBeanClassMemberInfo] = typeHints.map(info => (info.name, info)).toMap
+  var parentBean: Option[FXBean[AnyRef]] = None
+  var trackChanges = true
 
   def getBean: AnyRef
 
   def getValue(key: String): Any
 
-  protected def createPropertyForObject(value: Any, name: String): Any = {
-    val propertyValue: Any = value match {
-      case d: java.util.Date => FXBean.defaultDateConverter.toString(d)
-      case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
-      case c: javax.xml.datatype.XMLGregorianCalendar => FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
-      case v: AnyRef => v
-      case v: Any => v.toString
-      case _ => ""
-    }
-    propertyValue match {
-      case s: String => new SimpleStringProperty(getBean, name, s)
-      case v: AnyRef => new SimpleObjectProperty(getBean, name, v)
-      case _ => new SimpleStringProperty(getBean, name, "s")
-    }
-  }
-
   def hasChanges: Boolean = hasChangesProperty.get()
 
   def memberInfo(name: String): FXBeanClassMemberInfo = {
     memberInfoMap.getOrElse(name, EmptyMemberInfo)
-  }
-
-  protected def createChildForKey(key: String, value: Any): FXBean[AnyRef] = {
-
-    if (!childrenMap.contains(key)) {
-      val newBean = FXBean(value.asInstanceOf[AnyRef])
-      newBean.parentBean = Some(this.asInstanceOf[FXBean[AnyRef]])
-      newBean.trackChanges = trackChanges
-      childrenMap.+=(key -> newBean)
-    }
-    childrenMap(key)
-  }
-
-  private def isExpressionKey(key: String): Boolean = {
-    key.contains(ExpressionPrefix) || key.contains(FxmlExpressionPrefix)
   }
 
   // property
@@ -102,15 +68,15 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
       }
       value match {
         case value1: Property[_] => value1
-        case _ =>
+        case _                   =>
           // lookup in local function
           var info = memberInfo(key)
           if (info.signature == TypeUnknown) {
             // lookup in registry
             getBean match {
-              case map: mutable.Map[String, Any] =>
+              case map: mutable.Map[String, Any]       =>
               case javaMap: java.util.Map[String, Any] =>
-              case _ => info = FXBeanClassRegistry.memberInfo(getBean, key)
+              case _                                   => info = FXBeanClassRegistry.memberInfo(getBean, key)
             }
 
           }
@@ -121,12 +87,13 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
             else {
               var result: Any = null
               info.signature match {
-                case TypeInt => result = new SimpleIntegerProperty(getBean, info.name, value.asInstanceOf[Integer])
-                case TypeLong => result = new SimpleLongProperty(getBean, info.name, value.asInstanceOf[Long])
-                case TypeFloat => result = new SimpleFloatProperty(getBean, info.name, value.asInstanceOf[Float])
-                case TypeDouble => result = new SimpleDoubleProperty(getBean, info.name, value.asInstanceOf[Double])
+                case TypeInt     => result = new SimpleIntegerProperty(getBean, info.name, value.asInstanceOf[Integer])
+                case TypeLong    => result = new SimpleLongProperty(getBean, info.name, value.asInstanceOf[Long])
+                case TypeFloat   => result = new SimpleFloatProperty(getBean, info.name, value.asInstanceOf[Float])
+                case TypeDouble  => result = new SimpleDoubleProperty(getBean, info.name, value.asInstanceOf[Double])
                 case TypeBoolean => result = new SimpleBooleanProperty(getBean, info.name, value.asInstanceOf[Boolean])
-                case TypeLocalDate => result = new SimpleObjectProperty(getBean, info.name, value.asInstanceOf[LocalDate])
+                case TypeLocalDate =>
+                  result = new SimpleObjectProperty(getBean, info.name, value.asInstanceOf[LocalDate])
                 case _ => result = createPropertyForObject(value, info.name)
               }
 
@@ -142,13 +109,13 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
               var result: Any = null
 
               value match {
-                case i: Integer => result = new SimpleIntegerProperty(getBean, info.name, i)
-                case l: Long => result = new SimpleLongProperty(getBean, info.name, l)
-                case f: Float => result = new SimpleFloatProperty(getBean, info.name, f)
-                case d: Double => result = new SimpleDoubleProperty(getBean, info.name, d)
-                case b: Boolean => result = new SimpleBooleanProperty(getBean, info.name, b)
+                case i: Integer    => result = new SimpleIntegerProperty(getBean, info.name, i)
+                case l: Long       => result = new SimpleLongProperty(getBean, info.name, l)
+                case f: Float      => result = new SimpleFloatProperty(getBean, info.name, f)
+                case d: Double     => result = new SimpleDoubleProperty(getBean, info.name, d)
+                case b: Boolean    => result = new SimpleBooleanProperty(getBean, info.name, b)
                 case ld: LocalDate => result = new SimpleObjectProperty(getBean, info.name, ld)
-                case _ => result = createPropertyForObject(value, info.name)
+                case _             => result = createPropertyForObject(value, info.name)
               }
 
               val property = result.asInstanceOf[Property[_]]
@@ -164,23 +131,24 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
     property match {
       case property: StringProperty =>
         value match {
-          case s: String => property.set(s)
-          case d: java.util.Date => property.set(FXBean.defaultDateConverter.toString(d))
+          case s: String             => property.set(s)
+          case d: java.util.Date     => property.set(FXBean.defaultDateConverter.toString(d))
           case c: java.util.Calendar => property.set(FXBean.defaultDateConverter.toString(c.getTime))
-          case c: javax.xml.datatype.XMLGregorianCalendar => property.set(FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime))
+          case c: javax.xml.datatype.XMLGregorianCalendar =>
+            property.set(FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime))
           case _ =>
             if (value != null)
               property.set(value.toString)
             else
               property.set(null)
         }
-      case i: IntegerProperty => i.set(value.asInstanceOf[Integer])
-      case l: LongProperty => l.set(value.asInstanceOf[Long])
-      case f: FloatProperty => f.set(value.asInstanceOf[Float])
-      case d: DoubleProperty => d.set(value.asInstanceOf[Double])
-      case b: BooleanProperty => b.set(value.asInstanceOf[Boolean])
+      case i: IntegerProperty     => i.set(value.asInstanceOf[Integer])
+      case l: LongProperty        => l.set(value.asInstanceOf[Long])
+      case f: FloatProperty       => f.set(value.asInstanceOf[Float])
+      case d: DoubleProperty      => d.set(value.asInstanceOf[Double])
+      case b: BooleanProperty     => b.set(value.asInstanceOf[Boolean])
       case o: ObjectProperty[Any] => o.set(value)
-      case _ =>
+      case _                      =>
     }
   }
 
@@ -195,5 +163,37 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
       hasChangesProperty.setValue(hasManagedChanges)
       childrenMap.values.foreach(_.clearChanges())
     }
+  }
+
+  protected def createPropertyForObject(value: Any, name: String): Any = {
+    val propertyValue: Any = value match {
+      case d: java.util.Date     => FXBean.defaultDateConverter.toString(d)
+      case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
+      case c: javax.xml.datatype.XMLGregorianCalendar =>
+        FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
+      case v: AnyRef => v
+      case v: Any    => v.toString
+      case _         => ""
+    }
+    propertyValue match {
+      case s: String => new SimpleStringProperty(getBean, name, s)
+      case v: AnyRef => new SimpleObjectProperty(getBean, name, v)
+      case _         => new SimpleStringProperty(getBean, name, "s")
+    }
+  }
+
+  protected def createChildForKey(key: String, value: Any): FXBean[AnyRef] = {
+
+    if (!childrenMap.contains(key)) {
+      val newBean = FXBean(value.asInstanceOf[AnyRef])
+      newBean.parentBean = Some(this.asInstanceOf[FXBean[AnyRef]])
+      newBean.trackChanges = trackChanges
+      childrenMap.+=(key -> newBean)
+    }
+    childrenMap(key)
+  }
+
+  private def isExpressionKey(key: String): Boolean = {
+    key.contains(ExpressionPrefix) || key.contains(FxmlExpressionPrefix)
   }
 }

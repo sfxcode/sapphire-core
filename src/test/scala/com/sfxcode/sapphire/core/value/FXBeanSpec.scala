@@ -8,14 +8,22 @@ import org.specs2.mutable._
 
 case class Zip(value: Long = 12345)
 
-case class TestBean(name: String = "test", age: Int = 42, zip: Zip = Zip(), description: Option[String] = Some("desc"), observable: Property[_] = new SimpleStringProperty("observable")) {
+case class TestBean(name: String = "test",
+                    age: Int = 42,
+                    zip: Zip = Zip(),
+                    description: Option[String] = Some("desc"),
+                    observable: Property[_] = new SimpleStringProperty("observable")) {
   def doubleAge() = age * 2
 
   def multiply(first: Int, second: Int): Int = first * second
 
 }
 
-class TestClass(var name: String = "test", var age: Int = 42, var zip: Zip = Zip(), var description: Option[String] = Some("desc"), var observable: Property[_] = new SimpleStringProperty("observable")) {
+class TestClass(var name: String = "test",
+                var age: Int = 42,
+                var zip: Zip = Zip(),
+                var description: Option[String] = Some("desc"),
+                var observable: Property[_] = new SimpleStringProperty("observable")) {
   def doubleAge() = age * 2
 
   def multiply(first: Int, second: Int): Int = first * second

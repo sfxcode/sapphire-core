@@ -15,23 +15,19 @@ import scala.reflect.ClassTag
 import scala.reflect.runtime.{universe => ru}
 
 trait FxmlLoading extends NodeLocator with ConfigValues {
+  private lazy val recourceBundleHolder = ResourceBundleHolder(
+    resources.getOrElse(applicationEnvironment.resourceBundle))
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
-
   @Inject
   var loader: FxmlHandler = _
-
   @Inject
   var applicationEnvironment: ApplicationEnvironment = _
-
   @Inject
   var converterFactory: ConverterProvider = _
-
   //var fxml: AnyRef = _
   var rootPane: Pane = _
   var location: Option[URL] = None
   var resources: Option[ResourceBundle] = None
-
-  private lazy val recourceBundleHolder = ResourceBundleHolder(resources.getOrElse(applicationEnvironment.resourceBundle))
 
   def i18n(key: String, params: Any*): String = {
     recourceBundleHolder.message(key, params: _*)

@@ -10,15 +10,6 @@ trait FXApp extends ConfigValues {
 
   def stage: Stage = createDefaultStage
 
-  def main(args: Array[String]): Unit = {
-    FXApp.App = this
-    Application.launch(classOf[FXApplication], args: _*)
-  }
-
-  def applicationWillLaunch() {}
-
-  def applicationWillTerminate() {}
-
   def createDefaultStage: Stage = {
     val stage = new Stage()
     stage.setWidth(width)
@@ -53,6 +44,15 @@ trait FXApp extends ConfigValues {
   def forceMaxWidth: Boolean = false
 
   def forceMaxHeight: Boolean = false
+
+  def main(args: Array[String]): Unit = {
+    FXApp.App = this
+    Application.launch(classOf[FXApplication], args: _*)
+  }
+
+  def applicationWillLaunch() {}
+
+  def applicationWillTerminate() {}
 
 }
 

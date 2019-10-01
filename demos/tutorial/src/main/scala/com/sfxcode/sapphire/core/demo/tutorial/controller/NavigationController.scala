@@ -6,17 +6,6 @@ import javafx.scene.control.Button
 
 class NavigationController extends AbstractViewController {
 
-  def actionClickButton(event: ActionEvent) {
-    logger.debug(event.toString)
-
-    // resolve controller by getViewController lookup
-    val controller = getViewController[StatusBarController]()
-    controller.foreach(c => {
-      val button = event.getSource.asInstanceOf[Button]
-      c.updateLabel(button)
-    })
-  }
-
   def actionToggleWorkspace(event: ActionEvent) {
     actionClickButton(event)
     val actualController = workspaceManager.actualController
@@ -32,6 +21,17 @@ class NavigationController extends AbstractViewController {
     actionClickButton(event)
     val personController = mainWindowController.personController
     workspaceManager.updatePaneContent(personController)
+  }
+
+  def actionClickButton(event: ActionEvent) {
+    logger.debug(event.toString)
+
+    // resolve controller by getViewController lookup
+    val controller = getViewController[StatusBarController]()
+    controller.foreach(c => {
+      val button = event.getSource.asInstanceOf[Button]
+      c.updateLabel(button)
+    })
   }
 
   def actionReload(event: ActionEvent): Unit = {

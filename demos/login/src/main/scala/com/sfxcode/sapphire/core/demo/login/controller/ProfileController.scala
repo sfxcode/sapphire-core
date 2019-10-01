@@ -27,12 +27,12 @@ class ProfileController extends ViewController {
     applicationController().showLogin()
   }
 
-  def actionUpdate(event: ActionEvent) {
-    debugUserData()
-  }
-
   def applicationController(): LoginApplicationController = {
     getBean[LoginApplicationController]()
+  }
+
+  def actionUpdate(event: ActionEvent) {
+    debugUserData()
   }
 
   def debugUserData() {

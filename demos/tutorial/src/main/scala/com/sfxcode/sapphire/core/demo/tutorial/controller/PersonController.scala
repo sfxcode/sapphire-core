@@ -12,20 +12,16 @@ import javafx.scene.layout.VBox
 @FxmlLoader(path = "/fxml/widget/Person.fxml")
 class PersonController extends AbstractViewController with BeanConversions {
 
+  // second parameter parent Node is optional,
+  // but sometimes needed for the correct NodeLocator lookup
+  lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this, personBox)
   @FXML
   var tableView: TableView[FXBean[Person]] = _
-
   // #adapter_create
   @FXML
   var personBox: VBox = _
 
-  // second parameter parent Node is optional,
-  // but sometimes needed for the correct NodeLocator lookup
-  lazy val adapter: FXBeanAdapter[Person] = FXBeanAdapter[Person](this, personBox)
-
   // #adapter_create
-
-  def items: ObservableList[FXBean[Person]] = PersonFactory.personList
 
   // #bindings
   override def didGainVisibilityFirstTime(): Unit = {
@@ -45,6 +41,8 @@ class PersonController extends AbstractViewController with BeanConversions {
     tableView.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectPerson(newValue)) // #labels
     personBox.visibleProperty().bind(adapter.hasBeanProperty)
   }
+
+  def items: ObservableList[FXBean[Person]] = PersonFactory.personList
 
   // #bindings
 

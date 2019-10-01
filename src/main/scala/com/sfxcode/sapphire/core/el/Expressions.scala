@@ -1,8 +1,7 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el.{ ExpressionFactory, MethodNotFoundException }
-
 import de.odysseus.el.ObjectValueExpression
+import javax.el.{ExpressionFactory, MethodNotFoundException}
 
 object Expressions {
   val props = System.getProperties
@@ -21,14 +20,6 @@ object Expressions {
   val ExpressionPrefix = "${"
   val FxmlExpressionPrefix: String = "!{"
 
-  def register(name: String, obj: Any) {
-    context.register(name, obj)
-  }
-
-  def unregister(name: String) {
-    context.unregister(name)
-  }
-
   def createValueExpression(obj: AnyRef): ObjectValueExpression = {
     context.createValueExpression(obj)
   }
@@ -38,21 +29,10 @@ object Expressions {
     ve.getValue(context)
   }
 
-  private def getValueOnObject(obj: AnyRef, expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
-    val tempObjectString = "%s_%s".format(TempObjectName, Math.abs(obj.hashCode()))
-    val newExpression = expression.replace(TempObjectName, tempObjectString)
-    register(tempObjectString, obj)
-    val ve = factory.createValueExpression(context, newExpression, clazz)
-    val result = ve.getValue(context)
-    unregister(tempObjectString)
-    result
-  }
-
   def evaluateExpressionOnObject(obj: AnyRef, exp: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
 
     var expression = exp
-    while (expression.contains(FxmlExpressionPrefix))
-      expression = exp.replace(FxmlExpressionPrefix, ExpressionPrefix)
+    while (expression.contains(FxmlExpressionPrefix)) expression = exp.replace(FxmlExpressionPrefix, ExpressionPrefix)
     var result: Any = null
     if (expression.contains(ExpressionPrefix)) {
       result = getValueOnObject(obj, expression, clazz)
@@ -80,5 +60,22 @@ object Expressions {
     result
   }
 
-}
+  private def getValueOnObject(obj: AnyRef, expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
+    val tempObjectString = "%s_%s".format(TempObjectName, Math.abs(obj.hashCode()))
+    val newExpression = expression.replace(TempObjectName, tempObjectString)
+    register(tempObjectString, obj)
+    val ve = factory.createValueExpression(context, newExpression, clazz)
+    val result = ve.getValue(context)
+    unregister(tempObjectString)
+    result
+  }
 
+  def register(name: String, obj: Any) {
+    context.register(name, obj)
+  }
+
+  def unregister(name: String) {
+    context.unregister(name)
+  }
+
+}

@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.fxml
-import scala.reflect.runtime.{ universe => ru }
-import ru._
+import scala.reflect.runtime.ru._
+import scala.reflect.runtime.{universe => ru}
 
 case class FxmlLoader(path: String) extends scala.annotation.StaticAnnotation
 

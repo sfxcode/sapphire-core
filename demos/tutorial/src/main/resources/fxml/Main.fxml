@@ -2,8 +2,8 @@
 
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<StackPane styleClass="workspace" minWidth="700"
-           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<StackPane xmlns:fx="http://javafx.com/fxml/1" styleClass="workspace"
+           minWidth="700" xmlns="http://javafx.com/javafx/8"
            fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.MainController">
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"

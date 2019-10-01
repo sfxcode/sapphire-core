@@ -7,9 +7,11 @@ import scala.util.Try
 case class ResourceBundleHolder(underlying: ResourceBundle) extends AnyVal {
 
   def message(key: String, params: Any*): String = {
-    Try(underlying.getString(key)).map { f =>
-      format(f, params: _*)
-    }.getOrElse(s"!!--$key--!!")
+    Try(underlying.getString(key))
+      .map { f =>
+        format(f, params: _*)
+      }
+      .getOrElse(s"!!--$key--!!")
   }
 
   private def format(s: String, params: Any*): String = {
@@ -19,6 +21,5 @@ case class ResourceBundleHolder(underlying: ResourceBundle) extends AnyVal {
       }
     }
   }
-
 
 }

@@ -15,7 +15,6 @@ object Application extends FXApp {
 
   override def height: Int = 500
 
-
   override def title: String = "Login Demo"
 
   override def initStage(stage: Stage): Unit = {

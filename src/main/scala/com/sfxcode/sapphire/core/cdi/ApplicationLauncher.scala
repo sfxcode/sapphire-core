@@ -19,8 +19,7 @@ class ApplicationLauncher {
   var events: Event[Any] = _
 
   @PostConstruct
-  def start() {
-  }
+  def start() {}
 
   def launch(primaryStage: Stage, literal: AnnotationLiteral[_]) {
     val stageLiteral = new AnnotationLiteral[FXStage] {}

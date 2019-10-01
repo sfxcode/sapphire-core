@@ -1,9 +1,8 @@
 package com.sfxcode.sapphire.core.el
 
-import javax.el._
-
 import de.odysseus.el.ObjectValueExpression
 import de.odysseus.el.misc.TypeConverter
+import javax.el._
 
 class BaseContext extends ELContext {
   val resolver = BaseResolver()
@@ -20,12 +19,12 @@ class BaseContext extends ELContext {
     variableMapper.setVariable(name, createValueExpression(obj))
   }
 
-  def unregister(name: String) {
-    variableMapper.removeVariable(name)
-  }
-
   def createValueExpression(obj: Any): ObjectValueExpression = {
     new ObjectValueExpression(TypeConverter.DEFAULT, obj, obj.getClass)
+  }
+
+  def unregister(name: String) {
+    variableMapper.removeVariable(name)
   }
 
 }
@@ -33,4 +32,3 @@ class BaseContext extends ELContext {
 object BaseContext {
   def apply(): BaseContext = new BaseContext
 }
-

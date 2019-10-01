@@ -32,25 +32,41 @@ class FXBeanClassRegistrySpec extends Specification {
     "get member info" in {
 
       memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
-      memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
+      memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption",
+                                                                                  TypeString,
+                                                                                  isOption = true)
 
       memberInfo(stringTest2, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
-      memberInfo(stringTest2, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
-      memberInfo(stringTest2, "testMethod") must be equalTo FXBeanClassMemberInfo("testMethod", TypeUnknown, isOption = false)
+      memberInfo(stringTest2, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption",
+                                                                                   TypeString,
+                                                                                   isOption = true)
+      memberInfo(stringTest2, "testMethod") must be equalTo FXBeanClassMemberInfo("testMethod",
+                                                                                  TypeUnknown,
+                                                                                  isOption = false)
 
-      memberInfo(longTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeLong, isOption = false, classOf[java.lang.Long])
-      memberInfo(longTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeLong, isOption = true, classOf[java.lang.Long])
+      memberInfo(longTest, "value") must be equalTo FXBeanClassMemberInfo("value",
+                                                                          TypeLong,
+                                                                          isOption = false,
+                                                                          classOf[java.lang.Long])
+      memberInfo(longTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption",
+                                                                                TypeLong,
+                                                                                isOption = true,
+                                                                                classOf[java.lang.Long])
     }
 
     "get member info performance" in {
       // warmup and cache
       memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
-      memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
+      memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption",
+                                                                                  TypeString,
+                                                                                  isOption = true)
 
       val start = System.currentTimeMillis()
       (1 to 10000).foreach(_ => {
         memberInfo(stringTest, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
-        memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption", TypeString, isOption = true)
+        memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo("valueOption",
+                                                                                    TypeString,
+                                                                                    isOption = true)
 
       })
       val time = System.currentTimeMillis() - start

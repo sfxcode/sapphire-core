@@ -7,10 +7,7 @@ import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
 
-
-object Application extends FXApp {
-
-}
+object Application extends FXApp {}
 
 case class EmptyName(name: String)
 

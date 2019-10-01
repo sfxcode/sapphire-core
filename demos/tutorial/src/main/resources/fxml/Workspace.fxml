@@ -3,13 +3,13 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-            AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.WorkspaceController">
     <children>
-      <PieChart fx:id="chart" title="Chart" />
+        <PieChart fx:id="chart" title="Chart"/>
     </children>
     <stylesheets>
-        <URL value="@default.css" />
+        <URL value="@default.css"/>
     </stylesheets>
 </AnchorPane>

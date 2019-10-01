@@ -32,30 +32,37 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-
-<AnchorPane id="AnchorPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.login.controller.LoginController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0"
+            styleClass="background" xmlns="http://javafx.com/javafx/null"
+            fx:controller="com.sfxcode.sapphire.core.demo.login.controller.LoginController">
     <children>
-        <AnchorPane id="anchorPane2" prefHeight="300.0" prefWidth="500.0" styleClass="top-segment" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane id="anchorPane2" prefHeight="300.0" prefWidth="500.0" styleClass="top-segment"
+                    AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
             <children>
-                <VBox id="VBox" alignment="CENTER" prefHeight="300.0" prefWidth="421.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                <VBox id="VBox" alignment="CENTER" prefHeight="300.0" prefWidth="421.0" spacing="5.0"
+                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="40.0"
+                      AnchorPane.topAnchor="0.0">
                     <children>
                         <AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="430.0">
                             <children>
-                                <Label id="label1" layoutX="14.0" layoutY="67.0" text="Username" />
-                                <TextField id="textField1" fx:id="email" layoutY="86.0" prefWidth="415.0" promptText="Username" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" />
-                                <Label id="label1" layoutX="14.0" layoutY="139.0" text="Password (admin)" />
-                                <PasswordField id="passwordField1" fx:id="password" layoutY="157.0" prefWidth="415.0" promptText="Password" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" />
+                                <Label id="label1" layoutX="14.0" layoutY="67.0" text="Username"/>
+                                <TextField id="textField1" fx:id="email" layoutY="86.0" prefWidth="415.0"
+                                           promptText="Username" AnchorPane.leftAnchor="10.0"
+                                           AnchorPane.rightAnchor="0.0"/>
+                                <Label id="label1" layoutX="14.0" layoutY="139.0" text="Password (admin)"/>
+                                <PasswordField id="passwordField1" fx:id="password" layoutY="157.0" prefWidth="415.0"
+                                               promptText="Password" AnchorPane.leftAnchor="10.0"
+                                               AnchorPane.rightAnchor="0.0"/>
                                 <ImageView id="app-login-logo" layoutY="-12.0">
                                     <image>
-                                        <Image preserveRatio="true" smooth="true" url="@LoginLogo.png" />
+                                        <Image preserveRatio="true" smooth="true" url="@LoginLogo.png"/>
                                     </image>
                                 </ImageView>
                             </children>
@@ -64,14 +71,17 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <Button id="button1" fx:id="loginButton" defaultButton="true" onAction="#actionLogin" prefHeight="70.0" prefWidth="400.0" text="Login" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
-        <HBox id="hBox1" alignment="CENTER" prefHeight="25.0" prefWidth="418.0" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0">
+        <Button id="button1" fx:id="loginButton" defaultButton="true" onAction="#actionLogin" prefHeight="70.0"
+                prefWidth="400.0" text="Login" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="40.0"
+                AnchorPane.rightAnchor="40.0"/>
+        <HBox id="hBox1" alignment="CENTER" prefHeight="25.0" prefWidth="418.0" AnchorPane.bottomAnchor="156.0"
+              AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0">
             <children>
-                <Label id="label2" fx:id="errorMessage" />
+                <Label id="label2" fx:id="errorMessage"/>
             </children>
         </HBox>
     </children>
     <stylesheets>
-        <URL value="@Login.css" />
+        <URL value="@Login.css"/>
     </stylesheets>
 </AnchorPane>

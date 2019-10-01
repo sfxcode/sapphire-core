@@ -16,7 +16,8 @@ import scala.reflect.ClassTag
 @ApplicationScoped
 class ApplicationEnvironment extends Serializable {
 
-  var viewControllerMap: ObservableMap[String, ViewController] = FXCollections.observableHashMap[String, ViewController]()
+  var viewControllerMap: ObservableMap[String, ViewController] =
+    FXCollections.observableHashMap[String, ViewController]()
 
   var nodePropertyResolver = NodePropertyResolver()
 
@@ -53,4 +54,3 @@ class ApplicationEnvironment extends Serializable {
   }
 
 }
-

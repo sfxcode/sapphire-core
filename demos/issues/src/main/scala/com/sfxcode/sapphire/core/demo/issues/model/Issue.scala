@@ -52,22 +52,17 @@ object IssueDataBase extends BeanConversions {
       issuesMap.remove(issueId)
   }
 
-  createIssue("Project1", "We rode in sorrow, with strong hounds three",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project2", "Bran, Sgeolan, and Lomair",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project3", "On a morning misty and mild and fair",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project4", "The mist-drops hung on the fragrant trees",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project3", "And in the blossoms hung the bees",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project2", "We rode in sadness above Lough Lean",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project1", "For our best were dead on Gavra's green",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
-  createIssue("Project4", "The Wanderings of Oisin",
-    "William Butler Yeats.")
-
+  createIssue("Project1",
+              "We rode in sorrow, with strong hounds three",
+              "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project2", "Bran, Sgeolan, and Lomair", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project3", "On a morning misty and mild and fair", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project4",
+              "The mist-drops hung on the fragrant trees",
+              "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project3", "And in the blossoms hung the bees", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project2", "We rode in sadness above Lough Lean", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project1", "For our best were dead on Gavra's green", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
+  createIssue("Project4", "The Wanderings of Oisin", "William Butler Yeats.")
 
 }

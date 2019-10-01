@@ -7,13 +7,13 @@ import javax.inject.Singleton
 @Singleton
 class ApplicationParametersProvider {
 
-  def setParameters(p: Parameters) {
-    parameters = p
-  }
+  private var parameters: Parameters = _
 
   @Produces def getParameters: Parameters = {
     parameters
   }
 
-  private var parameters: Parameters = _
+  def setParameters(p: Parameters) {
+    parameters = p
+  }
 }

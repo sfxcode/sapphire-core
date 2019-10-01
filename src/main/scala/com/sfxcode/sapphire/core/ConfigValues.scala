@@ -15,30 +15,6 @@ trait ConfigValues extends LazyLogging {
   def configStringValue(path: String, defaultReturnValue: String = ""): String =
     configValue[String](path, defaultReturnValue, config.getString)
 
-  def configIntValue(path: String, defaultReturnValue: Int = 0): Int =
-    configValue[Int](path, defaultReturnValue, config.getInt)
-
-  def configLongValue(path: String, defaultReturnValue: Long = 0): Long =
-    configValue[Long](path, defaultReturnValue, config.getLong)
-
-  def configDoubleValue(path: String, defaultReturnValue: Double = 0.0): Double =
-    configValue[Double](path, defaultReturnValue, config.getDouble)
-
-  def configBooleanValues(path: String): List[Boolean] =
-    configValues[Boolean](path, config.getBooleanList)
-
-  def configStringValues(path: String): List[String] =
-    configValues[String](path, config.getStringList)
-
-  def configIntValues(path: String): List[Int] =
-    configValues[Int](path, config.getIntList)
-
-  def configLongValues(path: String): List[Long] =
-    configValues[Long](path, config.getLongList)
-
-  def configDoubleValues(path: String): List[Double] =
-    configValues[Double](path, config.getDoubleList)
-
   private def configValue[E <: Any](path: String, defaultReturnValue: E = None, f: String => E): E = {
     if (config.hasPath(path)) {
       var result = defaultReturnValue
@@ -55,6 +31,18 @@ trait ConfigValues extends LazyLogging {
     }
   }
 
+  def configIntValue(path: String, defaultReturnValue: Int = 0): Int =
+    configValue[Int](path, defaultReturnValue, config.getInt)
+
+  def configLongValue(path: String, defaultReturnValue: Long = 0): Long =
+    configValue[Long](path, defaultReturnValue, config.getLong)
+
+  def configDoubleValue(path: String, defaultReturnValue: Double = 0.0): Double =
+    configValue[Double](path, defaultReturnValue, config.getDouble)
+
+  def configBooleanValues(path: String): List[Boolean] =
+    configValues[Boolean](path, config.getBooleanList)
+
   private def configValues[E <: Any](path: String, f: String => java.util.List[_]): List[E] = {
     if (config.hasPath(path)) {
       var result = List[E]()
@@ -70,5 +58,17 @@ trait ConfigValues extends LazyLogging {
       List()
     }
   }
+
+  def configStringValues(path: String): List[String] =
+    configValues[String](path, config.getStringList)
+
+  def configIntValues(path: String): List[Int] =
+    configValues[Int](path, config.getIntList)
+
+  def configLongValues(path: String): List[Long] =
+    configValues[Long](path, config.getLongList)
+
+  def configDoubleValues(path: String): List[Double] =
+    configValues[Double](path, config.getDoubleList)
 
 }

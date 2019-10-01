@@ -9,14 +9,20 @@ import javax.enterprise.event.Event
 import javax.inject.{Inject, Named}
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
-case class ContentWillChangeEvent(pane: Pane, parentController: ViewController, newController: ViewController, oldController: ViewController)
+case class ContentWillChangeEvent(pane: Pane,
+                                  parentController: ViewController,
+                                  newController: ViewController,
+                                  oldController: ViewController)
 
-case class ContentDidChangeEvent(pane: Pane, parentController: ViewController, newController: ViewController, oldController: ViewController)
+case class ContentDidChangeEvent(pane: Pane,
+                                 parentController: ViewController,
+                                 newController: ViewController,
+                                 oldController: ViewController)
 
 @Named
 class ContentManager extends LazyLogging {
-  private val controllerStack = ControllerStack(this)
   val stackSize = new SimpleIntegerProperty(0)
+  private val controllerStack = ControllerStack(this)
   var useStack = new SimpleBooleanProperty(false)
 
   var contentPane: Pane = _
@@ -27,14 +33,6 @@ class ContentManager extends LazyLogging {
 
   @Inject var contentWillChange: Event[ContentWillChangeEvent] = _
   @Inject var contentChanged: Event[ContentDidChangeEvent] = _
-
-  private def removePaneContent(node: Node) {
-    contentPane.getChildren.remove(node)
-  }
-
-  private def addPaneContent(node: Node) {
-    contentPane.getChildren.add(node)
-  }
 
   def addToStack(viewController: ViewController): Unit = {
     controllerStack.push(viewController)
@@ -64,7 +62,7 @@ class ContentManager extends LazyLogging {
   def updatePaneContent(newController: ViewController, pushToStack: Boolean = true) {
     val oldController = actualController
     if (newController != null && newController != oldController && newController.canGainVisibility
-      && (oldController == null || oldController.shouldLooseVisibility)) {
+        && (oldController == null || oldController.shouldLooseVisibility)) {
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
@@ -120,11 +118,21 @@ class ContentManager extends LazyLogging {
     }
   }
 
+  private def removePaneContent(node: Node) {
+    contentPane.getChildren.remove(node)
+  }
+
+  private def addPaneContent(node: Node) {
+    contentPane.getChildren.add(node)
+  }
+
 }
 
 object ContentManager {
 
-  def apply(contentPane: Pane, parentController: ViewController, startController: ViewController = null): ContentManager = {
+  def apply(contentPane: Pane,
+            parentController: ViewController,
+            startController: ViewController = null): ContentManager = {
 
     if (contentPane == null)
       throw new IllegalArgumentException("contentPane must not be NULL")

@@ -59,7 +59,6 @@ object FXBeanClassRegistry {
         result = boolInfo(name, isOption = true)
       else if (t =:= typeOf[Double] || t.toString.contains("Boolean"))
         result = boolInfo(name)
-
       else if (!isJavaType && fieldType.get =:= typeOf[Option[LocalDate]])
         result = localDateInfo(name, isOption = true)
       else if (t =:= typeOf[LocalDate] || t.toString.contains("LocalDate"))
@@ -68,7 +67,6 @@ object FXBeanClassRegistry {
         result = localDateInfo(name, isOption = true)
       else if (t =:= typeOf[LocalDate] || t.toString.contains("LocalDate"))
         result = localDateInfo(name)
-
       else if (!isJavaType && fieldType.get =:= typeOf[Option[Date]])
         result = dateInfo(name, isOption = true)
       else if (t =:= typeOf[Date] || t.toString.contains("Date"))
@@ -85,25 +83,36 @@ object FXBeanClassRegistry {
 
 }
 
-case class FXBeanClassMemberInfo(name: String, signature: PropertyValue = TypeUnknown, isOption: Boolean = false, javaClass: Class[_] = classOf[java.lang.String])
+case class FXBeanClassMemberInfo(name: String,
+                                 signature: PropertyValue = TypeUnknown,
+                                 isOption: Boolean = false,
+                                 javaClass: Class[_] = classOf[java.lang.String])
 
 object FXBeanClassMemberInfo {
   val EmptyTypeHints = List[FXBeanClassMemberInfo]()
 
-  def stringInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeString, isOption)
+  def stringInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeString, isOption)
 
-  def intInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeInt, isOption, classOf[java.lang.Integer])
+  def intInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeInt, isOption, classOf[java.lang.Integer])
 
-  def longInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeLong, isOption, classOf[java.lang.Long])
+  def longInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeLong, isOption, classOf[java.lang.Long])
 
-  def floatInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeFloat, isOption, classOf[java.lang.Float])
+  def floatInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeFloat, isOption, classOf[java.lang.Float])
 
-  def doubleInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDouble, isOption, classOf[java.lang.Double])
+  def doubleInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeDouble, isOption, classOf[java.lang.Double])
 
-  def boolInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeBoolean, isOption, classOf[java.lang.Boolean])
+  def boolInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeBoolean, isOption, classOf[java.lang.Boolean])
 
-  def dateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeDate, isOption, classOf[java.util.Date])
+  def dateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeDate, isOption, classOf[java.util.Date])
 
-  def localDateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo = FXBeanClassMemberInfo(name, TypeLocalDate, isOption, classOf[java.time.LocalDate])
+  def localDateInfo(name: String, isOption: Boolean = false): FXBeanClassMemberInfo =
+    FXBeanClassMemberInfo(name, TypeLocalDate, isOption, classOf[java.time.LocalDate])
 
 }

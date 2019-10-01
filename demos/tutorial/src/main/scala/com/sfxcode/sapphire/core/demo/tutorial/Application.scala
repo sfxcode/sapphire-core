@@ -11,4 +11,3 @@ object Application extends FXApp {
 
   override def forceMaxHeight: Boolean = true
 }
-

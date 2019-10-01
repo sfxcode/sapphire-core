@@ -2,6 +2,7 @@ package com.sfxcode.sapphire.core.el
 
 import java.beans.FeatureDescriptor
 import java.util
+
 import javax.el._
 
 class BaseResolver() extends ELResolver {
@@ -38,7 +39,11 @@ class BaseResolver() extends ELResolver {
     delegate.getCommonPropertyType(context, base)
   }
 
-  override def invoke(context: ELContext, base: scala.Any, method: scala.Any, paramTypes: Array[Class[_]], params: Array[AnyRef]): AnyRef = {
+  override def invoke(context: ELContext,
+                      base: scala.Any,
+                      method: scala.Any,
+                      paramTypes: Array[Class[_]],
+                      params: Array[AnyRef]): AnyRef = {
     delegate.invoke(context, base, method, paramTypes, params)
   }
 }
@@ -47,4 +52,3 @@ object BaseResolver {
 
   def apply(): BaseResolver = new BaseResolver
 }
-

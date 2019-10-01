@@ -10,12 +10,14 @@ object ReflectionTools extends LazyLogging {
 
   def getFieldType(target: Any, name: String, showMethods: Boolean = false): Option[Type] = {
 
-    val classMember = typeMirror.classSymbol(target.getClass).toType.members.find(m => !m.isMethod && m.name.toString.trim.equals(name))
+    val classMember =
+      typeMirror.classSymbol(target.getClass).toType.members.find(m => !m.isMethod && m.name.toString.trim.equals(name))
     if (classMember.isDefined)
       Some(classMember.get.typeSignature)
     else {
       if (showMethods) {
-        val traitMember = typeMirror.classSymbol(target.getClass).toType.members.find(m => m.name.toString.trim.equals(name))
+        val traitMember =
+          typeMirror.classSymbol(target.getClass).toType.members.find(m => m.name.toString.trim.equals(name))
         if (traitMember.isDefined)
           Some(traitMember.get.typeSignature)
         else {
@@ -26,16 +28,16 @@ object ReflectionTools extends LazyLogging {
     }
   }
 
+  def getMemberValue(target: Any, name: String): Any = {
+    getFieldMirror(target, name).get
+  }
+
   def getFieldMirror(target: Any, name: String): FieldMirror = {
 
     val t = typeMirror.classSymbol(target.getClass).toType
     val symbol = t.decl(ru.TermName(name)).asTerm
     val instanceMirror = typeMirror.reflect(target)
     instanceMirror.reflectField(symbol)
-  }
-
-  def getMemberValue(target: Any, name: String): Any = {
-    getFieldMirror(target, name).get
   }
 
   def setMemberValue(target: Any, name: String, value: Any) {

@@ -10,6 +10,30 @@ trait NodeLocator {
 
   def scene: Scene
 
+  def locateTextField(nodeId: String, parent: Node = null): Option[TextField] = {
+    locate[TextField](nodeId, parent)
+  }
+
+  def locateLabel(nodeId: String, parent: Node = null): Option[Label] = {
+    locate[Label](nodeId, parent)
+  }
+
+  def locateComboBox[T <: Any](nodeId: String, parent: Node = null): Option[ComboBox[T]] = {
+    locate[ComboBox[T]](nodeId, parent)
+  }
+
+  def locateButton(nodeId: String, parent: Node = null): Option[Button] = {
+    locate[Button](nodeId, parent)
+  }
+
+  def locate[A <: Node](nodeId: String, parent: Node = null): Option[A] = {
+    val result = locateInternal(nodeId, parent)
+    if (result.isDefined && result.get.isInstanceOf[A])
+      result.asInstanceOf[Option[A]]
+    else
+      None
+  }
+
   private def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
     if (parent == null) {
       val lookupResult = scene.lookup(nodeId)
@@ -29,30 +53,6 @@ trait NodeLocator {
       }
     }
 
-  }
-
-  def locate[A <: Node](nodeId: String, parent: Node = null): Option[A] = {
-    val result = locateInternal(nodeId, parent)
-    if (result.isDefined && result.get.isInstanceOf[A])
-      result.asInstanceOf[Option[A]]
-    else
-      None
-  }
-
-  def locateTextField(nodeId: String, parent: Node = null): Option[TextField] = {
-    locate[TextField](nodeId, parent)
-  }
-
-  def locateLabel(nodeId: String, parent: Node = null): Option[Label] = {
-    locate[Label](nodeId, parent)
-  }
-
-  def locateComboBox[T <: Any](nodeId: String, parent: Node = null): Option[ComboBox[T]] = {
-    locate[ComboBox[T]](nodeId, parent)
-  }
-
-  def locateButton(nodeId: String, parent: Node = null): Option[Button] = {
-    locate[Button](nodeId, parent)
   }
 
 }

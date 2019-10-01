@@ -19,21 +19,26 @@ import javax.annotation.{PostConstruct, PreDestroy}
 import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
-abstract class ViewController extends FxmlLoading with BeanResolver with ActionEvents with Initializable with LazyLogging with ConfigValues {
+abstract class ViewController
+    extends FxmlLoading
+    with BeanResolver
+    with ActionEvents
+    with Initializable
+    with LazyLogging
+    with ConfigValues {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
   val windowController = new SimpleObjectProperty[WindowController]()
 
   val managedParent = new SimpleObjectProperty[ViewController]()
+  protected val managedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
+  protected val unmanagedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
+  var gainVisibility = false
 
   def stage: Stage = windowController.get.stage
 
   def scene: Scene = windowController.get.scene
-
-  protected val managedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
-
-  protected val unmanagedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
 
   def parent: ViewController = managedParent.getValue
 
@@ -46,8 +51,6 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
     if (!managedChildren.contains(viewController))
       managedChildren.remove(viewController)
   }
-
-  var gainVisibility = false
 
   // bean lifecycle
 
@@ -78,9 +81,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
     unmanagedChildren.foreach(_.willGainVisibility())
   }
 
-  def didGainVisibilityFirstTime(): Unit = {
-
-  }
+  def didGainVisibilityFirstTime(): Unit = {}
 
   def didGainVisibility(): Unit = {
     managedChildren.foreach(_.didGainVisibility())
@@ -122,8 +123,7 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
             case e: Exception =>
               logger.error(e.getMessage, e)
               false
-          }
-        else
+          } else
           false
       }
     }
@@ -133,9 +133,9 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
 
   def updateFromStateMap(map: Map[String, Any]): Unit = {}
 
-  def actualSceneController: ViewController = windowController.get.actualSceneController
-
   def isActualSceneController: Boolean = this == actualSceneController
+
+  def actualSceneController: ViewController = windowController.get.actualSceneController
 
   def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] = {
 
@@ -146,12 +146,15 @@ abstract class ViewController extends FxmlLoading with BeanResolver with ActionE
       val bean = getBean[T]()
       bean match {
         case result: T => Some(result)
-        case _ => None
+        case _         => None
       }
     }
   }
 
   override def toString: String = {
-    "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName, hashCode(), isLoadedFromFXML, gainVisibility)
+    "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName,
+                                                  hashCode(),
+                                                  isLoadedFromFXML,
+                                                  gainVisibility)
   }
 }

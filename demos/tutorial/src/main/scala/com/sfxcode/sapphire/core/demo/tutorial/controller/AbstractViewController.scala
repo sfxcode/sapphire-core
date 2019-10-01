@@ -1,4 +1,3 @@
-
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
@@ -11,12 +10,12 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
     statusBarController.statusLabel.setText("%s loaded".format(getClass.getSimpleName))
   }
 
-  def mainWindowController: MainController = {
-    parent.asInstanceOf[MainController]
-  }
-
   def statusBarController: StatusBarController = getBean[StatusBarController]()
 
   def workspaceManager: ContentManager = mainWindowController.workspaceManager
+
+  def mainWindowController: MainController = {
+    parent.asInstanceOf[MainController]
+  }
 
 }

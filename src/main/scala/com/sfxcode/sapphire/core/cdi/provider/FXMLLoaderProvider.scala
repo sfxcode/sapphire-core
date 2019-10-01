@@ -16,8 +16,8 @@ class FXMLLoaderProvider {
   @Produces def createLoader: FXMLLoader = {
     val loader: FXMLLoader = new FXMLLoader
 
-    loader.setControllerFactory({
-      param: Class[_] => selectByClass[AnyRef](instance, param).get
+    loader.setControllerFactory({ param: Class[_] =>
+      selectByClass[AnyRef](instance, param).get
     })
     loader
   }

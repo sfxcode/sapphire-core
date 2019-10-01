@@ -11,7 +11,8 @@ import javax.inject.Named
 @ApplicationScoped
 class ConverterProvider extends Serializable with LazyLogging {
 
-  val converterMap: ObservableMap[String, StringConverter[_]] = FXCollections.observableHashMap[String, StringConverter[_]]()
+  val converterMap: ObservableMap[String, StringConverter[_]] =
+    FXCollections.observableHashMap[String, StringConverter[_]]()
 
   def getConverterByName[T](name: String, forceNew: Boolean = false): StringConverter[T] = {
 
