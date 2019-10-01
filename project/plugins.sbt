@@ -16,6 +16,9 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-license-report" % "1.2.0")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.0.6")
 
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.7")
+
+
 // Paradox handling
 
 addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.6.5")
