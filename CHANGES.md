@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.6.7
+* typesave config update
+* openwebbeans 2.0.12
+
 ### 1.6.6
 * FXMLLoading url and resources properties now Options
 * FXMLLoading i18n support [sapphire-core/issues/18](https://github.com/sfxcode/sapphire-core/issues/18)
