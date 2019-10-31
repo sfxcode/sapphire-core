@@ -20,7 +20,7 @@ import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
 abstract class ViewController
-    extends FxmlLoading
+  extends FxmlLoading
     with BeanResolver
     with ActionEvents
     with Initializable
@@ -123,7 +123,8 @@ abstract class ViewController
             case e: Exception =>
               logger.error(e.getMessage, e)
               false
-          } else
+          }
+        else
           false
       }
     }
@@ -146,15 +147,16 @@ abstract class ViewController
       val bean = getBean[T]()
       bean match {
         case result: T => Some(result)
-        case _         => None
+        case _ => None
       }
     }
   }
 
   override def toString: String = {
-    "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName,
-                                                  hashCode(),
-                                                  isLoadedFromFXML,
-                                                  gainVisibility)
+    "%s %s (fxml: %s, gainVisibility: %s)".format(
+      this.getClass.getSimpleName,
+      hashCode(),
+      isLoadedFromFXML,
+      gainVisibility)
   }
 }

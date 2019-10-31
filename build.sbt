@@ -72,7 +72,7 @@ lazy val docs = (project in file("docs"))
   )
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
-val JavaFXVersion = "13"
+val JavaFXVersion = "13.0.1"
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux")   => "linux"
   case n if n.startsWith("Mac")     => "mac"
@@ -84,7 +84,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.7.1" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.0" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
 

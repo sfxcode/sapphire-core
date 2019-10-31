@@ -54,21 +54,23 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[Any])
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
-    result.addFunction(SapphireFunctionPrefix,
-                       "boolString",
-                       clazz,
-                       "boolString",
-                       classOf[Boolean],
-                       classOf[String],
-                       classOf[String])
+    result.addFunction(
+      SapphireFunctionPrefix,
+      "boolString",
+      clazz,
+      "boolString",
+      classOf[Boolean],
+      classOf[String],
+      classOf[String])
     result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
     result.addFunction(SapphireFunctionPrefix, "i18n", clazz, "i18n", classOf[String], classOf[Array[Any]])
-    result.addFunction(SapphireFunctionPrefix,
-                       "format",
-                       classOf[java.lang.String],
-                       "format",
-                       classOf[String],
-                       classOf[Array[Any]])
+    result.addFunction(
+      SapphireFunctionPrefix,
+      "format",
+      classOf[java.lang.String],
+      "format",
+      classOf[String],
+      classOf[Array[Any]])
     result
   }
 
@@ -98,7 +100,7 @@ object DefaultFunctions extends ConfigValues with BeanResolver {
 
   def dateString(date: Any): String = {
     date match {
-      case d: java.util.Date     => FXBean.defaultDateConverter.toString(d)
+      case d: java.util.Date => FXBean.defaultDateConverter.toString(d)
       case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
       case c: javax.xml.datatype.XMLGregorianCalendar =>
         FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime)

@@ -12,7 +12,7 @@ import scala.collection.JavaConverters._
 import scala.collection.mutable
 
 class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = EmptyTypeHints)
-    extends BeanProperties(typeHints)
+  extends BeanProperties(typeHints)
     with LazyLogging {
 
   override def getBean: AnyRef = bean
@@ -23,10 +23,10 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
 
   def getValue(key: String): Any = {
     bean match {
-      case map: mutable.Map[String, _]       => map(key)
-      case map: Map[String, _]               => map(key)
+      case map: mutable.Map[String, _] => map(key)
+      case map: Map[String, _] => map(key)
       case javaMap: java.util.Map[String, _] => javaMap.get(key)
-      case _                                 => Expressions.evaluateExpressionOnObject(bean, key)
+      case _ => Expressions.evaluateExpressionOnObject(bean, key)
     }
   }
 
@@ -43,7 +43,7 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
       valueToUpdate = null
     val property = propertyMap.asScala.getOrElse(key, getProperty(key))
     bean match {
-      case map: mutable.Map[String, Any]       => map.put(key, valueToUpdate)
+      case map: mutable.Map[String, Any] => map.put(key, valueToUpdate)
       case javaMap: java.util.Map[String, Any] => javaMap.put(key, valueToUpdate)
       case _ =>
         if (key.contains(".")) {
@@ -73,9 +73,9 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
     if (key.length > 0) {
       preserveChanges(key, oldValue, newValue)
       bean match {
-        case map: mutable.Map[String, Any]       => map.put(key, newValue)
+        case map: mutable.Map[String, Any] => map.put(key, newValue)
         case javaMap: java.util.Map[String, Any] => javaMap.put(key, newValue)
-        case _                                   => ReflectionTools.setMemberValue(bean, key, newValue)
+        case _ => ReflectionTools.setMemberValue(bean, key, newValue)
       }
     }
 

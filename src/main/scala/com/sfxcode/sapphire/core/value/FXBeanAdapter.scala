@@ -12,7 +12,7 @@ import javafx.util.StringConverter
 import scala.collection.JavaConverters._
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null)
-    extends KeyConverter
+  extends KeyConverter
     with LazyLogging {
 
   val beanProperty = new SimpleObjectProperty[FXBean[T]]()
@@ -118,9 +118,10 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     }
   }
 
-  protected def bindBidirectionalFromStringProperty[S](stringProperty: StringProperty,
-                                                       beanProperty: Property[S],
-                                                       beanKey: String) {
+  protected def bindBidirectionalFromStringProperty[S](
+                                                        stringProperty: StringProperty,
+                                                        beanProperty: Property[S],
+                                                        beanKey: String) {
     val converter = converterMap.asScala.get(stringProperty)
     if (converter.isDefined) {
       val c = converter.get

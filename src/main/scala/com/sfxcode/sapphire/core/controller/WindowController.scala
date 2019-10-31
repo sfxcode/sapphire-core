@@ -13,13 +13,15 @@ import javafx.stage.Stage
 import javax.enterprise.event.Event
 import javax.inject.Inject
 
-case class SceneControllerWillChangeEvent(windowController: WindowController,
+case class SceneControllerWillChangeEvent(
+                                           windowController: WindowController,
+                                           newController: ViewController,
+                                           oldController: ViewController)
+
+case class SceneControllerDidChangeEvent(
+                                          windowController: WindowController,
                                           newController: ViewController,
                                           oldController: ViewController)
-
-case class SceneControllerDidChangeEvent(windowController: WindowController,
-                                         newController: ViewController,
-                                         oldController: ViewController)
 
 abstract class WindowController extends FxmlLoading with NodeLocator with LazyLogging {
 
@@ -42,7 +44,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
   def replaceSceneContent(newController: ViewController, resize: Boolean = true) {
     val oldController = actualSceneController
     if (newController != null && newController != oldController && newController.canGainVisibility
-        && (oldController == null || oldController.shouldLooseVisibility)) {
+      && (oldController == null || oldController.shouldLooseVisibility)) {
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
