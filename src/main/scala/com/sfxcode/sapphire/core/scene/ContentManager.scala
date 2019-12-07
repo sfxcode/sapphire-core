@@ -9,17 +9,15 @@ import javax.enterprise.event.Event
 import javax.inject.{Inject, Named}
 import org.apache.deltaspike.core.api.provider.BeanProvider
 
-case class ContentWillChangeEvent(
-                                   pane: Pane,
-                                   parentController: ViewController,
-                                   newController: ViewController,
-                                   oldController: ViewController)
-
-case class ContentDidChangeEvent(
-                                  pane: Pane,
+case class ContentWillChangeEvent(pane: Pane,
                                   parentController: ViewController,
                                   newController: ViewController,
                                   oldController: ViewController)
+
+case class ContentDidChangeEvent(pane: Pane,
+                                 parentController: ViewController,
+                                 newController: ViewController,
+                                 oldController: ViewController)
 
 @Named
 class ContentManager extends LazyLogging {
@@ -132,10 +130,9 @@ class ContentManager extends LazyLogging {
 
 object ContentManager {
 
-  def apply(
-             contentPane: Pane,
-             parentController: ViewController,
-             startController: ViewController = null): ContentManager = {
+  def apply(contentPane: Pane,
+            parentController: ViewController,
+            startController: ViewController = null): ContentManager = {
 
     if (contentPane == null)
       throw new IllegalArgumentException("contentPane must not be NULL")

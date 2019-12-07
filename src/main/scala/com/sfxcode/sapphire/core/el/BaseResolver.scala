@@ -39,12 +39,11 @@ class BaseResolver() extends ELResolver {
     delegate.getCommonPropertyType(context, base)
   }
 
-  override def invoke(
-                       context: ELContext,
-                       base: scala.Any,
-                       method: scala.Any,
-                       paramTypes: Array[Class[_]],
-                       params: Array[AnyRef]): AnyRef = {
+  override def invoke(context: ELContext,
+                      base: scala.Any,
+                      method: scala.Any,
+                      paramTypes: Array[Class[_]],
+                      params: Array[AnyRef]): AnyRef = {
     delegate.invoke(context, base, method, paramTypes, params)
   }
 }

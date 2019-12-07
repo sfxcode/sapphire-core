@@ -32,14 +32,6 @@ object ReflectionTools extends LazyLogging {
     getFieldMirror(target, name).get
   }
 
-  def getFieldMirror(target: Any, name: String): FieldMirror = {
-
-    val t = typeMirror.classSymbol(target.getClass).toType
-    val symbol = t.decl(ru.TermName(name)).asTerm
-    val instanceMirror = typeMirror.reflect(target)
-    instanceMirror.reflectField(symbol)
-  }
-
   def setMemberValue(target: Any, name: String, value: Any) {
     val memberInfo = FXBeanClassRegistry.memberInfo(target, name)
     val fieldMirror = getFieldMirror(target, name)
@@ -56,6 +48,14 @@ object ReflectionTools extends LazyLogging {
       }
     }
 
+  }
+
+  def getFieldMirror(target: Any, name: String): FieldMirror = {
+
+    val t = typeMirror.classSymbol(target.getClass).toType
+    val symbol = t.decl(ru.TermName(name)).asTerm
+    val instanceMirror = typeMirror.reflect(target)
+    instanceMirror.reflectField(symbol)
   }
 
   def getMembers[T <: AnyRef]()(implicit t: TypeTag[T]): List[Symbol] = {

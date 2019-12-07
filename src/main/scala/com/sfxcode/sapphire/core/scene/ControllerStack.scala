@@ -7,7 +7,7 @@ import scala.collection.mutable
 case class ControllerState(controller: ViewController, stateMap: Map[String, Any] = Map())
 
 case class ControllerStack(contentManager: ContentManager) {
-  private val stack = new mutable.ArrayStack[ControllerState]()
+  private val stack = new mutable.Stack[ControllerState]()
 
   def push(viewController: ViewController): Unit = {
     if (viewController != null) {

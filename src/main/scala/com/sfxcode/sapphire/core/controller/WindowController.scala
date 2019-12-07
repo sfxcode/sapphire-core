@@ -13,15 +13,13 @@ import javafx.stage.Stage
 import javax.enterprise.event.Event
 import javax.inject.Inject
 
-case class SceneControllerWillChangeEvent(
-                                           windowController: WindowController,
-                                           newController: ViewController,
-                                           oldController: ViewController)
-
-case class SceneControllerDidChangeEvent(
-                                          windowController: WindowController,
+case class SceneControllerWillChangeEvent(windowController: WindowController,
                                           newController: ViewController,
                                           oldController: ViewController)
+
+case class SceneControllerDidChangeEvent(windowController: WindowController,
+                                         newController: ViewController,
+                                         oldController: ViewController)
 
 abstract class WindowController extends FxmlLoading with NodeLocator with LazyLogging {
 

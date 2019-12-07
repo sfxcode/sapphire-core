@@ -19,6 +19,10 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
     map.get(key(prefix, localName))
   }
 
+  def key(prefix: String, localName: String): String = {
+    "%s:%s".format(prefix, localName)
+  }
+
   def addFunction(prefix: String, localName: String, clazz: Class[_], methodName: String, args: Class[_]*): Unit = {
     var method: Method = null
     try {
@@ -37,10 +41,6 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
     map.put(functionKey, method)
   }
 
-  def key(prefix: String, localName: String): String = {
-    "%s:%s".format(prefix, localName)
-  }
-
 }
 
 object BaseFunctionMapper {
@@ -54,8 +54,7 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[Any])
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
-    result.addFunction(
-      SapphireFunctionPrefix,
+    result.addFunction(SapphireFunctionPrefix,
       "boolString",
       clazz,
       "boolString",
@@ -64,8 +63,7 @@ object BaseFunctionMapper {
       classOf[String])
     result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
     result.addFunction(SapphireFunctionPrefix, "i18n", clazz, "i18n", classOf[String], classOf[Array[Any]])
-    result.addFunction(
-      SapphireFunctionPrefix,
+    result.addFunction(SapphireFunctionPrefix,
       "format",
       classOf[java.lang.String],
       "format",

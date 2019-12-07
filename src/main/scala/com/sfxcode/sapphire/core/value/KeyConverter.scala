@@ -29,9 +29,6 @@ abstract class KeyConverter {
   def addCurrencyConverter(keys: String*): Unit =
     keys.foreach(addConverter(_, classOf[CurrencyStringConverter].getSimpleName))
 
-  def addIntConverter(keys: String*): Unit =
-    keys.foreach(addConverter(_, classOf[IntegerStringConverter].getSimpleName))
-
   def addConverter(key: String, converterName: String, forceNew: Boolean = false) {
     val converter = converterProvider.getConverterByName(converterName, forceNew).asInstanceOf[StringConverter[_]]
     addConverter(key, converter)
@@ -46,6 +43,9 @@ abstract class KeyConverter {
   def addConverter[S](property: StringProperty, converter: StringConverter[S]) {
     converterMap.put(property, converter)
   }
+
+  def addIntConverter(keys: String*): Unit =
+    keys.foreach(addConverter(_, classOf[IntegerStringConverter].getSimpleName))
 
   def addLongConverter(keys: String*): Unit = keys.foreach(addConverter(_, classOf[LongStringConverter].getSimpleName))
 

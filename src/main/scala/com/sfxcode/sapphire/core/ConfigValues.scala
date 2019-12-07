@@ -12,9 +12,6 @@ trait ConfigValues extends LazyLogging {
   def configBooleanValue(path: String, defaultReturnValue: Boolean = false): Boolean =
     configValue[Boolean](path, defaultReturnValue, config.getBoolean)
 
-  def configStringValue(path: String, defaultReturnValue: String = ""): String =
-    configValue[String](path, defaultReturnValue, config.getString)
-
   private def configValue[E <: Any](path: String, defaultReturnValue: E = None, f: String => E): E = {
     if (config.hasPath(path)) {
       var result = defaultReturnValue
@@ -30,6 +27,9 @@ trait ConfigValues extends LazyLogging {
       defaultReturnValue
     }
   }
+
+  def configStringValue(path: String, defaultReturnValue: String = ""): String =
+    configValue[String](path, defaultReturnValue, config.getString)
 
   def configIntValue(path: String, defaultReturnValue: Int = 0): Int =
     configValue[Int](path, defaultReturnValue, config.getInt)

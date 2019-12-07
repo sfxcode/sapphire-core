@@ -12,8 +12,8 @@ import javafx.util.StringConverter
 import scala.collection.JavaConverters._
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null)
-  extends KeyConverter
-    with LazyLogging {
+    extends KeyConverter
+      with LazyLogging {
 
   val beanProperty = new SimpleObjectProperty[FXBean[T]]()
 
@@ -84,6 +84,8 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       beanProperty.getValue.clearChanges()
   }
 
+  def hasValue: Boolean = hasBeanProperty.get
+
   protected def updateBean(oldValue: FXBean[T], newValue: FXBean[T]): Unit = {
     unbindAll()
     bindAll(newValue)
@@ -103,8 +105,6 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       bindingMap.keySet().asScala.foreach(property => bindBidirectional(bean, property, bindingMap.get(property)))
   }
 
-  def hasValue: Boolean = hasBeanProperty.get
-
   protected def bindBidirectional[S](bean: FXBean[T], property: Property[S], beanKey: String) {
     val observable = bean.getProperty(beanKey)
     observable match {
@@ -118,10 +118,9 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     }
   }
 
-  protected def bindBidirectionalFromStringProperty[S](
-                                                        stringProperty: StringProperty,
-                                                        beanProperty: Property[S],
-                                                        beanKey: String) {
+  protected def bindBidirectionalFromStringProperty[S](stringProperty: StringProperty,
+                                                       beanProperty: Property[S],
+                                                       beanKey: String) {
     val converter = converterMap.asScala.get(stringProperty)
     if (converter.isDefined) {
       val c = converter.get
