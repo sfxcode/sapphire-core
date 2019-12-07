@@ -123,8 +123,7 @@ abstract class ViewController
             case e: Exception =>
               logger.error(e.getMessage, e)
               false
-          }
-        else
+          } else
           false
       }
     }
@@ -153,8 +152,7 @@ abstract class ViewController
   }
 
   override def toString: String = {
-    "%s %s (fxml: %s, gainVisibility: %s)".format(
-      this.getClass.getSimpleName,
+    "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName,
       hashCode(),
       isLoadedFromFXML,
       gainVisibility)
