@@ -20,12 +20,12 @@ import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
 abstract class ViewController
-  extends FxmlLoading
-    with BeanResolver
-    with ActionEvents
-    with Initializable
-    with LazyLogging
-    with ConfigValues {
+    extends FxmlLoading
+      with BeanResolver
+      with ActionEvents
+      with Initializable
+      with LazyLogging
+      with ConfigValues {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 

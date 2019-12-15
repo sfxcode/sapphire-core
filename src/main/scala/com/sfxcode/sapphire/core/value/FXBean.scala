@@ -28,6 +28,15 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
       getValue(key)
   }
 
+  def getValue(key: String): Any = {
+    bean match {
+      case map: mutable.Map[String, _] => map(key)
+      case map: Map[String, _] => map(key)
+      case javaMap: java.util.Map[String, _] => javaMap.get(key)
+      case _ => Expressions.evaluateExpressionOnObject(bean, key)
+    }
+  }
+
   def updateValue(key: String, newValue: Any) {
     var valueToUpdate = newValue
     if (newValue == None)
@@ -79,15 +88,6 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
 
   def childHasChanged(observable: ObservableValue[_], oldValue: Any, newValue: Any): Unit = {
     expressionMap.keySet.asScala.foreach(k => updateObservableValue(expressionMap.get(k), getValue(k)))
-  }
-
-  def getValue(key: String): Any = {
-    bean match {
-      case map: mutable.Map[String, _] => map(key)
-      case map: Map[String, _] => map(key)
-      case javaMap: java.util.Map[String, _] => javaMap.get(key)
-      case _ => Expressions.evaluateExpressionOnObject(bean, key)
-    }
   }
 
   def preserveChanges(key: String, oldValue: Any, newValue: Any) {
