@@ -20,12 +20,12 @@ import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
 abstract class ViewController
-    extends FxmlLoading
-      with BeanResolver
-      with ActionEvents
-      with Initializable
-      with LazyLogging
-      with ConfigValues {
+  extends FxmlLoading
+    with BeanResolver
+    with ActionEvents
+    with Initializable
+    with LazyLogging
+    with ConfigValues {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
@@ -123,7 +123,8 @@ abstract class ViewController
             case e: Exception =>
               logger.error(e.getMessage, e)
               false
-          } else
+          }
+        else
           false
       }
     }
@@ -152,7 +153,8 @@ abstract class ViewController
   }
 
   override def toString: String = {
-    "%s %s (fxml: %s, gainVisibility: %s)".format(this.getClass.getSimpleName,
+    "%s %s (fxml: %s, gainVisibility: %s)".format(
+      this.getClass.getSimpleName,
       hashCode(),
       isLoadedFromFXML,
       gainVisibility)
