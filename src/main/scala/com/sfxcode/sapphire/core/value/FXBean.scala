@@ -12,8 +12,8 @@ import scala.collection.JavaConverters._
 import scala.collection.mutable
 
 class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = EmptyTypeHints)
-    extends BeanProperties(typeHints)
-      with LazyLogging {
+  extends BeanProperties(typeHints)
+    with LazyLogging {
 
   override def getBean: AnyRef = bean
 

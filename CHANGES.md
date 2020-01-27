@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.6.9
+* JavaFX 13.0.2
+* openwebbeans 2.0.12
+
 ### 1.6.7
 * typesave config update
 * openwebbeans 2.0.12

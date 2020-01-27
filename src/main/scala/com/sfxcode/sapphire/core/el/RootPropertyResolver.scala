@@ -54,11 +54,12 @@ class RootPropertyResolver extends ELResolver {
       null
   }
 
-  override def invoke(context: ELContext,
-                      base: Any,
-                      method: Any,
-                      paramTypes: Array[Class[_]],
-                      params: Array[Object]): AnyRef = {
+  override def invoke(
+                       context: ELContext,
+                       base: Any,
+                       method: Any,
+                       paramTypes: Array[Class[_]],
+                       params: Array[Object]): AnyRef = {
     if (resolve(context, base, method))
       throw new NullPointerException("Cannot invoke method " + method + " on null")
     null

@@ -54,7 +54,8 @@ object BaseFunctionMapper {
     result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[Any])
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
-    result.addFunction(SapphireFunctionPrefix,
+    result.addFunction(
+      SapphireFunctionPrefix,
       "boolString",
       clazz,
       "boolString",
@@ -63,7 +64,8 @@ object BaseFunctionMapper {
       classOf[String])
     result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
     result.addFunction(SapphireFunctionPrefix, "i18n", clazz, "i18n", classOf[String], classOf[Array[Any]])
-    result.addFunction(SapphireFunctionPrefix,
+    result.addFunction(
+      SapphireFunctionPrefix,
       "format",
       classOf[java.lang.String],
       "format",

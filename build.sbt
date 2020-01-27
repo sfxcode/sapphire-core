@@ -72,19 +72,19 @@ lazy val docs = (project in file("docs"))
   )
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
-val JavaFXVersion = "13.0.1"
+val JavaFXVersion = "13.0.2"
 val osName = System.getProperty("os.name") match {
-  case n if n.startsWith("Linux")   => "linux"
-  case n if n.startsWith("Mac")     => "mac"
+  case n if n.startsWith("Linux") => "linux"
+  case n if n.startsWith("Mac") => "mac"
   case n if n.startsWith("Windows") => "win"
-  case _                            => throw new Exception("Unknown platform!")
+  case _ => throw new Exception("Unknown platform!")
 }
 
 addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.1" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.3" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
 
@@ -107,7 +107,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.13"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.14"
 
 val DeltaspikeVersion = "1.9.2"
 
