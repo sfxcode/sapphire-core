@@ -136,6 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
+  <li><a href="../getting_started.html" class="page">Getting Started</a></li>
   <li><a href="../development/index.html" class="page">Development</a>
   <ul>
     <li><a href="../development/tools.html" class="page">Development Tools</a></li>
@@ -145,7 +146,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_window.html" class="page">Tutorial Main Controller</a></li>
+    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
     <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
@@ -183,7 +184,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.7
+<i class="md-icon" title="Version">label_outline</i> 1.6.10*
 </label>
 </li>
 </ul>
@@ -222,7 +223,7 @@ sfxcode/sapphire-core
 
 </code></pre>
 <h3><a href="#scala-viewcontroller-snippet" name="scala-viewcontroller-snippet" class="anchor"><span class="anchor-link"></span></a>Scala ViewController Snippet</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L31-L37" target="_blank" title="Go to snippet source"></a><code class="language-scala">val bindings = KeyBindings(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;test&quot;)
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L31-L37" target="_blank" title="Go to snippet source"></a><code class="language-scala">val bindings = KeyBindings(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;test&quot;)
 // Expression Binding Example
 bindings.add(&quot;person&quot;, &quot;${sf:i18n(&#39;personText&#39;, _self.name(), _self.age())}&quot;)
 
@@ -232,19 +233,19 @@ adapter.addIntConverter(&quot;age&quot;)</code></pre>
 <h2><a href="#create-bindings" name="create-bindings" class="anchor"><span class="anchor-link"></span></a>Create Bindings</h2>
 <p>Bindings are created by the value of the id or fx:id attributes in the fxml file.</p><div class="callout note "><div class="callout-title">Note</div>
 <p>If node lookup from appication root node does not work, you can fix it by adding a parent Node to FXBeanAdapter.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L21-L23" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L21-L23" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
 var personBox: VBox = _
 </code></pre></div>
 <h2><a href="#add-converter" name="add-converter" class="anchor"><span class="anchor-link"></span></a>Add Converter</h2>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/docs/src/main/paradox/detail/bindings.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/detail/bindings.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.7
+1.6.10*
 </span>
 </div>
 </article>

@@ -131,6 +131,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="features.html" class="page">Features</a></li>
+  <li><a href="getting_started.html" class="page">Getting Started</a></li>
   <li><a href="development/index.html" class="page">Development</a>
   <ul>
     <li><a href="development/tools.html" class="page">Development Tools</a></li>
@@ -140,7 +141,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="tutorial/main_window.html" class="page">Tutorial Main Controller</a></li>
+    <li><a href="tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
     <li><a href="tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
@@ -170,7 +171,6 @@ sfxcode/sapphire-core
     <li><a href="index.html#cross-build" class="header">Cross Build</a></li>
     <li><a href="index.html#frameworks" class="header">Frameworks</a></li>
     <li><a href="index.html#maven" class="header">Maven</a></li>
-    <li><a href="index.html#getting-started" class="header">Getting started</a></li>
     <li><a href="index.html#licence" class="header">Licence</a></li>
   </ul></li>
 </ul>
@@ -180,7 +180,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.7
+<i class="md-icon" title="Version">label_outline</i> 1.6.10*
 </label>
 </li>
 </ul>
@@ -198,7 +198,6 @@ sfxcode/sapphire-core
     <li><a href="index.html#cross-build" class="header">Cross Build</a></li>
     <li><a href="index.html#frameworks" class="header">Frameworks</a></li>
     <li><a href="index.html#maven" class="header">Maven</a></li>
-    <li><a href="index.html#getting-started" class="header">Getting started</a></li>
     <li><a href="index.html#licence" class="header">Licence</a></li>
   </ul></li>
 </ul>
@@ -218,6 +217,7 @@ sfxcode/sapphire-core
 <h3><a href="#javafx" name="javafx" class="anchor"><span class="anchor-link"></span></a>JavaFX</h3>
 <p>Java UI Application Framework as replacement for Swing.</p>
 <p>Sapphire depends on OpenJFX 11/12.</p>
+<p>JavaFX Code Samples Samles under <a href="http://www.java2s.com/Code/Java/JavaFX/CatalogJavaFX.htm">CatalogJavaFX</a></p>
 <p><a href="https://openjfx.io">https://openjfx.io</a></p>
 <h3><a href="#dependency-injection" name="dependency-injection" class="anchor"><span class="anchor-link"></span></a>Dependency Injection</h3>
 <p>Sapphire use <a href="http://deltaspike.apache.org">Apache Deltaspike</a> as CDI Abstraction Layer (1.9.x).</p>
@@ -230,29 +230,26 @@ sfxcode/sapphire-core
 <pre><code>resolvers += &quot;sfxcode-bintray&quot; at &quot;https://dl.bintray.com/sfxcode/maven&quot;
 
 </code></pre>
-<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.sapphire" % "sapphire-core_2.12" % "1.6.7"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
+<h3><a href="#artifact" name="artifact" class="anchor"><span class="anchor-link"></span></a>Artifact</h3><dl class="dependency"><dt>sbt</dt><dd><pre class="prettyprint"><code class="language-scala">libraryDependencies += "com.sfxcode.sapphire" % "sapphire-core_2.12" % "1.6.10-SNAPSHOT"</code></pre></dd><dt>Maven</dt><dd><pre class="prettyprint"><code class="language-xml">&lt;dependency&gt;
   &lt;groupId&gt;com.sfxcode.sapphire&lt;/groupId&gt;
   &lt;artifactId&gt;sapphire-core_2.12&lt;/artifactId&gt;
-  &lt;version&gt;1.6.7&lt;/version&gt;
+  &lt;version&gt;1.6.10-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;</code></pre></dd><dt>Gradle</dt><dd><pre class="prettyprint"><code class="language-gradle">dependencies {
-  compile group: 'com.sfxcode.sapphire', name: 'sapphire-core_2.12', version: '1.6.7'
+  compile group: 'com.sfxcode.sapphire', name: 'sapphire-core_2.12', version: '1.6.10-SNAPSHOT'
 }</code></pre></dd></dl>
-<h2><a href="#getting-started" name="getting-started" class="anchor"><span class="anchor-link"></span></a>Getting started</h2>
-<h3><a href="#setup-base-application-with-giter8" name="setup-base-application-with-giter8" class="anchor"><span class="anchor-link"></span></a>Setup Base Application with Giter8</h3><pre><code>g8 https://github.com/sfxcode/sapphire-sbt.g8
-</code></pre>
 <h3><a href="#demos" name="demos" class="anchor"><span class="anchor-link"></span></a>Demos</h3>
 <p>Explore demos and Tutorial in project demo directory.</p>
 <h2><a href="#licence" name="licence" class="anchor"><span class="anchor-link"></span></a>Licence</h2>
 <p><a href="https://github.com/sfxcode/sapphire-core/blob/master/LICENSE">Apache 2</a></p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/docs/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.7
+1.6.10*
 </span>
 </div>
 </article>

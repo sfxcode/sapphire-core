@@ -136,6 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
+  <li><a href="../getting_started.html" class="page">Getting Started</a></li>
   <li><a href="../development/index.html" class="page">Development</a>
   <ul>
     <li><a href="../development/tools.html" class="page">Development Tools</a></li>
@@ -145,7 +146,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="../tutorial/application.html" class="active page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_window.html" class="page">Tutorial Main Controller</a></li>
+    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
     <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
@@ -174,7 +175,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/application.html#application-object" class="header">Application object</a></li>
     <li><a href="../tutorial/application.html#applicationcontroller" class="header">ApplicationController</a></li>
-    <li><a href="../tutorial/application.html#mainwindowcontroller" class="header">MainWindowController</a></li>
+    <li><a href="../tutorial/application.html#mainviewcontroller" class="header">MainViewController</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -183,7 +184,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.7
+<i class="md-icon" title="Version">label_outline</i> 1.6.10*
 </label>
 </li>
 </ul>
@@ -200,7 +201,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/application.html#application-object" class="header">Application object</a></li>
     <li><a href="../tutorial/application.html#applicationcontroller" class="header">ApplicationController</a></li>
-    <li><a href="../tutorial/application.html#mainwindowcontroller" class="header">MainWindowController</a></li>
+    <li><a href="../tutorial/application.html#mainviewcontroller" class="header">MainViewController</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -214,11 +215,12 @@ sfxcode/sapphire-core
 <h1><a href="#tutorial-application" name="tutorial-application" class="anchor"><span class="anchor-link"></span></a>Tutorial Application</h1>
 <h2><a href="#application-object" name="application-object" class="anchor"><span class="anchor-link"></span></a>Application object</h2>
 <p>A sapphire application must contain an Application object that extends FXApp.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
 import com.sfxcode.sapphire.core.application.FXApp
 
 object Application extends FXApp {
+
   override def height: Int = 555
 
   override def width: Int = 700
@@ -230,13 +232,13 @@ object Application extends FXApp {
 <h2><a href="#applicationcontroller" name="applicationcontroller" class="anchor"><span class="anchor-link"></span></a>ApplicationController</h2>
 <p>Application controller is used for startup purposes.</p>
 <p>Normally the main scene content is replaced by a ViewController.</p>
-<p>Here we will use a MainWindowController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
+<p>Here we will use a MainViewController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
 import java.util.{Locale, ResourceBundle}
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
-import com.sfxcode.sapphire.core.demo.tutorial.controller.MainController
+import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
@@ -245,15 +247,15 @@ import javax.inject.Named
 @ApplicationScoped
 class ApplicationController extends DefaultWindowController {
 
-  lazy val mainWindowController: MainController =
-    getController[MainController]()
+  lazy val mainViewController: MainViewController =
+    getController[MainViewController]()
 
   def applicationDidLaunch() {
     logger.info(&quot;start &quot; + this)
     // #Resources
     applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
     // #Resources
-    replaceSceneContent(mainWindowController)
+    replaceSceneContent(mainViewController)
   }
 
   def reload(): Unit = {
@@ -263,47 +265,46 @@ class ApplicationController extends DefaultWindowController {
     applicationEnvironment.clearResourceBundleCache()
     applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)
     // FXML
-    val newMainWindowController = getController[MainController]()
-    replaceSceneContent(newMainWindowController)
+    val newMainViewController = getController[MainViewController]()
+    replaceSceneContent(newMainViewController)
   }
 
   @Produces
-  def applicationName: ApplicationName = {
+  def applicationName: ApplicationName =
     ApplicationName(configStringValue(&quot;application.name&quot;))
-  }
 
   // #CustomBundle
   // only example values ...
-  override def resourceBundleForView(viewPath: String): ResourceBundle = {
+  override def resourceBundleForView(viewPath: String): ResourceBundle =
     if (viewPath.contains(&quot;mySpecialViewName&quot;)) {
-      val path = &quot;myCustomResourcePath&quot;
+      val path        = &quot;myCustomResourcePath&quot;
       val classLoader = Thread.currentThread().getContextClassLoader
       ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-    } else {
+    }
+    else {
       super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
     }
-  }
 
   // #CustomBundle
 
 }
 
 case class ApplicationName(name: String)</code></pre>
-<h2><a href="#mainwindowcontroller" name="mainwindowcontroller" class="anchor"><span class="anchor-link"></span></a>MainWindowController</h2>
-<p>The following code snippet loads the MainWindowController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
-<pre class="prettyprint"><code class="language-scala">  def mainWindowController = getController[MainWindowController]()
+<h2><a href="#mainviewcontroller" name="mainviewcontroller" class="anchor"><span class="anchor-link"></span></a>MainViewController</h2>
+<p>The following code snippet loads the MainViewController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
+<pre class="prettyprint"><code class="language-scala">  def mainViewController = getController[MainViewController]()
 
 </code></pre>
 <p>This pattern for Controller-Loading is commonly used in sapphire-core Framework.</p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/docs/src/main/paradox/tutorial/application.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/tutorial/application.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.7
+1.6.10*
 </span>
 </div>
 </article>
@@ -326,13 +327,13 @@ Tutorial Setup
 </span>
 </div>
 </a>
-<a href="../tutorial/main_window.html" title="Tutorial Main Controller" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../tutorial/main_view.html" title="Tutorial Main View Controller" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Tutorial Main Controller
+Tutorial Main View Controller
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">

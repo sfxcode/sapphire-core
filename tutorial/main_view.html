@@ -20,7 +20,7 @@
 
 <meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="../assets/images/favicon.png">
-<title>Tutorial Main Controller · Sapphire Core</title>
+<title>Tutorial Main View Controller · Sapphire Core</title>
 <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="../lib/prettify/prettify.css">
@@ -56,7 +56,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-Tutorial Main Controller
+Tutorial Main View Controller
 </span>
 </div>
 </div>
@@ -136,6 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
+  <li><a href="../getting_started.html" class="page">Getting Started</a></li>
   <li><a href="../development/index.html" class="page">Development</a>
   <ul>
     <li><a href="../development/tools.html" class="page">Development Tools</a></li>
@@ -145,7 +146,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
     <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_window.html" class="active page">Tutorial Main Controller</a></li>
+    <li><a href="../tutorial/main_view.html" class="active page">Tutorial Main View Controller</a></li>
     <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
   </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
@@ -170,10 +171,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../tutorial/main_window.html#tutorial-main-controller" class="header">Tutorial Main Controller</a>
+  <li><a href="../tutorial/main_view.html#tutorial-main-view-controller" class="header">Tutorial Main View Controller</a>
   <ul>
-    <li><a href="../tutorial/main_window.html#main-fxml-file" class="header">Main FXML File</a></li>
-    <li><a href="../tutorial/main_window.html#maincontroller" class="header">MainController</a></li>
+    <li><a href="../tutorial/main_view.html#main-fxml-file" class="header">Main FXML File</a></li>
+    <li><a href="../tutorial/main_view.html#mainviewcontroller" class="header">MainViewController</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -182,7 +183,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.7
+<i class="md-icon" title="Version">label_outline</i> 1.6.10*
 </label>
 </li>
 </ul>
@@ -195,10 +196,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="../tutorial/main_window.html#tutorial-main-controller" class="header">Tutorial Main Controller</a>
+  <li><a href="../tutorial/main_view.html#tutorial-main-view-controller" class="header">Tutorial Main View Controller</a>
   <ul>
-    <li><a href="../tutorial/main_window.html#main-fxml-file" class="header">Main FXML File</a></li>
-    <li><a href="../tutorial/main_window.html#maincontroller" class="header">MainController</a></li>
+    <li><a href="../tutorial/main_view.html#main-fxml-file" class="header">Main FXML File</a></li>
+    <li><a href="../tutorial/main_view.html#mainviewcontroller" class="header">MainViewController</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -209,10 +210,10 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#tutorial-main-controller" name="tutorial-main-controller" class="anchor"><span class="anchor-link"></span></a>Tutorial Main Controller</h1>
+<h1><a href="#tutorial-main-view-controller" name="tutorial-main-view-controller" class="anchor"><span class="anchor-link"></span></a>Tutorial Main View Controller</h1>
 <h2><a href="#main-fxml-file" name="main-fxml-file" class="anchor"><span class="anchor-link"></span></a>Main FXML File</h2>
-<p>The MainController in the /controller/MainController needs a valid FXML File. The bindings for Navigation, Workspace and StatusBar Controller uses the <strong>fx:id</strong> values.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/docs/src/main/paradox/tutorial/main_window.xml" target="_blank" title="Go to snippet source"></a><code class="language-xml">&lt;BorderPane&gt;
+<p>The MainViewController in the /controller/MainViewController needs a valid FXML File. The bindings for Navigation, Workspace and StatusBar Controller uses the <strong>fx:id</strong> values.</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/tutorial/main_view.xml" target="_blank" title="Go to snippet source"></a><code class="language-xml">&lt;BorderPane&gt;
     &lt;top&gt;
         &lt;AnchorPane fx:id=&quot;navigationPane&quot;/&gt;
     &lt;/top&gt;
@@ -223,18 +224,18 @@ sfxcode/sapphire-core
         &lt;AnchorPane fx:id=&quot;statusPane&quot;/&gt;
     &lt;/bottom&gt;
 &lt;/BorderPane&gt;</code></pre>
-<h2><a href="#maincontroller" name="maincontroller" class="anchor"><span class="anchor-link"></span></a>MainController</h2>
+<h2><a href="#mainviewcontroller" name="mainviewcontroller" class="anchor"><span class="anchor-link"></span></a>MainViewController</h2>
 <p>For adding SubController and displaying their UI content following steps are needed:</p>
 <ol>
   <li>Prepare SubController</li>
   <li>Connect with FXML identifier</li>
   <li>Define ContentManager</li>
-  <li>Load Controller in the MainController LifeCycle</li>
+  <li>Load Controller in the MainViewController LifeCycle</li>
   <li>Optional Prepare Functions for Controller switching</li>
   <li>Optional CDI based Functions / Injection Points</li>
 </ol>
 <h3><a href="#prepare-subcontroller" name="prepare-subcontroller" class="anchor"><span class="anchor-link"></span></a>Prepare SubController</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainController.scala#L13-L22" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val workspaceController: WorkspaceController =
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainViewController.scala#L13-L22" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val workspaceController: WorkspaceController =
   getController[WorkspaceController]()
 lazy val barChartController: BarChartController =
   getController[BarChartController]()
@@ -245,36 +246,37 @@ lazy val navigationController: NavigationController =
 lazy val statusBarController: StatusBarController =
   getBean[StatusBarController]()</code></pre>
 <h3><a href="#connect-with-fxml-identifier" name="connect-with-fxml-identifier" class="anchor"><span class="anchor-link"></span></a>Connect with FXML identifier</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainController.scala#L26-L31" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainViewController.scala#L26-L31" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
 var workspacePane: Pane = _
 @FXML
 var statusPane: Pane = _
 @FXML
 var navigationPane: Pane = _</code></pre>
 <h3><a href="#contentmanager" name="contentmanager" class="anchor"><span class="anchor-link"></span></a>ContentManager</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainController.scala#L35-L37" target="_blank" title="Go to snippet source"></a><code class="language-scala">var workspaceManager: ContentManager = _
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainViewController.scala#L35-L37" target="_blank" title="Go to snippet source"></a><code class="language-scala">var workspaceManager: ContentManager  = _
 var navigationManager: ContentManager = _
-var statusBarManager: ContentManager = _</code></pre>
+var statusBarManager: ContentManager  = _</code></pre>
 <h3><a href="#init-controller" name="init-controller" class="anchor"><span class="anchor-link"></span></a>Init Controller</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainController.scala#L41-L45" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime() {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainViewController.scala#L41-L46" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime() {
+  super.didGainVisibility()
   navigationManager = ContentManager(navigationPane, this, navigationController)
   statusBarManager = ContentManager(statusPane, this, statusBarController)
   workspaceManager = ContentManager(workspacePane, this, workspaceController)
 }</code></pre>
 <h3><a href="#cdi-optional-" name="cdi-optional-" class="anchor"><span class="anchor-link"></span></a>CDI (optional)</h3>
 <p>Make use of CDI Observers, Injection Points, &hellip;</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainController.scala#L49-L51" target="_blank" title="Go to snippet source"></a><code class="language-scala">def listenToChanges(@Observes event: ContentDidChangeEvent) {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/MainViewController.scala#L50-L52" target="_blank" title="Go to snippet source"></a><code class="language-scala">def listenToChanges(@Observes event: ContentDidChangeEvent) {
   logger.debug(event.toString)
 }</code></pre>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.6.7/docs/src/main/paradox/tutorial/main_window.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/tutorial/main_view.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.7
+1.6.10*
 </span>
 </div>
 </article>

@@ -20,7 +20,7 @@
 
 <meta name="description" content="sapphire core docs">
 <link rel="shortcut icon" href="assets/images/favicon.png">
-<title>ScalaFX · Sapphire Core</title>
+<title>Getting Started · Sapphire Core</title>
 <link rel="stylesheet" href="assets/stylesheets/application.451f80e5.css">
 <link rel="stylesheet" href="lib/material__tabs/dist/mdc.tabs.min.css">
 <link rel="stylesheet" href="lib/prettify/prettify.css">
@@ -56,7 +56,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 Sapphire Core
 </span>
 <span class="md-header-nav__topic">
-ScalaFX
+Getting Started
 </span>
 </div>
 </div>
@@ -136,7 +136,7 @@ sfxcode/sapphire-core
 </div>
 <ul>
   <li><a href="features.html" class="page">Features</a></li>
-  <li><a href="getting_started.html" class="page">Getting Started</a></li>
+  <li><a href="getting_started.html" class="active page">Getting Started</a></li>
   <li><a href="development/index.html" class="page">Development</a>
   <ul>
     <li><a href="development/tools.html" class="page">Development Tools</a></li>
@@ -165,16 +165,16 @@ sfxcode/sapphire-core
     <li><a href="sample/advanced.html" class="page">Samples Advanced</a></li>
   </ul></li>
   <li><a href="extension.html" class="page">Sapphire Extension</a></li>
-  <li><a href="scalafx.html" class="active page">ScalaFX</a></li>
+  <li><a href="scalafx.html" class="page">ScalaFX</a></li>
   <li><a href="changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="scalafx.html#scalafx" class="header">ScalaFX</a>
+  <li><a href="getting_started.html#getting-started" class="header">Getting Started</a>
   <ul>
-    <li><a href="scalafx.html#documentation" class="header">Documentation</a></li>
-    <li><a href="scalafx.html#usage" class="header">Usage</a></li>
+    <li><a href="getting_started.html#setup-base-application-with-giter8" class="header">Setup Base Application with Giter8</a></li>
+    <li><a href="getting_started.html#use-one-of-the-demo-applications-as-blueprint" class="header">Use one of the demo applications as blueprint</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -196,10 +196,10 @@ sfxcode/sapphire-core
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul>
-  <li><a href="scalafx.html#scalafx" class="header">ScalaFX</a>
+  <li><a href="getting_started.html#getting-started" class="header">Getting Started</a>
   <ul>
-    <li><a href="scalafx.html#documentation" class="header">Documentation</a></li>
-    <li><a href="scalafx.html#usage" class="header">Usage</a></li>
+    <li><a href="getting_started.html#setup-base-application-with-giter8" class="header">Setup Base Application with Giter8</a></li>
+    <li><a href="getting_started.html#use-one-of-the-demo-applications-as-blueprint" class="header">Use one of the demo applications as blueprint</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -210,29 +210,15 @@ sfxcode/sapphire-core
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h1><a href="#scalafx" name="scalafx" class="anchor"><span class="anchor-link"></span></a>ScalaFX</h1>
-<p>Until Version 1.5.x Sapphire depends on <a href="http://www.scalafx.org/">ScalaFX</a>, a DSL for JavaFX written in Scala.</p>
-<p>Version 1.6.x and newer versions are built without direct ScalaFX dependency, because ScalaFX (JavaFX UI DSL) is not basicly needed for sapphire functionality. However, it can be used on top of this framework as a very useful addition in writing JavaFX Applications.</p>
-<p>Most of my own applications use scalafx because of a very useful DSL and some nice wrapper functions around javafx with extended functionality and / or the more scala friendly syntax.</p>
-<h2><a href="#documentation" name="documentation" class="anchor"><span class="anchor-link"></span></a>Documentation</h2>
-<p>Documentation can be found at <a href="http://www.scalafx.org/docs/home/">www.scalafx.org/docs/home/</a></p>
-<p>Documentation is a little bit out of date, but there are also some other places to find useful information.</p>
-<ul>
-  <li><a href="https://github.com/scalafx/scalafx">Github</a></li>
-  <li><a href="https://github.com/scalafx/scalafx/blob/master/notes/12.0.2-R18.md">Release Notes</a></li>
-  <li><a href="https://stackoverflow.com/search?q=scalafx">Stackoverflow</a></li>
-  <li><a href="https://github.com/scalafx/ProScalaFX/">ProScalaFX</a></li>
-</ul>
-<h2><a href="#usage" name="usage" class="anchor"><span class="anchor-link"></span></a>Usage</h2>
-<p>Include following snippet in your build.sbt file:</p>
-<pre><code>libraryDependencies += &quot;org.scalafx&quot; %% &quot;scalafx&quot; % &quot;12.0.2-R18&quot;
+<h1><a href="#getting-started" name="getting-started" class="anchor"><span class="anchor-link"></span></a>Getting Started</h1>
+<h2><a href="#setup-base-application-with-giter8" name="setup-base-application-with-giter8" class="anchor"><span class="anchor-link"></span></a>Setup Base Application with Giter8</h2><pre><code>g8 https://github.com/sfxcode/sapphire-sbt.g8
 </code></pre>
-<p>In your classes add scalafx Includes to your imports:</p>
-<pre><code>import scalafx.Includes._
-</code></pre>
+<h2><a href="#use-one-of-the-demo-applications-as-blueprint" name="use-one-of-the-demo-applications-as-blueprint" class="anchor"><span class="anchor-link"></span></a>Use one of the demo applications as blueprint</h2>
+<p>Demos are included under the demos folder of this project.</p>
+<p>See <a href="sample/index.html">Samples</a></p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/scalafx.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/getting_started.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -248,7 +234,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="extension.html" title="Sapphire Extension" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="features.html" title="Features" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -257,17 +243,17 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Sapphire Extension
+Features
 </span>
 </div>
 </a>
-<a href="changes.html" title="Version History" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="development/index.html" title="Development" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Version History
+Development
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
