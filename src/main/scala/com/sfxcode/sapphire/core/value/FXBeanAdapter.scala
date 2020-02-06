@@ -4,8 +4,8 @@ import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
-import javafx.beans.{ property => jfxbp }
-import javafx.collections.{ FXCollections, ObservableMap }
+import javafx.beans.{property => jfxbp}
+import javafx.collections.{FXCollections, ObservableMap}
 import javafx.scene.Node
 import javafx.util.StringConverter
 

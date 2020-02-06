@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="40.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.NavigationController">
     <children>

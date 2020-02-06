@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core
 
 import com.sfxcode.sapphire.core.CollectionExtensions.ChangeState.ChangeState
-import javafx.beans.{ InvalidationListener, Observable }
+import javafx.beans.{InvalidationListener, Observable}
 import javafx.collections._
 
 import scala.collection.JavaConverters._

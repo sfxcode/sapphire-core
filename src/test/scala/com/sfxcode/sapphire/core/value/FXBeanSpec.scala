@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.test.{ Book, PersonDatabase }
+import com.sfxcode.sapphire.core.test.{Book, PersonDatabase}
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
 import org.apache.deltaspike.core.api.exclude.Exclude

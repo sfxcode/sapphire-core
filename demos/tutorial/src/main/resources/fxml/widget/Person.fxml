@@ -5,7 +5,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="person" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="person" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0"
             AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1"
             fx:controller="com.sfxcode.sapphire.core.demo.tutorial.controller.PersonController">
     <children>

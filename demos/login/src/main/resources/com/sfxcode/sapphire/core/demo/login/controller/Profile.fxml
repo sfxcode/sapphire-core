@@ -36,7 +36,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.net.URL?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="Profile" focusTraversable="false" minWidth="500.0" prefHeight="500.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="Profile" focusTraversable="false" minWidth="500.0"
+            prefHeight="500.0"
             prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="com.sfxcode.sapphire.core.demo.login.controller.ProfileController">
     <children>

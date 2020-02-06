@@ -6,7 +6,7 @@ import com.sfxcode.sapphire.core.value.FXBeanClassMemberInfo._
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
 import javafx.beans.value.ObservableValue
-import javafx.util.converter.{ DateStringConverter, DateTimeStringConverter }
+import javafx.util.converter.{DateStringConverter, DateTimeStringConverter}
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
