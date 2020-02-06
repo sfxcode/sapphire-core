@@ -22,14 +22,13 @@ class ProfileController extends ViewController {
 
   def actionLogout(event: ActionEvent) {
     userAdapter.revert()
-    userAdapter.unset
+    userAdapter.unset()
     applicationController().applicationUser = None
     applicationController().showLogin()
   }
 
-  def applicationController(): LoginApplicationController = {
+  def applicationController(): LoginApplicationController =
     getBean[LoginApplicationController]()
-  }
 
   def actionUpdate(event: ActionEvent) {
     debugUserData()

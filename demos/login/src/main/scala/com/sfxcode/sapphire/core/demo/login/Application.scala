@@ -26,8 +26,8 @@ object Application extends FXApp {
 @Named
 @ApplicationScoped
 class LoginApplicationController extends DefaultWindowController {
-  lazy val loginController = getController[LoginController]()
-  lazy val profileController = getController[ProfileController]()
+  lazy val loginController: LoginController     = getController[LoginController]()
+  lazy val profileController: ProfileController = getController[ProfileController]()
 
   var applicationUser: Option[FXBean[User]] = None
 

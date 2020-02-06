@@ -25,18 +25,19 @@ class LoginController extends ViewController with BeanConversions {
   }
 
   def actionLogin() {
-    val user = UserDatabase.find(email.getText, password.getText)
+    val user          = UserDatabase.find(email.getText, password.getText)
     val authenticated = user.isDefined
     if (authenticated) {
       password.clear()
       applicationController().applicationUser = user
       applicationController().showMain()
-    } else
+    }
+    else {
       errorMessage.setText("Login Error")
+    }
   }
 
-  def applicationController(): LoginApplicationController = {
+  def applicationController(): LoginApplicationController =
     getBean[LoginApplicationController]()
-  }
 
 }

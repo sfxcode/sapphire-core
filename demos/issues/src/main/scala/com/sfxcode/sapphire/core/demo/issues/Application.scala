@@ -14,7 +14,7 @@ case class EmptyName(name: String)
 @Named
 @ApplicationScoped
 class ApplicationController extends DefaultWindowController {
-  lazy val mainController = getController[IssueTrackingLiteController]()
+  lazy val mainController: IssueTrackingLiteController = getController[IssueTrackingLiteController]()
 
   def applicationDidLaunch() {
     println("start " + this)
@@ -22,8 +22,7 @@ class ApplicationController extends DefaultWindowController {
   }
 
   @Produces
-  def emptyName: EmptyName = {
+  def emptyName: EmptyName =
     EmptyName("New Issue")
-  }
 
 }
