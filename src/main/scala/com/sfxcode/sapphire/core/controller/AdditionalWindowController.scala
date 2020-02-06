@@ -1,13 +1,33 @@
 package com.sfxcode.sapphire.core.controller
 
-import javafx.beans.property.SimpleObjectProperty
+import com.sfxcode.sapphire.core.stage.StageSupport
 
-abstract class AdditionalWindowController extends WindowController {
+abstract class AdditionalWindowController extends WindowController with StageSupport {
 
   override def isMainWindow: Boolean = false
 
-  val mainWindowController = new SimpleObjectProperty[DefaultWindowController]()
+  def initStage(): Unit =
+    if (stageProperty.isEmpty) {
+      setStage(createDefaultStage)
+    }
 
-  def name: String
+  def show(x: Double = 0.0, y: Double = 0.0): Unit = stageProperty.foreach { stage =>
+    if (!stage.isShowing) {
+      if (x > 0) {
+        stage.setX(x)
+      }
+      if (y > 0) {
+        stage.setY(y)
+      }
+      stage.show()
+    }
+  }
+
+  def close(): Unit = stageProperty.foreach { stage =>
+    if (stage.isShowing) {
+      stage.close()
+
+    }
+  }
 
 }

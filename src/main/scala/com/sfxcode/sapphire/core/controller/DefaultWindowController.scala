@@ -4,7 +4,6 @@ import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
 import com.sun.javafx.css.StyleManager
 import javafx.application.Platform
 import javafx.stage.Stage
-import javax.annotation.PreDestroy
 import javax.enterprise.event.Observes
 
 abstract class DefaultWindowController extends WindowController {
@@ -26,11 +25,10 @@ abstract class DefaultWindowController extends WindowController {
   def reloadStyles(): Unit =
     StyleManager.getInstance().stylesheetContainerMap.clear()
 
-  @PreDestroy
-  def preDestroy(): Unit = shutdown()
-
-  def shutdown(): Unit =
+  override def shutdown(): Unit = {
+    super.shutdown()
     applicationWillStop()
+  }
 
   def applicationWillStop(): Unit =
     logger.debug("exit in Progress")

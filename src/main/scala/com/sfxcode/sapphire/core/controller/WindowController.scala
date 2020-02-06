@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.ObservableMap
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
+import javax.annotation.{PostConstruct, PreDestroy}
 import javax.enterprise.event.Event
 import javax.inject.Inject
 
@@ -27,12 +28,29 @@ case class SceneControllerDidChangeEvent(
 
 abstract class WindowController extends FxmlLoading with NodeLocator with LazyLogging {
 
-  val sceneMap: ObservableMap[Parent, Scene]                                   = Map[Parent, Scene]()
+  implicit def simpleObjectPropertyToOption[T <: AnyRef](prop: SimpleObjectProperty[T]): Option[T] =
+    Option[T](prop.get())
+
+  // bean lifecycle
+
+  @PostConstruct
+  def postConstruct(): Unit = startup()
+
+  def startup() {}
+
+  @PreDestroy
+  def preDestroy(): Unit = shutdown()
+
+  def shutdown() {}
+
+  val sceneMap: ObservableMap[Parent, Scene] = Map[Parent, Scene]()
+
   @Inject var sceneControllerWillChange: Event[SceneControllerWillChangeEvent] = _
   @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent]     = _
-  var stageProperty                                                            = new SimpleObjectProperty[Stage]()
-  var sceneProperty                                                            = new SimpleObjectProperty[Scene]()
-  var sceneControllerProperty                                                  = new SimpleObjectProperty[ViewController]()
+
+  var stageProperty           = new SimpleObjectProperty[Stage]()
+  var sceneProperty           = new SimpleObjectProperty[Scene]()
+  var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
 
   def setStage(stage: Stage): Unit = {
     stageProperty.set(stage)
@@ -40,6 +58,8 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
   }
 
   def scene: Scene = sceneProperty.getValue
+
+  def name: String = getClass.getSimpleName
 
   def isMainWindow: Boolean
 

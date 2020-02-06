@@ -15,6 +15,8 @@ Java UI Application Framework as replacement for Swing.
 
 Sapphire depends on OpenJFX 11/12.
 
+JavaFX Code Samples Samles under [CatalogJavaFX](http://www.java2s.com/Code/Java/JavaFX/CatalogJavaFX.htm)
+
 [https://openjfx.io](https://openjfx.io)
 
 ### Dependency Injection

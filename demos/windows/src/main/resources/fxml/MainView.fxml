@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<StackPane xmlns:fx="http://javafx.com/fxml/1"
-           xmlns="http://javafx.com/javafx/11.0.1"
-           fx:controller="com.sfxcode.sapphire.core.demo.windows.controller.MainViewController">
-    <children>
-    </children>
+<StackPane prefHeight="600.0" prefWidth="800.0" styleClass="main" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.demo.windows.controller.MainViewController">
     <stylesheets>
-        <URL value="@default.css"/>
+        <URL value="@default.css" />
     </stylesheets>
+   <children>
+      <BorderPane>
+         <center>
+            <Label fx:id="windowLabel" styleClass="infoText" text="Main Window" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></Label>
+         </center>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Show Second Window" onAction="#actionShowSecondWindow"/>
+                  <Button mnemonicParsing="false" text="Close Second Window" onAction="#actionCloseSecondWindow"/>
+                  <Button mnemonicParsing="false" text="Show Third Window" onAction="#actionShowThirdWindow" />
+                  <Button mnemonicParsing="false" text="Close Third Window" onAction="#actionCloseThirdWindow" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
 </StackPane>

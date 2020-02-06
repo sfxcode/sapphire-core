@@ -3,76 +3,13 @@
     -fx-background-color: #2196F3;
 }
 
-.navigation {
-    -fx-background-color: #2196F3;
+.infoText {
+    -fx-background-color: #c0bc7c;
+    -fx-font-size: 18px;
 }
 
-.navigation .button {
-    -fx-background-color: #E3F2FD;
-    -fx-background-radius: 10;
-    -fx-background-insets: 0;
-}
-
-#debugButton {
-    -fx-background-color: #EF5350;
-    -fx-background-radius: 5;
-    -fx-background-insets: 0;
-    -fx-text-fill: white;
-    -fx-opacity: 0.8;
-}
-
-.status {
-    -fx-background-color: #1565C0;
-}
-
-#statusBar .label {
-    -fx-font-size: 10pt;
-    -fx-text-fill: white;
-    -fx-opacity: 0.8;
-}
-
-#statusBar .button {
-    -fx-background-color: #82B1FF;
-    -fx-background-radius: 30;
-    -fx-background-insets: 0;
-    -fx-text-fill: white;
-    -fx-padding: 3px 3px 3px 3px;
-
-}
-
-.workspace {
-    -fx-background-color: #BBDEFB;
-    -fx-font-size: 13px;
-}
-
-.barchart {
-    -fx-background-color: #BBDEFB;
-    -fx-font-size: 13px;
-    -fx-padding: 5px 5px 5px 5px;
-
-}
-
-.person {
-    -fx-background-color: #BBDEFB;
-    -fx-padding: 10px 10px 10px 10px;
-}
-
-#personDetail {
-    -fx-background-color: #2196F3;
+.smallInfoText {
+    -fx-background-color: #c0bc7c;
     -fx-font-size: 14px;
 }
-
-#personDetail .button {
-    -fx-background-color: white;
-
-    -fx-opacity: 0.8;
-
-}
-
-
-
-
-
-
-
 

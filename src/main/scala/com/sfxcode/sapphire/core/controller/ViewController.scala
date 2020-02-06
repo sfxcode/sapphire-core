@@ -29,6 +29,9 @@ abstract class ViewController
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
+  implicit def simpleObjectPropertyToOption[T <: AnyRef](prop: SimpleObjectProperty[T]): Option[T] =
+    Option[T](prop.get())
+
   val windowController = new SimpleObjectProperty[WindowController]()
 
   val managedParent                                               = new SimpleObjectProperty[ViewController]()
