@@ -19,34 +19,29 @@ class BaseResolver() extends ELResolver {
     delegate.setValue(context, base, property, value)
   }
 
-  def getValue(context: ELContext, base: Any, property: Any): AnyRef = {
+  def getValue(context: ELContext, base: Any, property: Any): AnyRef =
     delegate.getValue(context, base, property)
-  }
 
-  def getType(context: ELContext, base: Any, property: Any): Class[_] = {
+  def getType(context: ELContext, base: Any, property: Any): Class[_] =
     delegate.getType(context, base, property)
-  }
 
-  def isReadOnly(context: ELContext, base: Any, property: Any): Boolean = {
+  def isReadOnly(context: ELContext, base: Any, property: Any): Boolean =
     delegate.isReadOnly(context, base, property)
-  }
 
-  def getFeatureDescriptors(context: ELContext, base: Any): util.Iterator[FeatureDescriptor] = {
+  def getFeatureDescriptors(context: ELContext, base: Any): util.Iterator[FeatureDescriptor] =
     delegate.getFeatureDescriptors(context, base)
-  }
 
-  def getCommonPropertyType(context: ELContext, base: Any): Class[_] = {
+  def getCommonPropertyType(context: ELContext, base: Any): Class[_] =
     delegate.getCommonPropertyType(context, base)
-  }
 
   override def invoke(
-                       context: ELContext,
-                       base: scala.Any,
-                       method: scala.Any,
-                       paramTypes: Array[Class[_]],
-                       params: Array[AnyRef]): AnyRef = {
+      context: ELContext,
+      base: scala.Any,
+      method: scala.Any,
+      paramTypes: Array[Class[_]],
+      params: Array[AnyRef]
+  ): AnyRef =
     delegate.invoke(context, base, method, paramTypes, params)
-  }
 }
 
 object BaseResolver {

@@ -14,7 +14,7 @@ addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.12")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-license-report" % "1.2.0")
 
-addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.3.0")
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.3.1")
 
 addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.11")
 

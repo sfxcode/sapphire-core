@@ -22,17 +22,19 @@ class ConverterProvider extends Serializable with LazyLogging {
 
     if (!forceNew && converterMap.containsKey(className)) {
       converterMap.get(className).asInstanceOf[StringConverter[T]]
-    } else {
+    }
+    else {
 
       var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]
 
       try {
         val converterClass = Class.forName(className)
-        val converter = converterClass.getDeclaredConstructor().newInstance()
+        val converter      = converterClass.getDeclaredConstructor().newInstance()
         if (converter != null) {
           result = converter.asInstanceOf[StringConverter[T]]
         }
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.warn(e.getMessage)
           logger.warn("use default converter for name: " + className)
@@ -43,11 +45,10 @@ class ConverterProvider extends Serializable with LazyLogging {
 
   }
 
-  def guessConverterName(className: String): String = {
+  def guessConverterName(className: String): String =
     if (!className.endsWith("StringConverter"))
       className + "StringConverter"
     else
       className
-  }
 
 }

@@ -5,7 +5,7 @@ import de.odysseus.el.misc.TypeConverter
 import javax.el._
 
 class BaseContext extends ELContext {
-  val resolver = BaseResolver()
+  val resolver       = BaseResolver()
   val functionMapper = BaseFunctionMapper()
   val variableMapper = BaseVariableMapper()
 
@@ -19,9 +19,8 @@ class BaseContext extends ELContext {
     variableMapper.setVariable(name, createValueExpression(obj))
   }
 
-  def createValueExpression(obj: Any): ObjectValueExpression = {
+  def createValueExpression(obj: Any): ObjectValueExpression =
     new ObjectValueExpression(TypeConverter.DEFAULT, obj, obj.getClass)
-  }
 
   def unregister(name: String) {
     variableMapper.removeVariable(name)

@@ -10,9 +10,8 @@ class FXListCellFactory[S <: AnyRef] extends Callback[ListView[FXBean[S]], ListC
   @BeanProperty
   var property = ""
 
-  def call(column: ListView[FXBean[S]]): ListCell[FXBean[S]] = {
+  def call(column: ListView[FXBean[S]]): ListCell[FXBean[S]] =
     new FXListCell[FXBean[S]](property)
-  }
 
 }
 
@@ -34,10 +33,10 @@ class FXListCell[R](property: String = "") extends ListCell[R] {
         val value = b.getValue(property)
         value match {
           case v: Any => textProperty().set(v.toString)
-          case _ => textProperty().set("NULL VALUE")
+          case _      => textProperty().set("NULL VALUE")
         }
       case b: Any => textProperty().set(b.toString)
-      case _ => textProperty().set("")
+      case _      => textProperty().set("")
     }
   }
 }

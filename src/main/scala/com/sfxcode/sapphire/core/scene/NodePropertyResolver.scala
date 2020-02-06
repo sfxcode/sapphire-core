@@ -10,20 +10,19 @@ class NodePropertyResolver {
   val resolverBuffer = new ArrayBuffer[NodePropertyResolving]()
   addResolver(DefaultResolver())
 
-  def addResolver(resolver: NodePropertyResolving): Unit = {
+  def addResolver(resolver: NodePropertyResolving): Unit =
     resolverBuffer.+=(resolver)
-  }
 
   def resolve(node: Node): Option[Property[_]] = {
     var maybeProperty: Option[Property[_]] = None
     breakable {
-      resolverBuffer.foreach(r => {
+      resolverBuffer.foreach { r =>
         val result = r.resolve(node)
         if (result.isDefined) {
           maybeProperty = result
           break()
         }
-      })
+      }
     }
     maybeProperty
   }
@@ -31,7 +30,6 @@ class NodePropertyResolver {
 }
 
 object NodePropertyResolver {
-  def apply(): NodePropertyResolver = {
+  def apply(): NodePropertyResolver =
     new NodePropertyResolver
-  }
 }

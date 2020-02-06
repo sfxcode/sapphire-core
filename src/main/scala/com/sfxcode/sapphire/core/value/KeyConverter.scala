@@ -1,8 +1,8 @@
 package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
-import javafx.beans.property.{Property, StringProperty}
-import javafx.collections.{FXCollections, ObservableMap}
+import javafx.beans.property.{ Property, StringProperty }
+import javafx.collections.{ FXCollections, ObservableMap }
 import javafx.util.StringConverter
 import javafx.util.converter._
 
@@ -15,11 +15,10 @@ abstract class KeyConverter {
 
   def guessPropertyForNode(key: String): Option[Property[_]]
 
-  def addConverterForKeys(keys: List[String], converterName: String, forceNew: Boolean = false): Unit = {
-    keys.foreach(key => {
+  def addConverterForKeys(keys: List[String], converterName: String, forceNew: Boolean = false): Unit =
+    keys.foreach { key =>
       addConverter(key, converterName, forceNew)
-    })
-  }
+    }
 
   def addByteConverter(keys: String*): Unit = keys.foreach(addConverter(_, classOf[ByteStringConverter].getSimpleName))
 

@@ -6,13 +6,12 @@ import javafx.scene.control.{ChoiceBox, ComboBox}
 
 trait ActionEvents {
 
-  def selectionFromActionEvent[S <: Any](event: ActionEvent): Option[S] = {
+  def selectionFromActionEvent[S <: Any](event: ActionEvent): Option[S] =
     actionSource[Node](event) match {
-      case comboBox: ComboBox[S] => Some(comboBox.getSelectionModel.getSelectedItem)
+      case comboBox: ComboBox[S]   => Some(comboBox.getSelectionModel.getSelectedItem)
       case choiceBox: ChoiceBox[S] => Some(choiceBox.getSelectionModel.getSelectedItem)
-      case _ => None
+      case _                       => None
     }
-  }
 
   def actionSource[T <: Node](event: ActionEvent): T = event.getSource.asInstanceOf[T]
 }

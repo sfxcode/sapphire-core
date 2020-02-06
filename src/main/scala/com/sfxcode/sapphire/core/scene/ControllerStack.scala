@@ -9,11 +9,10 @@ case class ControllerState(controller: ViewController, stateMap: Map[String, Any
 case class ControllerStack(contentManager: ContentManager) {
   private val stack = new mutable.Stack[ControllerState]()
 
-  def push(viewController: ViewController): Unit = {
+  def push(viewController: ViewController): Unit =
     if (viewController != null) {
       stack.push(ControllerState(viewController, viewController.stateMap))
     }
-  }
 
   def pop(): Option[ViewController] = {
     if (stack.nonEmpty) {
@@ -36,7 +35,7 @@ case class ControllerStack(contentManager: ContentManager) {
       val result = stack.pop()
       result.controller match {
         case controller: T => return Some(updateContent[T](result))
-        case _ =>
+        case _             =>
       }
     }
     None

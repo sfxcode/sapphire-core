@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import javafx.collections.{FXCollections, ObservableMap}
+import javafx.collections.{ FXCollections, ObservableMap }
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
@@ -17,16 +17,16 @@ class KeyBindings {
   }
 
   def add(list: List[String], nodePrefix: String = ""): KeyBindings = {
-    list.foreach(key => {
+    list.foreach { key =>
       bindingMap.put(nodePrefix + key, key)
-    })
+    }
     this
   }
 
   def add(map: Map[String, String]): KeyBindings = {
-    map.keys.foreach(key => {
+    map.keys.foreach { key =>
       bindingMap.put(key, map(key))
-    })
+    }
     this
   }
 
@@ -58,10 +58,10 @@ object KeyBindings {
     val bindings = new KeyBindings
 
     val symbols = ReflectionTools.getMembers[T]()
-    symbols.foreach(s => {
+    symbols.foreach { s =>
       val name = s.name.toString
       bindings.add(nodePrefix + name, name)
-    })
+    }
     bindings
   }
 

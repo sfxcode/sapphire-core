@@ -6,9 +6,8 @@ import javax.el.{ValueExpression, VariableMapper}
 class BaseVariableMapper extends VariableMapper {
   val map = FXCollections.observableHashMap[String, ValueExpression]()
 
-  def resolveVariable(variable: String): ValueExpression = {
+  def resolveVariable(variable: String): ValueExpression =
     map.getOrDefault(variable, null)
-  }
 
   def removeVariable(variable: String) {
     map.remove(variable)

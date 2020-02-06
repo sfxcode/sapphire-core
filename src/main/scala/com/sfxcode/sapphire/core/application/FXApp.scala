@@ -58,5 +58,5 @@ trait FXApp extends ConfigValues {
 
 object FXApp {
   var Application: Application = _
-  var App: FXApp = _
+  var App: FXApp               = _
 }

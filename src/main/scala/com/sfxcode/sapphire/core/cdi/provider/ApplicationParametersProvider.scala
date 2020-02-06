@@ -9,9 +9,8 @@ class ApplicationParametersProvider {
 
   private var parameters: Parameters = _
 
-  @Produces def getParameters: Parameters = {
+  @Produces def getParameters: Parameters =
     parameters
-  }
 
   def setParameters(p: Parameters) {
     parameters = p

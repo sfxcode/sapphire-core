@@ -20,7 +20,7 @@ import scala.language.implicitConversions
 import scala.reflect.ClassTag
 
 abstract class ViewController
-  extends FxmlLoading
+    extends FxmlLoading
     with BeanResolver
     with ActionEvents
     with Initializable
@@ -31,10 +31,10 @@ abstract class ViewController
 
   val windowController = new SimpleObjectProperty[WindowController]()
 
-  val managedParent = new SimpleObjectProperty[ViewController]()
-  protected val managedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
+  val managedParent                                               = new SimpleObjectProperty[ViewController]()
+  protected val managedChildren: ObservableList[ViewController]   = FXCollections.observableArrayList[ViewController]()
   protected val unmanagedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
-  var gainVisibility = false
+  var gainVisibility                                              = false
 
   def stage: Stage = windowController.get.stage
 
@@ -42,15 +42,13 @@ abstract class ViewController
 
   def parent: ViewController = managedParent.getValue
 
-  def addChildViewController(viewController: ViewController): Unit = {
+  def addChildViewController(viewController: ViewController): Unit =
     if (!managedChildren.contains(viewController))
       managedChildren.add(viewController)
-  }
 
-  def removeChildViewController(viewController: ViewController): Unit = {
+  def removeChildViewController(viewController: ViewController): Unit =
     if (!managedChildren.contains(viewController))
       managedChildren.remove(viewController)
-  }
 
   // bean lifecycle
 
@@ -100,15 +98,17 @@ abstract class ViewController
     unmanagedChildren.foreach(_.didLooseVisibility())
   }
 
-  def updatePaneContent(pane: Pane, viewController: ViewController): Boolean = {
+  def updatePaneContent(pane: Pane, viewController: ViewController): Boolean =
     if (pane == null) {
       logger.warn("contentPane is NULL")
       false
-    } else {
+    }
+    else {
       if (viewController == null) {
         logger.warn("viewController is NULL")
         false
-      } else {
+      }
+      else {
         if (viewController.canGainVisibility)
           try {
             viewController.managedParent.setValue(this)
@@ -119,7 +119,8 @@ abstract class ViewController
             viewController.didGainVisibilityFirstTime()
             unmanagedChildren.add(viewController)
             true
-          } catch {
+          }
+          catch {
             case e: Exception =>
               logger.error(e.getMessage, e)
               false
@@ -128,7 +129,6 @@ abstract class ViewController
           false
       }
     }
-  }
 
   def stateMap: Map[String, Any] = Map[String, Any]()
 
@@ -147,16 +147,16 @@ abstract class ViewController
       val bean = getBean[T]()
       bean match {
         case result: T => Some(result)
-        case _ => None
+        case _         => None
       }
     }
   }
 
-  override def toString: String = {
+  override def toString: String =
     "%s %s (fxml: %s, gainVisibility: %s)".format(
       this.getClass.getSimpleName,
       hashCode(),
       isLoadedFromFXML,
-      gainVisibility)
-  }
+      gainVisibility
+    )
 }

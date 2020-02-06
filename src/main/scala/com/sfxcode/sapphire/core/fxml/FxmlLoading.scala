@@ -16,7 +16,8 @@ import scala.reflect.runtime.{universe => ru}
 
 trait FxmlLoading extends NodeLocator with ConfigValues {
   private lazy val recourceBundleHolder = ResourceBundleHolder(
-    resources.getOrElse(applicationEnvironment.resourceBundle))
+    resources.getOrElse(applicationEnvironment.resourceBundle)
+  )
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
   @Inject
   var loader: FxmlHandler = _
@@ -25,13 +26,12 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
   @Inject
   var converterFactory: ConverterProvider = _
   //var fxml: AnyRef = _
-  var rootPane: Pane = _
-  var location: Option[URL] = None
+  var rootPane: Pane                    = _
+  var location: Option[URL]             = None
   var resources: Option[ResourceBundle] = None
 
-  def i18n(key: String, params: Any*): String = {
+  def i18n(key: String, params: Any*): String =
     recourceBundleHolder.message(key, params: _*)
-  }
 
   def getController[T <: ViewController](fxml: String = "")(implicit ct: ClassTag[T]): T = {
     val fxmlPath = guessFxmlPath(fxml, ct)
@@ -59,7 +59,8 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
         // use runtime package name
         val guessed = ct.runtimeClass.getName.replace(".", "/").replace("Controller", "")
         result = "/%s.fxml".format(guessed)
-      } else {
+      }
+      else {
         val fxmlName = ct.runtimeClass.getSimpleName.replace("Controller", "")
         result = "%s%s.fxml".format(basePath, fxmlName)
       }

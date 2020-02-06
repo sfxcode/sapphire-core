@@ -47,15 +47,18 @@ class FxmlHandler {
       val rootPane = fxmlLoader.getRoot[javafx.scene.layout.Pane]
       (controller, rootPane)
 
-    } catch {
+    }
+    catch {
       case e: Exception =>
         val message = String.format("can not load fxml from path [%s]", path)
         throw new IllegalStateException(message, e)
-    } finally {
+    }
+    finally {
       if (inputStream != null) {
         try {
           inputStream.close()
-        } catch {
+        }
+        catch {
           case e: IOException =>
         }
       }

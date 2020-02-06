@@ -22,8 +22,7 @@ class FXMLLoaderProvider {
     loader
   }
 
-  def selectByClass[T](instance: Instance[T], param: Class[_]): Instance[T] = {
+  def selectByClass[T](instance: Instance[T], param: Class[_]): Instance[T] =
     instance.select(param.asInstanceOf[Class[T]])
-  }
 
 }

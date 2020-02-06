@@ -4,15 +4,15 @@ import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
-import javafx.beans.{property => jfxbp}
-import javafx.collections.{FXCollections, ObservableMap}
+import javafx.beans.{ property => jfxbp }
+import javafx.collections.{ FXCollections, ObservableMap }
 import javafx.scene.Node
 import javafx.util.StringConverter
 
 import scala.collection.JavaConverters._
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null)
-  extends KeyConverter
+    extends KeyConverter
     with LazyLogging {
 
   val beanProperty = new SimpleObjectProperty[FXBean[T]]()
@@ -49,12 +49,12 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   }
 
   def addBindings(keyBindings: KeyBindings) {
-    keyBindings.keys.foreach(key => {
+    keyBindings.keys.foreach { key =>
       val property = guessPropertyForNode(key)
       if (property.isDefined) {
         bindingMap.put(property.get, keyBindings(key))
       }
-    })
+    }
   }
 
   def guessPropertyForNode(key: String): Option[Property[_]] = {
@@ -65,7 +65,8 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       val result = viewController.applicationEnvironment.nodePropertyResolver.resolve(node.get)
       logger.debug("resolved property for %s : %s".format(key, result))
       result
-    } else {
+    }
+    else {
       logger.warn("can not resolve property for key %s - try to create FXBeanAdapter with parent node".format(key))
       None
     }
@@ -92,11 +93,11 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   }
 
   protected def unbindAll() {
-    boundProperties.keySet.asScala.foreach(p => {
+    boundProperties.keySet.asScala.foreach { p =>
       val p1 = p.asInstanceOf[jfxbp.Property[Any]]
       val p2 = boundProperties.get(p).asInstanceOf[jfxbp.Property[Any]]
       p1.unbindBidirectional(p2)
-    })
+    }
     boundProperties.clear()
   }
 
@@ -119,16 +120,18 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   }
 
   protected def bindBidirectionalFromStringProperty[S](
-                                                        stringProperty: StringProperty,
-                                                        beanProperty: Property[S],
-                                                        beanKey: String) {
+      stringProperty: StringProperty,
+      beanProperty: Property[S],
+      beanKey: String
+  ) {
     val converter = converterMap.asScala.get(stringProperty)
     if (converter.isDefined) {
-      val c = converter.get
+      val c  = converter.get
       val bp = beanProperty.asInstanceOf[Property[S]]
       stringProperty.bindBidirectional[S](bp, c.asInstanceOf[StringConverter[S]])
       boundProperties.put(stringProperty, beanProperty)
-    } else
+    }
+    else
       beanProperty match {
         case _: StringProperty =>
           val defaultStringConverter = viewController.converterFactory.getConverterByName[Any]("DefaultStringConverter")
@@ -146,8 +149,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
 object FXBeanAdapter {
 
-  def apply[T <: AnyRef](viewController: ViewController, parent: Node = null): FXBeanAdapter[T] = {
+  def apply[T <: AnyRef](viewController: ViewController, parent: Node = null): FXBeanAdapter[T] =
     new FXBeanAdapter[T](viewController, parent)
-  }
 
 }

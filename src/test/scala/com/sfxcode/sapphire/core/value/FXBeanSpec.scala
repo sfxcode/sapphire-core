@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.test.{Book, PersonDatabase}
+import com.sfxcode.sapphire.core.test.{ Book, PersonDatabase }
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
 import org.apache.deltaspike.core.api.exclude.Exclude
@@ -9,11 +9,11 @@ import org.specs2.mutable._
 case class Zip(value: Long = 12345)
 
 case class TestBean(
-                     name: String = "test",
-                     age: Int = 42,
-                     zip: Zip = Zip(),
-                     description: Option[String] = Some("desc"),
-                     observable: Property[_] = new SimpleStringProperty("observable")) {
+  name: String = "test",
+  age: Int = 42,
+  zip: Zip = Zip(),
+  description: Option[String] = Some("desc"),
+  observable: Property[_] = new SimpleStringProperty("observable")) {
   def doubleAge() = age * 2
 
   def multiply(first: Int, second: Int): Int = first * second
@@ -21,11 +21,11 @@ case class TestBean(
 }
 
 class TestClass(
-                 var name: String = "test",
-                 var age: Int = 42,
-                 var zip: Zip = Zip(),
-                 var description: Option[String] = Some("desc"),
-                 var observable: Property[_] = new SimpleStringProperty("observable")) {
+  var name: String = "test",
+  var age: Int = 42,
+  var zip: Zip = Zip(),
+  var description: Option[String] = Some("desc"),
+  var observable: Property[_] = new SimpleStringProperty("observable")) {
   def doubleAge() = age * 2
 
   def multiply(first: Int, second: Int): Int = first * second

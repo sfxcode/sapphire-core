@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.{ Config, ConfigFactory }
 import com.typesafe.scalalogging.LazyLogging
 
 import scala.collection.JavaConverters._
@@ -12,21 +12,22 @@ trait ConfigValues extends LazyLogging {
   def configBooleanValue(path: String, defaultReturnValue: Boolean = false): Boolean =
     configValue[Boolean](path, defaultReturnValue, config.getBoolean)
 
-  private def configValue[E <: Any](path: String, defaultReturnValue: E = None, f: String => E): E = {
+  private def configValue[E <: Any](path: String, defaultReturnValue: E = None, f: String => E): E =
     if (config.hasPath(path)) {
       var result = defaultReturnValue
       try {
         result = f(path)
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
       }
       result
-    } else {
+    }
+    else {
       logger.warn("config path: %s not exist".format(path))
       defaultReturnValue
     }
-  }
 
   def configStringValue(path: String, defaultReturnValue: String = ""): String =
     configValue[String](path, defaultReturnValue, config.getString)
@@ -43,21 +44,22 @@ trait ConfigValues extends LazyLogging {
   def configBooleanValues(path: String): List[Boolean] =
     configValues[Boolean](path, config.getBooleanList)
 
-  private def configValues[E <: Any](path: String, f: String => java.util.List[_]): List[E] = {
+  private def configValues[E <: Any](path: String, f: String => java.util.List[_]): List[E] =
     if (config.hasPath(path)) {
       var result = List[E]()
       try {
         result = f(path).asScala.toList.asInstanceOf[List[E]]
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
       }
       result
-    } else {
+    }
+    else {
       logger.warn("config path: %s not exist".format(path))
       List()
     }
-  }
 
   def configStringValues(path: String): List[String] =
     configValues[String](path, config.getStringList)

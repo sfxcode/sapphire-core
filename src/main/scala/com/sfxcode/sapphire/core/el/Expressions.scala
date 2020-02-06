@@ -15,14 +15,13 @@ object Expressions {
   val factory = ExpressionFactory.newInstance(props)
   val context = BaseContext()
 
-  val TempObjectName = "_self"
-  val TempValueName = "_tempValue"
-  val ExpressionPrefix = "${"
+  val TempObjectName               = "_self"
+  val TempValueName                = "_tempValue"
+  val ExpressionPrefix             = "${"
   val FxmlExpressionPrefix: String = "!{"
 
-  def createValueExpression(obj: AnyRef): ObjectValueExpression = {
+  def createValueExpression(obj: AnyRef): ObjectValueExpression =
     context.createValueExpression(obj)
-  }
 
   def getValue(expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
     val ve = factory.createValueExpression(context, expression, clazz)
@@ -36,7 +35,8 @@ object Expressions {
     var result: Any = null
     if (expression.contains(ExpressionPrefix)) {
       result = getValueOnObject(obj, expression, clazz)
-    } else if (expression.contains("("))
+    }
+    else if (expression.contains("("))
       result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, expression), clazz)
     else {
       var tempExpression = expression
@@ -50,7 +50,8 @@ object Expressions {
         if (!methodExpression.endsWith("()"))
           methodExpression = methodExpression + "()"
         result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, methodExpression), clazz)
-      } catch {
+      }
+      catch {
         case e: MethodNotFoundException =>
           if (!tempExpression.endsWith("()")) {
             result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, tempExpression), clazz)
@@ -62,9 +63,9 @@ object Expressions {
 
   private def getValueOnObject(obj: AnyRef, expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
     val tempObjectString = "%s_%s".format(TempObjectName, Math.abs(obj.hashCode()))
-    val newExpression = expression.replace(TempObjectName, tempObjectString)
+    val newExpression    = expression.replace(TempObjectName, tempObjectString)
     register(tempObjectString, obj)
-    val ve = factory.createValueExpression(context, newExpression, clazz)
+    val ve     = factory.createValueExpression(context, newExpression, clazz)
     val result = ve.getValue(context)
     unregister(tempObjectString)
     result

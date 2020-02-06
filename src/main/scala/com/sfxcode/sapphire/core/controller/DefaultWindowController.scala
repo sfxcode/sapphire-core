@@ -23,23 +23,19 @@ abstract class DefaultWindowController extends WindowController {
 
   def applicationDidLaunch()
 
-  def reloadStyles(): Unit = {
+  def reloadStyles(): Unit =
     StyleManager.getInstance().stylesheetContainerMap.clear()
-  }
 
   @PreDestroy
   def preDestroy(): Unit = shutdown()
 
-  def shutdown(): Unit = {
+  def shutdown(): Unit =
     applicationWillStop()
-  }
 
-  def applicationWillStop(): Unit = {
+  def applicationWillStop(): Unit =
     logger.debug("exit in Progress")
-  }
 
-  def exit(): Unit = {
+  def exit(): Unit =
     Platform.exit()
-  }
 
 }

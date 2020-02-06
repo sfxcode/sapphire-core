@@ -31,12 +31,11 @@ class RootPropertyResolver extends ELResolver {
     null
   }
 
-  def getType(context: ELContext, base: Any, property: Any): Class[_] = {
+  def getType(context: ELContext, base: Any, property: Any): Class[_] =
     if (resolve(context, base, property))
       classOf[AnyRef]
     else
       null
-  }
 
   def resolve(context: ELContext, base: Any, property: Any): Boolean = {
     context.setPropertyResolved(base == null && property.isInstanceOf[String])
@@ -47,19 +46,19 @@ class RootPropertyResolver extends ELResolver {
 
   def getFeatureDescriptors(context: ELContext, base: Any): util.Iterator[FeatureDescriptor] = null
 
-  def getCommonPropertyType(context: ELContext, base: Any): Class[_] = {
+  def getCommonPropertyType(context: ELContext, base: Any): Class[_] =
     if (base == null)
       classOf[String]
     else
       null
-  }
 
   override def invoke(
-                       context: ELContext,
-                       base: Any,
-                       method: Any,
-                       paramTypes: Array[Class[_]],
-                       params: Array[Object]): AnyRef = {
+      context: ELContext,
+      base: Any,
+      method: Any,
+      paramTypes: Array[Class[_]],
+      params: Array[Object]
+  ): AnyRef = {
     if (resolve(context, base, method))
       throw new NullPointerException("Cannot invoke method " + method + " on null")
     null
@@ -68,7 +67,6 @@ class RootPropertyResolver extends ELResolver {
 
 object RootPropertyResolver {
 
-  def apply(): RootPropertyResolver = {
+  def apply(): RootPropertyResolver =
     new RootPropertyResolver
-  }
 }

@@ -10,21 +10,17 @@ trait NodeLocator {
 
   def scene: Scene
 
-  def locateTextField(nodeId: String, parent: Node = null): Option[TextField] = {
+  def locateTextField(nodeId: String, parent: Node = null): Option[TextField] =
     locate[TextField](nodeId, parent)
-  }
 
-  def locateLabel(nodeId: String, parent: Node = null): Option[Label] = {
+  def locateLabel(nodeId: String, parent: Node = null): Option[Label] =
     locate[Label](nodeId, parent)
-  }
 
-  def locateComboBox[T <: Any](nodeId: String, parent: Node = null): Option[ComboBox[T]] = {
+  def locateComboBox[T <: Any](nodeId: String, parent: Node = null): Option[ComboBox[T]] =
     locate[ComboBox[T]](nodeId, parent)
-  }
 
-  def locateButton(nodeId: String, parent: Node = null): Option[Button] = {
+  def locateButton(nodeId: String, parent: Node = null): Option[Button] =
     locate[Button](nodeId, parent)
-  }
 
   def locate[A <: Node](nodeId: String, parent: Node = null): Option[A] = {
     val result = locateInternal(nodeId, parent)
@@ -34,7 +30,7 @@ trait NodeLocator {
       None
   }
 
-  private def locateInternal(nodeId: String, parent: Node = null): Option[Node] = {
+  private def locateInternal(nodeId: String, parent: Node = null): Option[Node] =
     if (parent == null) {
       val lookupResult = scene.lookup(nodeId)
       if (lookupResult != null)
@@ -43,7 +39,8 @@ trait NodeLocator {
         val lookupByIdResult = scene.lookup("#" + nodeId)
         Option(lookupByIdResult)
       }
-    } else {
+    }
+    else {
       val lookupResult = parent.lookup(nodeId)
       if (lookupResult != null)
         Some(lookupResult)
@@ -52,7 +49,5 @@ trait NodeLocator {
         Option(lookupByIdResult)
       }
     }
-
-  }
 
 }

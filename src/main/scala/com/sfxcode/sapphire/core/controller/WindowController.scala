@@ -14,23 +14,25 @@ import javax.enterprise.event.Event
 import javax.inject.Inject
 
 case class SceneControllerWillChangeEvent(
-                                           windowController: WindowController,
-                                           newController: ViewController,
-                                           oldController: ViewController)
+    windowController: WindowController,
+    newController: ViewController,
+    oldController: ViewController
+)
 
 case class SceneControllerDidChangeEvent(
-                                          windowController: WindowController,
-                                          newController: ViewController,
-                                          oldController: ViewController)
+    windowController: WindowController,
+    newController: ViewController,
+    oldController: ViewController
+)
 
 abstract class WindowController extends FxmlLoading with NodeLocator with LazyLogging {
 
-  val sceneMap: ObservableMap[Parent, Scene] = Map[Parent, Scene]()
+  val sceneMap: ObservableMap[Parent, Scene]                                   = Map[Parent, Scene]()
   @Inject var sceneControllerWillChange: Event[SceneControllerWillChangeEvent] = _
-  @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent] = _
-  var stageProperty = new SimpleObjectProperty[Stage]()
-  var sceneProperty = new SimpleObjectProperty[Scene]()
-  var sceneControllerProperty = new SimpleObjectProperty[ViewController]()
+  @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent]     = _
+  var stageProperty                                                            = new SimpleObjectProperty[Stage]()
+  var sceneProperty                                                            = new SimpleObjectProperty[Scene]()
+  var sceneControllerProperty                                                  = new SimpleObjectProperty[ViewController]()
 
   def setStage(stage: Stage): Unit = {
     stageProperty.set(stage)
@@ -44,17 +46,19 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
   def replaceSceneContent(newController: ViewController, resize: Boolean = true) {
     val oldController = actualSceneController
     if (newController != null && newController != oldController && newController.canGainVisibility
-      && (oldController == null || oldController.shouldLooseVisibility)) {
+        && (oldController == null || oldController.shouldLooseVisibility)) {
       if (oldController != null)
         try {
           oldController.willLooseVisibility()
-        } catch {
+        }
+        catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
       try {
         newController.windowController.set(this)
         newController.willGainVisibility()
-      } catch {
+      }
+      catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
       sceneControllerWillChange.fire(SceneControllerWillChangeEvent(this, newController, oldController))
@@ -64,14 +68,16 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
       if (oldController != null)
         try {
           oldController.didLooseVisibility()
-        } catch {
+        }
+        catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
     }
     if (!newController.gainVisibility) {
       try {
         newController.didGainVisibilityFirstTime()
-      } catch {
+      }
+      catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
       newController.gainVisibility = true
@@ -80,7 +86,8 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
       newController.didGainVisibility()
       sceneControllerChanged.fire(SceneControllerDidChangeEvent(this, newController, oldController))
 
-    } catch {
+    }
+    catch {
       case e: Exception => logger.error(e.getMessage, e)
     }
   }

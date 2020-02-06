@@ -12,26 +12,22 @@ trait BeanConversions {
 
   implicit def fxBeanToBean[T <: AnyRef](fxBean: FXBean[T]): T = fxBean.bean
 
-  implicit def beanToFXBeanOption[T <: AnyRef](bean: T): Option[FXBean[T]] = {
+  implicit def beanToFXBeanOption[T <: AnyRef](bean: T): Option[FXBean[T]] =
     if (bean != null)
       Some(FXBean(bean))
     else
       None
-  }
 
-  implicit def optionBeanToFXBeanOption[T <: AnyRef](bean: Option[T]): Option[FXBean[T]] = {
+  implicit def optionBeanToFXBeanOption[T <: AnyRef](bean: Option[T]): Option[FXBean[T]] =
     if (bean.isDefined)
       Some(FXBean(bean.get))
     else
       None
-  }
 
-  implicit def beansToObservableList[T <: AnyRef](iterable: Iterable[T]): ObservableList[FXBean[T]] = {
+  implicit def beansToObservableList[T <: AnyRef](iterable: Iterable[T]): ObservableList[FXBean[T]] =
     iterable.map(item => FXBean[T](item))
-  }
 
-  implicit def observableListToBeans[T <: AnyRef](list: ObservableList[FXBean[T]]): Iterable[T] = {
+  implicit def observableListToBeans[T <: AnyRef](list: ObservableList[FXBean[T]]): Iterable[T] =
     list.asScala.map(item => item.bean)
-  }
 
 }

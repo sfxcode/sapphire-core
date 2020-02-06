@@ -40,7 +40,7 @@ class ApplicationEnvironment extends Serializable {
   def registerController(controller: ViewController): Unit = {
     viewControllerMap.put(controller.getClass.getName, controller)
     val simpleName: String = controller.getClass.getSimpleName
-    val expressionName = "%s%s".format(simpleName.head.toLower, simpleName.tail)
+    val expressionName     = "%s%s".format(simpleName.head.toLower, simpleName.tail)
     Expressions.register(expressionName, controller)
   }
 
@@ -48,7 +48,8 @@ class ApplicationEnvironment extends Serializable {
     val key = ct.runtimeClass.getName
     if (viewControllerMap.containsKey(key)) {
       Some(viewControllerMap.get(key).asInstanceOf[T])
-    } else {
+    }
+    else {
       None
     }
   }
