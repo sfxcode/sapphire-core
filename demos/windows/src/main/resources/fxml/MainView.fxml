@@ -10,6 +10,19 @@
     </stylesheets>
    <children>
       <BorderPane>
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Show Second Window" onAction="#actionShowSecondWindow"/>
+                  <Button mnemonicParsing="false" text="Close Second Window" onAction="#actionCloseSecondWindow"/>
+                  <Button mnemonicParsing="false" text="Show Third Window" onAction="#actionShowThirdWindow" />
+                  <Button mnemonicParsing="false" text="Close Third Window" onAction="#actionCloseThirdWindow" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+         </top>
          <center>
             <Label fx:id="windowLabel" styleClass="infoText" text="Main Window" BorderPane.alignment="CENTER">
                <padding>

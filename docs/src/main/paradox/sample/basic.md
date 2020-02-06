@@ -21,6 +21,12 @@ JavaFX Issues Demo pimped by Sapphire.
 
 ![](../images/demo/issues.png)
 
+### Multiple Windows Demo
+
+JavaFX Multiple Windows Demo pimped by Sapphire.
+
+![](../images/demo/window.png)
+
 
 
 
