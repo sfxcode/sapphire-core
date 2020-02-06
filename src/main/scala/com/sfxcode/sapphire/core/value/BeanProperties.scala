@@ -4,7 +4,15 @@ import java.lang
 import java.time.LocalDate
 
 import com.sfxcode.sapphire.core.el.Expressions.{ExpressionPrefix, FxmlExpressionPrefix}
-import com.sfxcode.sapphire.core.value.PropertyType.{TypeBoolean, TypeDouble, TypeFloat, TypeInt, TypeLocalDate, TypeLong, _}
+import com.sfxcode.sapphire.core.value.PropertyType.{
+  TypeBoolean,
+  TypeDouble,
+  TypeFloat,
+  TypeInt,
+  TypeLocalDate,
+  TypeLong,
+  _
+}
 import javafx.beans.property._
 import javafx.beans.value.ChangeListener
 import javafx.collections.{FXCollections, ObservableMap}
