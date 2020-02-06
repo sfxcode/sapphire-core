@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import java.net.URL?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           xmlns="http://javafx.com/javafx/11.0.1"
+           fx:controller="com.sfxcode.sapphire.core.demo.windows.controller.MainViewController">
+    <children>
+    </children>
+    <stylesheets>
+        <URL value="@default.css"/>
+    </stylesheets>
+</StackPane>

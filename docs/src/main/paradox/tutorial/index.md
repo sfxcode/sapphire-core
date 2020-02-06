@@ -6,7 +6,7 @@
 
  - [Tutorial Setup](setup.md)
  - [Tutorial Application](application.md)
- - [Tutorial MainWindowController](main_window.md)
+ - [Tutorial MainViewController](main_view.md)
  - [Tutorial Navigation](navigation.md)
 
 @@@

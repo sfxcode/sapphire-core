@@ -7,7 +7,7 @@ import javafx.fxml.FXML
 import javafx.scene.layout.Pane
 import javax.enterprise.event.Observes
 
-class MainController extends ViewController with LazyLogging {
+class MainViewController extends ViewController with LazyLogging {
 
   // #controllerLoading
   lazy val workspaceController: WorkspaceController =
@@ -32,13 +32,14 @@ class MainController extends ViewController with LazyLogging {
   // #fxmlBinding
 
   // #contentManager
-  var workspaceManager: ContentManager = _
+  var workspaceManager: ContentManager  = _
   var navigationManager: ContentManager = _
-  var statusBarManager: ContentManager = _
+  var statusBarManager: ContentManager  = _
   // #contentManager
 
   // #didGainVisibilityFirstTime
   override def didGainVisibilityFirstTime() {
+    super.didGainVisibility()
     navigationManager = ContentManager(navigationPane, this, navigationController)
     statusBarManager = ContentManager(statusPane, this, statusBarController)
     workspaceManager = ContentManager(workspacePane, this, workspaceController)

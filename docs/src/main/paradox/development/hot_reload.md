@@ -26,8 +26,8 @@ Create a new method in your ApplicationController:
     applicationEnvironment.clearResourceBundleCache()
     applicationEnvironment.loadResourceBundle("bundles/application")
     // FXML
-    val newMainWindowController = getController[MainWindowController]()
-    replaceSceneContent(newMainWindowController)
+    val newMainViewController = getController[MainViewController]()
+    replaceSceneContent(newMainViewController)
   }
 ```
 

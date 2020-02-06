@@ -46,13 +46,6 @@ resolvers += "sfxcode-bintray" at "https://dl.bintray.com/sfxcode/maven"
   version="$project.version$"
 }
 
-## Getting started
-
-### Setup Base Application with Giter8
-
-@@include[giter8.md](includes/giter8.md)
-
-
 ### Demos
 
 Explore demos and Tutorial in project demo directory.
@@ -64,6 +57,7 @@ Explore demos and Tutorial in project demo directory.
 @@@ index
 
  - [Features](features.md)
+ - [getting_started](getting_started.md)
  - [Development](development/index.md)
  - [Tutorial](tutorial/index.md)
  - [Core Concepts](detail/index.md)

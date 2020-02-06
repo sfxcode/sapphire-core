@@ -21,7 +21,7 @@ method. The package path of the controller is the default fxml directory.
 
 package controller
 
-class MainWindowController extends ViewController with LazyLogging {
+class MainViewController extends ViewController with LazyLogging {
 
   // workspaces
   lazy val workspaceController = getController[WorkspaceController]()

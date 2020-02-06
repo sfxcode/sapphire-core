@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.demo.tutorial
 import java.util.{Locale, ResourceBundle}
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
-import com.sfxcode.sapphire.core.demo.tutorial.controller.MainController
+import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
@@ -12,15 +12,15 @@ import javax.inject.Named
 @ApplicationScoped
 class ApplicationController extends DefaultWindowController {
 
-  lazy val mainWindowController: MainController =
-    getController[MainController]()
+  lazy val mainViewController: MainViewController =
+    getController[MainViewController]()
 
   def applicationDidLaunch() {
     logger.info("start " + this)
     // #Resources
     applicationEnvironment.loadResourceBundle("bundles/application")
     // #Resources
-    replaceSceneContent(mainWindowController)
+    replaceSceneContent(mainViewController)
   }
 
   def reload(): Unit = {
@@ -30,26 +30,25 @@ class ApplicationController extends DefaultWindowController {
     applicationEnvironment.clearResourceBundleCache()
     applicationEnvironment.loadResourceBundle("bundles/application")
     // FXML
-    val newMainWindowController = getController[MainController]()
-    replaceSceneContent(newMainWindowController)
+    val newMainViewController = getController[MainViewController]()
+    replaceSceneContent(newMainViewController)
   }
 
   @Produces
-  def applicationName: ApplicationName = {
+  def applicationName: ApplicationName =
     ApplicationName(configStringValue("application.name"))
-  }
 
   // #CustomBundle
   // only example values ...
-  override def resourceBundleForView(viewPath: String): ResourceBundle = {
+  override def resourceBundleForView(viewPath: String): ResourceBundle =
     if (viewPath.contains("mySpecialViewName")) {
-      val path = "myCustomResourcePath"
+      val path        = "myCustomResourcePath"
       val classLoader = Thread.currentThread().getContextClassLoader
       ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-    } else {
+    }
+    else {
       super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
     }
-  }
 
   // #CustomBundle
 

@@ -17,8 +17,8 @@ lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/log
     scalaVersion := "2.13.1",
     name := "sapphire-login-demo",
     description := "Sapphire Login Demo",
-    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(m =>
-      "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+          .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
     mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
   )
@@ -29,26 +29,40 @@ javacOptions in test += "-Dorg.apache.deltaspike.ProjectStage=Test"
 scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
+
 lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/issues"))
   .settings(
     scalaVersion := "2.13.1",
     name := "sapphire-issues-demo",
     description := "Sapphire Issues Demo",
-    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(m =>
-      "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+          .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
+
 lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutorial"))
   .settings(
     scalaVersion := "2.13.1",
     name := "sapphire-tutorial",
     description := "Sapphire Tutorial",
-    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(m =>
-      "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+          .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
     mainClass := Some("com.sfxcode.sapphire.core.demo.tutorial.Application")
+  )
+  .dependsOn(sapphire_core_root)
+
+lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows"))
+  .settings(
+    scalaVersion := "2.13.1",
+    name := "sapphire-windows",
+    description := "Sapphire Windows",
+    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+          .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    mainClass := Some("com.sfxcode.sapphire.core.demo.windows.Application")
   )
   .dependsOn(sapphire_core_root)
 
@@ -68,16 +82,16 @@ lazy val docs = (project in file("docs"))
 
     },
     (Compile / paradoxMarkdownToHtml / excludeFilter) := (Compile / paradoxMarkdownToHtml / excludeFilter).value ||
-      ParadoxPlugin.InDirectoryFilter((Compile / paradox / sourceDirectory).value / "includes")
+          ParadoxPlugin.InDirectoryFilter((Compile / paradox / sourceDirectory).value / "includes")
   )
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
 val JavaFXVersion = "13.0.2"
 val osName = System.getProperty("os.name") match {
-  case n if n.startsWith("Linux") => "linux"
-  case n if n.startsWith("Mac") => "mac"
+  case n if n.startsWith("Linux")   => "linux"
+  case n if n.startsWith("Mac")     => "mac"
   case n if n.startsWith("Windows") => "win"
-  case _ => throw new Exception("Unknown platform!")
+  case _                            => throw new Exception("Unknown platform!")
 }
 
 addCommandAlias("run-tutorial", "sapphire-tutorial/run")
@@ -93,7 +107,8 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 // Compile
 
 libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(m =>
-  "org.openjfx" % s"javafx-$m" % JavaFXVersion % Provided classifier osName)
+  "org.openjfx" % s"javafx-$m" % JavaFXVersion % Provided classifier osName
+)
 
 // Environment
 
@@ -148,8 +163,8 @@ pomPostProcess := { node: XmlNode =>
           if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided")
             && e.child.exists(c => c.label == "groupId" && c.text == "org.openjfx") =>
         val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
-        val artifact = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
-        val version = e.child.filter(_.label == "version").flatMap(_.text).mkString
+        val artifact     = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
+        val version      = e.child.filter(_.label == "version").flatMap(_.text).mkString
         Comment(s"provided dependency $organization#$artifact;$version has been omitted")
       case _ => node
     }
@@ -182,15 +197,15 @@ developers := List(
 
 packageOptions += {
   Package.ManifestAttributes(
-    "Created-By" -> "Simple Build Tool",
-    "Built-By" -> "sfxcode",
-    "Build-Jdk" -> System.getProperty("java.version"),
-    "Specification-Title" -> name.value,
-    "Specification-Version" -> version.value,
-    "Specification-Vendor" -> organization.value,
-    "Implementation-Title" -> name.value,
-    "Implementation-Version" -> version.value,
+    "Created-By"               -> "Simple Build Tool",
+    "Built-By"                 -> "sfxcode",
+    "Build-Jdk"                -> System.getProperty("java.version"),
+    "Specification-Title"      -> name.value,
+    "Specification-Version"    -> version.value,
+    "Specification-Vendor"     -> organization.value,
+    "Implementation-Title"     -> name.value,
+    "Implementation-Version"   -> version.value,
     "Implementation-Vendor-Id" -> organization.value,
-    "Implementation-Vendor" -> organization.value
+    "Implementation-Vendor"    -> organization.value
   )
 }

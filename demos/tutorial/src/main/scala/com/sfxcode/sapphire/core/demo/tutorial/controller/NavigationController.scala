@@ -8,18 +8,19 @@ class NavigationController extends AbstractViewController {
 
   def actionToggleWorkspace(event: ActionEvent) {
     actionClickButton(event)
-    val actualController = workspaceManager.actualController
-    val barChartController = mainWindowController.barChartController
-    val workspaceController = mainWindowController.workspaceController
+    val actualController    = workspaceManager.actualController
+    val barChartController  = mainViewController.barChartController
+    val workspaceController = mainViewController.workspaceController
     if (actualController == workspaceController) {
       workspaceManager.updatePaneContent(barChartController)
-    } else
+    }
+    else
       workspaceManager.updatePaneContent(workspaceController)
   }
 
   def actionShowPersonController(event: ActionEvent): Unit = {
     actionClickButton(event)
-    val personController = mainWindowController.personController
+    val personController = mainViewController.personController
     workspaceManager.updatePaneContent(personController)
   }
 
@@ -28,10 +29,10 @@ class NavigationController extends AbstractViewController {
 
     // resolve controller by getViewController lookup
     val controller = getViewController[StatusBarController]()
-    controller.foreach(c => {
+    controller.foreach { c =>
       val button = event.getSource.asInstanceOf[Button]
       c.updateLabel(button)
-    })
+    }
   }
 
   def actionReload(event: ActionEvent): Unit = {
