@@ -5,7 +5,7 @@ import com.sfxcode.sapphire.core.test.{Person, PersonDatabase, TestViewControlle
 import org.specs2.mutable.Specification
 
 class FXBeanAdapterSpec extends Specification {
-  val adapter = FXBeanAdapter[Person](new TestViewController)
+  val adapter    = FXBeanAdapter[Person](new TestViewController)
   val testPerson = PersonDatabase.testPerson(0)
 
   "FXBeanAdapter" should {

@@ -5,7 +5,7 @@ import de.odysseus.el.misc.TypeConverter
 import javax.el._
 
 class BaseContext extends ELContext {
-  val resolver       = BaseResolver()
+  val resolver = BaseResolver()
   val functionMapper = BaseFunctionMapper()
   val variableMapper = BaseVariableMapper()
 
