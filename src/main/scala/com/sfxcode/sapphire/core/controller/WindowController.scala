@@ -3,6 +3,7 @@ package com.sfxcode.sapphire.core.controller
 import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.CollectionExtensions._
+import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
@@ -26,7 +27,7 @@ case class SceneControllerDidChangeEvent(
     oldController: ViewController
 )
 
-abstract class WindowController extends FxmlLoading with NodeLocator with LazyLogging {
+abstract class WindowController extends FxmlLoading with NodeLocator with Expressions with LazyLogging {
 
   implicit def simpleObjectPropertyToOption[T <: AnyRef](prop: SimpleObjectProperty[T]): Option[T] =
     Option[T](prop.get())
@@ -34,12 +35,18 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
   // bean lifecycle
 
   @PostConstruct
-  def postConstruct(): Unit = startup()
+  def postConstruct(): Unit = {
+    registerBean(this)
+    startup()
+  }
 
   def startup() {}
 
   @PreDestroy
-  def preDestroy(): Unit = shutdown()
+  def preDestroy(): Unit = {
+    unregisterBean(this)
+    shutdown()
+  }
 
   def shutdown() {}
 

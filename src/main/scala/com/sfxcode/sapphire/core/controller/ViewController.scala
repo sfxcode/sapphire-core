@@ -6,6 +6,7 @@ import java.util.ResourceBundle
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty
@@ -24,6 +25,7 @@ abstract class ViewController
     with BeanResolver
     with ActionEvents
     with Initializable
+    with Expressions
     with LazyLogging
     with ConfigValues {
 
@@ -56,12 +58,18 @@ abstract class ViewController
   // bean lifecycle
 
   @PostConstruct
-  def postConstruct(): Unit = startup()
+  def postConstruct(): Unit = {
+    registerBean(this)
+    startup()
+  }
 
   def startup() {}
 
   @PreDestroy
-  def preDestroy(): Unit = shutdown()
+  def preDestroy(): Unit = {
+    unregisterBean(this)
+    shutdown()
+  }
 
   def shutdown() {}
 
@@ -143,9 +151,13 @@ abstract class ViewController
 
   def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] = {
 
-    val viewController = applicationEnvironment.getController[T]
-    if (viewController.isDefined)
-      viewController
+    val simpleName = ct.runtimeClass.getSimpleName
+    val key        = "%s%s".format(simpleName.head.toLower, simpleName.tail)
+    val controller = evaluateExpression(this, "${%s}".format(key))
+
+    if (controller != null && controller.isInstanceOf[T]) {
+      Option[T](controller.asInstanceOf[T])
+    }
     else {
       val bean = getBean[T]()
       bean match {

@@ -27,6 +27,10 @@ class ExpressionsSpec extends Specification {
 
       Expressions.getValue("${sf:dateString(testDate)}") must be equalTo "2015-01-01"
 
+      val nowString = Expressions.getValue("${sf:nowAsString()}").toString
+
+      nowString must not beEmpty
+
       Expressions.register("testBoolean", true)
 
       Expressions.getValue("${sf:boolString(testBoolean,'Y', 'N')}") must be equalTo "Y"
@@ -39,7 +43,7 @@ class ExpressionsSpec extends Specification {
     "add custom function" in {
 
       val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.CustomFunctionMapper")
-      Expressions.context.functionMapper.addFunction("custom", "myCoolMethod", clazz, "coolMethod", classOf[String])
+      Expressions.functionHelper.addFunction("custom", "myCoolMethod", clazz, "coolMethod", classOf[String])
       Expressions.getValue("${custom:myCoolMethod('123')}") must be equalTo "test-123"
 
     }

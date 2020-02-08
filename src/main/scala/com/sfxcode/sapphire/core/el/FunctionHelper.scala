@@ -4,15 +4,15 @@ import java.lang.reflect.Method
 import java.util.Date
 
 import com.sfxcode.sapphire.core.cdi.{ApplicationEnvironment, BeanResolver}
-import com.sfxcode.sapphire.core.value.FXBean
 import com.sfxcode.sapphire.core.{ConfigValues, ResourceBundleHolder}
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{FXCollections, ObservableMap}
-import javax.el.FunctionMapper
+import javafx.util.converter.{DateStringConverter, DateTimeStringConverter}
+import javax.el.ELProcessor
 
 import scala.annotation.varargs
 
-class BaseFunctionMapper extends FunctionMapper with LazyLogging {
+class FunctionHelper(processor: ELProcessor) extends LazyLogging {
   val map: ObservableMap[String, Method] = FXCollections.observableHashMap[String, Method]()
 
   def resolveFunction(prefix: String, localName: String): Method =
@@ -35,22 +35,25 @@ class BaseFunctionMapper extends FunctionMapper with LazyLogging {
 
   def addFunction(prefix: String, localName: String, method: Method): Unit = {
     val functionKey = key(prefix, localName)
-    if (map.containsKey(functionKey))
+    if (map.containsKey(functionKey)) {
       logger.warn("function override for key: %s".format(functionKey))
+    }
     map.put(functionKey, method)
+    processor.defineFunction(prefix, localName, method)
+
   }
 
 }
 
-object BaseFunctionMapper {
+object FunctionHelper extends LazyLogging {
   val SapphireFunctionPrefix = "sf"
 
-  def apply(): BaseFunctionMapper = {
-    val result          = new BaseFunctionMapper
+  def apply(processor: ELProcessor): FunctionHelper = {
+    val result          = new FunctionHelper(processor)
     val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.DefaultFunctions")
     result.addFunction(SapphireFunctionPrefix, "frameworkName", clazz, "frameworkName")
     result.addFunction(SapphireFunctionPrefix, "frameworkVersion", clazz, "frameworkVersion")
-    result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[Any])
+    result.addFunction(SapphireFunctionPrefix, "dateString", clazz, "dateString", classOf[AnyRef])
     result.addFunction(SapphireFunctionPrefix, "now", clazz, "now")
     result.addFunction(SapphireFunctionPrefix, "nowAsString", clazz, "nowAsString")
     result.addFunction(
@@ -81,30 +84,42 @@ object DefaultFunctions extends ConfigValues with BeanResolver {
   private lazy val applicationEnvironment = getBean[ApplicationEnvironment]()
   private lazy val recourceBundleHolder   = ResourceBundleHolder(applicationEnvironment.resourceBundle)
 
+  val DefaultDateConverterPattern     = configStringValue("sapphire.core.value.defaultDateConverterPattern")
+  val DefaultDateTimeConverterPattern = configStringValue("sapphire.core.value.defaultDateTimeConverterPattern")
+
+  var defaultDateConverter     = new DateStringConverter(DefaultDateConverterPattern)
+  var defaultDateTimeConverter = new DateTimeStringConverter(DefaultDateTimeConverterPattern)
+
   def frameworkName(): String = com.sfxcode.sapphire.core.BuildInfo.name
 
   def frameworkVersion(): String = com.sfxcode.sapphire.core.BuildInfo.version
 
-  @varargs def i18n(key: String, params: Any*): String =
-    recourceBundleHolder.message(key, params: _*)
+  @varargs
+  def i18n(key: String, params: Any*): String = recourceBundleHolder.message(key, params: _*)
+
   def boolString(value: Boolean, trueValue: String, falseValue: String): String =
-    if (value)
+    if (value) {
       trueValue
-    else
+    }
+    else {
       falseValue
+    }
 
   def now: Date = new Date
 
   def nowAsString: String = dateString(new java.util.Date)
 
-  def dateString(date: Any): String =
-    date match {
-      case d: java.util.Date     => FXBean.defaultDateConverter.toString(d)
-      case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
+  def dateString(date: AnyRef): String = {
+    println(date)
+    val s = date match {
+      case d: java.util.Date     => defaultDateConverter.toString(d)
+      case c: java.util.Calendar => defaultDateConverter.toString(c.getTime)
       case c: javax.xml.datatype.XMLGregorianCalendar =>
-        FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
+        DefaultFunctions.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
       case _ => "unknown date format"
     }
+    s
+  }
 
   def configString(path: String): String = configStringValue(path)
 

@@ -7,22 +7,21 @@ class BeanConversionsSpec extends Specification with BeanConversions {
 
   "BeanConversions" should {
 
-    val testBean = TestBean()
-
     "convert Bean To FXBean and back " in {
-      val bean: FXBean[TestBean] = testBean
+      val bean: FXBean[TestBean] = TestBean()
       bean.getValue("name") must be equalTo "test"
       val convertedBean: TestBean = bean
       convertedBean.name must be equalTo "test"
     }
 
     "convert Bean To FXBean Option and back " in {
-      val bean: Option[FXBean[TestBean]] = testBean
+      val bean: Option[FXBean[TestBean]] = TestBean()
       bean.get.getValue("name") must be equalTo "test"
     }
 
     "convert Bean List to ObservableList " in {
-      val list = List[TestBean](testBean)
+      val testBean = TestBean()
+      val list     = List[TestBean](testBean)
 
       val observableList: ObservableList[FXBean[TestBean]] = list
 

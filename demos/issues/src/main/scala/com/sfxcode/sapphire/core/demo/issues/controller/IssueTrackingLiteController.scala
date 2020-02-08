@@ -46,7 +46,6 @@ class IssueTrackingLiteController extends ViewController with LazyLogging {
 
   override def didGainVisibility() {
     super.didGainVisibility()
-    logger.debug(applicationEnvironment.viewControllerMap.toString)
     issueAdapter.addBindings(KeyBindings("synopsis", "description"))
     issueAdapter.addBinding(saveButton.visibleProperty(), "_hasChanges")
 

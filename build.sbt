@@ -134,13 +134,9 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
+libraryDependencies += "org.glassfish" % "jakarta.el" % "3.0.3"
+
 val JuelVersion = "2.2.7"
-
-libraryDependencies += "de.odysseus.juel" % "juel-api" % JuelVersion
-
-libraryDependencies += "de.odysseus.juel" % "juel-impl" % JuelVersion
-
-libraryDependencies += "de.odysseus.juel" % "juel-spi" % JuelVersion
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

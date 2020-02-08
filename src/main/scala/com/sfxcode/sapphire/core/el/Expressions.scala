@@ -1,7 +1,6 @@
 package com.sfxcode.sapphire.core.el
 
-import de.odysseus.el.ObjectValueExpression
-import javax.el.{ExpressionFactory, MethodNotFoundException}
+import javax.el._
 
 object Expressions {
   val props = System.getProperties
@@ -12,16 +11,17 @@ object Expressions {
   if (!props.containsKey("javax.cdi.cacheSize"))
     props.put("javax.cdi.cacheSize", "5000")
 
-  val factory = ExpressionFactory.newInstance(props)
-  val context = BaseContext()
+  val processor: ELProcessor     = new ELProcessor
+  val manager: ELManager         = processor.getELManager
+  val factory: ExpressionFactory = ExpressionFactory.newInstance(props)
+  val context: StandardELContext = manager.getELContext
+
+  val functionHelper = FunctionHelper(processor)
 
   val TempObjectName               = "_self"
   val TempValueName                = "_tempValue"
   val ExpressionPrefix             = "${"
   val FxmlExpressionPrefix: String = "!{"
-
-  def createValueExpression(obj: AnyRef): ObjectValueExpression =
-    context.createValueExpression(obj)
 
   def getValue(expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
     val ve = factory.createValueExpression(context, expression, clazz)
@@ -71,12 +71,35 @@ object Expressions {
     result
   }
 
-  def register(name: String, obj: Any) {
-    context.register(name, obj)
+  def register(name: String, obj: Any): Unit =
+    processor.setValue(name, obj)
+
+  def registerBean(bean: AnyRef): Unit =
+    processor.defineBean(beanName(bean), bean)
+
+  def unregister(name: String): Unit =
+    processor.setValue(name, null)
+
+  def unregisterBean(bean: AnyRef): Unit =
+    processor.defineBean(beanName(bean), null)
+
+  private def beanName(bean: AnyRef): String = {
+    val simpleName = bean.getClass.getSimpleName
+    "%s%s".format(simpleName.head.toLower, simpleName.tail)
   }
 
-  def unregister(name: String) {
-    context.unregister(name)
-  }
+}
 
+trait Expressions {
+
+  def register(name: String, obj: Any): Unit = Expressions.register(name: String, obj: Any)
+
+  def unregister(name: String): Unit = Expressions.unregister(name)
+
+  def registerBean(bean: AnyRef): Unit = Expressions.registerBean(bean)
+
+  def unregisterBean(bean: AnyRef): Unit = Expressions.unregisterBean(bean)
+
+  def evaluateExpression(source: AnyRef, expression: String): Any =
+    Expressions.evaluateExpressionOnObject(source, expression)
 }

@@ -21,4 +21,6 @@ object CDILauncher {
     }
   }
 
+  def isInitialized: Boolean = initialized
+
 }

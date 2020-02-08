@@ -39,8 +39,6 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
     loader.fxmlLoader.getNamespace.put("expression", applicationEnvironment.fxmlExpressionResolver)
     val loadResult = loader.loadFromDocument(fxmlPath.toString)
     val controller = loadResult._1.asInstanceOf[T]
-    applicationEnvironment.registerController(controller)
-
     controller.rootPane = loadResult._2
     controller
   }

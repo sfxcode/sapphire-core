@@ -6,7 +6,6 @@ import com.sfxcode.sapphire.core.value.FXBeanClassMemberInfo._
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
 import javafx.beans.value.ObservableValue
-import javafx.util.converter.{DateStringConverter, DateTimeStringConverter}
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
@@ -125,12 +124,6 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
 }
 
 object FXBean extends ConfigValues {
-  var defaultDateConverter = new DateStringConverter(
-    configStringValue("sapphire.core.value.defaultDateConverterPattern")
-  )
-  var defaultDateTimeConverter = new DateTimeStringConverter(
-    configStringValue("sapphire.core.value.defaultDateTimeConverterPattern")
-  )
 
   def apply[T <: AnyRef](bean: T, typeHints: List[FXBeanClassMemberInfo] = List[FXBeanClassMemberInfo]()): FXBean[T] =
     new FXBean[T](bean, typeHints)

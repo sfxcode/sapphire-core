@@ -73,8 +73,6 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
 
   }
 
-  def addDate2Converter(keys: String*): Unit = keys.foreach(addConverter(_, FXBean.defaultDateConverter))
-
   def revert() {
     if (hasValue)
       beanProperty.getValue.revert()

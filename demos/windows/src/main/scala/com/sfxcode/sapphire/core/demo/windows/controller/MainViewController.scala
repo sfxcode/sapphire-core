@@ -2,22 +2,35 @@ package com.sfxcode.sapphire.core.demo.windows.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.windows.ApplicationController
+import com.sfxcode.sapphire.core.value.FXBean
 import com.typesafe.scalalogging.LazyLogging
 import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.Label
+
+import scala.beans.BeanProperty
 
 class MainViewController extends ViewController with LazyLogging {
 
   @FXML
   var windowLabel: Label = _
 
+  @FXML
+  var controllerLabel: Label = _
+
+  @BeanProperty
+  var name: String = "MainView"
+
+  @BeanProperty
+  var bean: FXBean[ViewController] = FXBean(this)
+
   override def startup() {
     logger.debug("class: " + this)
   }
 
   override def didGainVisibilityFirstTime() {
-    super.didGainVisibility()
+    super.didGainVisibilityFirstTime()
+    controllerLabel.setText(evaluateExpression(this, "result: [${_self.windowLabel().getText()}]").toString)
   }
 
   def applicationController: ApplicationController = windowController.get.asInstanceOf[ApplicationController]

@@ -3,6 +3,7 @@ package com.sfxcode.sapphire.core.value
 import java.lang
 import java.time.LocalDate
 
+import com.sfxcode.sapphire.core.el.DefaultFunctions
 import com.sfxcode.sapphire.core.el.Expressions.{ExpressionPrefix, FxmlExpressionPrefix}
 import com.sfxcode.sapphire.core.value.PropertyType.{
   TypeBoolean,
@@ -140,10 +141,10 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
       case property: StringProperty =>
         value match {
           case s: String             => property.set(s)
-          case d: java.util.Date     => property.set(FXBean.defaultDateConverter.toString(d))
-          case c: java.util.Calendar => property.set(FXBean.defaultDateConverter.toString(c.getTime))
+          case d: java.util.Date     => property.set(DefaultFunctions.defaultDateConverter.toString(d))
+          case c: java.util.Calendar => property.set(DefaultFunctions.defaultDateConverter.toString(c.getTime))
           case c: javax.xml.datatype.XMLGregorianCalendar =>
-            property.set(FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime))
+            property.set(DefaultFunctions.defaultDateConverter.toString(c.toGregorianCalendar.getTime))
           case _ =>
             if (value != null)
               property.set(value.toString)
@@ -175,10 +176,10 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
 
   protected def createPropertyForObject(value: Any, name: String): Any = {
     val propertyValue: Any = value match {
-      case d: java.util.Date     => FXBean.defaultDateConverter.toString(d)
-      case c: java.util.Calendar => FXBean.defaultDateConverter.toString(c.getTime)
+      case d: java.util.Date     => DefaultFunctions.defaultDateConverter.toString(d)
+      case c: java.util.Calendar => DefaultFunctions.defaultDateConverter.toString(c.getTime)
       case c: javax.xml.datatype.XMLGregorianCalendar =>
-        FXBean.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
+        DefaultFunctions.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
       case v: AnyRef => v
       case v: Any    => v.toString
       case _         => ""
