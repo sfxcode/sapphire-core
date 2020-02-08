@@ -151,6 +151,7 @@ sfxcode/sapphire-core
   </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
   <ul>
+    <li><a href="../detail/window_controller.html" class="page">WindowController</a></li>
     <li><a href="../detail/view_controller.html" class="page">ViewController</a></li>
     <li><a href="../detail/fxbean.html" class="page">FXBean</a></li>
     <li><a href="../detail/fxbean_adapter.html" class="active page">FXBean Adapter</a></li>
@@ -182,7 +183,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.6.10*
+<i class="md-icon" title="Version">label_outline</i> 1.7.0
 </label>
 </li>
 </ul>
@@ -213,11 +214,11 @@ sfxcode/sapphire-core
 <p>It automatically creates bidirectional bindings to any bean.On bean update old bindings are cleared and new bindings for the new bean are created.</p>
 <h2><a href="#example" name="example" class="anchor"><span class="anchor-link"></span></a>Example</h2>
 <h3><a href="#define-adapter" name="define-adapter" class="anchor"><span class="anchor-link"></span></a>Define Adapter</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L21-L23" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L21-L23" target="_blank" title="Go to snippet source"></a><code class="language-scala">@FXML
 var personBox: VBox = _
 </code></pre>
 <h3><a href="#add-bindings-and-converter" name="add-bindings-and-converter" class="anchor"><span class="anchor-link"></span></a>Add Bindings and Converter</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L27-L46" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime(): Unit = {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L27-L46" target="_blank" title="Go to snippet source"></a><code class="language-scala">override def didGainVisibilityFirstTime(): Unit = {
   super.didGainVisibilityFirstTime()
 
   val bindings = KeyBindings(&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;test&quot;)
@@ -234,7 +235,7 @@ var personBox: VBox = _
 def items: ObservableList[FXBean[Person]] = PersonFactory.personList
 </code></pre>
 <h3><a href="#change-adapter-items" name="change-adapter-items" class="anchor"><span class="anchor-link"></span></a>Change Adapter items</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L50-L58" target="_blank" title="Go to snippet source"></a><code class="language-scala">def selectPerson(person: FXBean[Person]): Unit = {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala#L50-L58" target="_blank" title="Go to snippet source"></a><code class="language-scala">def selectPerson(person: FXBean[Person]): Unit = {
   adapter.set(person)
 }
 
@@ -244,13 +245,13 @@ def actionRevert(event: ActionEvent): Unit = {
 </code></pre>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/master/docs/src/main/paradox/detail/fxbean_adapter.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/docs/src/main/paradox/detail/fxbean_adapter.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.6.10*
+1.7.0
 </span>
 </div>
 </article>
