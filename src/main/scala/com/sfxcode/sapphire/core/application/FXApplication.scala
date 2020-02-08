@@ -10,7 +10,8 @@ class FXApplication extends javafx.application.Application {
   def start(stage: javafx.stage.Stage) {
     FXApp.Application = this
     val fxApp            = BeanProvider.getContextualReference(classOf[ApplicationLauncher], false)
-    val applicationStage = FXApp.App.stage
+    val applicationStage = FXApp.App.createDefaultStage
+    FXApp.App.applicationWillLaunch()
     fxApp.launch(applicationStage, startupLiteral)
     applicationStage.show()
   }

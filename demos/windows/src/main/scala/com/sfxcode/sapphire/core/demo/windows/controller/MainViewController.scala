@@ -20,7 +20,7 @@ class MainViewController extends ViewController with LazyLogging {
     super.didGainVisibility()
   }
 
-  def applicationController = windowController.get.asInstanceOf[ApplicationController]
+  def applicationController: ApplicationController = windowController.get.asInstanceOf[ApplicationController]
 
   // #actionShowSecondWindow
   def actionShowSecondWindow(event: ActionEvent): Unit = {
@@ -35,12 +35,9 @@ class MainViewController extends ViewController with LazyLogging {
     applicationController.secondWindowController.close()
   // #actionCloseSecondWindow
 
-  def actionShowThirdWindow(event: ActionEvent): Unit = {
-    val x = applicationController.stage.getX - applicationController.thirdWindowController.stage.getWidth
-    val y = applicationController.stage.getY
-    applicationController.thirdWindowController.show(x, y)
-  }
+  // #actionShowModalWindow
+  def actionShowModalWindow(event: ActionEvent): Unit =
+    applicationController.modalWindowController.showAndWait()
+  // #actionShowModalWindow
 
-  def actionCloseThirdWindow(event: ActionEvent): Unit =
-    applicationController.thirdWindowController.close()
 }

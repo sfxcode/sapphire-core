@@ -7,7 +7,13 @@ import javafx.stage.Stage
 // #FXApp
 trait FXApp extends StageSupport {
 
-  def stage: Stage = createDefaultStage
+  override def createDefaultStage: Stage = {
+    val result = super.createDefaultStage
+    initStage(result)
+    result
+  }
+
+  def initStage(stage: Stage): Unit = {}
 
   def main(args: Array[String]): Unit = {
     FXApp.App = this

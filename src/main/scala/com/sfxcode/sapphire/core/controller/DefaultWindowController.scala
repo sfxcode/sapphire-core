@@ -21,7 +21,7 @@ abstract class DefaultWindowController extends WindowController {
     applicationDidLaunch()
   }
 
-  def applicationWillLaunch()
+  def applicationWillLaunch() {}
 
   def applicationDidLaunch()
 

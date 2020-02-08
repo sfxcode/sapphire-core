@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.stage
 import com.sfxcode.sapphire.core.ConfigValues
 import javafx.scene.Scene
 import javafx.scene.layout.HBox
-import javafx.stage.Stage
+import javafx.stage.{Modality, Stage, StageStyle}
 
 trait StageSupport extends ConfigValues {
 
@@ -24,13 +24,16 @@ trait StageSupport extends ConfigValues {
       stage.setMaxHeight(height)
     }
     stage.setTitle(title)
-    initStage(stage)
     val scene = new Scene(new HBox())
     stage.setScene(scene)
+    stage.initModality(modality)
+    stage.initStyle(stageStyle)
     stage
   }
 
-  def initStage(stage: Stage): Unit = {}
+  def stageStyle: StageStyle = StageStyle.DECORATED
+
+  def modality: Modality = Modality.NONE
 
   def title: String = configStringValue("sapphire.core.defaultStage.title", "SFX Application")
 

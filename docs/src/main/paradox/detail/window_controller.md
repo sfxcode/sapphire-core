@@ -64,15 +64,16 @@ Sample Code:
 
 ##  AdditionalWindowController
 
-Multiple Windows are supported by AdditionalWindowController.
+Multiple Windows are supported by extending AdditionalWindowController.
 
-Usage:
+Example Usage:
 
 ### Create a CDI Bean that extends AdditionalWindowController
 
 @@snip [applicationController.scala](../../../../../demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala) { #AdditionalWindowController }
 
 @@snip [applicationController.scala](../../../../../demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala) { #SecondWindowController }
+
 
 ### Create a variable (in your ApplicationController for example)
 
@@ -88,3 +89,20 @@ Use x and y coordinates for window position.
 
 @@snip [MainViewController.scala](../../../../../demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/controller/MainViewController.scala) { #actionCloseSecondWindow }
 
+
+## ModalWindowController
+
+Modal Window is basically a special Instance of an AdditionalWindowController.
+It can be used for custom dialogs, preferences panes and so on.
+You only have to overwrite modality like in the sample code below:
+
+@@snip [applicationController.scala](../../../../../demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala) { #ModalWindowController }
+
+### Create a variable (in your ApplicationController for example)
+
+@@snip [applicationController.scala](../../../../../demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala) { #ModalWindowControllerVar }
+
+
+### Open Modal Window
+
+@@snip [MainViewController.scala](../../../../../demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/controller/MainViewController.scala) { #actionShowModalWindow }
