@@ -124,7 +124,7 @@ libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
 libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.14"
 
-val DeltaspikeVersion = "1.9.2"
+val DeltaspikeVersion = "1.9.3"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
 

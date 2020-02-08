@@ -2,7 +2,7 @@
 
 ## Application Environment powered by CDI
 
-- WindowController
+- @ref:[WindowController](detail/window_controller.md) (Holds JavaFX Stage and Scene)
 - @ref:[ViewController](detail/view_controller.md)
 - Parameter Provider
 - Configuration Provider
@@ -23,11 +23,9 @@
 - Binding with converter
 - Adapter Pattern (@ref:[FXBean Adapter](detail/fxbean_adapter.md))
 
-## WindowController
+## @ref:[WindowController](detail/window_controller.md)
 
-- Stage
-- Scene
-- Replace Scene Content
+@@include[window_controller_text](includes/window_controller_text.md)
 
 ## @ref:[ViewController](detail/view_controller.md)
 

@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.7.0
+* Multiple WindowController Support
+* DefaultWindowController, AdditionalWindowController
+* Multiple WindowController Demo and Documentation
+
 ### 1.6.9
 * JavaFX 13.0.2
 * openwebbeans 2.0.12

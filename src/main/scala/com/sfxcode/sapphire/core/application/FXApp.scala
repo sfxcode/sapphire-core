@@ -4,6 +4,7 @@ import com.sfxcode.sapphire.core.stage.StageSupport
 import javafx.application.Application
 import javafx.stage.Stage
 
+// #FXApp
 trait FXApp extends StageSupport {
 
   def stage: Stage = createDefaultStage
@@ -23,3 +24,5 @@ object FXApp {
   var Application: Application = _
   var App: FXApp               = _
 }
+
+// #FXApp

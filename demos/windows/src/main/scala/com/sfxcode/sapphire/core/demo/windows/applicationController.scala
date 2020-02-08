@@ -13,8 +13,10 @@ class ApplicationController extends DefaultWindowController with BeanResolver {
   lazy val mainViewController: MainViewController =
     getController[MainViewController]()
 
+  // #SecondWindowControllerVar
   lazy val secondWindowController = getBean[SecondWindowController]()
-  lazy val thirdWindowController  = getBean[ThirdWindowController]()
+  // #SecondWindowControllerVar
+  lazy val thirdWindowController = getBean[ThirdWindowController]()
 
   def applicationDidLaunch() {
     logger.info("start " + this)
@@ -23,6 +25,7 @@ class ApplicationController extends DefaultWindowController with BeanResolver {
 
 }
 
+// #AdditionalWindowController
 abstract class AbstractWindowController extends AdditionalWindowController {
 
   lazy val viewController: AdditionalViewController =
@@ -36,10 +39,13 @@ abstract class AbstractWindowController extends AdditionalWindowController {
 
   override def width: Int = 200
 }
+// #AdditionalWindowController
 
+// #SecondWindowController
 @Named
 @ApplicationScoped
 class SecondWindowController extends AbstractWindowController
+// #SecondWindowController
 
 @Named
 @ApplicationScoped

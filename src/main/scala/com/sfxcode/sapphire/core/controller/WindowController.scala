@@ -46,7 +46,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
   val sceneMap: ObservableMap[Parent, Scene] = Map[Parent, Scene]()
 
   @Inject var sceneControllerWillChange: Event[SceneControllerWillChangeEvent] = _
-  @Inject var sceneControllerChanged: Event[SceneControllerDidChangeEvent]     = _
+  @Inject var sceneControllerDidChange: Event[SceneControllerDidChangeEvent]   = _
 
   var stageProperty           = new SimpleObjectProperty[Stage]()
   var sceneProperty           = new SimpleObjectProperty[Scene]()
@@ -57,9 +57,13 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
     sceneProperty.set(stage.getScene)
   }
 
+  def name: String = getClass.getSimpleName
+
+  def stage: Stage = stageProperty.getValue
+
   def scene: Scene = sceneProperty.getValue
 
-  def name: String = getClass.getSimpleName
+  def resourceBundleForView(viewPath: String): ResourceBundle = applicationEnvironment.resourceBundle
 
   def isMainWindow: Boolean
 
@@ -104,7 +108,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
     }
     try {
       newController.didGainVisibility()
-      sceneControllerChanged.fire(SceneControllerDidChangeEvent(this, newController, oldController))
+      sceneControllerDidChange.fire(SceneControllerDidChangeEvent(this, newController, oldController))
 
     }
     catch {
@@ -114,7 +118,7 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
 
   def actualSceneController: ViewController = sceneControllerProperty.getValue
 
-  def replaceSceneContentWithNode(content: Parent, resize: Boolean = true) {
+  private def replaceSceneContentWithNode(content: Parent, resize: Boolean = true) {
 
     val newScene = sceneMap.getOrElse(content, {
       val scene = new Scene(content)
@@ -127,9 +131,5 @@ abstract class WindowController extends FxmlLoading with NodeLocator with LazyLo
     stage.sizeToScene()
 
   }
-
-  def stage: Stage = stageProperty.getValue
-
-  def resourceBundleForView(viewPath: String): ResourceBundle = applicationEnvironment.resourceBundle
 
 }

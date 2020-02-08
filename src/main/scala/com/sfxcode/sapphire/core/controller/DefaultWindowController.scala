@@ -15,10 +15,13 @@ abstract class DefaultWindowController extends WindowController {
   }
 
   def applicationStartup(stage: Stage) {
+    applicationWillLaunch()
     setStage(stage)
     applicationEnvironment.defaultWindowController = this
     applicationDidLaunch()
   }
+
+  def applicationWillLaunch()
 
   def applicationDidLaunch()
 

@@ -22,14 +22,18 @@ class MainViewController extends ViewController with LazyLogging {
 
   def applicationController = windowController.get.asInstanceOf[ApplicationController]
 
+  // #actionShowSecondWindow
   def actionShowSecondWindow(event: ActionEvent): Unit = {
     val x = applicationController.stage.getX + applicationController.stage.getWidth
     val y = applicationController.stage.getY
     applicationController.secondWindowController.show(x, y)
   }
+  // #actionShowSecondWindow
 
+  // #actionCloseSecondWindow
   def actionCloseSecondWindow(event: ActionEvent): Unit =
     applicationController.secondWindowController.close()
+  // #actionCloseSecondWindow
 
   def actionShowThirdWindow(event: ActionEvent): Unit = {
     val x = applicationController.stage.getX - applicationController.thirdWindowController.stage.getWidth

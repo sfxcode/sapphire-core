@@ -4,6 +4,7 @@
 
 @@@ index
 
+ - [window_controller](window_controller.md)
  - [ViewController](view_controller.md)
  - [FXBean](fxbean.md)
  - [FXBean Adapter](fxbean_adapter.md)
