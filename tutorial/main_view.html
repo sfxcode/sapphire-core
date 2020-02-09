@@ -266,12 +266,18 @@ var statusBarManager: ContentManager  = _</code></pre>
 }</code></pre>
 <h3><a href="#cdi-optional-" name="cdi-optional-" class="anchor"><span class="anchor-link"></span></a>CDI (optional)</h3>
 <p>Make use of CDI Observers, Injection Points, &hellip;</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationObserver.scala#L14-L20" target="_blank" title="Go to snippet source"></a><code class="language-scala">def listenToWillChange(@Observes event: ContentWillChangeEvent) {
-  logger.debug(event.toString)
-}
+<p>Create Application Scoped Observer Bean to log Content Manager Activity</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationObserver.scala#L10-L21" target="_blank" title="Go to snippet source"></a><code class="language-scala">@Named
+@ApplicationScoped
+class ApplicationObserver extends LazyLogging {
 
-def listenToDidChange(@Observes event: ContentDidChangeEvent) {
-  logger.debug(event.toString)
+  def listenToWillChange(@Observes event: ContentWillChangeEvent) {
+    logger.debug(event.toString)
+  }
+
+  def listenToDidChange(@Observes event: ContentDidChangeEvent) {
+    logger.debug(event.toString)
+  }
 }</code></pre>
 </div>
 <div>
