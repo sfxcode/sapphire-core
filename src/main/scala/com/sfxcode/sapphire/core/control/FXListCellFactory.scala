@@ -33,10 +33,10 @@ class FXListCell[R](property: String = "") extends ListCell[R] {
         val value = b.getValue(property)
         value match {
           case v: Any => textProperty().set(v.toString)
-          case _      => textProperty().set("NULL VALUE")
+          case _ => textProperty().set("NULL VALUE")
         }
       case b: Any => textProperty().set(b.toString)
-      case _      => textProperty().set("")
+      case _ => textProperty().set("")
     }
   }
 }

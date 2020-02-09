@@ -7,18 +7,20 @@ import scala.reflect.ClassTag
 object Expressions {
   val props = System.getProperties
 
-  if (!props.containsKey("javax.cdi.methodInvocations"))
+  if (!props.containsKey("javax.cdi.methodInvocations")) {
     props.put("javax.cdi.methodInvocations", "true")
+  }
 
-  if (!props.containsKey("javax.cdi.cacheSize"))
+  if (!props.containsKey("javax.cdi.cacheSize")) {
     props.put("javax.cdi.cacheSize", "5000")
+  }
 
   val processor: ELProcessor     = new ELProcessor
   val manager: ELManager         = processor.getELManager
   val factory: ExpressionFactory = ExpressionFactory.newInstance(props)
   val context: StandardELContext = manager.getELContext
 
-  val functionHelper = FunctionHelper(processor)
+  val functionHelper: FunctionHelper = FunctionHelper(processor)
 
   val TempObjectName               = "_self"
   val TempValueName                = "_tempValue"
