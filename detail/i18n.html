@@ -137,18 +137,6 @@ sfxcode/sapphire-core
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
   <li><a href="../getting_started.html" class="page">Getting Started</a></li>
-  <li><a href="../development/index.html" class="page">Development</a>
-  <ul>
-    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
-  </ul></li>
-  <li><a href="../tutorial/index.html" class="page">Tutorial</a>
-  <ul>
-    <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
-    <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
-    <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
-  </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
   <ul>
     <li><a href="../detail/window_controller.html" class="page">WindowController</a></li>
@@ -159,6 +147,18 @@ sfxcode/sapphire-core
     <li><a href="../detail/fxml_loading.html" class="page">FxmlLoading</a></li>
     <li><a href="../detail/expression_language.html" class="page">Expression Language</a></li>
     <li><a href="../detail/i18n.html" class="active page">I18n Support</a></li>
+  </ul></li>
+  <li><a href="../tutorial/index.html" class="page">Tutorial</a>
+  <ul>
+    <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
+    <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
+    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
+    <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
+  </ul></li>
+  <li><a href="../development/index.html" class="page">Development</a>
+  <ul>
+    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
+    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="../sample/index.html" class="page">Examples</a>
   <ul>
@@ -184,7 +184,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.0
+<i class="md-icon" title="Version">label_outline</i> 1.7.1
 </label>
 </li>
 </ul>
@@ -220,14 +220,14 @@ sfxcode/sapphire-core
 </ul>
 <h2><a href="#adding-default-application-resource-bundle" name="adding-default-application-resource-bundle" class="anchor"><span class="anchor-link"></span></a>Adding Default (Application) Resource Bundle</h2>
 <p>Normally you will add resources in the ApplicationController.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L21" target="_blank" title="Go to snippet source"></a><code class="language-scala">applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)</code></pre>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L21" target="_blank" title="Go to snippet source"></a><code class="language-scala">applicationEnvironment.loadResourceBundle(&quot;bundles/application&quot;)</code></pre>
 <p>The ApplicationEnvironment will hold the reference to the loaded resources.</p>
 <h2><a href="#fxml-support" name="fxml-support" class="anchor"><span class="anchor-link"></span></a>FXML Support</h2>
 <p>If there is a loaded resource, you can use it in the fxml files with the following pattern: %<key></p>
 <pre class="prettyprint"><code class="language-xml">&lt;Button mnemonicParsing=&quot;false&quot; onAction=&quot;#actionToggleWorkspace&quot; text=&quot;%navigation.toggle&quot; /&gt;
 </code></pre>
 <p>If you want a special resource bundle for one or more fxml files,<br/>you have to override <strong>resourceBundleForView</strong> in the ApplicationController.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L42-L52" target="_blank" title="Go to snippet source"></a><code class="language-scala">// only example values ...
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L42-L52" target="_blank" title="Go to snippet source"></a><code class="language-scala">// only example values ...
 override def resourceBundleForView(viewPath: String): ResourceBundle =
   if (viewPath.contains(&quot;mySpecialViewName&quot;)) {
     val path        = &quot;myCustomResourcePath&quot;
@@ -240,13 +240,13 @@ override def resourceBundleForView(viewPath: String): ResourceBundle =
 </code></pre>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/docs/src/main/paradox/detail/i18n.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/docs/src/main/paradox/detail/i18n.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.0
+1.7.1
 </span>
 </div>
 </article>
@@ -269,13 +269,13 @@ Expression Language
 </span>
 </div>
 </a>
-<a href="../sample/index.html" title="Examples" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../tutorial/index.html" title="Tutorial" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
 Next
 </span>
-Examples
+Tutorial
 </span>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">

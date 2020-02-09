@@ -137,18 +137,6 @@ sfxcode/sapphire-core
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
   <li><a href="../getting_started.html" class="page">Getting Started</a></li>
-  <li><a href="../development/index.html" class="page">Development</a>
-  <ul>
-    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
-  </ul></li>
-  <li><a href="../tutorial/index.html" class="page">Tutorial</a>
-  <ul>
-    <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
-    <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
-    <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
-  </ul></li>
   <li><a href="../detail/index.html" class="page">Core Concepts</a>
   <ul>
     <li><a href="../detail/window_controller.html" class="page">WindowController</a></li>
@@ -160,6 +148,18 @@ sfxcode/sapphire-core
     <li><a href="../detail/expression_language.html" class="active page">Expression Language</a></li>
     <li><a href="../detail/i18n.html" class="page">I18n Support</a></li>
   </ul></li>
+  <li><a href="../tutorial/index.html" class="page">Tutorial</a>
+  <ul>
+    <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
+    <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
+    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
+    <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
+  </ul></li>
+  <li><a href="../development/index.html" class="page">Development</a>
+  <ul>
+    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
+    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
+  </ul></li>
   <li><a href="../sample/index.html" class="page">Examples</a>
   <ul>
     <li><a href="../sample/basic.html" class="page">Samples Basic</a></li>
@@ -170,16 +170,45 @@ sfxcode/sapphire-core
   <li><a href="../changes.html" class="page">Version History</a></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="../detail/expression_language.html#expression-language" class="header">Expression Language</a>
+  <ul>
+    <li><a href="../detail/expression_language.html#functions" class="header">Functions</a></li>
+    <li><a href="../detail/expression_language.html#base-usage" class="header">Base Usage</a></li>
+    <li><a href="../detail/expression_language.html#el-in-fxbean" class="header">EL in FXBean</a></li>
+    <li><a href="../detail/expression_language.html#el-in-windowcontroller-viewcontroller" class="header">EL in WindowController / ViewController</a></li>
+  </ul></li>
+</ul>
 </nav>
 
 </nav>
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.0
+<i class="md-icon" title="Version">label_outline</i> 1.7.1
 </label>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul>
+  <li><a href="../detail/expression_language.html#expression-language" class="header">Expression Language</a>
+  <ul>
+    <li><a href="../detail/expression_language.html#functions" class="header">Functions</a></li>
+    <li><a href="../detail/expression_language.html#base-usage" class="header">Base Usage</a></li>
+    <li><a href="../detail/expression_language.html#el-in-fxbean" class="header">EL in FXBean</a></li>
+    <li><a href="../detail/expression_language.html#el-in-windowcontroller-viewcontroller" class="header">EL in WindowController / ViewController</a></li>
+  </ul></li>
+</ul>
+</nav>
+
 </div>
 </div>
 </div>
@@ -187,23 +216,112 @@ sfxcode/sapphire-core
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
 <h1><a href="#expression-language" name="expression-language" class="anchor"><span class="anchor-link"></span></a>Expression Language</h1>
-<p>Expression Language is based on JUEL and can be used in</p>
-<ul>
-  <li>FXBean Context</li>
-  <li>FXML</li>
-  <li>ViewController</li>
-  <li>CDI Beans (over ApplicationEnvironment)</li>
-  <li>every other Scala Code</li>
-</ul>
+<p>Expression Language is based on <a href="https://github.com/eclipse-ee4j/el-ri">Jakarta Expression Language</a> .</p>
+<h2><a href="#functions" name="functions" class="anchor"><span class="anchor-link"></span></a>Functions</h2>
+<p>EL supports defining own functions in expressions. There is a FunctionHelper in the Expressions object. Some Functions are predefined.</p>
+<h3><a href="#predefined-functions" name="predefined-functions" class="anchor"><span class="anchor-link"></span></a>Predefined Functions</h3>
+<p>Functions can have a prefix. The Sapphire Core Functions has the prefix: sf.</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/src/test/scala/com/sfxcode/sapphire/core/el/ExpressionsSpec.scala#L39-L40" target="_blank" title="Go to snippet source"></a><code class="language-scala">Expressions.register(&quot;testBoolean&quot;, false)
+Expressions.getValue(&quot;${sf:boolString(testBoolean,&#39;Y&#39;, &#39;N&#39;)}&quot;) must be equalTo &quot;N&quot;</code></pre>
+<table>
+  <thead>
+    <tr>
+      <th align="left">function </th>
+      <th align="left">sample </th>
+      <th align="left">info </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">frameworkName </td>
+      <td align="left">${sf:frameworkName()} </td>
+      <td align="left"> </td>
+    </tr>
+    <tr>
+      <td align="left">frameworkVersion </td>
+      <td align="left">${sf:frameworkVersion()} </td>
+      <td align="left"> </td>
+    </tr>
+    <tr>
+      <td align="left">dateString </td>
+      <td align="left">${sf:dateString(testDate)} </td>
+      <td align="left">Default Pattern: YYYY-MM-dd </td>
+    </tr>
+    <tr>
+      <td align="left">now </td>
+      <td align="left">${sf:frameworkName()} </td>
+      <td align="left"> </td>
+    </tr>
+    <tr>
+      <td align="left">nowAsString </td>
+      <td align="left">${sf:nowAsString()}&quot;).toString </td>
+      <td align="left">Default Pattern: YYYY-MM-dd </td>
+    </tr>
+    <tr>
+      <td align="left">boolString </td>
+      <td align="left">${sf:boolString(testBoolean,&lsquo;Y&rsquo;, &lsquo;N&rsquo;)} </td>
+      <td align="left"> </td>
+    </tr>
+    <tr>
+      <td align="left">configString </td>
+      <td align="left">${sf:configString(&lsquo;test.string&rsquo;)} </td>
+      <td align="left"> </td>
+    </tr>
+    <tr>
+      <td align="left">i18n </td>
+      <td align="left">${sf:i18n(&lsquo;personText&rsquo;)} </td>
+      <td align="left"> </td>
+    </tr>
+  </tbody>
+</table>
+<h3><a href="#custom-functions" name="custom-functions" class="anchor"><span class="anchor-link"></span></a>Custom Functions</h3>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/src/test/scala/com/sfxcode/sapphire/core/el/ExpressionsSpec.scala#L48-L54" target="_blank" title="Go to snippet source"></a><code class="language-scala">&quot;add custom function&quot; in {
+
+  val clazz: Class[_] = Class.forName(&quot;com.sfxcode.sapphire.core.el.CustomFunctionMapper&quot;)
+  Expressions.functionHelper.addFunction(&quot;custom&quot;, &quot;myCoolMethod&quot;, clazz, &quot;coolMethod&quot;, classOf[String])
+  Expressions.getValue(&quot;${custom:myCoolMethod(&#39;123&#39;)}&quot;) must be equalTo &quot;test-123&quot;
+
+}</code></pre>
+<h2><a href="#base-usage" name="base-usage" class="anchor"><span class="anchor-link"></span></a>Base Usage</h2>
+<p>Expression Language Processing is defined in the Expressions object.</p>
+<p>There is also an expressions trait:</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/src/main/scala/com/sfxcode/sapphire/core/el/expressionLanguage.scala#L110-L126" target="_blank" title="Go to snippet source"></a><code class="language-scala">trait Expressions {
+
+  def register(name: String, obj: Any): Unit = Expressions.register(name: String, obj: Any)
+
+  def unregister(name: String): Unit = Expressions.unregister(name)
+
+  def registerBean(bean: AnyRef): Unit = Expressions.registerBean(bean)
+
+  def unregisterBean(bean: AnyRef): Unit = Expressions.unregisterBean(bean)
+
+  def registeredBean[T &lt;: AnyRef]()(implicit ct: ClassTag[T]): Option[T] =
+    Expressions.registeredBean[T]()
+
+  def evaluateExpression(source: AnyRef, expression: String): Any =
+    Expressions.evaluateExpressionOnObject(source, expression)
+}
+</code></pre>
+<h2><a href="#el-in-fxbean" name="el-in-fxbean" class="anchor"><span class="anchor-link"></span></a>EL in FXBean</h2>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/src/test/scala/com/sfxcode/sapphire/core/value/FXBeanSpec.scala#L102-L109" target="_blank" title="Go to snippet source"></a><code class="language-scala">val testBean = FXBean[TestBean](TestBean())
+testBean.getValue(&quot;result ${2*4}&quot;) must be equalTo &quot;result 8&quot;
+testBean.getValue(&quot;${_self.description().get()}&quot;) must be equalTo &quot;desc&quot;
+testBean.getValue(&quot;!{_self.description().get()}&quot;) must be equalTo &quot;desc&quot;
+testBean.getValue(&quot;zip.value&quot;) must be equalTo 12345
+testBean.getValue(&quot;${_self.age() / 2}&quot;) must be equalTo 21.0
+testBean.getValue(&quot;${_self.multiply(2,3)}&quot;) must be equalTo 6
+testBean.getValue(&quot;!{_self.multiply(2,3)}&quot;) must be equalTo 6</code></pre>
+<h2><a href="#el-in-windowcontroller-viewcontroller" name="el-in-windowcontroller-viewcontroller" class="anchor"><span class="anchor-link"></span></a>EL in WindowController / ViewController</h2>
+<p>WindowController- and ViewController-Beans are automatically registered by name</p>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/docs/src/main/paradox/detail/expression_language.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/docs/src/main/paradox/detail/expression_language.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.0
+1.7.1
 </span>
 </div>
 </article>

@@ -137,18 +137,6 @@ sfxcode/sapphire-core
 <ul>
   <li><a href="features.html" class="page">Features</a></li>
   <li><a href="getting_started.html" class="page">Getting Started</a></li>
-  <li><a href="development/index.html" class="page">Development</a>
-  <ul>
-    <li><a href="development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="development/hot_reload.html" class="page">Hot Reloading</a></li>
-  </ul></li>
-  <li><a href="tutorial/index.html" class="page">Tutorial</a>
-  <ul>
-    <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
-    <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
-    <li><a href="tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
-  </ul></li>
   <li><a href="detail/index.html" class="page">Core Concepts</a>
   <ul>
     <li><a href="detail/window_controller.html" class="page">WindowController</a></li>
@@ -159,6 +147,18 @@ sfxcode/sapphire-core
     <li><a href="detail/fxml_loading.html" class="page">FxmlLoading</a></li>
     <li><a href="detail/expression_language.html" class="page">Expression Language</a></li>
     <li><a href="detail/i18n.html" class="page">I18n Support</a></li>
+  </ul></li>
+  <li><a href="tutorial/index.html" class="page">Tutorial</a>
+  <ul>
+    <li><a href="tutorial/setup.html" class="page">Tutorial Setup</a></li>
+    <li><a href="tutorial/application.html" class="page">Tutorial Application</a></li>
+    <li><a href="tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
+    <li><a href="tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
+  </ul></li>
+  <li><a href="development/index.html" class="page">Development</a>
+  <ul>
+    <li><a href="development/tools.html" class="page">Development Tools</a></li>
+    <li><a href="development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="sample/index.html" class="page">Examples</a>
   <ul>
@@ -176,6 +176,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="scalafx.html#documentation" class="header">Documentation</a></li>
     <li><a href="scalafx.html#usage" class="header">Usage</a></li>
+    <li><a href="scalafx.html#sapphire-with-scalafx" class="header">Sapphire with ScalaFX</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -184,7 +185,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.0
+<i class="md-icon" title="Version">label_outline</i> 1.7.1
 </label>
 </li>
 </ul>
@@ -201,6 +202,7 @@ sfxcode/sapphire-core
   <ul>
     <li><a href="scalafx.html#documentation" class="header">Documentation</a></li>
     <li><a href="scalafx.html#usage" class="header">Usage</a></li>
+    <li><a href="scalafx.html#sapphire-with-scalafx" class="header">Sapphire with ScalaFX</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -222,7 +224,8 @@ sfxcode/sapphire-core
   <li><a href="https://github.com/scalafx/scalafx">Github</a></li>
   <li><a href="https://github.com/scalafx/scalafx/blob/master/notes/12.0.2-R18.md">Release Notes</a></li>
   <li><a href="https://stackoverflow.com/search?q=scalafx">Stackoverflow</a></li>
-  <li><a href="https://github.com/scalafx/ProScalaFX/">ProScalaFX</a></li>
+  <li><a href="https://github.com/scalafx/ScalaFX-Tutorials">ScalaFX-Tutorials</a></li>
+  <li><a href="https://github.com/scalafx/ProScalaFX">ProScalaFX</a></li>
 </ul>
 <h2><a href="#usage" name="usage" class="anchor"><span class="anchor-link"></span></a>Usage</h2>
 <p>Include following snippet in your build.sbt file:</p>
@@ -231,15 +234,26 @@ sfxcode/sapphire-core
 <p>In your classes add scalafx Includes to your imports:</p>
 <pre><code>import scalafx.Includes._
 </code></pre>
+<h2><a href="#sapphire-with-scalafx" name="sapphire-with-scalafx" class="anchor"><span class="anchor-link"></span></a>Sapphire with ScalaFX</h2>
+<h3><a href="#issuetrackinglite" name="issuetrackinglite" class="anchor"><span class="anchor-link"></span></a>IssueTrackingLite</h3>
+<p>Sapphire IssueTrackingLite Demo in the sapphire-core demo section use scalafx.</p>
+<h3><a href="#custom-projects" name="custom-projects" class="anchor"><span class="anchor-link"></span></a>Custom Projects</h3>
+<p>I use <a href="http://www.scalafx.org/">ScalaFX</a> in nearly all of my projects.</p>
+<ul>
+  <li>UI DSL for declarative scene graph objects creation</li>
+  <li>Automatic conversion to Scala</li>
+  <li>Scala like Collection support</li>
+  <li>&hellip;</li>
+</ul>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/docs/src/main/paradox/scalafx.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/docs/src/main/paradox/scalafx.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.0
+1.7.1
 </span>
 </div>
 </article>

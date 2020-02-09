@@ -137,18 +137,6 @@ sfxcode/sapphire-core
 <ul>
   <li><a href="../features.html" class="page">Features</a></li>
   <li><a href="../getting_started.html" class="page">Getting Started</a></li>
-  <li><a href="../development/index.html" class="page">Development</a>
-  <ul>
-    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
-    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
-  </ul></li>
-  <li><a href="../tutorial/index.html" class="page">Tutorial</a>
-  <ul>
-    <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
-    <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
-    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
-    <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
-  </ul></li>
   <li><a href="../detail/index.html" class="active page">Core Concepts</a>
   <ul>
     <li><a href="../detail/window_controller.html" class="page">WindowController</a></li>
@@ -159,6 +147,18 @@ sfxcode/sapphire-core
     <li><a href="../detail/fxml_loading.html" class="page">FxmlLoading</a></li>
     <li><a href="../detail/expression_language.html" class="page">Expression Language</a></li>
     <li><a href="../detail/i18n.html" class="page">I18n Support</a></li>
+  </ul></li>
+  <li><a href="../tutorial/index.html" class="page">Tutorial</a>
+  <ul>
+    <li><a href="../tutorial/setup.html" class="page">Tutorial Setup</a></li>
+    <li><a href="../tutorial/application.html" class="page">Tutorial Application</a></li>
+    <li><a href="../tutorial/main_view.html" class="page">Tutorial Main View Controller</a></li>
+    <li><a href="../tutorial/navigation.html" class="page">Tutorial Navigation</a></li>
+  </ul></li>
+  <li><a href="../development/index.html" class="page">Development</a>
+  <ul>
+    <li><a href="../development/tools.html" class="page">Development Tools</a></li>
+    <li><a href="../development/hot_reload.html" class="page">Hot Reloading</a></li>
   </ul></li>
   <li><a href="../sample/index.html" class="page">Examples</a>
   <ul>
@@ -176,7 +176,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.0
+<i class="md-icon" title="Version">label_outline</i> 1.7.1
 </label>
 </li>
 </ul>
@@ -222,7 +222,13 @@ sfxcode/sapphire-core
     <li><a href="../detail/fxml_loading.html#example" class="header">Example</a></li>
     <li><a href="../detail/fxml_loading.html#different-fxml-path-lookup-pattern" class="header">Different FXML-Path lookup pattern</a></li>
   </ul></li>
-  <li><a href="../detail/expression_language.html" class="page">Expression Language</a></li>
+  <li><a href="../detail/expression_language.html" class="page">Expression Language</a>
+  <ul>
+    <li><a href="../detail/expression_language.html#functions" class="header">Functions</a></li>
+    <li><a href="../detail/expression_language.html#base-usage" class="header">Base Usage</a></li>
+    <li><a href="../detail/expression_language.html#el-in-fxbean" class="header">EL in FXBean</a></li>
+    <li><a href="../detail/expression_language.html#el-in-windowcontroller-viewcontroller" class="header">EL in WindowController / ViewController</a></li>
+  </ul></li>
   <li><a href="../detail/i18n.html" class="page">I18n Support</a>
   <ul>
     <li><a href="../detail/i18n.html#adding-default-application-resource-bundle" class="header">Adding Default (Application) Resource Bundle</a></li>
@@ -232,13 +238,13 @@ sfxcode/sapphire-core
 </div>
 </div>
 <div>
-<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.0/docs/src/main/paradox/detail/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/sfxcode/sapphire-core/tree/v1.7.1/docs/src/main/paradox/detail/index.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.0
+1.7.1
 </span>
 </div>
 </article>
@@ -248,7 +254,7 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="../tutorial/navigation.html" title="Tutorial Navigation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<a href="../getting_started.html" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
 <div class="md-flex__cell md-flex__cell--shrink">
 <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
 </div>
@@ -257,7 +263,7 @@ Edit this page
 <span class="md-footer-nav__direction">
 Previous
 </span>
-Tutorial Navigation
+Getting Started
 </span>
 </div>
 </a>
