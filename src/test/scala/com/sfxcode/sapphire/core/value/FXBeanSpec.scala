@@ -100,6 +100,7 @@ class FXBeanSpec extends Specification with LazyLogging {
 
     "evaluate expressions" in {
 
+      // #FXBeanExpression
       val testBean = FXBean[TestBean](TestBean())
       testBean.getValue("result ${2*4}") must be equalTo "result 8"
       testBean.getValue("${_self.description().get()}") must be equalTo "desc"
@@ -108,6 +109,8 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean.getValue("${_self.age() / 2}") must be equalTo 21.0
       testBean.getValue("${_self.multiply(2,3)}") must be equalTo 6
       testBean.getValue("!{_self.multiply(2,3)}") must be equalTo 6
+      // #FXBeanExpression
+
       testBean.getValue("doubleAge()") must be equalTo 84
     }
 

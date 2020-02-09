@@ -8,9 +8,9 @@ import org.specs2.mutable.Specification
 case class StringTest(value: String = "myString", valueOption: Option[String] = Some("myString2"))
 
 class StringTest2 {
-  var value: String               = "myString"
-  var date: Date                  = new Date()
-  var localdate: LocalDate        = LocalDate.now()
+  var value: String = "myString"
+  var date: Date = new Date()
+  var localdate: LocalDate = LocalDate.now()
   var valueOption: Option[String] = Some("myString2")
 
   def testMethod(a: Int): Int = a + 3
@@ -25,9 +25,9 @@ class FXBeanClassRegistrySpec extends Specification {
 
   "FXBeanClassRegistry" should {
 
-    val stringTest  = StringTest()
+    val stringTest = StringTest()
     val stringTest2 = new StringTest2()
-    val longTest    = LongTest()
+    val longTest = LongTest()
 
     "get member info" in {
 
@@ -35,33 +35,28 @@ class FXBeanClassRegistrySpec extends Specification {
       memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo(
         "valueOption",
         TypeString,
-        isOption = true
-      )
+        isOption = true)
 
       memberInfo(stringTest2, "value") must be equalTo FXBeanClassMemberInfo("value", TypeString)
       memberInfo(stringTest2, "valueOption") must be equalTo FXBeanClassMemberInfo(
         "valueOption",
         TypeString,
-        isOption = true
-      )
+        isOption = true)
       memberInfo(stringTest2, "testMethod") must be equalTo FXBeanClassMemberInfo(
         "testMethod",
         TypeUnknown,
-        isOption = false
-      )
+        isOption = false)
 
       memberInfo(longTest, "value") must be equalTo FXBeanClassMemberInfo(
         "value",
         TypeLong,
         isOption = false,
-        classOf[java.lang.Long]
-      )
+        classOf[java.lang.Long])
       memberInfo(longTest, "valueOption") must be equalTo FXBeanClassMemberInfo(
         "valueOption",
         TypeLong,
         isOption = true,
-        classOf[java.lang.Long]
-      )
+        classOf[java.lang.Long])
     }
 
     "get member info performance" in {
@@ -70,8 +65,7 @@ class FXBeanClassRegistrySpec extends Specification {
       memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo(
         "valueOption",
         TypeString,
-        isOption = true
-      )
+        isOption = true)
 
       val start = System.currentTimeMillis()
       (1 to 10000).foreach { _ =>
@@ -79,8 +73,7 @@ class FXBeanClassRegistrySpec extends Specification {
         memberInfo(stringTest, "valueOption") must be equalTo FXBeanClassMemberInfo(
           "valueOption",
           TypeString,
-          isOption = true
-        )
+          isOption = true)
 
       }
       val time = System.currentTimeMillis() - start
