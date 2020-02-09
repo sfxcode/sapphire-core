@@ -6,8 +6,8 @@ import com.sfxcode.sapphire.core.value.FXBeanCollections._
 import com.sfxcode.sapphire.core.value.{BeanConversions, FXBean}
 import javafx.collections.{FXCollections, ObservableList}
 import scalafx.Includes._
-import scalafx.collections.{ObservableBuffer, ObservableMap}
 import scalafx.collections.ObservableMap._
+import scalafx.collections.{ObservableBuffer, ObservableMap}
 
 case class Issue(id: String, projectName: String, var status: String, var synopsis: String, var description: String)
 

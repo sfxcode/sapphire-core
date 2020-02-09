@@ -9,16 +9,17 @@
            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.sfxcode.sapphire.core.demo.windows.controller.AdditionalViewController">
     <stylesheets>
-        <URL value="@default.css" />
+        <URL value="@default.css"/>
     </stylesheets>
-   <children>
-      <BorderPane>
-         <center>
-            <Label fx:id="windowLabel" styleClass="smallInfoText" text="" BorderPane.alignment="CENTER">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding></Label>
-         </center>
-      </BorderPane>
-   </children>
+    <children>
+        <BorderPane>
+            <center>
+                <Label fx:id="windowLabel" styleClass="smallInfoText" text="" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </Label>
+            </center>
+        </BorderPane>
+    </children>
 </StackPane>

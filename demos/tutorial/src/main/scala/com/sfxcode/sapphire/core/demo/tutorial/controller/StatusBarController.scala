@@ -21,16 +21,16 @@ class StatusBarController extends ViewController with LazyLogging {
   statusLabel.setPadding(new Insets(5))
 
   val statusButton = new Button("Status Button 1")
-  statusButton.setOnAction(_ => {
+  statusButton.setOnAction { _ =>
     logger.debug("%s".format(statusButton.getText))
     updateLabel(statusButton)
-  })
+  }
 
   val statusButton2 = new Button("Status Button 2")
-  statusButton2.setOnAction(_ => {
+  statusButton2.setOnAction { _ =>
     logger.debug("%s".format(statusButton2.getText))
     updateLabel(statusButton2)
-  })
+  }
 
   val box = new HBox()
   box.setId("statusBar")
