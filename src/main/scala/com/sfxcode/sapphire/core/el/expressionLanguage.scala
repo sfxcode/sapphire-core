@@ -15,16 +15,16 @@ object Expressions {
     props.put("javax.cdi.cacheSize", "5000")
   }
 
-  val processor: ELProcessor = new ELProcessor
-  val manager: ELManager = processor.getELManager
+  val processor: ELProcessor     = new ELProcessor
+  val manager: ELManager         = processor.getELManager
   val factory: ExpressionFactory = ExpressionFactory.newInstance(props)
   val context: StandardELContext = manager.getELContext
 
   val functionHelper: FunctionHelper = FunctionHelper(processor)
 
-  val TempObjectName = "_self"
-  val TempValueName = "_tempValue"
-  val ExpressionPrefix = "${"
+  val TempObjectName               = "_self"
+  val TempValueName                = "_tempValue"
+  val ExpressionPrefix             = "${"
   val FxmlExpressionPrefix: String = "!{"
 
   def getValue(expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
@@ -39,7 +39,8 @@ object Expressions {
     var result: Any = null
     if (expression.contains(ExpressionPrefix)) {
       result = getValueOnObject(obj, expression, clazz)
-    } else if (expression.contains("("))
+    }
+    else if (expression.contains("("))
       result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, expression), clazz)
     else {
       var tempExpression = expression
@@ -53,7 +54,8 @@ object Expressions {
         if (!methodExpression.endsWith("()"))
           methodExpression = methodExpression + "()"
         result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, methodExpression), clazz)
-      } catch {
+      }
+      catch {
         case e: MethodNotFoundException =>
           if (!tempExpression.endsWith("()")) {
             result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, tempExpression), clazz)
@@ -65,9 +67,9 @@ object Expressions {
 
   private def getValueOnObject(obj: AnyRef, expression: String, clazz: Class[AnyRef] = classOf[Object]): Any = {
     val tempObjectString = "%s_%s".format(TempObjectName, Math.abs(obj.hashCode()))
-    val newExpression = expression.replace(TempObjectName, tempObjectString)
+    val newExpression    = expression.replace(TempObjectName, tempObjectString)
     register(tempObjectString, obj)
-    val ve = factory.createValueExpression(context, newExpression, clazz)
+    val ve     = factory.createValueExpression(context, newExpression, clazz)
     val result = ve.getValue(context)
     unregister(tempObjectString)
     result
@@ -88,12 +90,13 @@ object Expressions {
   def registeredBean[T <: AnyRef]()(implicit ct: ClassTag[T]): Option[T] = {
 
     val simpleName = ct.runtimeClass.getSimpleName
-    val key = "%s%s".format(simpleName.head.toLower, simpleName.tail)
-    val bean = evaluateExpressionOnObject(this, "${%s}".format(key))
+    val key        = "%s%s".format(simpleName.head.toLower, simpleName.tail)
+    val bean       = evaluateExpressionOnObject(this, "${%s}".format(key))
 
     if (bean != null && bean.isInstanceOf[T]) {
       Option[T](bean.asInstanceOf[T])
-    } else {
+    }
+    else {
       None
     }
 

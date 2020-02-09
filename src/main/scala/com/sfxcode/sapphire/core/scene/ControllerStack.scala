@@ -35,7 +35,7 @@ case class ControllerStack(contentManager: ContentManager) {
       val result = stack.pop()
       result.controller match {
         case controller: T => return Some(updateContent[T](result))
-        case _ =>
+        case _             =>
       }
     }
     None

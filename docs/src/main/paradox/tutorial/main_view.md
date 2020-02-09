@@ -40,4 +40,4 @@ For adding SubController and displaying their UI content following steps are nee
 
 Make use of CDI Observers, Injection Points, ...
 
-@@snip [MainViewController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainViewController.scala) { #cdi}
+@@snip [ApplicationObserver.scala](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationObserver.scala) { #cdi}

@@ -1,11 +1,10 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.scene.{ContentDidChangeEvent, ContentManager}
+import com.sfxcode.sapphire.core.scene.ContentManager
 import com.typesafe.scalalogging.LazyLogging
 import javafx.fxml.FXML
 import javafx.scene.layout.Pane
-import javax.enterprise.event.Observes
 
 class MainViewController extends ViewController with LazyLogging {
 
@@ -46,9 +45,4 @@ class MainViewController extends ViewController with LazyLogging {
   }
   // #didGainVisibilityFirstTime
 
-  // #cdi
-  def listenToChanges(@Observes event: ContentDidChangeEvent) {
-    logger.debug(event.toString)
-  }
-  // #cdi
 }

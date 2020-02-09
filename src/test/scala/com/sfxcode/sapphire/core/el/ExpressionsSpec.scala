@@ -20,7 +20,7 @@ class ExpressionsSpec extends Specification {
     "evaluate default functions" in {
       Expressions.getValue("${sf:frameworkName()}") must be equalTo "sapphire-core"
 
-      val df = new SimpleDateFormat("yyyy-MM-dd")
+      val df   = new SimpleDateFormat("yyyy-MM-dd")
       val date = df.parse("2015-01-01")
 
       Expressions.register("testDate", date)

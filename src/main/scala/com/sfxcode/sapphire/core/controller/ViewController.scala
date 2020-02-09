@@ -18,7 +18,6 @@ import javafx.stage.Stage
 import javax.annotation.{PostConstruct, PreDestroy}
 
 import scala.language.implicitConversions
-import scala.reflect.ClassTag
 
 abstract class ViewController
     extends FxmlLoading
@@ -148,9 +147,6 @@ abstract class ViewController
   def isActualSceneController: Boolean = this == actualSceneController
 
   def actualSceneController: ViewController = windowController.get.actualSceneController
-
-  def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] =
-    registeredBean[T]()
 
   override def toString: String =
     "%s %s (fxml: %s, gainVisibility: %s)".format(

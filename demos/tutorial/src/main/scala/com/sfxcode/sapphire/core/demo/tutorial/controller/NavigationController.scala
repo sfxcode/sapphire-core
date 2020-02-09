@@ -27,12 +27,8 @@ class NavigationController extends AbstractViewController {
   def actionClickButton(event: ActionEvent) {
     logger.debug(event.toString)
 
-    // resolve controller by getViewController lookup
-    val controller = getViewController[StatusBarController]()
-    controller.foreach { c =>
-      val button = event.getSource.asInstanceOf[Button]
-      c.updateLabel(button)
-    }
+    val button = event.getSource.asInstanceOf[Button]
+    statusBarController.updateLabel(button)
   }
 
   def actionReload(event: ActionEvent): Unit = {
