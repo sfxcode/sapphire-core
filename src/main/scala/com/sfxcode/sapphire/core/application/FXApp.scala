@@ -28,7 +28,7 @@ trait FXApp extends StageSupport {
 
 object FXApp {
   var Application: Application = _
-  var App: FXApp = _
+  var App: FXApp               = _
 }
 
 // #FXApp

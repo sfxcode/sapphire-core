@@ -20,7 +20,7 @@ class ExpressionsSpec extends Specification {
     "evaluate default functions" in {
       Expressions.getValue("${sf:frameworkName()}") must be equalTo "sapphire-core"
 
-      val df = new SimpleDateFormat("yyyy-MM-dd")
+      val df   = new SimpleDateFormat("yyyy-MM-dd")
       val date = df.parse("2015-01-01")
 
       Expressions.register("testDate", date)
@@ -35,11 +35,14 @@ class ExpressionsSpec extends Specification {
 
       Expressions.getValue("${sf:boolString(testBoolean,'Y', 'N')}") must be equalTo "Y"
 
+      // #coreFunction
       Expressions.register("testBoolean", false)
       Expressions.getValue("${sf:boolString(testBoolean,'Y', 'N')}") must be equalTo "N"
+      // #coreFunction
 
     }
 
+    // #customFunction
     "add custom function" in {
 
       val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.CustomFunctionMapper")
@@ -47,5 +50,7 @@ class ExpressionsSpec extends Specification {
       Expressions.getValue("${custom:myCoolMethod('123')}") must be equalTo "test-123"
 
     }
+    // #customFunction
+
   }
 }

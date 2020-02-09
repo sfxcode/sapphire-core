@@ -11,6 +11,8 @@ crossScalaVersions := Seq("2.13.1", "2.12.10")
 
 scalaVersion := crossScalaVersions.value.head
 
+compileOrder := CompileOrder.JavaThenScala
+
 lazy val sapphire_core_root = Project(id = "sapphire-core", base = file("."))
 lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/login"))
   .settings(
@@ -38,6 +40,7 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/i
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    libraryDependencies += "org.scalafx"    %% "scalafx"        % "12.0.2-R18",
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -135,8 +138,6 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 // Expression Language
 
 libraryDependencies += "org.glassfish" % "jakarta.el" % "3.0.3"
-
-val JuelVersion = "2.2.7"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

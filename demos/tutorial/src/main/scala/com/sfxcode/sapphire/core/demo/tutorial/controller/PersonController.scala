@@ -33,11 +33,13 @@ class PersonController extends AbstractViewController with BeanConversions {
     bindings.add("person", "${sf:i18n('personText', _self.name(), _self.age())}")
 
     adapter.addBindings(bindings)
-    // Converter Example
-    adapter.addIntConverter("age")
     // #bindingList #labels
 
-    tableView.setItems(items) // #labels
+    // #addConverter  #labels
+    adapter.addIntConverter("age")
+    // #addConverter  #labels
+
+    tableView.setItems(items)                                                                                // #labels
     tableView.getSelectionModel.selectedItemProperty.addListener((_, _, newValue) => selectPerson(newValue)) // #labels
     personBox.visibleProperty().bind(adapter.hasBeanProperty)
   }
@@ -52,9 +54,8 @@ class PersonController extends AbstractViewController with BeanConversions {
     statusBarController.statusLabel.setText("%s selected".format(person.getValue("name"))) // #labels
   }
 
-  def actionRevert(event: ActionEvent): Unit = {
+  def actionRevert(event: ActionEvent): Unit =
     adapter.revert()
-  }
 
   // #adapter_use
 

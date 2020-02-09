@@ -2,6 +2,8 @@ package com.sfxcode.sapphire.core.el
 
 import javax.el._
 
+import scala.reflect.ClassTag
+
 object Expressions {
   val props = System.getProperties
 
@@ -74,14 +76,29 @@ object Expressions {
   def register(name: String, obj: Any): Unit =
     processor.setValue(name, obj)
 
-  def registerBean(bean: AnyRef): Unit =
-    processor.defineBean(beanName(bean), bean)
-
   def unregister(name: String): Unit =
     processor.setValue(name, null)
 
+  def registerBean(bean: AnyRef): Unit =
+    processor.defineBean(beanName(bean), bean)
+
   def unregisterBean(bean: AnyRef): Unit =
     processor.defineBean(beanName(bean), null)
+
+  def registeredBean[T <: AnyRef]()(implicit ct: ClassTag[T]): Option[T] = {
+
+    val simpleName = ct.runtimeClass.getSimpleName
+    val key        = "%s%s".format(simpleName.head.toLower, simpleName.tail)
+    val bean       = evaluateExpressionOnObject(this, "${%s}".format(key))
+
+    if (bean != null && bean.isInstanceOf[T]) {
+      Option[T](bean.asInstanceOf[T])
+    }
+    else {
+      None
+    }
+
+  }
 
   private def beanName(bean: AnyRef): String = {
     val simpleName = bean.getClass.getSimpleName
@@ -90,6 +107,7 @@ object Expressions {
 
 }
 
+// #Expressions
 trait Expressions {
 
   def register(name: String, obj: Any): Unit = Expressions.register(name: String, obj: Any)
@@ -100,6 +118,11 @@ trait Expressions {
 
   def unregisterBean(bean: AnyRef): Unit = Expressions.unregisterBean(bean)
 
+  def registeredBean[T <: AnyRef]()(implicit ct: ClassTag[T]): Option[T] =
+    Expressions.registeredBean[T]()
+
   def evaluateExpression(source: AnyRef, expression: String): Any =
     Expressions.evaluateExpressionOnObject(source, expression)
 }
+
+// #Expressions

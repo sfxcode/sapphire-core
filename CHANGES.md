@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 1.7.1
+* Move Expression Language from JUEL (EL 2) to [Jakarta Expression Language](https://github.com/eclipse-ee4j/el-ri)
+* IssueTrackingLite Demo with scalafx support
+* Expression Language Documentation
+
 ### 1.7.0
 * Multiple WindowController Support
 * DefaultWindowController, AdditionalWindowController

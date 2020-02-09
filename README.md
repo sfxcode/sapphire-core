@@ -82,9 +82,7 @@ The default implementation depends on Apache OpenWebBeans (2.0.x).
 
 ### Expression Language
 
-Expressions are resolved by JUEL.
-
-[http://juel.sourceforge.net](http://juel.sourceforge.net)
+Expressions are resolved by EL 3 [Jakarta Expression Language](https://github.com/eclipse-ee4j/el-ri).
 
 ### ScalaFX (optional dependency)
 
@@ -129,8 +127,8 @@ ScalaFX support Scala versions up to 2.12.x
 
 ### FXML Support
 
-- Simple load from controller
-
+- Easy Connect FXML with ViewController
+- Different FXML path options
 
 ## maven
 

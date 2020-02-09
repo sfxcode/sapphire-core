@@ -28,7 +28,7 @@ class FXBeanUpdateSpec extends Specification {
   "FXBean" should {
     "update java member value" in {
       val bean: TestJavaBean = new TestJavaBean()
-      val testBean = FXBean(bean)
+      val testBean           = FXBean(bean)
       testBean.updateValue("name", "new")
       testBean.getValue("name") must be equalTo "new"
       testBean("name") must be equalTo "new"

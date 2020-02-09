@@ -21,7 +21,8 @@ places to find useful information.
 * [Github](https://github.com/scalafx/scalafx)
 * [Release Notes](https://github.com/scalafx/scalafx/blob/master/notes/12.0.2-R18.md)
 * [Stackoverflow](https://stackoverflow.com/search?q=scalafx)
-* [ProScalaFX](https://github.com/scalafx/ProScalaFX/)
+* [ScalaFX-Tutorials](https://github.com/scalafx/ScalaFX-Tutorials)
+* [ProScalaFX](https://github.com/scalafx/ProScalaFX)
 
 ## Usage
 
@@ -36,5 +37,20 @@ In your classes add scalafx Includes to your imports:
 ```
 import scalafx.Includes._
 ```
+
+## Sapphire with ScalaFX
+
+### IssueTrackingLite
+
+Sapphire IssueTrackingLite Demo in the sapphire-core demo section use scalafx.
+
+### Custom Projects
+
+I use [ScalaFX](http://www.scalafx.org/) in nearly all of my projects.
+
+* UI DSL for declarative scene graph objects creation
+* Automatic conversion to Scala
+* Scala like Collection support
+* ...
 
 

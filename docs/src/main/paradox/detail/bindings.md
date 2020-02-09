@@ -32,3 +32,5 @@ If node lookup from appication root node does not work, you can fix it by adding
 
 
 ## Add Converter
+
+@@snip [PersonController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/controller/PersonController.scala) { #addConverter }

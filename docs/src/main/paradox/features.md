@@ -36,10 +36,10 @@
 
 ## First Class FXML Support
 
-- Simple load from controller pattern
-- Different fxml path options
+- Easy Connect FXML with ViewController
+- Different FXML path options
 
 ## Additional
 
 - Internationalization Support (@ref:[i18n](detail/i18n.md))
-- Expression Language Support  (@ref:[JUEL](detail/expression_language.md))
+- Expression Language Support  (@ref:[EL 3](detail/expression_language.md))

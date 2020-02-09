@@ -2,10 +2,12 @@ package com.sfxcode.sapphire.core.demo.issues.model
 
 import java.util.concurrent.atomic.AtomicInteger
 
-import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.value.FXBeanCollections._
 import com.sfxcode.sapphire.core.value.{BeanConversions, FXBean}
-import javafx.collections.{FXCollections, ObservableList, ObservableMap}
+import javafx.collections.{FXCollections, ObservableList}
+import scalafx.Includes._
+import scalafx.collections.{ObservableBuffer, ObservableMap}
+import scalafx.collections.ObservableMap._
 
 case class Issue(id: String, projectName: String, var status: String, var synopsis: String, var description: String)
 
@@ -14,27 +16,25 @@ object IssueDataBase extends BeanConversions {
   val issueCounter = new AtomicInteger(0)
   val projectsMap: ObservableMap[String, ObservableList[FXBean[Issue]]] =
     FXCollections.observableHashMap[String, ObservableList[FXBean[Issue]]]
+
   List("Project1", "Project2", "Project3", "Project4").foreach(projectsMap.put(_, observableList[Issue]))
 
-  val projectNames: ObservableList[String] = FXCollections.observableArrayList[String]
-  projectNames.addAll(projectsMap.keySet())
-
-  projectsMap.addMapChangeListener { (state, key, _, _) =>
-    if (ChangeState.ADD.equals(state)) {
-      projectNames.add(key)
-    }
-    else if (ChangeState.REMOVE.equals(state)) {
-      projectNames.remove(key)
+  val projectNames = ObservableBuffer[String]()
+  projectNames.++=:(projectsMap.keys)
+  projectsMap.onChange { (_, change) =>
+    change match {
+      case Add(key, added)      => projectNames.+=(key)
+      case Remove(key, removed) => projectNames.-=(key)
+      case _                    =>
     }
   }
 
-  val issuesMap: ObservableMap[String, FXBean[Issue]] = observableMap[String, Issue]
-  issuesMap.addMapChangeListener { (state, _, newValue, oldValue) =>
-    if (ChangeState.ADD.equals(state)) {
-      projectsMap.get(newValue.projectName).add(newValue)
-    }
-    else if (ChangeState.REMOVE.equals(state)) {
-      projectsMap.get(oldValue.projectName).remove(oldValue)
+  val issuesMap = observableMap[String, Issue]
+  issuesMap.onChange { (_, change) =>
+    change match {
+      case Add(key, added)      => projectsMap(added.bean.projectName).+=(added)
+      case Remove(key, removed) => projectsMap(removed.bean.projectName).-=(removed)
+      case _                    =>
     }
   }
 
@@ -42,7 +42,7 @@ object IssueDataBase extends BeanConversions {
     assert(projectNames.contains(projectName))
     val issue = Issue("TT-%s".format(issueCounter.incrementAndGet()), projectName, "NEW", synopsis, description)
     assert(!issuesMap.containsKey(issue.id))
-    assert(!projectsMap.get(projectName).contains(issue.id))
+    assert(!projectsMap(projectName).contains(issue.id))
     val bean: FXBean[Issue] = issue
     issuesMap.put(issue.id, bean)
     bean
@@ -53,9 +53,8 @@ object IssueDataBase extends BeanConversions {
   }
 
   def deleteIssue(issueId: String) {
-    if (issuesMap.containsKey(issueId)) {
-      issuesMap.remove(issueId)
-    }
+    if (issuesMap.containsKey(issueId))
+      issuesMap.-=(issueId)
   }
 
   createIssue(

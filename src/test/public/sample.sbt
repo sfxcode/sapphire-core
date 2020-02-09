@@ -18,7 +18,8 @@ val osName = System.getProperty("os.name") match {
 }
 
 libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(m =>
-  "org.openjfx" % s"javafx-$m" % JavaFXVersion % Provided classifier osName)
+  "org.openjfx" % s"javafx-$m" % JavaFXVersion % Provided classifier osName
+)
 
 // Test
 

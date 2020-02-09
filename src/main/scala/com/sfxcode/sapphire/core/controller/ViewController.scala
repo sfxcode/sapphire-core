@@ -6,7 +6,6 @@ import java.util.ResourceBundle
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.cdi.BeanResolver
-import com.sfxcode.sapphire.core.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty
@@ -149,23 +148,8 @@ abstract class ViewController
 
   def actualSceneController: ViewController = windowController.get.actualSceneController
 
-  def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] = {
-
-    val simpleName = ct.runtimeClass.getSimpleName
-    val key        = "%s%s".format(simpleName.head.toLower, simpleName.tail)
-    val controller = evaluateExpression(this, "${%s}".format(key))
-
-    if (controller != null && controller.isInstanceOf[T]) {
-      Option[T](controller.asInstanceOf[T])
-    }
-    else {
-      val bean = getBean[T]()
-      bean match {
-        case result: T => Some(result)
-        case _         => None
-      }
-    }
-  }
+  def getViewController[T <: ViewController]()(implicit ct: ClassTag[T]): Option[T] =
+    registeredBean[T]()
 
   override def toString: String =
     "%s %s (fxml: %s, gainVisibility: %s)".format(

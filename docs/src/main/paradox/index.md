@@ -27,7 +27,7 @@ The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injectio
 
 ### Expression Language
 
-Expressions are resolved by [JUEL](http://juel.sourceforge.net).
+Expressions are resolved by EL 3 [Jakarta Expression Language](https://github.com/eclipse-ee4j/el-ri).
 
 ## Maven
 
@@ -60,9 +60,9 @@ Explore demos and Tutorial in project demo directory.
 
  - [Features](features.md)
  - [getting_started](getting_started.md)
- - [Development](development/index.md)
- - [Tutorial](tutorial/index.md)
  - [Core Concepts](detail/index.md)
+ - [Tutorial](tutorial/index.md)
+ - [Development](development/index.md)
  - [Examples](sample/index.md)
  - [Extension](extension.md)
  - [ScalaFX](scalafx.md)
