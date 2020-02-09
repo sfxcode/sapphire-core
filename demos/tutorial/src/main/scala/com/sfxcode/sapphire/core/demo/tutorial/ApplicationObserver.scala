@@ -6,11 +6,11 @@ import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.event.Observes
 import javax.inject.Named
 
+// #cdi
 @Named
 @ApplicationScoped
 class ApplicationObserver extends LazyLogging {
 
-  // #cdi
   def listenToWillChange(@Observes event: ContentWillChangeEvent) {
     logger.debug(event.toString)
   }
@@ -18,5 +18,5 @@ class ApplicationObserver extends LazyLogging {
   def listenToDidChange(@Observes event: ContentDidChangeEvent) {
     logger.debug(event.toString)
   }
-  // #cdi
 }
+// #cdi
