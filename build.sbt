@@ -137,7 +137,7 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
-libraryDependencies += "org.glassfish" % "jakarta.el" % "3.0.3"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.31"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

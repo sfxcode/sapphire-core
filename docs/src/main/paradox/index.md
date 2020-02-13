@@ -27,7 +27,7 @@ The default [CDI](https://de.wikipedia.org/wiki/Contexts_and_Dependency_Injectio
 
 ### Expression Language
 
-Expressions are resolved by EL 3 [Jakarta Expression Language](https://github.com/eclipse-ee4j/el-ri).
+Expressions are resolved by EL 3 [Tomcat Expression Language](https://tomcat.apache.org/tomcat-8.0-doc/elapi/index.html).
 
 ## Maven
 

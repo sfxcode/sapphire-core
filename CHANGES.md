@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.7.2
+* Expression Language now returns Options
+* replace Jakarta with [Tomcat Expression Language](https://tomcat.apache.org/tomcat-8.0-doc/elapi/index.html)
+
 ### 1.7.1
 * Move Expression Language from JUEL (EL 2) to [Jakarta Expression Language](https://github.com/eclipse-ee4j/el-ri)
 * IssueTrackingLite Demo with scalafx support

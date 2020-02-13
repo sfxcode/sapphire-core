@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.controller
 
-import com.sfxcode.sapphire.core.cdi.annotation.{FXStage, Startup}
+import com.sfxcode.sapphire.core.cdi.annotation.{ FXStage, Startup }
 import com.sun.javafx.css.StyleManager
 import javafx.application.Platform
 import javafx.stage.Stage

@@ -82,7 +82,7 @@ The default implementation depends on Apache OpenWebBeans (2.0.x).
 
 ### Expression Language
 
-Expressions are resolved by EL 3 [Jakarta Expression Language](https://github.com/eclipse-ee4j/el-ri).
+Expressions are resolved by EL 3 [Tomcat Expression Language](https://tomcat.apache.org/tomcat-8.0-doc/elapi/index.html).
 
 ### ScalaFX (optional dependency)
 

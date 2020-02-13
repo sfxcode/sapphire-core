@@ -30,7 +30,9 @@ class MainViewController extends ViewController with LazyLogging {
 
   override def didGainVisibilityFirstTime() {
     super.didGainVisibilityFirstTime()
-    controllerLabel.setText(evaluateExpression(this, "result: [${_self.windowLabel().getText()}]").toString)
+    val expressionResult =
+      evaluateExpressionOnObject[String](this, "result: [${_self.windowLabel().getText()}]").getOrElse("")
+    controllerLabel.setText(expressionResult)
   }
 
   def applicationController: ApplicationController = windowController.get.asInstanceOf[ApplicationController]
