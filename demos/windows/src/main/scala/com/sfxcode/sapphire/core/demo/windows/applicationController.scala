@@ -1,9 +1,9 @@
 package com.sfxcode.sapphire.core.demo.windows
 
 import com.sfxcode.sapphire.core.cdi.BeanResolver
-import com.sfxcode.sapphire.core.controller.{AdditionalWindowController, DefaultWindowController}
-import com.sfxcode.sapphire.core.demo.windows.controller.{AdditionalViewController, MainViewController}
-import javafx.stage.{Modality, StageStyle}
+import com.sfxcode.sapphire.core.controller.{ AdditionalWindowController, DefaultWindowController }
+import com.sfxcode.sapphire.core.demo.windows.controller.{ AdditionalViewController, MainViewController }
+import javafx.stage.{ Modality, StageStyle }
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
@@ -59,7 +59,7 @@ class SecondWindowController extends AbstractWindowController
 @Named
 @ApplicationScoped
 class ModalWindowController extends AbstractWindowController {
-  override def modality: Modality     = Modality.APPLICATION_MODAL
+  override def modality: Modality = Modality.APPLICATION_MODAL
   override def stageStyle: StageStyle = StageStyle.UTILITY
 
 }

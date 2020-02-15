@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
-import javafx.collections.{FXCollections, ObservableList}
+import javafx.collections.{ FXCollections, ObservableList }
 import javafx.fxml.FXML
 import javafx.scene.chart.PieChart
 
@@ -10,8 +10,7 @@ class WorkspaceController extends AbstractViewController {
     new PieChart.Data("Grapefruit", 20),
     new PieChart.Data("Oranges", 30),
     new PieChart.Data("Plums", 10),
-    new PieChart.Data("Apples", 40)
-  )
+    new PieChart.Data("Apples", 40))
   @FXML
   var chart: javafx.scene.chart.PieChart = _
 

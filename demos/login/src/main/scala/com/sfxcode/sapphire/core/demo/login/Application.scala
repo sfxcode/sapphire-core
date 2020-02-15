@@ -2,7 +2,7 @@ package com.sfxcode.sapphire.core.demo.login
 
 import com.sfxcode.sapphire.core.application.FXApp
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
-import com.sfxcode.sapphire.core.demo.login.controller.{LoginController, ProfileController}
+import com.sfxcode.sapphire.core.demo.login.controller.{ LoginController, ProfileController }
 import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value.FXBean
 import javafx.stage.Stage
@@ -26,7 +26,7 @@ object Application extends FXApp {
 @Named
 @ApplicationScoped
 class LoginApplicationController extends DefaultWindowController {
-  lazy val loginController: LoginController     = getController[LoginController]()
+  lazy val loginController: LoginController = getController[LoginController]()
   lazy val profileController: ProfileController = getController[ProfileController]()
 
   var applicationUser: Option[FXBean[User]] = None

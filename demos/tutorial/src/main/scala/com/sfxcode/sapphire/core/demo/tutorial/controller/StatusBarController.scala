@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.demo.tutorial.controller
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.geometry.Insets
-import javafx.scene.control.{Button, Label}
+import javafx.scene.control.{ Button, Label }
 import javafx.scene.layout.HBox
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named

@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
-import javafx.collections.{FXCollections, ObservableList}
+import javafx.collections.{ FXCollections, ObservableList }
 import javafx.fxml.FXML
 import javafx.scene.chart.XYChart
 class BarChartController extends AbstractViewController {
@@ -15,9 +15,9 @@ class BarChartController extends AbstractViewController {
 
   private def createChartData(): ObservableList[javafx.scene.chart.XYChart.Series[String, Number]] = {
     var javaValue = 17.56
-    var cValue    = 17.06
-    var cppValue  = 8.25
-    val answer    = FXCollections.observableArrayList[javafx.scene.chart.XYChart.Series[String, Number]]()
+    var cValue = 17.06
+    var cppValue = 8.25
+    val answer = FXCollections.observableArrayList[javafx.scene.chart.XYChart.Series[String, Number]]()
 
     val java = new XYChart.Series[String, Number]()
     java.setName("Java")

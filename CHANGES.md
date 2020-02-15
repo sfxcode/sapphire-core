@@ -2,6 +2,9 @@
 
 ## Versions
 
+### 1.7.3
+* BUGFIX - Expressions#registeredBean
+
 ### 1.7.2
 * Expression Language now returns Options
 * replace Jakarta with [Tomcat Expression Language](https://tomcat.apache.org/tomcat-8.0-doc/elapi/index.html)

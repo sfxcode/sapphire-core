@@ -31,9 +31,9 @@ class MainViewController extends ViewController with LazyLogging {
   // #fxmlBinding
 
   // #contentManager
-  var workspaceManager: ContentManager  = _
+  var workspaceManager: ContentManager = _
   var navigationManager: ContentManager = _
-  var statusBarManager: ContentManager  = _
+  var statusBarManager: ContentManager = _
   // #contentManager
 
   // #didGainVisibilityFirstTime

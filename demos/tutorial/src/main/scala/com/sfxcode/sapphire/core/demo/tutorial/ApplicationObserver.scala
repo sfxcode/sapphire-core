@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.demo.tutorial
 
-import com.sfxcode.sapphire.core.scene.{ContentDidChangeEvent, ContentWillChangeEvent}
+import com.sfxcode.sapphire.core.scene.{ ContentDidChangeEvent, ContentWillChangeEvent }
 import com.typesafe.scalalogging.LazyLogging
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.event.Observes

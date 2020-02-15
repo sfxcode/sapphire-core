@@ -3,11 +3,11 @@ package com.sfxcode.sapphire.core.demo.issues.model
 import java.util.concurrent.atomic.AtomicInteger
 
 import com.sfxcode.sapphire.core.value.FXBeanCollections._
-import com.sfxcode.sapphire.core.value.{BeanConversions, FXBean}
-import javafx.collections.{FXCollections, ObservableList}
+import com.sfxcode.sapphire.core.value.{ BeanConversions, FXBean }
+import javafx.collections.{ FXCollections, ObservableList }
 import scalafx.Includes._
 import scalafx.collections.ObservableMap._
-import scalafx.collections.{ObservableBuffer, ObservableMap}
+import scalafx.collections.{ ObservableBuffer, ObservableMap }
 
 case class Issue(id: String, projectName: String, var status: String, var synopsis: String, var description: String)
 
@@ -23,18 +23,18 @@ object IssueDataBase extends BeanConversions {
   projectNames.++=:(projectsMap.keys)
   projectsMap.onChange { (_, change) =>
     change match {
-      case Add(key, added)      => projectNames.+=(key)
+      case Add(key, added) => projectNames.+=(key)
       case Remove(key, removed) => projectNames.-=(key)
-      case _                    =>
+      case _ =>
     }
   }
 
   val issuesMap = observableMap[String, Issue]
   issuesMap.onChange { (_, change) =>
     change match {
-      case Add(key, added)      => projectsMap(added.bean.projectName).+=(added)
+      case Add(key, added) => projectsMap(added.bean.projectName).+=(added)
       case Remove(key, removed) => projectsMap(removed.bean.projectName).-=(removed)
-      case _                    =>
+      case _ =>
     }
   }
 
@@ -60,15 +60,13 @@ object IssueDataBase extends BeanConversions {
   createIssue(
     "Project1",
     "We rode in sorrow, with strong hounds three",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats."
-  )
+    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
   createIssue("Project2", "Bran, Sgeolan, and Lomair", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
   createIssue("Project3", "On a morning misty and mild and fair", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
   createIssue(
     "Project4",
     "The mist-drops hung on the fragrant trees",
-    "From \"The Wanderings Of Oisin\".\nW. B. Yeats."
-  )
+    "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
   createIssue("Project3", "And in the blossoms hung the bees", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
   createIssue("Project2", "We rode in sadness above Lough Lean", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
   createIssue("Project1", "For our best were dead on Gavra's green", "From \"The Wanderings Of Oisin\".\nW. B. Yeats.")
