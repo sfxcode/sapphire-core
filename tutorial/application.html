@@ -185,7 +185,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.2*
+<i class="md-icon" title="Version">label_outline</i> 1.7.4*
 </label>
 </li>
 </ul>
@@ -236,7 +236,7 @@ object Application extends FXApp {
 <p>Here we will use a MainViewController and later we connect a Navigation-, Workspace- and StatusBarController.</p>
 <pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala" target="_blank" title="Go to snippet source"></a><code class="language-scala">package com.sfxcode.sapphire.core.demo.tutorial
 
-import java.util.{Locale, ResourceBundle}
+import java.util.{ Locale, ResourceBundle }
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
@@ -278,11 +278,10 @@ class ApplicationController extends DefaultWindowController {
   // only example values ...
   override def resourceBundleForView(viewPath: String): ResourceBundle =
     if (viewPath.contains(&quot;mySpecialViewName&quot;)) {
-      val path        = &quot;myCustomResourcePath&quot;
+      val path = &quot;myCustomResourcePath&quot;
       val classLoader = Thread.currentThread().getContextClassLoader
       ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-    }
-    else {
+    } else {
       super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
     }
 
@@ -293,7 +292,7 @@ class ApplicationController extends DefaultWindowController {
 case class ApplicationName(name: String)</code></pre>
 <h2><a href="#mainviewcontroller" name="mainviewcontroller" class="anchor"><span class="anchor-link"></span></a>MainViewController</h2>
 <p>The following code snippet loads the MainViewController by the <a href="https://github.com/sfxcode/sapphire-core/blob/master/src/main/scala/com/sfxcode/sapphire/core/fxml/FxmlLoading.scala">FXMLoader</a> from the CDI managed ApplicationController Bean.</p>
-<pre class="prettyprint"><code class="language-scala">  def mainViewController = getController[MainViewController]()
+<pre class="prettyprint"><code class="language-scala">  lazy val mainViewController = getController[MainViewController]()
 
 </code></pre>
 <p>This pattern for Controller-Loading is commonly used in sapphire-core Framework.</p>
@@ -305,7 +304,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.2*
+1.7.4*
 </span>
 </div>
 </article>

@@ -186,7 +186,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.2*
+<i class="md-icon" title="Version">label_outline</i> 1.7.4*
 </label>
 </li>
 </ul>
@@ -216,13 +216,13 @@ sfxcode/sapphire-core
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
 <h1><a href="#expression-language" name="expression-language" class="anchor"><span class="anchor-link"></span></a>Expression Language</h1>
-<p>Expression Language is based on <a href="https://github.com/eclipse-ee4j/el-ri">Jakarta Expression Language</a> .</p>
+<p>Expression Language is based on <a href="https://tomcat.apache.org/tomcat-8.0-doc/elapi/index.html">Tomcat Expression Language</a> .</p>
 <h2><a href="#functions" name="functions" class="anchor"><span class="anchor-link"></span></a>Functions</h2>
 <p>EL supports defining own functions in expressions. There is a FunctionHelper in the Expressions object. Some Functions are predefined.</p>
 <h3><a href="#predefined-functions" name="predefined-functions" class="anchor"><span class="anchor-link"></span></a>Predefined Functions</h3>
 <p>Functions can have a prefix. The Sapphire Core Functions has the prefix: sf.</p>
 <pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/test/scala/com/sfxcode/sapphire/core/el/ExpressionsSpec.scala#L39-L40" target="_blank" title="Go to snippet source"></a><code class="language-scala">Expressions.register(&quot;testBoolean&quot;, false)
-Expressions.getValue(&quot;${sf:boolString(testBoolean,&#39;Y&#39;, &#39;N&#39;)}&quot;) must be equalTo &quot;N&quot;</code></pre>
+Expressions.getValue(&quot;${sf:boolString(testBoolean,&#39;Y&#39;, &#39;N&#39;)}&quot;).get must be equalTo &quot;N&quot;</code></pre>
 <table>
   <thead>
     <tr>
@@ -279,13 +279,19 @@ Expressions.getValue(&quot;${sf:boolString(testBoolean,&#39;Y&#39;, &#39;N&#39;)
 
   val clazz: Class[_] = Class.forName(&quot;com.sfxcode.sapphire.core.el.CustomFunctionMapper&quot;)
   Expressions.functionHelper.addFunction(&quot;custom&quot;, &quot;myCoolMethod&quot;, clazz, &quot;coolMethod&quot;, classOf[String])
-  Expressions.getValue(&quot;${custom:myCoolMethod(&#39;123&#39;)}&quot;) must be equalTo &quot;test-123&quot;
+  Expressions.getValue(&quot;${custom:myCoolMethod(&#39;123&#39;)}&quot;).get must be equalTo &quot;test-123&quot;
 
 }</code></pre>
 <h2><a href="#base-usage" name="base-usage" class="anchor"><span class="anchor-link"></span></a>Base Usage</h2>
 <p>Expression Language Processing is defined in the Expressions object.</p>
 <p>There is also an expressions trait:</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/scala/com/sfxcode/sapphire/core/el/expressionLanguage.scala#L113-L129" target="_blank" title="Go to snippet source"></a><code class="language-scala">trait Expressions {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/scala/com/sfxcode/sapphire/core/el/expressionLanguage.scala#L84-L106" target="_blank" title="Go to snippet source"></a><code class="language-scala">trait Expressions {
+
+  def getExpressionValue(expression: String, clazz: Class[AnyRef] = classOf[Object]): Option[Any] =
+    Expressions.getValue(expression, clazz)
+
+  def setExpressionValue(expression: String, value: Any, clazz: Class[AnyRef] = classOf[Object]): Unit =
+    Expressions.setValue(expression, value, clazz)
 
   def register(name: String, obj: Any): Unit = Expressions.register(name: String, obj: Any)
 
@@ -298,12 +304,12 @@ Expressions.getValue(&quot;${sf:boolString(testBoolean,&#39;Y&#39;, &#39;N&#39;)
   def registeredBean[T &lt;: AnyRef]()(implicit ct: ClassTag[T]): Option[T] =
     Expressions.registeredBean[T]()
 
-  def evaluateExpression(source: AnyRef, expression: String): Any =
-    Expressions.evaluateExpressionOnObject(source, expression)
+  def evaluateExpressionOnObject[T &lt;: Any](source: AnyRef, expression: String): Option[T] =
+    Expressions.evaluateExpressionOnObject[T](source, expression)
 }
 </code></pre>
 <h2><a href="#el-in-fxbean" name="el-in-fxbean" class="anchor"><span class="anchor-link"></span></a>EL in FXBean</h2>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/test/scala/com/sfxcode/sapphire/core/value/FXBeanSpec.scala#L104-L111" target="_blank" title="Go to snippet source"></a><code class="language-scala">val testBean = FXBean[TestBean](TestBean())
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/test/scala/com/sfxcode/sapphire/core/value/FXBeanSpec.scala#L102-L109" target="_blank" title="Go to snippet source"></a><code class="language-scala">val testBean = FXBean[TestBean](TestBean())
 testBean.getValue(&quot;result ${2*4}&quot;) must be equalTo &quot;result 8&quot;
 testBean.getValue(&quot;${_self.description().get()}&quot;) must be equalTo &quot;desc&quot;
 testBean.getValue(&quot;!{_self.description().get()}&quot;) must be equalTo &quot;desc&quot;
@@ -321,7 +327,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.2*
+1.7.4*
 </span>
 </div>
 </article>

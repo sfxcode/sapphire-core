@@ -184,7 +184,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.2*
+<i class="md-icon" title="Version">label_outline</i> 1.7.4*
 </label>
 </li>
 </ul>
@@ -227,14 +227,13 @@ sfxcode/sapphire-core
 <pre class="prettyprint"><code class="language-xml">&lt;Button mnemonicParsing=&quot;false&quot; onAction=&quot;#actionToggleWorkspace&quot; text=&quot;%navigation.toggle&quot; /&gt;
 </code></pre>
 <p>If you want a special resource bundle for one or more fxml files,<br/>you have to override <strong>resourceBundleForView</strong> in the ApplicationController.</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L42-L52" target="_blank" title="Go to snippet source"></a><code class="language-scala">// only example values ...
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationController.scala#L42-L51" target="_blank" title="Go to snippet source"></a><code class="language-scala">// only example values ...
 override def resourceBundleForView(viewPath: String): ResourceBundle =
   if (viewPath.contains(&quot;mySpecialViewName&quot;)) {
-    val path        = &quot;myCustomResourcePath&quot;
+    val path = &quot;myCustomResourcePath&quot;
     val classLoader = Thread.currentThread().getContextClassLoader
     ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-  }
-  else {
+  } else {
     super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
   }
 </code></pre>
@@ -246,7 +245,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.2*
+1.7.4*
 </span>
 </div>
 </article>
