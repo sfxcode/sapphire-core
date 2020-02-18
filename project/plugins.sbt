@@ -24,7 +24,7 @@ addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
 
 // Paradox handling
 
-addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.6.8")
+addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.6.9")
 
 addSbtPlugin("io.github.jonas" % "sbt-paradox-material-theme" % "0.6.0")
 
