@@ -107,6 +107,16 @@ libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 
+// showcase
+
+resolvers += "sandec" at "https://sandec.bintray.com/repo"
+
+libraryDependencies += "com.sandec" % "mdfx" % "0.1.6" % Provided
+
+libraryDependencies += "com.jfoenix" % "jfoenix" % "9.0.9" % Provided
+
+libraryDependencies += "org.fxmisc.richtext" % "richtextfx" % "0.10.3" % Provided
+
 // Compile
 
 libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web").map(m =>

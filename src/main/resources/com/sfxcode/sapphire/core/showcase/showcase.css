@@ -1,0 +1,32 @@
+.info-box {
+    -fx-background-color: #798fd1;
+}
+
+.info-label {
+    -fx-font-size: 24.0px;
+    -fx-text-fill:#FFFFFF;
+}
+
+.status-box {
+    -fx-background-color: #798fd1;
+}
+
+.status-label {
+    -fx-font-size: 12.0px;
+    -fx-text-fill:#FFFFFF;
+}
+
+.main-menu-button {
+    -fx-font-size:16px;
+    -fx-text-fill:#FFFFFF;
+}
+
+.main-menu-button-highlighted {
+    -fx-font-size:16px;
+    -fx-text-fill:#00AECB;
+}
+
+.bottom-box {
+    -fx-background-color: #9fc0bf;
+}
+

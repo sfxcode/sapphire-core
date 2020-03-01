@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="root" minHeight="800"  xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sfxcode.sapphire.core.showcase.ShowcaseController">
+    <!-- Header -->
+    <BorderPane>
+
+        <top>
+            <VBox spacing="20" styleClass="info-box">
+                <children>
+                    <Label fx:id="infoLabel" styleClass="info-label" text="Sapphire Extensions Showcase" />
+                </children>
+                <padding>
+                    <Insets left="4.0" top="4.0" bottom="4.0"/>
+                </padding>
+            </VBox>
+        </top>
+        <left>
+            <JFXTreeView fx:id="selectionTreeview" BorderPane.alignment="CENTER" />
+        </left>
+
+        <center>
+            <JFXTabPane fx:id="tabPane" BorderPane.alignment="CENTER">
+                <tabs>
+                    <Tab fx:id="showcaseTab" text="Showcase Item">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <children>
+                                    <BorderPane prefHeight="766.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <center>
+                                            <StackPane fx:id="showcasePane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                        </center>
+                                        <bottom>
+                                            <HBox fx:id="showcaseBottomBox" styleClass="bottom-box" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <padding>
+                                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding></HBox>
+                                        </bottom>
+                                    </BorderPane>
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                    <Tab fx:id="sourceTab" text="Source Code">
+                               <StackPane fx:id="sourceStackPane" />
+                    </Tab>
+                    <Tab fx:id="fxmlTab" text="FXML">
+                        <content>
+
+                                    <StackPane fx:id="fxmlStackPane" />
+
+                        </content>
+                    </Tab>
+                    <Tab fx:id="documentationTab" text="Documentation">
+                        <content>
+                            <HBox fx:id="documentationBox" />
+                        </content>
+                    </Tab>
+                </tabs>
+            </JFXTabPane>
+        </center>
+
+        <bottom>
+            <HBox prefHeight="24.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <children>
+                    <Label fx:id="statusLabel" text="Status Label" />
+                </children>
+                <padding>
+                    <Insets left="4.0" top="4.0" />
+                </padding>
+            </HBox>
+        </bottom>
+    </BorderPane>
+
+</StackPane>
