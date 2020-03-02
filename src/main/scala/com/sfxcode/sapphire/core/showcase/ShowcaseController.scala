@@ -139,7 +139,7 @@ abstract class ShowcaseController extends ViewController {
       markdown.setPadding(new Insets(4))
       documentationBox.getChildren.add(markdown)
       val shortDocs = {
-        if (docs.indexOf("#") > 0) {
+        if (docs.indexOf("#") > 0 && !"WelcomeController".equals(simpleName)) {
           docs.substring(0, docs.indexOf("#"))
         } else {
           docs

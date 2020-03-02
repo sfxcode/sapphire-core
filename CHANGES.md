@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 1.7.4
+* Showcase Controller added
+* FXTreeTableValueFactory
+
 ### 1.7.3
 * BUGFIX - Expressions#registeredBean
 
