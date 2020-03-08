@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.sfxcode.sapphire.core.showcase.controller.WelcomeController">
+    <children>
+        <HBox fx:id="welcomeBox" prefWidth="800">
+         <children>
+         </children></HBox>
+    </children>
+</AnchorPane>

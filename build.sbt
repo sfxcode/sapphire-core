@@ -14,6 +14,33 @@ scalaVersion := crossScalaVersions.value.head
 compileOrder := CompileOrder.JavaThenScala
 
 lazy val sapphire_core_root = Project(id = "sapphire-core", base = file("."))
+
+javacOptions in test += "-Dorg.apache.deltaspike.ProjectStage=Test"
+
+scalacOptions += "-deprecation"
+
+parallelExecution in Test := false
+
+val Json4sVersion  = "3.6.7"
+val LogbackVersion = "1.2.3"
+
+lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/showcase"))
+  .settings(
+    scalaVersion := "2.13.1",
+    name := "sapphire-core-showcase",
+    description := "Sapphire Core Showcase",
+    libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
+          .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
+    resolvers += "sandec" at "https://sandec.bintray.com/repo",
+    libraryDependencies += "com.sandec"          % "mdfx"           % "0.1.6",
+    libraryDependencies += "com.jfoenix"         % "jfoenix"        % "9.0.9",
+    libraryDependencies += "org.fxmisc.richtext" % "richtextfx"     % "0.10.3",
+    libraryDependencies += "org.json4s"          %% "json4s-native" % Json4sVersion,
+    mainClass := Some("com.sfxcode.sapphire.core.demo.showcse.Application")
+  )
+  .dependsOn(sapphire_core_root)
+
 lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/login"))
   .settings(
     scalaVersion := "2.13.1",
@@ -21,16 +48,10 @@ lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/log
     description := "Sapphire Login Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
   )
   .dependsOn(sapphire_core_root)
-
-javacOptions in test += "-Dorg.apache.deltaspike.ProjectStage=Test"
-
-scalacOptions += "-deprecation"
-
-parallelExecution in Test := false
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/issues"))
   .settings(
@@ -39,7 +60,7 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/i
     description := "Sapphire Issues Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     libraryDependencies += "org.scalafx"    %% "scalafx"        % "12.0.2-R18",
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
@@ -52,7 +73,7 @@ lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutoria
     description := "Sapphire Tutorial",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.tutorial.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -64,7 +85,7 @@ lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows")
     description := "Sapphire Windows",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.windows.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -103,7 +124,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.3" % Test
 
-libraryDependencies += "org.json4s" %% "json4s-native" % "3.6.7" % Test
+libraryDependencies += "org.json4s" %% "json4s-native" % Json4sVersion % Test
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3" % Test
 
