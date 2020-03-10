@@ -12,7 +12,7 @@
   -fx-font-smoothing-type: gray;
   -fx-font-size: 12;
   -fx-fill: -mdfx-font-color;
-  -fx-padding: 6 4 4 10;
+  -fx-padding: 6 4 16 12;
 }
 .markdown-italic {
   -fx-font-style: italic;
@@ -22,7 +22,7 @@
 }
 
 .markdown-normal-flow {
-  -fx-line-spacing: 4;
+  -fx-line-spacing: 8;
 }
 
 .markdown-heading .markdown-text {

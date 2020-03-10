@@ -14,7 +14,7 @@ Source Code of the ViewController used for the specific showcase.
 
 ### FXML Tab
 
-Sourece Code of the FXML File for the specific showcase.
+Source Code of the FXML File for the specific showcase.
 
 ### Documentation Tab
 
