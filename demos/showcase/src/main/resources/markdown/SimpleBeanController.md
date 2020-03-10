@@ -1,0 +1,4 @@
+Demonstration of:
+
+* FXBeanAdapter
+* KeyBindings

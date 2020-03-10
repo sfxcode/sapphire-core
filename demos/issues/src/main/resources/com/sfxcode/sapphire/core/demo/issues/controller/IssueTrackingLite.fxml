@@ -32,7 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import com.sfxcode.sapphire.core.control.FXValueFactory?>
+<?import com.sfxcode.sapphire.core.control.FXTableValueFactory?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -72,19 +72,19 @@
                                                 <TableColumn maxWidth="750.0" minWidth="75.0" prefWidth="75.0"
                                                              text="Name">
                                                     <cellValueFactory>
-                                                        <FXValueFactory property="id"/>
+                                                        <FXTableValueFactory property="id"/>
                                                     </cellValueFactory>
                                                 </TableColumn>
                                                 <TableColumn maxWidth="750.0" minWidth="75.0" prefWidth="75.0"
                                                              text="Status">
                                                     <cellValueFactory>
-                                                        <FXValueFactory property="status"/>
+                                                        <FXTableValueFactory property="status"/>
                                                     </cellValueFactory>
                                                 </TableColumn>
                                                 <TableColumn maxWidth="4430.0" minWidth="443.0" prefWidth="443.0"
                                                              text="Synopsis">
                                                     <cellValueFactory>
-                                                        <FXValueFactory property="synopsis"/>
+                                                        <FXTableValueFactory property="synopsis"/>
                                                     </cellValueFactory>
                                                 </TableColumn>
                                             </columns>

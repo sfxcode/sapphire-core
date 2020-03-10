@@ -4,7 +4,9 @@
 
 ### 1.7.4
 * Showcase Controller added
-* FXTreeTableValueFactory
+* FXValueFactory deprecated => usr FXTableValueFactory
+* FXTreeTableValueFactory added
+* FXTableCellFactory added
 
 ### 1.7.3
 * BUGFIX - Expressions#registeredBean

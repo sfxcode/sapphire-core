@@ -6,7 +6,11 @@ import com.sfxcode.sapphire.core.value.{ BeanConversions, FXBean }
 import javafx.fxml.FXML
 import javafx.scene.control.TableView
 
+import scala.util.Random
+
 class TableValueController extends BaseController with BeanConversions {
+  val random = new Random()
+  val RandomRange = 10
 
   @FXML
   var tableView: TableView[FXBean[Person]] = _
@@ -19,4 +23,7 @@ class TableValueController extends BaseController with BeanConversions {
 
   def selectPerson(person: FXBean[Person]): Unit =
     logger.info("%s selected".format(person.getValue("name")))
+
+  def testString: String = "Test " + (random.nextInt(RandomRange) + 1)
+
 }

@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.sfxcode.sapphire.core.control.FXTableValueFactory?>
-<?import javafx.geometry.Insets?>
+<?import com.sfxcode.sapphire.core.control.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.net.URL?>
+
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="person" AnchorPane.bottomAnchor="0.0"
             AnchorPane.leftAnchor="0.0"
             AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="com.sfxcode.sapphire.core.showcase.controller.control.TableValueController">
+            fx:controller="com.sfxcode.sapphire.core.showcase.controller.control.TableCellController">
     <children>
         <BorderPane maxHeight="300" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
                 <TableView fx:id="tableView" BorderPane.alignment="CENTER">
                     <columns>
-                        <TableColumn prefWidth="50.0" text="ID">
-                            <cellValueFactory>
-                                <FXTableValueFactory property="id"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="100.0" text="Name">
+
+                        <TableColumn text="Name">
                             <cellValueFactory>
                                 <FXTableValueFactory property="name"/>
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="50.0" text="Age">
+                        <TableColumn  text="Balance">
                             <cellValueFactory>
-                                <FXTableValueFactory property="age" format="0000"/>
+                                <FXTableValueFactory property="balance" format="#,##0.00" />
+                            </cellValueFactory>
+                            <cellFactory>
+                                <FXTableCellFactory alignment="right"/>
+                            </cellFactory>
+                        </TableColumn>
+                        <TableColumn  text="Active">
+                            <cellValueFactory>
+                                <FXTableValueFactory property="isActive" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="250.0" text="Expression">
+                        <TableColumn  text="Checkbox Active">
                             <cellValueFactory>
-                                <FXTableValueFactory property="Name: !{_self.name()} Age: !{_self.age()} (!{_self.id()}) "/>
+                                <FXTableValueFactory property="isActive" />
                             </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn  text="Expression CDI">
-                            <cellValueFactory>
-                                <FXTableValueFactory property="!{tableValueController.testString()}" />
-                            </cellValueFactory>
+                            <cellFactory>
+                                <FXTableCellFactory simpleClassName="CheckBoxTableCell" alignment="right"/>
+                            </cellFactory>
                         </TableColumn>
                     </columns>
                 </TableView>

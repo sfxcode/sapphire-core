@@ -1,4 +1,4 @@
-FXValueFactory usage in Tables created from FXML.
+FXTableValueFactory usage in Tables created from FXML.
 
 Shows simple Bindings and Expression Bindings.
 
@@ -10,7 +10,7 @@ Shows simple Bindings and Expression Bindings.
 ```
 <TableColumn prefWidth="50.0" text="Age">
     <cellValueFactory>
-        <FXValueFactory property="age"/>
+        <FXTableValueFactory property="age"/>
     </cellValueFactory>
 </TableColumn>
 ```
@@ -23,7 +23,7 @@ Shows simple Bindings and Expression Bindings.
 ```
 <TableColumn prefWidth="50.0" text="Age">
     <cellValueFactory>
-        <FXValueFactory property="age" format="0000"/>
+        <FXTableValueFactory property="age" format="0000"/>
     </cellValueFactory>
 </TableColumn>
 ```
@@ -35,12 +35,13 @@ Shows simple Bindings and Expression Bindings.
 ```
 !{_self.name()}
 ```
+_self is used for the current FXBean value, !{tableValueController.testString} is used for the registered instance of TableValueController
 
 #### Because of existing usage in FXML of the $ Symbol ! is used (it is changed internal later by $)
 ```
 <TableColumn prefWidth="250.0" text="Description">
     <cellValueFactory>
-        <FXValueFactory property="Name: !{_self.name()} Age: !{_self.age()} (!{_self.id()}) "/>
+        <FXTableValueFactory property="Name: !{_self.name()} Age: !{_self.age()} (!{_self.id()}) "/>
     </cellValueFactory>
 </TableColumn>
 ```
