@@ -99,13 +99,13 @@ abstract class WindowController extends FxmlLoading with NodeLocator with Expres
           case e: Exception => logger.error(e.getMessage, e)
         }
     }
-    if (!newController.gainVisibility) {
+    if (!newController.gainedVisibility) {
       try {
         newController.didGainVisibilityFirstTime()
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
-      newController.gainVisibility = true
+      newController.gainedVisibility = true
     }
     try {
       newController.didGainVisibility()

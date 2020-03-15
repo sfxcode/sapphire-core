@@ -97,13 +97,13 @@ class ContentManager extends LazyLogging {
       addPaneContent(newController.rootPane)
       newController.managedParent.setValue(parentController)
 
-      if (!newController.gainVisibility) {
+      if (!newController.gainedVisibility) {
         try {
           newController.didGainVisibilityFirstTime()
         } catch {
           case e: Exception => logger.error(e.getMessage, e)
         }
-        newController.gainVisibility = true
+        newController.gainedVisibility = true
       }
 
       try {

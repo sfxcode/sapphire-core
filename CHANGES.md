@@ -2,11 +2,16 @@
 
 ## Versions
 
-### 1.7.4
+### 1.8.0
+* Showcase as core functions for better documentation
 * Showcase Controller added
-* FXValueFactory deprecated => usr FXTableValueFactory
-* FXTreeTableValueFactory added
-* FXTableCellFactory added
+* Demos: ShowCase added (Demo & Documentation of sapphire-core)
+* (Deprecation) FXValueFactory deprecated => use FXTableValueFactory
+* (Feature) FXTreeTableValueFactory added
+* (Feature) FXTableCellFactory added
+* (Feature) ActionEvents:selectionFromActionEvent listView added
+* (Fix) ViewVontroller updatePaneContent  didGainVisibilityFirstTime is now before didGainVisibility
+* (Enhancement) ViewVontroller rename gainVisibility -> gainedVisibility
 
 ### 1.7.3
 * BUGFIX - Expressions#registeredBean

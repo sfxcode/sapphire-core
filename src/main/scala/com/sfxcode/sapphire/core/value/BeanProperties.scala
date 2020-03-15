@@ -178,7 +178,6 @@ abstract class BeanProperties(val typeHints: List[FXBeanClassMemberInfo]) extend
       case c: javax.xml.datatype.XMLGregorianCalendar =>
         DefaultFunctions.defaultDateConverter.toString(c.toGregorianCalendar.getTime)
       case v: AnyRef => v
-      case v: Any => v.toString
       case _ => ""
     }
     propertyValue match {

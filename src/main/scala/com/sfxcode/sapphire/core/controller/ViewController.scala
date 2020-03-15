@@ -38,7 +38,7 @@ abstract class ViewController
   val managedParent = new SimpleObjectProperty[ViewController]()
   protected val managedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
   protected val unmanagedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
-  var gainVisibility = false
+  var gainedVisibility = false
 
   def stage: Stage = windowController.get.stage
 
@@ -82,7 +82,7 @@ abstract class ViewController
 
   def didInitialize() {}
 
-  def canGainVisibility: Boolean = true
+  def canGainVisibility(): Boolean = true
 
   def willGainVisibility(): Unit = {
     managedChildren.foreach(_.willGainVisibility())
@@ -123,8 +123,8 @@ abstract class ViewController
             viewController.windowController.set(windowController.get)
             viewController.willGainVisibility()
             pane.getChildren.add(viewController.rootPane)
-            viewController.didGainVisibility()
             viewController.didGainVisibilityFirstTime()
+            viewController.didGainVisibility()
             unmanagedChildren.add(viewController)
             true
           } catch {
@@ -146,9 +146,9 @@ abstract class ViewController
   def actualSceneController: ViewController = windowController.get.actualSceneController
 
   override def toString: String =
-    "%s %s (fxml: %s, gainVisibility: %s)".format(
+    "%s %s (fxml: %s, gainedVisibility: %s)".format(
       this.getClass.getSimpleName,
       hashCode(),
       isLoadedFromFXML,
-      gainVisibility)
+      gainedVisibility)
 }

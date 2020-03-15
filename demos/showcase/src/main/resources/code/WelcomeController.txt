@@ -12,10 +12,38 @@ class WelcomeController extends BaseController with LazyLogging {
 
   @FXML var welcomeBox: HBox = _
 
+  override def startup(): Unit = {
+    super.startup()
+    logMethod("startup")
+  }
+
+  override def didInitialize(): Unit = {
+    super.didInitialize()
+    logMethod("didInitialize")
+  }
+
+  // Method for condititional loading, securing access, and so on
+  override def canGainVisibility(): Boolean = {
+    val result = super.canGainVisibility()
+    logMethod("canGainVisibility")
+    result
+  }
+
+  override def willGainVisibility(): Unit = {
+    super.willGainVisibility()
+    logMethod("willGainVisibility")
+  }
+
+  override def didGainVisibility(): Unit = {
+    super.didGainVisibility()
+    logMethod("didGainVisibility")
+  }
+
+  // called only once
   override def didGainVisibilityFirstTime() {
     super.didGainVisibilityFirstTime()
-    val docs = Source.fromURL(getClass.getResource("/markdown/SapphireCoreShowcase.md")).getLines.mkString("\n")
-    val css = applicationController.showcaseController.markdownCss
+    val docs     = Source.fromURL(getClass.getResource("/markdown/SapphireCoreShowcase.md")).getLines.mkString("\n")
+    val css      = applicationController.showcaseController.markdownCss
     val markdown = new MDFXNode(docs)
     markdown.getStylesheets.add(css)
     markdown.setPadding(new Insets(4))
@@ -24,23 +52,15 @@ class WelcomeController extends BaseController with LazyLogging {
 
   }
 
-  override def startup(): Unit =
-    logMethod("startup")
-
-  override def didInitialize(): Unit =
-    logMethod("didInitialize")
-
-  override def willGainVisibility(): Unit =
-    logMethod("willGainVisibility")
-
-  override def didGainVisibility(): Unit =
-    logMethod("didGainVisibility")
-
-  override def willLooseVisibility(): Unit =
+  override def willLooseVisibility(): Unit = {
+    super.willLooseVisibility()
     logMethod("willLooseVisibility")
+  }
 
-  override def didLooseVisibility(): Unit =
+  override def didLooseVisibility(): Unit = {
+    super.didLooseVisibility()
     logMethod("didLooseVisibility")
+  }
 
   def logMethod(name: String): Unit =
     logger.info("class: %s - action: %s (root: %s, parent: %S)".format(this, name, parent, rootPane))
