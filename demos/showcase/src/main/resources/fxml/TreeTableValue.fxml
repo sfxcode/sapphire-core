@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.sfxcode.sapphire.core.control.FXTableValueFactory?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import com.sfxcode.sapphire.core.control.FXTreeTableValueFactory?>
+<?import com.sfxcode.sapphire.core.control.FXTreeTableCellFactory?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="person" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0"
+            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.sfxcode.sapphire.core.showcase.controller.control.TreeTableValueController">
+    <children>
+        <BorderPane maxHeight="300" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <TreeTableView fx:id="tableView" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TreeTableColumn prefWidth="200.0" text="Name">
+                            <cellValueFactory>
+                                <FXTreeTableValueFactory property="name"/>
+                            </cellValueFactory>
+                        </TreeTableColumn>
+                        <TreeTableColumn prefWidth="250.0" text="Expression">
+                            <cellValueFactory>
+                                <FXTreeTableValueFactory property="Name: !{_self.name()} Age: !{_self.age()} (!{_self.id()}) "/>
+                            </cellValueFactory>
+                        </TreeTableColumn>
+                        <TreeTableColumn  text="Balance">
+                            <cellValueFactory>
+                                <FXTreeTableValueFactory property="balance" format="#,##0.00" />
+                            </cellValueFactory>
+                            <cellFactory>
+                                <FXTreeTableCellFactory alignment="right"/>
+                            </cellFactory>
+                        </TreeTableColumn>
+                    </columns>
+                </TreeTableView>
+            </center>
+        </BorderPane>
+    </children>
+
+</AnchorPane>

@@ -6,11 +6,11 @@ import javafx.util.Callback
 
 class FXTreeTableValueFactory[S <: AnyRef, T]
   extends Callback[TreeTableColumn.CellDataFeatures[S, T], ObservableValue[T]]
-  with TableValue {
+  with ValueFactory[S, T] {
 
   def call(features: TreeTableColumn.CellDataFeatures[S, T]): ObservableValue[T] = {
     val value: S = features.getValue.getValue
-    resolveValue[S, T](value)
+    resolveValue(value)
   }
 
 }

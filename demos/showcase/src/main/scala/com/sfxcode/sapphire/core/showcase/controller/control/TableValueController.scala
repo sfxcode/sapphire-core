@@ -4,11 +4,11 @@ import com.sfxcode.sapphire.core.showcase.controller.BaseController
 import com.sfxcode.sapphire.core.showcase.model.{ Person, PersonDatabase }
 import com.sfxcode.sapphire.core.value.{ BeanConversions, FXBean }
 import javafx.fxml.FXML
-import javafx.scene.control.TableView
+import javafx.scene.control.{ Control, TableView }
 
 import scala.util.Random
 
-class TableValueController extends BaseController with BeanConversions {
+class TableValueController extends BaseController {
   val random = new Random()
   val RandomRange = 10
 

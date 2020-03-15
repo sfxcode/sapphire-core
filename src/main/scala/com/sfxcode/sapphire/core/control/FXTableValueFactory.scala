@@ -7,11 +7,11 @@ import javafx.util.Callback
 
 class FXTableValueFactory[S <: AnyRef, T]
   extends Callback[TableColumn.CellDataFeatures[S, T], ObservableValue[T]]
-  with TableValue {
+  with ValueFactory[S, T] {
 
   def call(features: CellDataFeatures[S, T]): ObservableValue[T] = {
     val value: S = features.getValue
-    resolveValue[S, T](value)
+    resolveValue(value)
   }
 
 }

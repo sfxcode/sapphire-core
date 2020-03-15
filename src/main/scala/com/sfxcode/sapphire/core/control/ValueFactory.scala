@@ -3,12 +3,12 @@ package com.sfxcode.sapphire.core.control
 import java.text.DecimalFormat
 
 import com.sfxcode.sapphire.core.value.{ FXBean, ReflectionTools }
-import javafx.beans.property.{ DoubleProperty, FloatProperty, IntegerProperty, LongProperty, SimpleStringProperty }
+import javafx.beans.property._
 import javafx.beans.value.ObservableValue
 
 import scala.beans.BeanProperty
 
-trait TableValue {
+trait ValueFactory[S, T] {
 
   lazy val numberFormatter = new DecimalFormat(format)
 
@@ -18,7 +18,7 @@ trait TableValue {
   @BeanProperty
   var format = ""
 
-  def resolveValue[S <: AnyRef, T](value: S): ObservableValue[T] =
+  protected def resolveValue(value: S): ObservableValue[T] =
     value match {
       case bean: FXBean[_] =>
         var p = bean.getProperty(property)
