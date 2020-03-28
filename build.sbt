@@ -7,7 +7,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.13.1", "2.12.10")
+crossScalaVersions := Seq("2.13.1", "2.12.11")
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -110,7 +110,7 @@ lazy val docs = (project in file("docs"))
   )
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
-val JavaFXVersion = "13.0.2"
+val JavaFXVersion = "14"
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux")   => "linux"
   case n if n.startsWith("Mac")     => "mac"
@@ -122,7 +122,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.3" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.9.2" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % Json4sVersion % Test
 
@@ -136,7 +136,7 @@ libraryDependencies += "com.sandec" % "mdfx" % "0.1.6" % Provided
 
 libraryDependencies += "com.jfoenix" % "jfoenix" % "9.0.9" % Provided
 
-libraryDependencies += "org.fxmisc.richtext" % "richtextfx" % "0.10.3" % Provided
+libraryDependencies += "org.fxmisc.richtext" % "richtextfx" % "0.10.4" % Provided
 
 // Compile
 
@@ -156,7 +156,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.14"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.15"
 
 val DeltaspikeVersion = "1.9.3"
 
@@ -168,7 +168,7 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
-libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.31"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.33"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
