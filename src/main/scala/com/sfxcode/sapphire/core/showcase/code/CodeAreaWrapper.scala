@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.showcase.code
 
-import CodeAreaWrapper._
+import com.sfxcode.sapphire.core.showcase.code.CodeAreaWrapper._
 import org.fxmisc.richtext.{ CodeArea, LineNumberFactory }
 
 case class CodeAreaWrapper(codeArea: CodeArea, highlighter: String = "") {

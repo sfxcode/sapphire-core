@@ -7,7 +7,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.13.1", "2.12.11")
+crossScalaVersions := Seq("2.13.2", "2.12.11")
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -21,12 +21,12 @@ scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-val Json4sVersion  = "3.6.7"
+val Json4sVersion  = "3.6.8"
 val LogbackVersion = "1.2.3"
 
 lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/showcase"))
   .settings(
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.2",
     name := "sapphire-core-showcase",
     description := "Sapphire Core Showcase",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -43,7 +43,7 @@ lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/sh
 
 lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/login"))
   .settings(
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.2",
     name := "sapphire-login-demo",
     description := "Sapphire Login Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -55,20 +55,20 @@ lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/log
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/issues"))
   .settings(
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.2",
     name := "sapphire-issues-demo",
     description := "Sapphire Issues Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
-    libraryDependencies += "org.scalafx"    %% "scalafx"        % "12.0.2-R18",
+    libraryDependencies += "org.scalafx"    %% "scalafx"        % "14-R19",
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
 
 lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutorial"))
   .settings(
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.2",
     name := "sapphire-tutorial",
     description := "Sapphire Tutorial",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -80,7 +80,7 @@ lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutoria
 
 lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows"))
   .settings(
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.2",
     name := "sapphire-windows",
     description := "Sapphire Windows",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -110,7 +110,7 @@ lazy val docs = (project in file("docs"))
   )
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
-val JavaFXVersion = "14"
+val JavaFXVersion = "14.0.1"
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux")   => "linux"
   case n if n.startsWith("Mac")     => "mac"
@@ -122,7 +122,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.9.2" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.9.4" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % Json4sVersion % Test
 
@@ -136,7 +136,7 @@ libraryDependencies += "com.sandec" % "mdfx" % "0.1.6" % Provided
 
 libraryDependencies += "com.jfoenix" % "jfoenix" % "9.0.9" % Provided
 
-libraryDependencies += "org.fxmisc.richtext" % "richtextfx" % "0.10.4" % Provided
+libraryDependencies += "org.fxmisc.richtext" % "richtextfx" % "0.10.5" % Provided
 
 // Compile
 
@@ -156,7 +156,7 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.15"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.16"
 
 val DeltaspikeVersion = "1.9.3"
 
@@ -168,7 +168,7 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
-libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.33"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.34"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

@@ -14,9 +14,9 @@ case class TestBean(
   zip: Zip = Zip(),
   description: Option[String] = Some("desc"),
   observable: Property[_] = new SimpleStringProperty("observable")) {
-  def doubleAge() = age * 2
+  def doubleAge(): Int = age * 2
 
-  def multiply(first: Int, second: Int): Int = first * second
+  def multiply(first: java.lang.Long, second: java.lang.Long): Long = first * second
 
 }
 
@@ -28,7 +28,7 @@ class TestClass(
   var observable: Property[_] = new SimpleStringProperty("observable")) {
   def doubleAge() = age * 2
 
-  def multiply(first: Int, second: Int): Int = first * second
+  def multiply(first: java.lang.Long, second: java.lang.Long): Long = first * second
 
 }
 
