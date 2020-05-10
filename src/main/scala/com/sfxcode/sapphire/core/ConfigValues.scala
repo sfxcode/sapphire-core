@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core
 
-import com.typesafe.config.{ Config, ConfigFactory }
+import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.LazyLogging
 
 import scala.collection.JavaConverters._
@@ -17,12 +17,14 @@ trait ConfigValues extends LazyLogging {
       var result = defaultReturnValue
       try {
         result = f(path)
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
       }
       result
-    } else {
+    }
+    else {
       logger.warn("config path: %s not exist".format(path))
       defaultReturnValue
     }
@@ -47,12 +49,14 @@ trait ConfigValues extends LazyLogging {
       var result = List[E]()
       try {
         result = f(path).asScala.toList.asInstanceOf[List[E]]
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
       }
       result
-    } else {
+    }
+    else {
       logger.warn("config path: %s not exist".format(path))
       List()
     }

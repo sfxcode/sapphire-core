@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.stage
 import com.sfxcode.sapphire.core.ConfigValues
 import javafx.scene.Scene
 import javafx.scene.layout.HBox
-import javafx.stage.{ Modality, Stage, StageStyle }
+import javafx.stage.{Modality, Stage, StageStyle}
 
 trait StageSupport extends ConfigValues {
 

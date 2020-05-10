@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.cdi.provider
 
 import com.typesafe.scalalogging.LazyLogging
-import javafx.collections.{ FXCollections, ObservableMap }
+import javafx.collections.{FXCollections, ObservableMap}
 import javafx.util.StringConverter
 import javafx.util.converter.DefaultStringConverter
 import javax.enterprise.context.ApplicationScoped
@@ -22,17 +22,19 @@ class ConverterProvider extends Serializable with LazyLogging {
 
     if (!forceNew && converterMap.containsKey(className)) {
       converterMap.get(className).asInstanceOf[StringConverter[T]]
-    } else {
+    }
+    else {
 
       var result = new DefaultStringConverter().asInstanceOf[StringConverter[T]]
 
       try {
         val converterClass = Class.forName(className)
-        val converter = converterClass.getDeclaredConstructor().newInstance()
+        val converter      = converterClass.getDeclaredConstructor().newInstance()
         if (converter != null) {
           result = converter.asInstanceOf[StringConverter[T]]
         }
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.warn(e.getMessage)
           logger.warn("use default converter for name: " + className)

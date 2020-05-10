@@ -4,16 +4,16 @@ import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
-import javafx.beans.{ property => jfxbp }
-import javafx.collections.{ FXCollections, ObservableMap }
+import javafx.beans.{property => jfxbp}
+import javafx.collections.{FXCollections, ObservableMap}
 import javafx.scene.Node
 import javafx.util.StringConverter
 
 import scala.collection.JavaConverters._
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null)
-  extends KeyConverter
-  with LazyLogging {
+    extends KeyConverter
+    with LazyLogging {
 
   val beanProperty = new SimpleObjectProperty[FXBean[T]]()
 
@@ -65,7 +65,8 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
       val result = viewController.applicationEnvironment.nodePropertyResolver.resolve(node.get)
       logger.debug("resolved property for %s : %s".format(key, result))
       result
-    } else {
+    }
+    else {
       logger.warn("can not resolve property for key %s - try to create FXBeanAdapter with parent node".format(key))
       None
     }
@@ -117,16 +118,18 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   }
 
   protected def bindBidirectionalFromStringProperty[S](
-    stringProperty: StringProperty,
-    beanProperty: Property[S],
-    beanKey: String) {
+      stringProperty: StringProperty,
+      beanProperty: Property[S],
+      beanKey: String
+  ) {
     val converter = converterMap.asScala.get(stringProperty)
     if (converter.isDefined) {
-      val c = converter.get
+      val c  = converter.get
       val bp = beanProperty.asInstanceOf[Property[S]]
       stringProperty.bindBidirectional[S](bp, c.asInstanceOf[StringConverter[S]])
       boundProperties.put(stringProperty, beanProperty)
-    } else
+    }
+    else
       beanProperty match {
         case _: StringProperty =>
           val defaultStringConverter = viewController.converterFactory.getConverterByName[Any]("DefaultStringConverter")

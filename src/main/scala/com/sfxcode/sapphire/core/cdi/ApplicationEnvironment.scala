@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.cdi
 
-import java.util.{ Locale, ResourceBundle }
+import java.util.{Locale, ResourceBundle}
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
