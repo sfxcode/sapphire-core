@@ -168,7 +168,7 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
-libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.34"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.35"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

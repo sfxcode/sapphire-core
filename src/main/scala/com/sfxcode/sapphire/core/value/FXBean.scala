@@ -78,9 +78,7 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
 
     expressionMap.keySet.asScala.foreach(k => updateObservableValue(expressionMap.get(k), getValue(k)))
 
-    parentBean.foreach { bean =>
-      bean.childHasChanged(observable, oldValue, newValue)
-    }
+    parentBean.foreach(bean => bean.childHasChanged(observable, oldValue, newValue))
   }
 
   def childHasChanged(observable: ObservableValue[_], oldValue: Any, newValue: Any): Unit =
@@ -110,9 +108,7 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
         val oldValue = changeManagementMap.get(key)
         updateValue(key, oldValue)
       }
-      childrenMap.keySet.foreach { key =>
-        childrenMap(key).revert()
-      }
+      childrenMap.keySet.foreach(key => childrenMap(key).revert())
       trackChanges = true
       clearChanges()
     }

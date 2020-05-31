@@ -17,9 +17,7 @@ abstract class KeyConverter {
   def guessPropertyForNode(key: String): Option[Property[_]]
 
   def addConverterForKeys(keys: List[String], converterName: String, forceNew: Boolean = false): Unit =
-    keys.foreach { key =>
-      addConverter(key, converterName, forceNew)
-    }
+    keys.foreach(key => addConverter(key, converterName, forceNew))
 
   def addByteConverter(keys: String*): Unit = keys.foreach(addConverter(_, classOf[ByteStringConverter].getSimpleName))
 

@@ -17,16 +17,12 @@ class KeyBindings {
   }
 
   def add(list: List[String], nodePrefix: String = ""): KeyBindings = {
-    list.foreach { key =>
-      bindingMap.put(nodePrefix + key, key)
-    }
+    list.foreach(key => bindingMap.put(nodePrefix + key, key))
     this
   }
 
   def add(map: Map[String, String]): KeyBindings = {
-    map.keys.foreach { key =>
-      bindingMap.put(key, map(key))
-    }
+    map.keys.foreach(key => bindingMap.put(key, map(key)))
     this
   }
 
