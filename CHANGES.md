@@ -2,6 +2,9 @@
 
 ## Versions
 
+### 1.8.2
+* scala 2.13.2
+
 ### 1.8.0
 * Showcase as core functions for better documentation
 * Showcase Controller added
