@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.control
 
 import javafx.scene.control.cell.TextFieldTreeTableCell
-import javafx.scene.control.{TreeTableCell, TreeTableColumn}
+import javafx.scene.control.{ TreeTableCell, TreeTableColumn }
 import javafx.util.Callback
 
 import scala.util.Try

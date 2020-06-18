@@ -3,11 +3,11 @@ package com.sfxcode.sapphire.core.el
 import java.lang.reflect.Method
 import java.util.Date
 
-import com.sfxcode.sapphire.core.cdi.{ApplicationEnvironment, BeanResolver}
-import com.sfxcode.sapphire.core.{ConfigValues, ResourceBundleHolder}
+import com.sfxcode.sapphire.core.cdi.{ ApplicationEnvironment, BeanResolver }
+import com.sfxcode.sapphire.core.{ ConfigValues, ResourceBundleHolder }
 import com.typesafe.scalalogging.LazyLogging
-import javafx.collections.{FXCollections, ObservableMap}
-import javafx.util.converter.{DateStringConverter, DateTimeStringConverter}
+import javafx.collections.{ FXCollections, ObservableMap }
+import javafx.util.converter.{ DateStringConverter, DateTimeStringConverter }
 import javax.el.ELProcessor
 
 import scala.annotation.varargs
@@ -25,8 +25,7 @@ class FunctionHelper(processor: ELProcessor) extends LazyLogging {
     var method: Method = null
     try {
       method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
-    }
-    catch {
+    } catch {
       case e: Exception => logger.warn(e.getMessage, e)
     }
     if (method != null)
@@ -49,7 +48,7 @@ object FunctionHelper extends LazyLogging {
   val SapphireFunctionPrefix = "sf"
 
   def apply(processor: ELProcessor): FunctionHelper = {
-    val result          = new FunctionHelper(processor)
+    val result = new FunctionHelper(processor)
     val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.DefaultFunctions")
     result.addFunction(SapphireFunctionPrefix, "frameworkName", clazz, "frameworkName")
     result.addFunction(SapphireFunctionPrefix, "frameworkVersion", clazz, "frameworkVersion")
@@ -63,8 +62,7 @@ object FunctionHelper extends LazyLogging {
       "boolString",
       classOf[Boolean],
       classOf[String],
-      classOf[String]
-    )
+      classOf[String])
     result.addFunction(SapphireFunctionPrefix, "configString", clazz, "configString", classOf[String])
     result.addFunction(SapphireFunctionPrefix, "i18n", clazz, "i18n", classOf[String], classOf[Array[Any]])
     result.addFunction(
@@ -73,8 +71,7 @@ object FunctionHelper extends LazyLogging {
       classOf[java.lang.String],
       "format",
       classOf[String],
-      classOf[Array[Any]]
-    )
+      classOf[Array[Any]])
     result
   }
 
@@ -82,12 +79,12 @@ object FunctionHelper extends LazyLogging {
 
 object DefaultFunctions extends ConfigValues with BeanResolver {
   private lazy val applicationEnvironment = getBean[ApplicationEnvironment]()
-  private lazy val recourceBundleHolder   = ResourceBundleHolder(applicationEnvironment.resourceBundle)
+  private lazy val recourceBundleHolder = ResourceBundleHolder(applicationEnvironment.resourceBundle)
 
-  val DefaultDateConverterPattern     = configStringValue("sapphire.core.value.defaultDateConverterPattern")
+  val DefaultDateConverterPattern = configStringValue("sapphire.core.value.defaultDateConverterPattern")
   val DefaultDateTimeConverterPattern = configStringValue("sapphire.core.value.defaultDateTimeConverterPattern")
 
-  var defaultDateConverter     = new DateStringConverter(DefaultDateConverterPattern)
+  var defaultDateConverter = new DateStringConverter(DefaultDateConverterPattern)
   var defaultDateTimeConverter = new DateTimeStringConverter(DefaultDateTimeConverterPattern)
 
   def frameworkName(): String = com.sfxcode.sapphire.core.BuildInfo.name
@@ -100,8 +97,7 @@ object DefaultFunctions extends ConfigValues with BeanResolver {
   def boolString(value: Boolean, trueValue: String, falseValue: String): String =
     if (value) {
       trueValue
-    }
-    else {
+    } else {
       falseValue
     }
 
@@ -112,7 +108,7 @@ object DefaultFunctions extends ConfigValues with BeanResolver {
   def dateString(date: AnyRef): String = {
     println(date)
     val s = date match {
-      case d: java.util.Date     => defaultDateConverter.toString(d)
+      case d: java.util.Date => defaultDateConverter.toString(d)
       case c: java.util.Calendar => defaultDateConverter.toString(c.getTime)
       case c: javax.xml.datatype.XMLGregorianCalendar =>
         DefaultFunctions.defaultDateConverter.toString(c.toGregorianCalendar.getTime)

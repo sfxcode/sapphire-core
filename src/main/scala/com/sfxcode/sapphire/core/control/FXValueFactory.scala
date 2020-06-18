@@ -7,8 +7,8 @@ import javafx.util.Callback
 
 @deprecated(since = "1.7.4", message = "Use FXTableValueFactory")
 class FXValueFactory[S <: AnyRef, T]
-    extends Callback[TableColumn.CellDataFeatures[S, T], ObservableValue[T]]
-    with ValueFactory[S, T] {
+  extends Callback[TableColumn.CellDataFeatures[S, T], ObservableValue[T]]
+  with ValueFactory[S, T] {
 
   def call(features: CellDataFeatures[S, T]): ObservableValue[T] = {
     val value: S = features.getValue

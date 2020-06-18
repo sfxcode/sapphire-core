@@ -2,8 +2,8 @@ package com.sfxcode.sapphire.core.value
 
 import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
 import com.sfxcode.sapphire.core.el.DefaultFunctions
-import javafx.beans.property.{Property, StringProperty}
-import javafx.collections.{FXCollections, ObservableMap}
+import javafx.beans.property.{ Property, StringProperty }
+import javafx.collections.{ FXCollections, ObservableMap }
 import javafx.util.StringConverter
 import javafx.util.converter._
 

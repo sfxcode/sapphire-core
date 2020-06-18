@@ -3,9 +3,9 @@ package com.sfxcode.sapphire.core.el
 import javax.el.MethodNotFoundException
 
 object ObjectExpressionHelper {
-  val TempObjectName               = "_self"
-  val TempValueName                = "_tempValue"
-  val ExpressionPrefix             = "${"
+  val TempObjectName = "_self"
+  val TempValueName = "_tempValue"
+  val ExpressionPrefix = "${"
   val FxmlExpressionPrefix: String = "!{"
 
   def getValue(obj: AnyRef, expressionString: String, clazz: Class[AnyRef]): Option[Any] = {
@@ -15,11 +15,9 @@ object ObjectExpressionHelper {
 
     if (expression.contains(ExpressionPrefix)) {
       result = getValueOnObject(obj, expression, clazz)
-    }
-    else if (expression.contains("(")) {
+    } else if (expression.contains("(")) {
       result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, expression), clazz)
-    }
-    else {
+    } else {
       var tempExpression = expression
       while (tempExpression.indexOf(".") != -1 && tempExpression.indexOf("().") == -1) {
         val index = tempExpression.indexOf(".")
@@ -32,8 +30,7 @@ object ObjectExpressionHelper {
           methodExpression = methodExpression + "()"
         }
         result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, methodExpression), clazz)
-      }
-      catch {
+      } catch {
         case e: MethodNotFoundException =>
           if (!tempExpression.endsWith("()")) {
             result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, tempExpression), clazz)
@@ -45,7 +42,7 @@ object ObjectExpressionHelper {
 
   private def getValueOnObject(obj: AnyRef, expression: String, clazz: Class[AnyRef]): Option[Any] = {
     val tempObjectString = "%s_%s".format(TempObjectName, Math.abs(obj.hashCode()))
-    val newExpression    = expression.replace(TempObjectName, tempObjectString)
+    val newExpression = expression.replace(TempObjectName, tempObjectString)
     Expressions.register(tempObjectString, obj)
     val result = Expressions.getValue(newExpression, clazz)
     Expressions.unregister(tempObjectString)
