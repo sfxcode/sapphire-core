@@ -16,7 +16,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-license-report" % "1.2.0")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.0")
 
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.16")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.17")
 
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.5.1")
 

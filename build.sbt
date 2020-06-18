@@ -21,7 +21,7 @@ scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-val Json4sVersion  = "3.6.8"
+val Json4sVersion  = "3.6.9"
 val LogbackVersion = "1.2.3"
 
 lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/showcase"))
@@ -34,7 +34,7 @@ lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/sh
     libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     resolvers += "sandec" at "https://sandec.bintray.com/repo",
     libraryDependencies += "com.sandec"          % "mdfx"           % "0.1.6",
-    libraryDependencies += "com.jfoenix"         % "jfoenix"        % "9.0.9",
+    libraryDependencies += "com.jfoenix"         % "jfoenix"        % "9.0.10",
     libraryDependencies += "org.fxmisc.richtext" % "richtextfx"     % "0.10.3",
     libraryDependencies += "org.json4s"          %% "json4s-native" % Json4sVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.showcse.Application")
@@ -134,7 +134,7 @@ resolvers += "sandec" at "https://sandec.bintray.com/repo"
 
 libraryDependencies += "com.sandec" % "mdfx" % "0.1.6" % Provided
 
-libraryDependencies += "com.jfoenix" % "jfoenix" % "9.0.9" % Provided
+libraryDependencies += "com.jfoenix" % "jfoenix" % "9.0.10" % Provided
 
 libraryDependencies += "org.fxmisc.richtext" % "richtextfx" % "0.10.5" % Provided
 
@@ -156,9 +156,9 @@ libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
 
 libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
 
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.16"
+libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.17"
 
-val DeltaspikeVersion = "1.9.3"
+val DeltaspikeVersion = "1.9.4"
 
 libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
 
@@ -168,7 +168,7 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
-libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.35"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.36"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
