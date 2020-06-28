@@ -7,7 +7,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.13.2", "2.12.11")
+crossScalaVersions := Seq("2.13.3", "2.12.11")
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -110,7 +110,9 @@ lazy val docs = (project in file("docs"))
   )
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
+
 val JavaFXVersion = "14.0.1"
+
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux")   => "linux"
   case n if n.startsWith("Mac")     => "mac"
@@ -122,7 +124,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.9.4" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.10.0" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % Json4sVersion % Test
 

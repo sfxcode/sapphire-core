@@ -2,9 +2,9 @@
 
 ## Versions
 
-### 1.8.2
-* scala 2.13.2
-* Dependency Updates
+### 1.8.3
+
+* Scala 2.13.3
 
 ### 1.8.0
 * Showcase as core functions for better documentation
