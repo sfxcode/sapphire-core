@@ -7,7 +7,7 @@ name := "sapphire-core"
 
 organization := "com.sfxcode.sapphire"
 
-crossScalaVersions := Seq("2.13.3", "2.12.11")
+crossScalaVersions := Seq("2.13.3", "2.12.12")
 
 scalaVersion := crossScalaVersions.value.head
 
@@ -111,7 +111,7 @@ lazy val docs = (project in file("docs"))
 
 addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
-val JavaFXVersion = "14.0.1"
+val JavaFXVersion = "14.0.2.1"
 
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux")   => "linux"
@@ -170,7 +170,7 @@ libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb
 
 // Expression Language
 
-libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.36"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.37"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
