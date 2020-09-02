@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, ConverterProvider }
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
@@ -126,7 +126,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     } else
       beanProperty match {
         case _: StringProperty =>
-          val defaultStringConverter = ConverterProvider.getConverterByName[Any]("DefaultStringConverter")
+          val defaultStringConverter = ApplicationEnvironment.getConverterByName[Any]("DefaultStringConverter")
           stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[Any]], defaultStringConverter)
           boundProperties.put(stringProperty, beanProperty)
       }

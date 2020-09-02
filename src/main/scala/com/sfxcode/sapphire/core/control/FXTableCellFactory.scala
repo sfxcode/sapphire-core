@@ -6,7 +6,7 @@ import javafx.util.Callback
 
 import scala.util.Try
 
-class FXTableCellFactory[S, T] extends Callback[TableColumn[S, T], TableCell[S, T]] with CellFactory[S, T] {
+class FXTableCellFactory[S, T] extends Callback[TableColumn[S, T], TableCell[S, T]] with FXCellFactory[S, T] {
   private val TextFieldTableCellClassName = "TextFieldTableCell"
 
   def call(column: TableColumn[S, T]): TableCell[S, T] = {

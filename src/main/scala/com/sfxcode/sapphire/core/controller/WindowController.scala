@@ -72,8 +72,6 @@ abstract class WindowController extends FxmlLoading with NodeLocator with Expres
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
       }
-      //sceneControllerWillChange.fire(SceneControllerWillChangeEvent(this, newController, oldController))
-
       replaceSceneContentWithNode(newController.rootPane, resize)
       sceneControllerProperty.set(newController)
       if (oldController != null)
@@ -91,7 +89,6 @@ abstract class WindowController extends FxmlLoading with NodeLocator with Expres
     }
 
     try newController.didGainVisibility()
-    // sceneControllerDidChange.fire(SceneControllerDidChangeEvent(this, newController, oldController))
     catch {
       case e: Exception => logger.error(e.getMessage, e)
     }

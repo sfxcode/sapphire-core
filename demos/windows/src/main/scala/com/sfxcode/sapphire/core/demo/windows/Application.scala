@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.demo.windows
 
-import com.sfxcode.sapphire.core.application.FXApp
-import com.sfxcode.sapphire.core.controller.DefaultWindowController
+import com.sfxcode.sapphire.core.application.AbstractApplication
+import com.sfxcode.sapphire.core.controller.AbstractApplicationController
 
-object Application extends FXApp {
+object Application extends AbstractApplication {
 
-  val applicationController: DefaultWindowController = new ApplicationController
+  val applicationController: AbstractApplicationController = new ApplicationController
 
 }

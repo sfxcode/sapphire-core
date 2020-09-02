@@ -6,7 +6,9 @@ import javafx.util.Callback
 
 import scala.util.Try
 
-class FXTreeTableCellFactory[S, T] extends Callback[TreeTableColumn[S, T], TreeTableCell[S, T]] with CellFactory[S, T] {
+class FXTreeTableCellFactory[S, T]
+  extends Callback[TreeTableColumn[S, T], TreeTableCell[S, T]]
+  with FXCellFactory[S, T] {
   private val TextFieldTreeTableCellClassName = "TextFieldTreeTableCell"
 
   def call(column: TreeTableColumn[S, T]): TreeTableCell[S, T] = {

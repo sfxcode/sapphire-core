@@ -41,6 +41,8 @@ lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/sh
   )
   .dependsOn(sapphire_core_root)
 
+addCommandAlias("run-showcase", "sapphire-core-showcase/run")
+
 lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/login"))
   .settings(
     scalaVersion := "2.13.2",
@@ -52,6 +54,8 @@ lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/log
     mainClass := Some("com.sfxcode.sapphire.core.demo.login.Application")
   )
   .dependsOn(sapphire_core_root)
+
+addCommandAlias("run-login", "sapphire-login-demo/run")
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/issues"))
   .settings(
@@ -65,6 +69,8 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/i
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
+
+addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
 lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutorial"))
   .settings(
@@ -90,7 +96,6 @@ lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows")
   )
   .dependsOn(sapphire_core_root)
 
-addCommandAlias("run-login", "sapphire-login-demo/run")
 lazy val docs = (project in file("docs"))
   .enablePlugins(ParadoxSitePlugin)
   .enablePlugins(ParadoxMaterialThemePlugin)
@@ -108,8 +113,6 @@ lazy val docs = (project in file("docs"))
     (Compile / paradoxMarkdownToHtml / excludeFilter) := (Compile / paradoxMarkdownToHtml / excludeFilter).value ||
           ParadoxPlugin.InDirectoryFilter((Compile / paradox / sourceDirectory).value / "includes")
   )
-
-addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
 val JavaFXVersion = "14.0.2.1"
 

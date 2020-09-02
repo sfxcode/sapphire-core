@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.application.ConverterProvider
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.el.DefaultFunctions
 import javafx.beans.property.{ Property, StringProperty }
 import javafx.collections.{ FXCollections, ObservableMap }
@@ -26,7 +26,7 @@ abstract class KeyConverter {
     keys.foreach(addConverter(_, classOf[CurrencyStringConverter].getSimpleName))
 
   def addConverter(key: String, converterName: String, forceNew: Boolean = false) {
-    val converter = ConverterProvider.getConverterByName(converterName, forceNew).asInstanceOf[StringConverter[_]]
+    val converter = ApplicationEnvironment.getConverterByName(converterName, forceNew).asInstanceOf[StringConverter[_]]
     addConverter(key, converter)
   }
 

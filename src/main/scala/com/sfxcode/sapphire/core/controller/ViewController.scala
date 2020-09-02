@@ -6,6 +6,7 @@ import java.util.ResourceBundle
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.ConfigValues
 import com.sfxcode.sapphire.core.el._
+import com.sfxcode.sapphire.core.event.ActionEvents
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty

@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
-import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, FXApp }
+import com.sfxcode.sapphire.core.application.{ AbstractApplication, ApplicationEnvironment }
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.tutorial.ApplicationController
 import com.sfxcode.sapphire.core.scene.ContentManager
@@ -13,7 +13,7 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
 
   // load applicationController
   def applicationController: ApplicationController =
-    FXApp.App.applicationController.asInstanceOf[ApplicationController]
+    ApplicationEnvironment.application.applicationController.asInstanceOf[ApplicationController]
 
   // load applicationController by Expression
   def applicationControllerByExpression: ApplicationController = {
@@ -24,7 +24,7 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
 
   // load applicationController by Application Environment
   def applicationControllerByApplicationEnvironment: ApplicationController = {
-    val result = ApplicationEnvironment.defaultWindowController.asInstanceOf[ApplicationController]
+    val result = ApplicationEnvironment.applicationController.asInstanceOf[ApplicationController]
     result
   }
 

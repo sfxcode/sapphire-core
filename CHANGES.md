@@ -2,6 +2,9 @@
 
 ## Versions
 
+### 2.0.0
+* Removed FXValueFactory
+
 ### 1.8.4
 * Scala 2.12.12
 * JavaFX 14.0.2.1

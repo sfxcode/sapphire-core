@@ -1,10 +1,10 @@
 package com.sfxcode.sapphire.core.demo.windows
 
-import com.sfxcode.sapphire.core.controller.{ AdditionalWindowController, DefaultWindowController }
+import com.sfxcode.sapphire.core.controller.{ AbstractApplicationController, AdditionalWindowController }
 import com.sfxcode.sapphire.core.demo.windows.controller.{ AdditionalViewController, MainViewController }
 import javafx.stage.{ Modality, StageStyle }
 
-class ApplicationController extends DefaultWindowController {
+class ApplicationController extends AbstractApplicationController {
 
   lazy val mainViewController: MainViewController =
     getController[MainViewController]()

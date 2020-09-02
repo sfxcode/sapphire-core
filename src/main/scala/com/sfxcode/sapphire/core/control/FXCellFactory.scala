@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.control
 
-import com.sfxcode.sapphire.core.application.ConverterProvider
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import javafx.geometry.Pos
 import javafx.scene.control.IndexedCell
 import javafx.scene.control.cell.{ TextFieldTableCell, TextFieldTreeTableCell }
@@ -9,7 +9,7 @@ import javafx.util.StringConverter
 
 import scala.beans.BeanProperty
 
-trait CellFactory[S, T] {
+trait FXCellFactory[S, T] {
 
   @BeanProperty
   var packageName: String = "javafx.scene.control.cell."
@@ -40,7 +40,7 @@ trait CellFactory[S, T] {
       }
 
     def getConverterForName(name: String): StringConverter[T] =
-      ConverterProvider.getConverterByName(name)
+      ApplicationEnvironment.getConverterByName(name)
 
   }
 

@@ -29,9 +29,6 @@ class ContentManager extends LazyLogging {
   var actualController: ViewController = _
   var lastController: ViewController = _
 
-  //  @Inject var contentWillChange: Event[ContentWillChangeEvent] = _
-  //  @Inject var contentChanged: Event[ContentDidChangeEvent] = _
-
   def addToStack(viewController: ViewController): Unit = {
     controllerStack.push(viewController)
     stackSize.setValue(controllerStack.size)
@@ -68,7 +65,6 @@ class ContentManager extends LazyLogging {
 
       try {
         newController.windowController.set(parentController.windowController.getValue)
-        //contentWillChange.fire(ContentWillChangeEvent(contentPane, parentController, newController, actualController))
         newController.willGainVisibility()
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
@@ -101,8 +97,6 @@ class ContentManager extends LazyLogging {
 
       try {
         newController.didGainVisibility()
-        //.fire(ContentDidChangeEvent(contentPane, parentController, newController, actualController))
-
         parentController.addChildViewController(newController)
       } catch {
         case e: Exception => logger.error(e.getMessage, e)
