@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
-import com.sfxcode.sapphire.core.application.ApplicationEnvironment
+import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, FXApp }
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.tutorial.ApplicationController
 import com.sfxcode.sapphire.core.scene.ContentManager
@@ -11,16 +11,14 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
   override def didGainVisibility(): Unit =
     statusBarController.statusLabel.setText("%s loaded".format(getClass.getSimpleName))
 
+  // load applicationController
+  def applicationController: ApplicationController =
+    FXApp.App.applicationController.asInstanceOf[ApplicationController]
+
   // load applicationController by Expression
   def applicationControllerByExpression: ApplicationController = {
     val maybeController = registeredBean[ApplicationController]
     var result = maybeController.get
-    result
-  }
-
-  // load applicationController by CDI
-  def applicationControllerByCDI: ApplicationController = {
-    val result = getBean[ApplicationController]()
     result
   }
 
@@ -32,7 +30,7 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
 
   def mainViewController: MainViewController = applicationControllerByApplicationEnvironment.mainViewController
 
-  def statusBarController: StatusBarController = getBean[StatusBarController]()
+  def statusBarController: StatusBarController = mainViewController.statusBarController
 
   def workspaceManager: ContentManager = mainViewController.workspaceManager
 

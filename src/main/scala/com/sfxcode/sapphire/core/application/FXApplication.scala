@@ -13,8 +13,6 @@ class FXApplication extends javafx.application.Application {
     applicationStage.show()
   }
 
-  override def stop(): Unit = {
+  override def stop(): Unit =
     FXApp.App.applicationWillTerminate()
-    FXApp.App.beanResolver.stop()
-  }
 }

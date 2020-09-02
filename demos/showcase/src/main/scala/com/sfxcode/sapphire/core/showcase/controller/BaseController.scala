@@ -5,10 +5,9 @@ import com.sfxcode.sapphire.core.showcase.ApplicationController
 
 trait BaseController extends ViewController {
 
-  // Load applicationController by CDI
   def applicationController: ApplicationController = {
-    val result = getBean[ApplicationController]()
-    result
+    val result = registeredBean[ApplicationController]()
+    result.get
   }
 
   def showcaseController: ShowcaseViewController = applicationController.showcaseController

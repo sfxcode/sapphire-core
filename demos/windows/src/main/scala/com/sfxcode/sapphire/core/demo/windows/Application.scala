@@ -5,6 +5,6 @@ import com.sfxcode.sapphire.core.controller.DefaultWindowController
 
 object Application extends FXApp {
 
-  val applicationController: DefaultWindowController = beanResolver.getBean[ApplicationController]()
+  val applicationController: DefaultWindowController = new ApplicationController
 
 }

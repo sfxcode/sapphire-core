@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.control
 
-import com.sfxcode.sapphire.core.application.{ BeanResolver, ConverterProvider }
+import com.sfxcode.sapphire.core.application.ConverterProvider
 import javafx.geometry.Pos
 import javafx.scene.control.IndexedCell
 import javafx.scene.control.cell.{ TextFieldTableCell, TextFieldTreeTableCell }

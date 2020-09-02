@@ -11,9 +11,9 @@ class NavigationController extends AbstractViewController {
     val actualController = workspaceManager.actualController
     val barChartController = mainViewController.barChartController
     val workspaceController = mainViewController.workspaceController
-    if (actualController == workspaceController) {
+    if (actualController == workspaceController)
       workspaceManager.updatePaneContent(barChartController)
-    } else
+    else
       workspaceManager.updatePaneContent(workspaceController)
   }
 
@@ -32,7 +32,7 @@ class NavigationController extends AbstractViewController {
 
   def actionReload(event: ActionEvent): Unit = {
     actionClickButton(event)
-    getBean[ApplicationController]().reload()
+    applicationController.reload()
   }
 
 }

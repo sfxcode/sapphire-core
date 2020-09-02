@@ -1,25 +1,20 @@
 package com.sfxcode.sapphire.core.demo.windows
 
-import com.sfxcode.sapphire.core.application.BeanResolver
 import com.sfxcode.sapphire.core.controller.{ AdditionalWindowController, DefaultWindowController }
 import com.sfxcode.sapphire.core.demo.windows.controller.{ AdditionalViewController, MainViewController }
 import javafx.stage.{ Modality, StageStyle }
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
 
-@Named
-@ApplicationScoped
-class ApplicationController extends DefaultWindowController with BeanResolver {
+class ApplicationController extends DefaultWindowController {
 
   lazy val mainViewController: MainViewController =
     getController[MainViewController]()
 
   // #SecondWindowControllerVar
-  lazy val secondWindowController = getBean[SecondWindowController]()
+  lazy val secondWindowController = new SecondWindowController
   // #SecondWindowControllerVar
 
   // #ModalWindowControllerVar
-  lazy val modalWindowController = getBean[ModalWindowController]()
+  lazy val modalWindowController = new ModalWindowController
   // #ModalWindowControllerVar
 
   def applicationDidLaunch() {
@@ -50,14 +45,11 @@ abstract class AbstractWindowController extends AdditionalWindowController {
 // #AdditionalWindowController
 
 // #SecondWindowController
-@Named
-@ApplicationScoped
 class SecondWindowController extends AbstractWindowController
 // #SecondWindowController
 
 // #ModalWindowController
-@Named
-@ApplicationScoped
+
 class ModalWindowController extends AbstractWindowController {
   override def modality: Modality = Modality.APPLICATION_MODAL
   override def stageStyle: StageStyle = StageStyle.UTILITY

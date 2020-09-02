@@ -5,7 +5,6 @@ import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.ConfigValues
-import com.sfxcode.sapphire.core.application.BeanResolver
 import com.sfxcode.sapphire.core.el._
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
@@ -15,13 +14,11 @@ import javafx.fxml.Initializable
 import javafx.scene.Scene
 import javafx.scene.layout.Pane
 import javafx.stage.Stage
-import javax.annotation.{ PostConstruct, PreDestroy }
 
 import scala.language.implicitConversions
 
 abstract class ViewController
   extends FxmlLoading
-  with BeanResolver
   with ActionEvents
   with Initializable
   with Expressions
@@ -60,12 +57,6 @@ abstract class ViewController
   startup()
 
   def startup() {}
-
-  @PreDestroy
-  def preDestroy(): Unit = {
-    unregisterBean(this)
-    shutdown()
-  }
 
   def shutdown() {}
 

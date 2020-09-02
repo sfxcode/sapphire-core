@@ -12,9 +12,6 @@ import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.ObservableMap
 import javafx.scene.{ Parent, Scene }
 import javafx.stage.Stage
-import javax.annotation.{ PostConstruct, PreDestroy }
-import javax.enterprise.event.Event
-import javax.inject.Inject
 
 case class SceneControllerWillChangeEvent(
   windowController: WindowController,
@@ -42,12 +39,6 @@ abstract class WindowController extends FxmlLoading with NodeLocator with Expres
   startup()
 
   def startup() {}
-
-  @PreDestroy
-  def preDestroy(): Unit = {
-    unregisterBean(this)
-    shutdown()
-  }
 
   def shutdown() {}
 

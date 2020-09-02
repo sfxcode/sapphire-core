@@ -3,7 +3,6 @@ package com.sfxcode.sapphire.core.value
 import com.sfxcode.sapphire.core.test.{ Book, PersonDatabase }
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
-import org.apache.deltaspike.core.api.exclude.Exclude
 import org.specs2.mutable._
 
 case class Zip(value: Long = 12345)
@@ -42,7 +41,6 @@ case class ParentBean(parentName: String = "parentName", child: ChildBean = Chil
 
 case class ListClass(list: List[String] = List("A", "B"))
 
-@Exclude
 class FXBeanSpec extends Specification with LazyLogging {
 
   sequential

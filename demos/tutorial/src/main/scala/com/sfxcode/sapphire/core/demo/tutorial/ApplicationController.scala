@@ -5,12 +5,7 @@ import java.util.{ Locale, ResourceBundle }
 import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
-import javax.enterprise.context.ApplicationScoped
-import javax.enterprise.inject.Produces
-import javax.inject.Named
 
-@Named
-@ApplicationScoped
 class ApplicationController extends DefaultWindowController {
 
   lazy val mainViewController: MainViewController =

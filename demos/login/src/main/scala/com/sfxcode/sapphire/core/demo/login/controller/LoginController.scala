@@ -31,12 +31,10 @@ class LoginController extends ViewController with BeanConversions {
       password.clear()
       applicationController().applicationUser = user
       applicationController().showMain()
-    } else {
+    } else
       errorMessage.setText("Login Error")
-    }
   }
 
-  def applicationController(): LoginApplicationController =
-    getBean[LoginApplicationController]()
+  def applicationController(): LoginApplicationController = registeredBean[LoginApplicationController].get
 
 }

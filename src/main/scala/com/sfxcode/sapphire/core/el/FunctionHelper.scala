@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.el
 import java.lang.reflect.Method
 import java.util.Date
 
-import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, BeanResolver }
+import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment }
 import com.sfxcode.sapphire.core.{ ConfigValues, ResourceBundleHolder }
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{ FXCollections, ObservableMap }

@@ -33,10 +33,10 @@ lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/sh
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     resolvers += "sandec" at "https://sandec.bintray.com/repo",
-    libraryDependencies += "com.sandec"          % "mdfx"           % "0.1.6",
-    libraryDependencies += "com.jfoenix"         % "jfoenix"        % "9.0.10",
-    libraryDependencies += "org.fxmisc.richtext" % "richtextfx"     % "0.10.3",
-    libraryDependencies += "org.json4s"          %% "json4s-native" % Json4sVersion,
+    libraryDependencies += "com.sandec"          % "mdfx"          % "0.1.6",
+    libraryDependencies += "com.jfoenix"         % "jfoenix"       % "9.0.10",
+    libraryDependencies += "org.fxmisc.richtext" % "richtextfx"    % "0.10.3",
+    libraryDependencies += "org.json4s"         %% "json4s-native" % Json4sVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.showcse.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -61,7 +61,7 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/i
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
-    libraryDependencies += "org.scalafx"    %% "scalafx"        % "14-R19",
+    libraryDependencies += "org.scalafx"   %% "scalafx"         % "14-R19",
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -154,19 +154,19 @@ libraryDependencies += "com.typesafe" % "config" % "1.4.0"
 
 // CDI
 
-libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
-
-libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
-
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.17"
-
-val DeltaspikeVersion = "1.9.4"
-
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
-
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion
-
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion
+//libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
+//
+//libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
+//
+//libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.17"
+//
+//val DeltaspikeVersion = "1.9.4"
+//
+//libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
+//
+//libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion
+//
+//libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion
 
 // Expression Language
 
@@ -188,16 +188,17 @@ buildInfoOptions += BuildInfoOption.BuildTime
 
 pomPostProcess := { node: XmlNode =>
   new RuleTransformer(new RewriteRule {
-    override def transform(node: XmlNode): XmlNodeSeq = node match {
-      case e: Elem
-          if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided")
-            && e.child.exists(c => c.label == "groupId" && c.text == "org.openjfx") =>
-        val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
-        val artifact     = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
-        val version      = e.child.filter(_.label == "version").flatMap(_.text).mkString
-        Comment(s"provided dependency $organization#$artifact;$version has been omitted")
-      case _ => node
-    }
+    override def transform(node: XmlNode): XmlNodeSeq =
+      node match {
+        case e: Elem
+            if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided")
+              && e.child.exists(c => c.label == "groupId" && c.text == "org.openjfx") =>
+          val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
+          val artifact     = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
+          val version      = e.child.filter(_.label == "version").flatMap(_.text).mkString
+          Comment(s"provided dependency $organization#$artifact;$version has been omitted")
+        case _ => node
+      }
   }).transform(node).head
 }
 

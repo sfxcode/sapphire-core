@@ -18,7 +18,7 @@ class MainViewController extends ViewController with LazyLogging {
   lazy val navigationController: NavigationController =
     getController[NavigationController]()
   lazy val statusBarController: StatusBarController =
-    getBean[StatusBarController]()
+    new StatusBarController()
   // #controllerLoading
 
   // #fxmlBinding
