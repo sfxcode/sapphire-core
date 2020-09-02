@@ -7,7 +7,7 @@ import com.sfxcode.sapphire.core.showcase.controller.control.{
   TableValueController,
   TreeTableValueController
 }
-import com.sfxcode.sapphire.core.showcase.{ Application, ShowcaseController, ShowcaseItem }
+import com.sfxcode.sapphire.core.showcase.{ ShowcaseController, ShowcaseItem }
 import com.typesafe.scalalogging.LazyLogging
 @FxmlLoader(path = "/com/sfxcode/sapphire/core/showcase/ShowcaseView.fxml")
 class ShowcaseViewController extends ShowcaseController with LazyLogging {
@@ -31,7 +31,7 @@ class ShowcaseViewController extends ShowcaseController with LazyLogging {
 
   override def didGainVisibilityFirstTime(): Unit = {
     super.didGainVisibilityFirstTime()
-    infoLabel.setText(Application.title)
+    //infoLabel.setText(Application.title)
     updateShowcaseItems(items)
     changeShowcaseItem(welcomeItem)
   }

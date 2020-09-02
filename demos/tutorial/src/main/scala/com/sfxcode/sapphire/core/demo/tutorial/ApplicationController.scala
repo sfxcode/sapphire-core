@@ -2,6 +2,7 @@ package com.sfxcode.sapphire.core.demo.tutorial
 
 import java.util.{ Locale, ResourceBundle }
 
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
 import javax.enterprise.context.ApplicationScoped
@@ -18,7 +19,7 @@ class ApplicationController extends DefaultWindowController {
   def applicationDidLaunch() {
     logger.info("start " + this)
     // #Resources
-    applicationEnvironment.loadResourceBundle("bundles/application")
+    ApplicationEnvironment.loadResourceBundle("bundles/application")
     // #Resources
     replaceSceneContent(mainViewController)
   }
@@ -27,14 +28,13 @@ class ApplicationController extends DefaultWindowController {
     // Styling
     reloadStyles()
     // Resources
-    applicationEnvironment.clearResourceBundleCache()
-    applicationEnvironment.loadResourceBundle("bundles/application")
+    ApplicationEnvironment.clearResourceBundleCache()
+    ApplicationEnvironment.loadResourceBundle("bundles/application")
     // FXML
     val newMainViewController = getController[MainViewController]()
     replaceSceneContent(newMainViewController)
   }
 
-  @Produces
   def applicationName: ApplicationName =
     ApplicationName(configStringValue("application.name"))
 
@@ -45,9 +45,8 @@ class ApplicationController extends DefaultWindowController {
       val path = "myCustomResourcePath"
       val classLoader = Thread.currentThread().getContextClassLoader
       ResourceBundle.getBundle(path, Locale.getDefault(), classLoader)
-    } else {
+    } else
       super.resourceBundleForView(viewPath) // =  applicationEnvironment.resourceBundle
-    }
 
   // #CustomBundle
 

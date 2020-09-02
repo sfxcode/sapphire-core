@@ -11,7 +11,7 @@ case class EmptyName(name: String)
 
 // #Application
 
-object Application extends FXApp {}
+//object Application extends FXApp {}
 // #Application
 
 // #ApplicationController
@@ -24,11 +24,6 @@ class ApplicationController extends DefaultWindowController {
   def applicationDidLaunch() {
     replaceSceneContent(mainController)
   }
-
-  // CDI Prducer Method
-  @Produces
-  def emptyName: EmptyName =
-    EmptyName("New Issue")
 
 }
 

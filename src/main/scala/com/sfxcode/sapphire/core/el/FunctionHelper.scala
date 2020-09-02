@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.el
 import java.lang.reflect.Method
 import java.util.Date
 
-import com.sfxcode.sapphire.core.cdi.{ ApplicationEnvironment, BeanResolver }
+import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, BeanResolver }
 import com.sfxcode.sapphire.core.{ ConfigValues, ResourceBundleHolder }
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{ FXCollections, ObservableMap }
@@ -23,9 +23,8 @@ class FunctionHelper(processor: ELProcessor) extends LazyLogging {
 
   def addFunction(prefix: String, localName: String, clazz: Class[_], methodName: String, args: Class[_]*): Unit = {
     var method: Method = null
-    try {
-      method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
-    } catch {
+    try method = clazz.getDeclaredMethod(methodName, args.map(_.asInstanceOf[Class[_]]): _*)
+    catch {
       case e: Exception => logger.warn(e.getMessage, e)
     }
     if (method != null)
@@ -34,9 +33,8 @@ class FunctionHelper(processor: ELProcessor) extends LazyLogging {
 
   def addFunction(prefix: String, localName: String, method: Method): Unit = {
     val functionKey = key(prefix, localName)
-    if (map.containsKey(functionKey)) {
+    if (map.containsKey(functionKey))
       logger.warn("function override for key: %s".format(functionKey))
-    }
     map.put(functionKey, method)
     processor.defineFunction(prefix, localName, method)
 
@@ -77,9 +75,8 @@ object FunctionHelper extends LazyLogging {
 
 }
 
-object DefaultFunctions extends ConfigValues with BeanResolver {
-  private lazy val applicationEnvironment = getBean[ApplicationEnvironment]()
-  private lazy val recourceBundleHolder = ResourceBundleHolder(applicationEnvironment.resourceBundle)
+object DefaultFunctions extends ConfigValues {
+  private lazy val recourceBundleHolder = ResourceBundleHolder(ApplicationEnvironment.resourceBundle)
 
   val DefaultDateConverterPattern = configStringValue("sapphire.core.value.defaultDateConverterPattern")
   val DefaultDateTimeConverterPattern = configStringValue("sapphire.core.value.defaultDateTimeConverterPattern")
@@ -95,11 +92,10 @@ object DefaultFunctions extends ConfigValues with BeanResolver {
   def i18n(key: String, params: Any*): String = recourceBundleHolder.message(key, params: _*)
 
   def boolString(value: Boolean, trueValue: String, falseValue: String): String =
-    if (value) {
+    if (value)
       trueValue
-    } else {
+    else
       falseValue
-    }
 
   def now: Date = new Date
 

@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.demo.tutorial.ApplicationController
 import com.sfxcode.sapphire.core.scene.ContentManager
@@ -25,7 +26,7 @@ abstract class AbstractViewController extends ViewController with LazyLogging {
 
   // load applicationController by Application Environment
   def applicationControllerByApplicationEnvironment: ApplicationController = {
-    val result = applicationEnvironment.defaultWindowController.asInstanceOf[ApplicationController]
+    val result = ApplicationEnvironment.defaultWindowController.asInstanceOf[ApplicationController]
     result
   }
 

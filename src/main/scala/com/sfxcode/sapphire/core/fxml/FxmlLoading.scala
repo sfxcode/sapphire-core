@@ -3,27 +3,20 @@ package com.sfxcode.sapphire.core.fxml
 import java.net.URL
 import java.util.ResourceBundle
 
-import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
-import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.sfxcode.sapphire.core.{ ConfigValues, ResourceBundleHolder }
 import javafx.scene.layout.Pane
-import javax.inject.Inject
 
 import scala.reflect.ClassTag
 import scala.reflect.runtime.{ universe => ru }
 
 trait FxmlLoading extends NodeLocator with ConfigValues {
   private lazy val recourceBundleHolder = ResourceBundleHolder(
-    resources.getOrElse(applicationEnvironment.resourceBundle))
+    resources.getOrElse(ApplicationEnvironment.resourceBundle))
   val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
-  @Inject
-  var loader: FxmlHandler = _
-  @Inject
-  var applicationEnvironment: ApplicationEnvironment = _
-  @Inject
-  var converterFactory: ConverterProvider = _
+
   //var fxml: AnyRef = _
   var rootPane: Pane = _
   var location: Option[URL] = None
@@ -35,8 +28,8 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
   def getController[T <: ViewController](fxml: String = "")(implicit ct: ClassTag[T]): T = {
     val fxmlPath = guessFxmlPath(fxml, ct)
 
-    loader.fxmlLoader.getNamespace.put("expression", applicationEnvironment.fxmlExpressionResolver)
-    val loadResult = loader.loadFromDocument(fxmlPath.toString)
+    FxmlHandler.fxmlLoader.getNamespace.put("expression", ApplicationEnvironment.fxmlExpressionResolver)
+    val loadResult = FxmlHandler.loadFromDocument(fxmlPath.toString)
     val controller = loadResult._1.asInstanceOf[T]
     controller.rootPane = loadResult._2
     controller

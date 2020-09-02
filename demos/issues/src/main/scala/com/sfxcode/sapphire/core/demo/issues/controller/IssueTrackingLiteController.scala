@@ -16,8 +16,7 @@ import scalafx.scene.control.SelectionMode
 
 class IssueTrackingLiteController extends ViewController with LazyLogging {
 
-  @Inject
-  var emptyName: EmptyName = _
+  var emptyName: EmptyName = EmptyName("New Issue")
 
   @FXML
   var table: TableView[FXBean[Issue]] = _

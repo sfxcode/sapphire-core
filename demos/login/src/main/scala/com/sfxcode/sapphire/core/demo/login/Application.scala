@@ -9,19 +9,19 @@ import javafx.stage.Stage
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
-object Application extends FXApp {
-
-  override def width: Int = 500
-
-  override def height: Int = 500
-
-  override def title: String = "Login Demo"
-
-  override def initStage(stage: Stage): Unit = {
-    super.initStage(stage)
-    stage.setResizable(false)
-  }
-}
+//object Application extends FXApp {
+//
+//  override def width: Int = 500
+//
+//  override def height: Int = 500
+//
+//  override def title: String = "Login Demo"
+//
+//  override def initStage(stage: Stage): Unit = {
+//    super.initStage(stage)
+//    stage.setResizable(false)
+//  }
+//}
 
 @Named
 @ApplicationScoped

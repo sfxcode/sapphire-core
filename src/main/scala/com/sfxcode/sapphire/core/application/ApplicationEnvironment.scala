@@ -1,16 +1,12 @@
-package com.sfxcode.sapphire.core.cdi
+package com.sfxcode.sapphire.core.application
 
 import java.util.{ Locale, ResourceBundle }
 
 import com.sfxcode.sapphire.core.controller.DefaultWindowController
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
 
-@Named
-@ApplicationScoped
-class ApplicationEnvironment extends Serializable {
+object ApplicationEnvironment extends Serializable {
 
   var nodePropertyResolver = NodePropertyResolver()
 

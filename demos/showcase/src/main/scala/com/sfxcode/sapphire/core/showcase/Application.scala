@@ -7,9 +7,9 @@ import com.typesafe.scalalogging.LazyLogging
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Named
 
-object Application extends FXApp {
-  override def title: String = "Sapphire Core Showcase"
-}
+//object Application extends FXApp {
+//  override def title: String = "Sapphire Core Showcase"
+//}
 
 @Named
 @ApplicationScoped

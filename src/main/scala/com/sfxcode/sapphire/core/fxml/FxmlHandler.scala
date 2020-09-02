@@ -2,22 +2,15 @@ package com.sfxcode.sapphire.core.fxml
 
 import java.io.{ IOException, InputStream }
 
-import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.layout.Pane
 import javafx.{ util => jfxu }
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Inject
 
-@ApplicationScoped
-class FxmlHandler {
+object FxmlHandler {
 
-  @Inject
-  var applicationEnvironment: ApplicationEnvironment = _
-
-  @Inject
-  var fxmlLoader: FXMLLoader = _
+  var fxmlLoader: FXMLLoader = new FXMLLoader()
 
   var defaultCallback: Option[jfxu.Callback[Class[_], Object]] = None
 
@@ -38,7 +31,7 @@ class FxmlHandler {
     try {
       inputStream = getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
-      fxmlLoader.setResources(applicationEnvironment.defaultWindowController.resourceBundleForView(path))
+      fxmlLoader.setResources(ApplicationEnvironment.defaultWindowController.resourceBundleForView(path))
 
       fxmlLoader.load(inputStream).asInstanceOf[Parent]
 
@@ -51,15 +44,11 @@ class FxmlHandler {
       case e: Exception =>
         val message = String.format("can not load fxml from path [%s]", path)
         throw new IllegalStateException(message, e)
-    } finally {
-      if (inputStream != null) {
-        try {
-          inputStream.close()
-        } catch {
-          case e: IOException =>
-        }
+    } finally if (inputStream != null)
+      try inputStream.close()
+      catch {
+        case e: IOException =>
       }
-    }
   }
 
   def getResourceAsStream(path: String): InputStream = {

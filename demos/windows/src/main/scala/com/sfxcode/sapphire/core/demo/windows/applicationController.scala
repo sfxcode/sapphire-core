@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.demo.windows
 
-import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.application.BeanResolver
 import com.sfxcode.sapphire.core.controller.{ AdditionalWindowController, DefaultWindowController }
 import com.sfxcode.sapphire.core.demo.windows.controller.{ AdditionalViewController, MainViewController }
 import javafx.stage.{ Modality, StageStyle }

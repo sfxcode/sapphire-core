@@ -1,29 +1,20 @@
 package com.sfxcode.sapphire.core.application
 
-import com.sfxcode.sapphire.core.cdi.annotation.Startup
-import com.sfxcode.sapphire.core.cdi.{ ApplicationLauncher, CDILauncher }
-import javax.enterprise.util.AnnotationLiteral
-import org.apache.deltaspike.core.api.provider.BeanProvider
+import javafx.stage.Stage
 
 class FXApplication extends javafx.application.Application {
+  var applicationStage: Stage = _
 
   def start(stage: javafx.stage.Stage) {
     FXApp.Application = this
-    val fxApp = BeanProvider.getContextualReference(classOf[ApplicationLauncher], false)
     val applicationStage = FXApp.App.createDefaultStage
     FXApp.App.applicationWillLaunch()
-    fxApp.launch(applicationStage, startupLiteral)
+    FXApp.App.applicationController.onApplicationStartup(applicationStage)
     applicationStage.show()
   }
 
-  def startupLiteral: AnnotationLiteral[_] =
-    new AnnotationLiteral[Startup] {}
-
-  override def init(): Unit =
-    CDILauncher.init()
-
   override def stop(): Unit = {
     FXApp.App.applicationWillTerminate()
-    CDILauncher.shutdown()
+    FXApp.App.beanResolver.stop()
   }
 }

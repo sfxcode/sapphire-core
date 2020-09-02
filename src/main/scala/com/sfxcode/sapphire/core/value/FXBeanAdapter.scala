@@ -1,6 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.cdi.provider.ConverterProvider
+import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, ConverterProvider }
 import com.sfxcode.sapphire.core.controller.ViewController
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
@@ -34,8 +34,6 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   if (parent == null)
     parent = viewController.rootPane
 
-  def converterProvider: ConverterProvider = viewController.converterFactory
-
   def get: FXBean[T] = beanProperty.get
 
   def unset(): Unit = set(null)
@@ -51,9 +49,8 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
   def addBindings(keyBindings: KeyBindings) {
     keyBindings.keys.foreach { key =>
       val property = guessPropertyForNode(key)
-      if (property.isDefined) {
+      if (property.isDefined)
         bindingMap.put(property.get, keyBindings(key))
-      }
     }
   }
 
@@ -62,7 +59,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     if (node.isDefined) {
       if (!nodeCache.containsKey(key))
         nodeCache.put(key, node)
-      val result = viewController.applicationEnvironment.nodePropertyResolver.resolve(node.get)
+      val result = ApplicationEnvironment.nodePropertyResolver.resolve(node.get)
       logger.debug("resolved property for %s : %s".format(key, result))
       result
     } else {
@@ -129,7 +126,7 @@ class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent:
     } else
       beanProperty match {
         case _: StringProperty =>
-          val defaultStringConverter = viewController.converterFactory.getConverterByName[Any]("DefaultStringConverter")
+          val defaultStringConverter = ConverterProvider.getConverterByName[Any]("DefaultStringConverter")
           stringProperty.bindBidirectional(beanProperty.asInstanceOf[Property[Any]], defaultStringConverter)
           boundProperties.put(stringProperty, beanProperty)
       }

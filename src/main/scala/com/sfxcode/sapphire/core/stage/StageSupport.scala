@@ -7,29 +7,28 @@ import javafx.stage.{ Modality, Stage, StageStyle }
 
 trait StageSupport extends ConfigValues {
 
-  def createDefaultStage: Stage = {
+  def createDefaultStage(): Stage = {
     val stage = new Stage()
     stage.setWidth(width)
     stage.setHeight(height)
-    if (forceMinWidth) {
+    if (forceMinWidth)
       stage.setMinWidth(width)
-    }
-    if (forceMinHeight) {
+    if (forceMinHeight)
       stage.setMinHeight(height)
-    }
-    if (forceMaxWidth) {
+    if (forceMaxWidth)
       stage.setMaxWidth(width)
-    }
-    if (forceMaxHeight) {
+    if (forceMaxHeight)
       stage.setMaxHeight(height)
-    }
     stage.setTitle(title)
     val scene = new Scene(new HBox())
     stage.setScene(scene)
     stage.initModality(modality)
     stage.initStyle(stageStyle)
+    initStage(stage)
     stage
   }
+
+  def initStage(stage: Stage): Unit = {}
 
   def stageStyle: StageStyle = StageStyle.DECORATED
 

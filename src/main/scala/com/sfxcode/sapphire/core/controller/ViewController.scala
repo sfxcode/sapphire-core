@@ -5,7 +5,7 @@ import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.ConfigValues
-import com.sfxcode.sapphire.core.cdi.BeanResolver
+import com.sfxcode.sapphire.core.application.BeanResolver
 import com.sfxcode.sapphire.core.el._
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.typesafe.scalalogging.LazyLogging
@@ -56,11 +56,8 @@ abstract class ViewController
 
   // bean lifecycle
 
-  @PostConstruct
-  def postConstruct(): Unit = {
-    registerBean(this)
-    startup()
-  }
+  registerBean(this)
+  startup()
 
   def startup() {}
 
@@ -112,30 +109,26 @@ abstract class ViewController
     if (pane == null) {
       logger.warn("contentPane is NULL")
       false
-    } else {
-      if (viewController == null) {
-        logger.warn("viewController is NULL")
-        false
-      } else {
-        if (viewController.canGainVisibility)
-          try {
-            viewController.managedParent.setValue(this)
-            viewController.windowController.set(windowController.get)
-            viewController.willGainVisibility()
-            pane.getChildren.add(viewController.rootPane)
-            viewController.didGainVisibilityFirstTime()
-            viewController.didGainVisibility()
-            unmanagedChildren.add(viewController)
-            true
-          } catch {
-            case e: Exception =>
-              logger.error(e.getMessage, e)
-              false
-          }
-        else
+    } else if (viewController == null) {
+      logger.warn("viewController is NULL")
+      false
+    } else if (viewController.canGainVisibility)
+      try {
+        viewController.managedParent.setValue(this)
+        viewController.windowController.set(windowController.get)
+        viewController.willGainVisibility()
+        pane.getChildren.add(viewController.rootPane)
+        viewController.didGainVisibilityFirstTime()
+        viewController.didGainVisibility()
+        unmanagedChildren.add(viewController)
+        true
+      } catch {
+        case e: Exception =>
+          logger.error(e.getMessage, e)
           false
       }
-    }
+    else
+      false
 
   def stateMap: Map[String, Any] = Map[String, Any]()
 
