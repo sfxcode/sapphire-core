@@ -4,6 +4,8 @@
 
 ### 2.0.0
 * Removed FXValueFactory
+* Remove CDI - see [migrations](MIGRATION.md)
+* 
 
 ### 1.8.4
 * Scala 2.12.12

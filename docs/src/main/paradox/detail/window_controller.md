@@ -4,9 +4,7 @@
 
 
 ```scala
-@Named
-@ApplicationScoped
-class ApplicationController extends DefaultWindowController {
+class ApplicationController extends BaseApplicationController {
   // Content here
 }
 ```
@@ -22,19 +20,13 @@ WindowController height and width are 800 x 600 by default, but can be easily ov
 
 ## Features
 
-- Lifecycle by CDI
-- CDI Events
+- Lifecycle
 
-### CDI Events
+## BaseApplicationController
 
-* sceneControllerWillChange
-* sceneControllerDidChange
+BaseApplicationController is normally the base class for your ApplicationController.
 
-## DefaultWindowController
-
-DefaultWindowController is normally the base class for your ApplicationController.
-
-Initialization is automatically done by the Application class (must be an object that extends FXApp)
+Initialization is automatically done by the Application class (must be an object that extends BaseApplication) to be runnable
 
 ### Lifecycle Methods
 
@@ -50,9 +42,9 @@ Sample Code:
 
 @@snip [Application.scala](../../../../../demos/issues/src/main/scala/com/sfxcode/sapphire/core/demo/issues/Application.scala) { #Application }
 
-FXApp Code:
+BaseApplication Code:
 
-@@snip [FXApp.scala](../../../../../src/main/scala/com/sfxcode/sapphire/core/application/FXApp.scala) { #FXApp }
+@@snip [BaseApplication.scala](../../../../../src/main/scala/com/sfxcode/sapphire/core/application/BaseApplication.scala) { #BaseApplication }
 
 ### ApplicationController
 

@@ -5,7 +5,7 @@ import com.sfxcode.sapphire.core.stage.StageSupport
 import com.typesafe.scalalogging.LazyLogging
 import javafx.application.Application
 
-// #FXApp
+// #BaseApplication
 abstract class BaseApplication extends StageSupport with LazyLogging {
   val startTime: Long = System.currentTimeMillis()
 
@@ -24,4 +24,4 @@ abstract class BaseApplication extends StageSupport with LazyLogging {
   def applicationWillTerminate() {}
 
 }
-// #FXApp
+// #BaseApplication

@@ -1,19 +1,21 @@
 package com.sfxcode.sapphire.core.application
 
-import java.util.{ Locale, ResourceBundle }
+import java.util.{Locale, ResourceBundle}
 
 import com.sfxcode.sapphire.core.controller.BaseApplicationController
-import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
+import com.sfxcode.sapphire.core.fxml.{DocumentLoader, FxmlExpressionResolver}
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
 import com.typesafe.scalalogging.LazyLogging
-import javafx.collections.{ FXCollections, ObservableMap }
+import javafx.collections.{FXCollections, ObservableMap}
 import javafx.util.StringConverter
 import javafx.util.converter.DefaultStringConverter
 
 object ApplicationEnvironment extends Serializable with LazyLogging {
 
-  private var app: BaseApplication = _
+  private var app: BaseApplication                     = _
   private var appController: BaseApplicationController = _
+
+  var documentLoader: DocumentLoader = new DocumentLoader
 
   def setApplication(application: BaseApplication): Unit = app = application
   def setApplicationController(applicationController: BaseApplicationController): Unit =
@@ -59,10 +61,11 @@ object ApplicationEnvironment extends Serializable with LazyLogging {
 
       try {
         val converterClass = Class.forName(className)
-        val converter = converterClass.getDeclaredConstructor().newInstance()
+        val converter      = converterClass.getDeclaredConstructor().newInstance()
         if (converter != null)
           result = converter.asInstanceOf[StringConverter[T]]
-      } catch {
+      }
+      catch {
         case e: Exception =>
           logger.warn(e.getMessage)
           logger.warn("use default converter for name: " + className)
