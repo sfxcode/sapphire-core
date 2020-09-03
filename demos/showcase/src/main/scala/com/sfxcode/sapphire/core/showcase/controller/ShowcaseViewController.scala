@@ -1,13 +1,13 @@
 package com.sfxcode.sapphire.core.showcase.controller
 
-import com.sfxcode.sapphire.core.fxml.FxmlLoader
+import com.sfxcode.sapphire.core.fxml.FxmlLocation
 import com.sfxcode.sapphire.core.showcase.bean.SimpleBeanController
 import com.sfxcode.sapphire.core.showcase.controller.control.{
   TableCellController,
   TableValueController,
   TreeTableValueController
 }
-import com.sfxcode.sapphire.core.showcase.{ ShowcaseController, ShowcaseItem }
+import com.sfxcode.sapphire.core.showcase.{ShowcaseController, ShowcaseItem}
 import com.typesafe.scalalogging.LazyLogging
 
 class ShowcaseViewController extends ShowcaseController with LazyLogging {

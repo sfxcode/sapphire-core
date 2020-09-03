@@ -5,17 +5,18 @@ import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sfxcode.sapphire.core.controller.ViewController
-import com.sfxcode.sapphire.core.{ ConfigValues, ResourceBundleHolder }
+import com.sfxcode.sapphire.core.{ConfigValues, ResourceBundleHolder}
 import javafx.scene.layout.Pane
 
 import scala.reflect.ClassTag
 
 trait FxmlLoading extends ConfigValues {
   private lazy val recourceBundleHolder = ResourceBundleHolder(
-    resources.getOrElse(ApplicationEnvironment.resourceBundle))
+    resources.getOrElse(ApplicationEnvironment.resourceBundle)
+  )
 
-  var rootPane: Pane = _
-  var location: Option[URL] = None
+  var rootPane: Pane                    = _
+  var location: Option[URL]             = None
   var resources: Option[ResourceBundle] = None
 
   def i18n(key: String, params: Any*): String =
@@ -38,7 +39,7 @@ trait FxmlLoading extends ConfigValues {
 
     // check annotatation value
     if (result.isEmpty)
-      result = FxmlLoader.pathValue(ct)
+      result = FxmlLocation.pathValue(ct)
 
     if (result.isEmpty) {
       // check configuration base path
@@ -47,7 +48,8 @@ trait FxmlLoading extends ConfigValues {
         // use runtime package name
         val guessed = ct.runtimeClass.getName.replace(".", "/").replace("Controller", "")
         result = "/%s.fxml".format(guessed)
-      } else {
+      }
+      else {
         val fxmlName = ct.runtimeClass.getSimpleName.replace("Controller", "")
         result = "%s%s.fxml".format(basePath, fxmlName)
       }
