@@ -35,7 +35,7 @@ Apache 2 License.
 
 ### Tutorial
 
-Start from Console:
+Simple JavaFX application with controller composition, controller exchange, ...
 
 ```
 sbt run-tutorial
@@ -43,7 +43,7 @@ sbt run-tutorial
 
 ### Login
 
-Start from Console:
+JavaFX Login demo enhanced by sapphire-core
 
 ```
 sbt run-login
@@ -51,9 +51,19 @@ sbt run-login
 
 ### Issues
 
+spphire-core with ScalaFX and CDI (Deltaspike).
+
 ```
 sbt run-issues
 ```
+
+### Multiple Windows
+
+usage of multiple window controller
+
+### Showcase
+
+Showcase Demo as visual reference for sapphire-core key concepts.
 
 
 ## Technology Stack
@@ -70,7 +80,7 @@ Sapphire depends on OpenJFX 12
 
 [https://openjfx.io](https://openjfx.io)
 
-### Dependency Injection
+### Optional Dependency Injection (Issues Demo)
 
 Sapphire use Apache Deltaspike as CDI Abstraction Layer (1.9.x).
 
@@ -96,12 +106,10 @@ ScalaFX support Scala versions up to 2.12.x
 
 ## Features
 
-### Application Environment powered by CDI
+### Application Environment
 
 - Application Controller
 - UI Controller loading
-- Parameter Provider
-- Configuration Provider
 - FXML Loading
 - [Hot Reloding](https://sfxcode.github.io/sapphire-core/development.html)
 
@@ -123,7 +131,6 @@ ScalaFX support Scala versions up to 2.12.x
 
 - Controller Lifecycle
 - Node Locator
-- Controller CDI Additions
 
 ### FXML Support
 
