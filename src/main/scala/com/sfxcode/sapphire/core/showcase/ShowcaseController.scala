@@ -12,7 +12,7 @@ import javafx.scene.control.{ Label, Tab, TreeItem }
 import javafx.scene.layout.{ HBox, StackPane }
 import org.fxmisc.richtext.CodeArea
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.io.Source
 import scala.util.Try
 
@@ -121,12 +121,16 @@ abstract class ShowcaseController extends ViewController {
 
     scalaCodeAreaWrapper.replaceText("not available")
     Try {
-      val code = Source.fromURL(item.sourcePath).getLines.mkString("\n")
+      val source = Source.fromURL(item.sourcePath)
+      val code = source.getLines().mkString("\n")
+      source.close()
       scalaCodeAreaWrapper.replaceText(code)
     }
     fxmlCodeAreaWrapper.replaceText("not available")
     Try {
-      val fxml = Source.fromURL(item.fxmlPath).getLines.mkString("\n")
+      val source = Source.fromURL(item.fxmlPath)
+      val fxml = source.getLines().mkString("\n")
+      source.close()
       fxmlCodeAreaWrapper.replaceText(fxml)
     }
 
@@ -134,19 +138,20 @@ abstract class ShowcaseController extends ViewController {
       documentationBox.getChildren.clear()
       showcaseBottomBox.getChildren.clear()
 
-      val docs = Source.fromURL(item.documentationPath).getLines.mkString("\n")
+      val source = Source.fromURL(item.documentationPath)
+      val docs = source.getLines().mkString("\n")
       val documentation = "# %s - %s\n%s".format(item.group, item.name, docs)
       val markdown = new MDFXNode(documentation)
       markdown.getStylesheets.add(markdownCss)
       markdown.setPadding(new Insets(4))
       documentationBox.getChildren.add(markdown)
       val shortDocs = {
-        if (docs.indexOf("#") > 0 && !"WelcomeController".equals(simpleName)) {
+        if (docs.indexOf("#") > 0 && !"WelcomeController".equals(simpleName))
           docs.substring(0, docs.indexOf("#"))
-        } else {
+        else
           docs
-        }
       }
+      source.close()
       val markdownShort = new MDFXNode(shortDocs)
       markdownShort.getStylesheets.add(markdownCss)
       showcaseBottomBox.getChildren.add(markdownShort)

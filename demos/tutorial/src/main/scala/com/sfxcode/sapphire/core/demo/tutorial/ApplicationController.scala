@@ -3,10 +3,10 @@ package com.sfxcode.sapphire.core.demo.tutorial
 import java.util.{ Locale, ResourceBundle }
 
 import com.sfxcode.sapphire.core.application.ApplicationEnvironment
-import com.sfxcode.sapphire.core.controller.AbstractApplicationController
+import com.sfxcode.sapphire.core.controller.BaseApplicationController
 import com.sfxcode.sapphire.core.demo.tutorial.controller.MainViewController
 
-class ApplicationController extends AbstractApplicationController {
+class ApplicationController extends BaseApplicationController {
 
   lazy val mainViewController: MainViewController =
     getController[MainViewController]()

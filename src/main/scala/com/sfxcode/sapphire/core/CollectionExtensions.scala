@@ -4,7 +4,7 @@ import com.sfxcode.sapphire.core.CollectionExtensions.ChangeState.ChangeState
 import javafx.beans.{ InvalidationListener, Observable }
 import javafx.collections._
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.language.implicitConversions
 
 object CollectionExtensions {
@@ -53,15 +53,14 @@ object CollectionExtensions {
     def addMapChangeListener(f: (ChangeState, K, V, V) => Unit): Unit =
       map.addListener(new MapChangeListener[K, V] {
         def onChanged(change: MapChangeListener.Change[_ <: K, _ <: V]): Unit =
-          if (change.wasAdded() && change.wasRemoved()) {
+          if (change.wasAdded() && change.wasRemoved())
             f(ChangeState.REPLACE, change.getKey, change.getValueAdded, change.getValueRemoved)
-          } else if (change.wasAdded()) {
+          else if (change.wasAdded())
             f(ChangeState.ADD, change.getKey, change.getValueAdded, change.getValueRemoved)
-          } else if (change.wasRemoved()) {
+          else if (change.wasRemoved())
             f(ChangeState.REMOVE, change.getKey, change.getValueAdded, change.getValueRemoved)
-          } else {
+          else
             f(ChangeState.UNKNOWN, change.getKey, change.getValueAdded, change.getValueRemoved)
-          }
       })
   }
 

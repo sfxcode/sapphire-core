@@ -5,14 +5,14 @@ import com.sun.javafx.css.StyleManager
 import javafx.application.Platform
 import javafx.stage.Stage
 
-abstract class AbstractApplicationController extends WindowController {
+abstract class BaseApplicationController extends WindowController {
 
   override def isMainWindow: Boolean = true
 
   def onApplicationStartup(stage: Stage) {
     applicationWillLaunch()
     setStage(stage)
-    ApplicationEnvironment.applicationController = this
+    ApplicationEnvironment.setApplicationController(this)
     applicationDidLaunch()
   }
 

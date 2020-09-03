@@ -7,7 +7,7 @@ import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
 import javafx.beans.value.ObservableValue
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 
 class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = EmptyTypeHints)
@@ -88,13 +88,11 @@ class FXBean[T <: AnyRef](val bean: T, typeHints: List[FXBeanClassMemberInfo] = 
       if (changeManagementMap.containsKey(key)) {
         if (changeManagementMap.get(key) == newValue || newValue.equals(changeManagementMap.get(key)))
           changeManagementMap.remove(key)
-      } else {
+      } else
         changeManagementMap.put(key, oldValue)
-      }
       hasChangesProperty.setValue(hasManagedChanges)
-      if (parentBean.isDefined) {
+      if (parentBean.isDefined)
         parentBean.get.hasChangesProperty.setValue(parentBean.get.hasManagedChanges || hasManagedChanges)
-      }
 
     }
   }

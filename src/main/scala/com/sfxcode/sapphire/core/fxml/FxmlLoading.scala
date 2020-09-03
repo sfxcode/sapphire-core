@@ -29,14 +29,14 @@ trait FxmlLoading extends NodeLocator with ConfigValues {
     val fxmlPath = guessFxmlPath(fxml, ct)
 
     FxmlHandler.fxmlLoader.getNamespace.put("expression", ApplicationEnvironment.fxmlExpressionResolver)
-    val loadResult = FxmlHandler.loadFromDocument(fxmlPath.toString)
+    val loadResult = FxmlHandler.loadFromDocument(fxmlPath)
     val controller = loadResult._1.asInstanceOf[T]
     controller.rootPane = loadResult._2
     controller
   }
 
   protected def guessFxmlPath[T <: ViewController](path: String, ct: ClassTag[T]): String = {
-    var result = path.toString
+    var result = path
 
     // check annotatation value
     if (result.isEmpty)

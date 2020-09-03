@@ -78,8 +78,8 @@ object FunctionHelper extends LazyLogging {
 object DefaultFunctions extends ConfigValues {
   private lazy val recourceBundleHolder = ResourceBundleHolder(ApplicationEnvironment.resourceBundle)
 
-  val DefaultDateConverterPattern = configStringValue("sapphire.core.value.defaultDateConverterPattern")
-  val DefaultDateTimeConverterPattern = configStringValue("sapphire.core.value.defaultDateTimeConverterPattern")
+  val DefaultDateConverterPattern: String = configStringValue("sapphire.core.value.defaultDateConverterPattern")
+  val DefaultDateTimeConverterPattern: String = configStringValue("sapphire.core.value.defaultDateTimeConverterPattern")
 
   var defaultDateConverter = new DateStringConverter(DefaultDateConverterPattern)
   var defaultDateTimeConverter = new DateTimeStringConverter(DefaultDateTimeConverterPattern)

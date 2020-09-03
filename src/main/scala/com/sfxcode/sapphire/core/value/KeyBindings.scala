@@ -2,7 +2,7 @@ package com.sfxcode.sapphire.core.value
 
 import javafx.collections.{ FXCollections, ObservableMap }
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.collection.mutable
 import scala.reflect.runtime.universe._
 

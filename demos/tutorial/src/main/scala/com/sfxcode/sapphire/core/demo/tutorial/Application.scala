@@ -1,11 +1,11 @@
 package com.sfxcode.sapphire.core.demo.tutorial
 
-import com.sfxcode.sapphire.core.application.AbstractApplication
-import com.sfxcode.sapphire.core.controller.AbstractApplicationController
+import com.sfxcode.sapphire.core.application.BaseApplication
+import com.sfxcode.sapphire.core.controller.BaseApplicationController
 
-object Application extends AbstractApplication {
+object Application extends BaseApplication {
 
-  val applicationController: AbstractApplicationController = new ApplicationController
+  val applicationController: BaseApplicationController = new ApplicationController
 
   override def height: Int = 555
 

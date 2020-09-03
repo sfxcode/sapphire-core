@@ -59,8 +59,6 @@ abstract class ViewController
 
   def startup() {}
 
-  def shutdown() {}
-
   override def initialize(loc: URL, res: ResourceBundle): Unit = {
     location = Some(loc)
     resources = Some(res)

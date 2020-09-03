@@ -9,7 +9,7 @@ import javafx.collections.{ FXCollections, ObservableMap }
 import javafx.scene.Node
 import javafx.util.StringConverter
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 class FXBeanAdapter[T <: AnyRef](val viewController: ViewController, var parent: Node = null)
   extends KeyConverter

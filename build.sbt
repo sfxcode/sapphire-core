@@ -151,6 +151,8 @@ libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "sw
 
 // Environment
 
+libraryDependencies += "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6"
+
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
 libraryDependencies += "com.typesafe" % "config" % "1.4.0"

@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core
 import com.typesafe.config.{ Config, ConfigFactory }
 import com.typesafe.scalalogging.LazyLogging
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 trait ConfigValues extends LazyLogging {
 
@@ -15,9 +15,8 @@ trait ConfigValues extends LazyLogging {
   private def configValue[E <: Any](path: String, defaultReturnValue: E = None, f: String => E): E =
     if (config.hasPath(path)) {
       var result = defaultReturnValue
-      try {
-        result = f(path)
-      } catch {
+      try result = f(path)
+      catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
       }
@@ -45,9 +44,8 @@ trait ConfigValues extends LazyLogging {
   private def configValues[E <: Any](path: String, f: String => java.util.List[_]): List[E] =
     if (config.hasPath(path)) {
       var result = List[E]()
-      try {
-        result = f(path).asScala.toList.asInstanceOf[List[E]]
-      } catch {
+      try result = f(path).asScala.toList.asInstanceOf[List[E]]
+      catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
       }

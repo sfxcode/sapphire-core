@@ -1,7 +1,8 @@
 package com.sfxcode.sapphire.core.application
 
 import java.util.{ Locale, ResourceBundle }
-import com.sfxcode.sapphire.core.controller.AbstractApplicationController
+
+import com.sfxcode.sapphire.core.controller.BaseApplicationController
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
 import com.typesafe.scalalogging.LazyLogging
@@ -11,13 +12,21 @@ import javafx.util.converter.DefaultStringConverter
 
 object ApplicationEnvironment extends Serializable with LazyLogging {
 
-  var application: AbstractApplication = _
+  private var app: BaseApplication = _
+  private var appController: BaseApplicationController = _
+
+  def setApplication(application: BaseApplication): Unit = app = application
+  def setApplicationController(applicationController: BaseApplicationController): Unit =
+    appController = applicationController
 
   var wrappedApplication: FXApplication = _
 
-  var applicationController: AbstractApplicationController = _
+  def application[T <: BaseApplication](implicit e: T DefaultsTo BaseApplication): T = app.asInstanceOf[T]
 
-  var nodePropertyResolver = NodePropertyResolver()
+  def applicationController[T <: BaseApplicationController](implicit e: T DefaultsTo BaseApplicationController): T =
+    appController.asInstanceOf[T]
+
+  var nodePropertyResolver: NodePropertyResolver = NodePropertyResolver()
 
   var fxmlExpressionResolver = new FxmlExpressionResolver[String, Any]
 

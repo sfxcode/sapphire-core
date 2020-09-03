@@ -1,13 +1,13 @@
 package com.sfxcode.sapphire.core.demo.login
 
-import com.sfxcode.sapphire.core.application.AbstractApplication
-import com.sfxcode.sapphire.core.controller.AbstractApplicationController
+import com.sfxcode.sapphire.core.application.BaseApplication
+import com.sfxcode.sapphire.core.controller.BaseApplicationController
 import com.sfxcode.sapphire.core.demo.login.controller.{ LoginController, ProfileController }
 import com.sfxcode.sapphire.core.demo.login.model.User
 import com.sfxcode.sapphire.core.value.FXBean
 import javafx.stage.Stage
 
-object Application extends AbstractApplication {
+object Application extends BaseApplication {
 
   override def width: Int = 500
 
@@ -20,10 +20,10 @@ object Application extends AbstractApplication {
     stage.setResizable(false)
   }
 
-  override val applicationController: AbstractApplicationController = new LoginApplicationController
+  override val applicationController: BaseApplicationController = new LoginApplicationController
 }
 
-class LoginApplicationController extends AbstractApplicationController {
+class LoginApplicationController extends BaseApplicationController {
   lazy val loginController: LoginController = getController[LoginController]()
   lazy val profileController: ProfileController = getController[ProfileController]()
 
