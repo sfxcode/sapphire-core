@@ -5,7 +5,8 @@
 ### 2.0.0
 * Removed FXValueFactory
 * Remove CDI - see [migrations](MIGRATION.md)
-* 
+* Sample Application with Deltaspike CDI in the issues demo
+* FxmlLoader renamed to FxmlLocation
 
 ### 1.8.4
 * Scala 2.12.12

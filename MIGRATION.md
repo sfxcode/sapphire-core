@@ -4,8 +4,9 @@
 * CDI dependencies are removed
 * ApplicationScoped Beans are now Singletons
 * Best way to access applicationController is now: ApplicationEnvironment.applicationController[ApplicationController]
-* Use CDI if needed with MacWire, Guice, or other CDI Framework
+* Use CDI if needed with MacWire, Guice, or other CDI Framework (CDI example in issues demo)
 * Application must extend now BaseApplication and needs to implement applicationController as val
+* FxmlLoader must be renamed to FxmlLocation
 
 ```scala
 object Application extends BaseApplication {
