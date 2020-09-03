@@ -184,7 +184,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.4*
+<i class="md-icon" title="Version">label_outline</i> 2.0.1*
 </label>
 </li>
 </ul>
@@ -219,6 +219,30 @@ sfxcode/sapphire-core
 <pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/CHANGES.md" target="_blank" title="Go to snippet source"></a><code class="language-md"># Changes
 
 ## Versions
+
+### 2.0.0
+* Removed FXValueFactory
+* Remove CDI - see [migrations](MIGRATION.md)
+* Sample Application with Deltaspike CDI in the issues demo
+* FxmlLoader renamed to FxmlLocation
+
+### 1.8.4
+* Scala 2.12.12
+* JavaFX 14.0.2.1
+
+### 1.8.3
+* Scala 2.13.3
+
+### 1.8.0
+* Showcase as core functions for better documentation
+* Showcase Controller added
+* Demos: ShowCase added (Demo &amp; Documentation of sapphire-core)
+* (Deprecation) FXValueFactory deprecated =&gt; use FXTableValueFactory
+* (Feature) FXTreeTableValueFactory added
+* (Feature) FXTableCellFactory added
+* (Feature) ActionEvents:selectionFromActionEvent listView added
+* (Fix) ViewVontroller updatePaneContent  didGainVisibilityFirstTime is now before didGainVisibility
+* (Enhancement) ViewVontroller rename gainVisibility -&gt; gainedVisibility
 
 ### 1.7.3
 * BUGFIX - Expressions#registeredBean
@@ -364,7 +388,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.4*
+2.0.1*
 </span>
 </div>
 </article>

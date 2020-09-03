@@ -175,7 +175,7 @@ sfxcode/sapphire-core
   <li><a href="../detail/window_controller.html#windowcontroller" class="header">WindowController</a>
   <ul>
     <li><a href="../detail/window_controller.html#features" class="header">Features</a></li>
-    <li><a href="../detail/window_controller.html#defaultwindowcontroller" class="header">DefaultWindowController</a></li>
+    <li><a href="../detail/window_controller.html#baseapplicationcontroller" class="header">BaseApplicationController</a></li>
     <li><a href="../detail/window_controller.html#additionalwindowcontroller" class="header">AdditionalWindowController</a></li>
     <li><a href="../detail/window_controller.html#modalwindowcontroller" class="header">ModalWindowController</a></li>
   </ul></li>
@@ -186,7 +186,7 @@ sfxcode/sapphire-core
 <ul style="display: none">
 <li class="md-nav__item md-version" id="project.version">
 <label class="md-nav__link" for="__version">
-<i class="md-icon" title="Version">label_outline</i> 1.7.4*
+<i class="md-icon" title="Version">label_outline</i> 2.0.1*
 </label>
 </li>
 </ul>
@@ -202,7 +202,7 @@ sfxcode/sapphire-core
   <li><a href="../detail/window_controller.html#windowcontroller" class="header">WindowController</a>
   <ul>
     <li><a href="../detail/window_controller.html#features" class="header">Features</a></li>
-    <li><a href="../detail/window_controller.html#defaultwindowcontroller" class="header">DefaultWindowController</a></li>
+    <li><a href="../detail/window_controller.html#baseapplicationcontroller" class="header">BaseApplicationController</a></li>
     <li><a href="../detail/window_controller.html#additionalwindowcontroller" class="header">AdditionalWindowController</a></li>
     <li><a href="../detail/window_controller.html#modalwindowcontroller" class="header">ModalWindowController</a></li>
   </ul></li>
@@ -217,10 +217,7 @@ sfxcode/sapphire-core
 <div class="md-content__searchable">
 <h1><a href="#windowcontroller" name="windowcontroller" class="anchor"><span class="anchor-link"></span></a>WindowController</h1><p>The WindowController combines JavaFX Stage and Scene. Creates a stage and a scene. Scene content can be exchanged by replaceSceneContent function.</p>
 <p>Sample with scene content switching can be found in the login demo.</p>
-<p>Instances must be created by CDI.</p>
-<pre class="prettyprint"><code class="language-scala">@Named
-@ApplicationScoped
-class ApplicationController extends DefaultWindowController {
+<pre class="prettyprint"><code class="language-scala">class ApplicationController extends BaseApplicationController {
   // Content here
 }
 </code></pre>
@@ -232,17 +229,11 @@ class ApplicationController extends DefaultWindowController {
 </code></pre>
 <h2><a href="#features" name="features" class="anchor"><span class="anchor-link"></span></a>Features</h2>
 <ul>
-  <li>Lifecycle by CDI</li>
-  <li>CDI Events</li>
+  <li>Lifecycle</li>
 </ul>
-<h3><a href="#cdi-events" name="cdi-events" class="anchor"><span class="anchor-link"></span></a>CDI Events</h3>
-<ul>
-  <li>sceneControllerWillChange</li>
-  <li>sceneControllerDidChange</li>
-</ul>
-<h2><a href="#defaultwindowcontroller" name="defaultwindowcontroller" class="anchor"><span class="anchor-link"></span></a>DefaultWindowController</h2>
-<p>DefaultWindowController is normally the base class for your ApplicationController.</p>
-<p>Initialization is automatically done by the Application class (must be an object that extends FXApp)</p>
+<h2><a href="#baseapplicationcontroller" name="baseapplicationcontroller" class="anchor"><span class="anchor-link"></span></a>BaseApplicationController</h2>
+<p>BaseApplicationController is normally the base class for your ApplicationController.</p>
+<p>Initialization is automatically done by the Application class (must be an object that extends BaseApplication) to be runnable</p>
 <h3><a href="#lifecycle-methods" name="lifecycle-methods" class="anchor"><span class="anchor-link"></span></a>Lifecycle Methods</h3>
 <p>Following methods are supported:</p>
 <ul>
@@ -252,40 +243,39 @@ class ApplicationController extends DefaultWindowController {
 </ul>
 <h3><a href="#application" name="application" class="anchor"><span class="anchor-link"></span></a>Application</h3>
 <p>Sample Code:</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/issues/src/main/scala/com/sfxcode/sapphire/core/demo/issues/Application.scala#L13-L14" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>object Application extends FXApp {}</code></pre>
-<p>FXApp Code:</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/scala/com/sfxcode/sapphire/core/application/FXApp.scala#L8-L33" target="_blank" title="Go to snippet source"></a><code class="language-scala">trait FXApp extends StageSupport {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/issues/src/main/scala/com/sfxcode/sapphire/core/demo/issues/Application.scala#L14-L21" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>object Application extends BaseApplication with DeltaspikeBeanResolver {
 
-  override def createDefaultStage: Stage = {
-    val result = super.createDefaultStage
-    initStage(result)
-    result
-  }
+  DeltaspikeLauncher.init()
+  ApplicationEnvironment.documentLoader = getBean[DeltaspikeDocumentLoader]()
 
-  def initStage(stage: Stage): Unit = {}
+  override val applicationController: BaseApplicationController = getBean[ApplicationController]()
+}</code></pre>
+<p>BaseApplication Code:</p>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/src/main/scala/com/sfxcode/sapphire/core/application/BaseApplication.scala#L9-L26" target="_blank" title="Go to snippet source"></a><code class="language-scala">abstract class BaseApplication extends StageSupport with LazyLogging {
+  val startTime: Long = System.currentTimeMillis()
 
   def main(args: Array[String]): Unit = {
-    FXApp.App = this
+    ApplicationEnvironment.setApplication(this)
     Application.launch(classOf[FXApplication], args: _*)
   }
 
+  val applicationController: BaseApplicationController
+
   def applicationWillLaunch() {}
+
+  def applicationDidLaunch(): Unit =
+    logger.info(&quot;Application Startup in %s ms&quot;.format(System.currentTimeMillis() - startTime))
 
   def applicationWillTerminate() {}
 
-}
-
-object FXApp {
-  var Application: Application = _
-  var App: FXApp = _
-}
-</code></pre>
+}</code></pre>
 <h3><a href="#applicationcontroller" name="applicationcontroller" class="anchor"><span class="anchor-link"></span></a>ApplicationController</h3>
 <p>Base class for your Application (extends normally DefaultWindowController). Is is used for setting the content view and holds application wide information.</p>
 <p>Sample Code:</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/issues/src/main/scala/com/sfxcode/sapphire/core/demo/issues/Application.scala#L18-L34" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>@Named
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/issues/src/main/scala/com/sfxcode/sapphire/core/demo/issues/Application.scala#L25-L42" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>@Named
 @ApplicationScoped
-class ApplicationController extends DefaultWindowController {
+class ApplicationController extends BaseApplicationController {
+
   lazy val mainController: IssueTrackingLiteController = getController[IssueTrackingLiteController]()
 
   def applicationDidLaunch() {
@@ -303,7 +293,7 @@ class ApplicationController extends DefaultWindowController {
 <p>Multiple Windows are supported by extending AdditionalWindowController.</p>
 <p>Example Usage:</p>
 <h3><a href="#create-a-cdi-bean-that-extends-additionalwindowcontroller" name="create-a-cdi-bean-that-extends-additionalwindowcontroller" class="anchor"><span class="anchor-link"></span></a>Create a CDI Bean that extends AdditionalWindowController</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L33-L49" target="_blank" title="Go to snippet source"></a><code class="language-scala">abstract class AbstractWindowController extends AdditionalWindowController {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L28-L44" target="_blank" title="Go to snippet source"></a><code class="language-scala">abstract class AbstractWindowController extends AdditionalWindowController {
 
   lazy val viewController: AdditionalViewController =
     getController[AdditionalViewController]()
@@ -320,11 +310,9 @@ class ApplicationController extends DefaultWindowController {
   override def height: Int = 200
 
 }</code></pre>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L53-L55" target="_blank" title="Go to snippet source"></a><code class="language-scala">@Named
-@ApplicationScoped
-class SecondWindowController extends AbstractWindowController</code></pre>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L48" target="_blank" title="Go to snippet source"></a><code class="language-scala">class SecondWindowController extends AbstractWindowController</code></pre>
 <h3><a href="#create-a-variable-in-your-applicationcontroller-for-example-" name="create-a-variable-in-your-applicationcontroller-for-example-" class="anchor"><span class="anchor-link"></span></a>Create a variable (in your ApplicationController for example)</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L18" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val secondWindowController = getBean[SecondWindowController]()</code></pre>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L13" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val secondWindowController = new SecondWindowController</code></pre>
 <h3><a href="#show-second-window" name="show-second-window" class="anchor"><span class="anchor-link"></span></a>Show second Window</h3>
 <p>Use x and y coordinates for window position.</p>
 <pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/controller/MainViewController.scala#L41-L45" target="_blank" title="Go to snippet source"></a><code class="language-scala">def actionShowSecondWindow(event: ActionEvent): Unit = {
@@ -337,15 +325,13 @@ class SecondWindowController extends AbstractWindowController</code></pre>
   applicationController.secondWindowController.close()</code></pre>
 <h2><a href="#modalwindowcontroller" name="modalwindowcontroller" class="anchor"><span class="anchor-link"></span></a>ModalWindowController</h2>
 <p>Modal Window is basically a special Instance of an AdditionalWindowController. It can be used for custom dialogs, preferences panes and so on. You only have to overwrite modality like in the sample code below:</p>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L59-L65" target="_blank" title="Go to snippet source"></a><code class="language-scala">@Named
-@ApplicationScoped
-class ModalWindowController extends AbstractWindowController {
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L52-L57" target="_blank" title="Go to snippet source"></a><code class="language-scala"><br/>class ModalWindowController extends AbstractWindowController {
   override def modality: Modality = Modality.APPLICATION_MODAL
   override def stageStyle: StageStyle = StageStyle.UTILITY
 
 }</code></pre>
 <h3><a href="#create-a-variable-in-your-applicationcontroller-for-example-" name="create-a-variable-in-your-applicationcontroller-for-example-" class="anchor"><span class="anchor-link"></span></a>Create a variable (in your ApplicationController for example)</h3>
-<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L22" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val modalWindowController = getBean[ModalWindowController]()</code></pre>
+<pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/applicationController.scala#L17" target="_blank" title="Go to snippet source"></a><code class="language-scala">lazy val modalWindowController = new ModalWindowController</code></pre>
 <h3><a href="#open-modal-window" name="open-modal-window" class="anchor"><span class="anchor-link"></span></a>Open Modal Window</h3>
 <pre class="prettyprint"><a class="icon go-to-source" href="https://github.com/sfxcode/sapphire-core/tree/master/demos/windows/src/main/scala/com/sfxcode/sapphire/core/demo/windows/controller/MainViewController.scala#L54-L55" target="_blank" title="Go to snippet source"></a><code class="language-scala">def actionShowModalWindow(event: ActionEvent): Unit =
   applicationController.modalWindowController.showAndWait()</code></pre>
@@ -357,7 +343,7 @@ Edit this page
 </div>
 <div class="print-only">
 <span class="md-source-file md-version">
-1.7.4*
+2.0.1*
 </span>
 </div>
 </article>
