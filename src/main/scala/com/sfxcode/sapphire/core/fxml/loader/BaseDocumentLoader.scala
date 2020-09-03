@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.fxml
+package com.sfxcode.sapphire.core.fxml.loader
 
 import java.io.{ IOException, InputStream }
 

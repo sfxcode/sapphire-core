@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.demo.issues.cdi
+package com.sfxcode.sapphire.core.demo.issues.deltaspike
 
 import javafx.fxml.FXMLLoader
 import javafx.util.Callback
@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 import scala.language.implicitConversions
 
-class FXMLLoaderProvider {
+class DeltaspikeLLoaderProvider {
 
   implicit def callbackFromFunction[P, R](f: P => R): Callback[P, R] = (param: P) => f(param)
 

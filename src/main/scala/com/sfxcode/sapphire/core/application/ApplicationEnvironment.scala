@@ -3,7 +3,8 @@ package com.sfxcode.sapphire.core.application
 import java.util.{ Locale, ResourceBundle }
 
 import com.sfxcode.sapphire.core.controller.BaseApplicationController
-import com.sfxcode.sapphire.core.fxml.{ BaseDocumentLoader, DocumentLoader, FxmlExpressionResolver }
+import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
+import com.sfxcode.sapphire.core.fxml.loader.{ BaseDocumentLoader, DocumentLoader }
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{ FXCollections, ObservableMap }

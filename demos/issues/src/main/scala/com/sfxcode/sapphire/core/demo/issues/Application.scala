@@ -2,8 +2,8 @@ package com.sfxcode.sapphire.core.demo.issues
 
 import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, BaseApplication }
 import com.sfxcode.sapphire.core.controller.BaseApplicationController
-import com.sfxcode.sapphire.core.demo.issues.cdi.{ CDIBeanResolver, CDIDocumentLoader, CDILauncher }
 import com.sfxcode.sapphire.core.demo.issues.controller.IssueTrackingLiteController
+import com.sfxcode.sapphire.core.demo.issues.deltaspike._
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.inject.Produces
 import javax.inject.Named
@@ -12,10 +12,10 @@ case class EmptyName(name: String)
 
 // #Application
 
-object Application extends BaseApplication with CDIBeanResolver {
+object Application extends BaseApplication with DeltaspikeBeanResolver {
 
-  CDILauncher.init()
-  ApplicationEnvironment.documentLoader = getBean[CDIDocumentLoader]()
+  DeltaspikeLauncher.init()
+  ApplicationEnvironment.documentLoader = getBean[DeltaspikeDocumentLoader]()
 
   override val applicationController: BaseApplicationController = getBean[ApplicationController]()
 }

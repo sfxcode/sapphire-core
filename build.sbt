@@ -21,8 +21,9 @@ scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-val Json4sVersion  = "3.6.9"
-val LogbackVersion = "1.2.3"
+val Json4sVersion     = "3.6.9"
+val LogbackVersion    = "1.2.3"
+val DeltaspikeVersion = "1.9.4"
 
 lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/showcase"))
   .settings(
@@ -45,7 +46,7 @@ addCommandAlias("run-showcase", "sapphire-core-showcase/run")
 
 lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/login"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-login-demo",
     description := "Sapphire Login Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -59,7 +60,7 @@ addCommandAlias("run-login", "sapphire-login-demo/run")
 
 lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/issues"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-issues-demo",
     description := "Sapphire Issues Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -69,9 +70,9 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/i
     libraryDependencies += "javax.enterprise"              % "cdi-api"                % "2.0",
     libraryDependencies += "javax.annotation"              % "javax.annotation-api"   % "1.3.2",
     libraryDependencies += "org.apache.openwebbeans"       % "openwebbeans-impl"      % "2.0.17",
-    libraryDependencies += "org.apache.deltaspike.core"    % "deltaspike-core-impl"   % "1.9.4",
-    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "1.9.4",
-    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.9.4",
+    libraryDependencies += "org.apache.deltaspike.core"    % "deltaspike-core-impl"   % DeltaspikeVersion,
+    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion,
+    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -80,7 +81,7 @@ addCommandAlias("run-issues", "sapphire-issues-demo/run")
 
 lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutorial"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-tutorial",
     description := "Sapphire Tutorial",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -92,7 +93,7 @@ lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutoria
 
 lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-windows",
     description := "Sapphire Windows",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")

@@ -1,8 +1,8 @@
-package com.sfxcode.sapphire.core.demo.issues.cdi
+package com.sfxcode.sapphire.core.demo.issues.deltaspike
 
 import org.apache.deltaspike.cdise.api.CdiContainerLoader
 
-object CDILauncher {
+object DeltaspikeLauncher {
   private var initialized = false
 
   def init() {
