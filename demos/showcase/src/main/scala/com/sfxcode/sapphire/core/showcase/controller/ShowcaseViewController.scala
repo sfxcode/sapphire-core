@@ -7,7 +7,7 @@ import com.sfxcode.sapphire.core.showcase.controller.control.{
   TableValueController,
   TreeTableValueController
 }
-import com.sfxcode.sapphire.core.showcase.{ShowcaseController, ShowcaseItem}
+import com.sfxcode.sapphire.core.showcase.{ ShowcaseController, ShowcaseItem }
 import com.typesafe.scalalogging.LazyLogging
 
 class ShowcaseViewController extends ShowcaseController with LazyLogging {

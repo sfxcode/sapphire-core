@@ -1,17 +1,18 @@
 package com.sfxcode.sapphire.core.fxml
 
-import java.io.{IOException, InputStream}
+import java.io.{ IOException, InputStream }
 
 import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.layout.Pane
-import javafx.{util => jfxu}
+import javafx.{ util => jfxu }
 
 abstract class BaseDocumentLoader {
 
-  var fxmlLoader: FXMLLoader                                   = new FXMLLoader()
   var defaultCallback: Option[jfxu.Callback[Class[_], Object]] = None
+
+  def fxmlLoader: FXMLLoader
 
   def updateNamespace(key: String, value: AnyRef): AnyRef =
     fxmlLoader.getNamespace.put(key, value)
@@ -42,13 +43,11 @@ abstract class BaseDocumentLoader {
       val rootPane = fxmlLoader.getRoot[javafx.scene.layout.Pane]
       (controller, rootPane)
 
-    }
-    catch {
+    } catch {
       case e: Exception =>
         val message = String.format("can not load fxml from path [%s]", path)
         throw new IllegalStateException(message, e)
-    }
-    finally if (inputStream != null)
+    } finally if (inputStream != null)
       try inputStream.close()
       catch {
         case e: IOException =>

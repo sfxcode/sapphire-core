@@ -64,8 +64,14 @@ lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/i
     description := "Sapphire Issues Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
-    libraryDependencies += "org.scalafx"   %% "scalafx"         % "14-R19",
+    libraryDependencies += "ch.qos.logback"                % "logback-classic"        % LogbackVersion,
+    libraryDependencies += "org.scalafx"                  %% "scalafx"                % "14-R19",
+    libraryDependencies += "javax.enterprise"              % "cdi-api"                % "2.0",
+    libraryDependencies += "javax.annotation"              % "javax.annotation-api"   % "1.3.2",
+    libraryDependencies += "org.apache.openwebbeans"       % "openwebbeans-impl"      % "2.0.17",
+    libraryDependencies += "org.apache.deltaspike.core"    % "deltaspike-core-impl"   % "1.9.4",
+    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % "1.9.4",
+    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % "1.9.4",
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
@@ -156,22 +162,6 @@ libraryDependencies += "org.scala-lang.modules" %% "scala-collection-compat" % "
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
 libraryDependencies += "com.typesafe" % "config" % "1.4.0"
-
-// CDI
-
-//libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
-//
-//libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
-//
-//libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.17"
-//
-//val DeltaspikeVersion = "1.9.4"
-//
-//libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
-//
-//libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion
-//
-//libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion
 
 // Expression Language
 

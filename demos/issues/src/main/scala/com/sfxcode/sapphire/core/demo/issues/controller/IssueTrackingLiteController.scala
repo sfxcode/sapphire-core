@@ -9,13 +9,15 @@ import javafx.event.ActionEvent
 import javafx.fxml.FXML
 import javafx.scene.control.{ Button, ListView, TableView }
 import javafx.scene.layout.AnchorPane
+import javax.inject.Inject
 import scalafx.Includes._
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.control.SelectionMode
 
 class IssueTrackingLiteController extends ViewController with LazyLogging {
 
-  var emptyName: EmptyName = EmptyName("New Issue")
+  @Inject
+  var emptyName: EmptyName = _
 
   @FXML
   var table: TableView[FXBean[Issue]] = _

@@ -1,3 +1,9 @@
 package com.sfxcode.sapphire.core.fxml
 
-class DocumentLoader extends BaseDocumentLoader
+import javafx.fxml.FXMLLoader
+
+class DocumentLoader extends BaseDocumentLoader {
+
+  var fxmlLoader: FXMLLoader = new FXMLLoader()
+
+}
