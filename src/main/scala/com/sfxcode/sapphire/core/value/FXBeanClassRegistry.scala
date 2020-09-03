@@ -21,9 +21,8 @@ object FXBeanClassRegistry {
 
   def memberInfo(target: Any, name: String): FXBeanClassMemberInfo = {
     val clazz = target.getClass
-    if (!infoMap.contains(clazz)) {
+    if (!infoMap.contains(clazz))
       infoMap.put(clazz, new mutable.HashMap[String, FXBeanClassMemberInfo]())
-    }
     val memberInfoMap = infoMap(clazz)
     if (memberInfoMap.contains(name))
       return memberInfoMap(name)

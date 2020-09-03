@@ -3,7 +3,7 @@ package com.sfxcode.sapphire.core.value
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import javafx.collections.ObservableList
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.language.implicitConversions
 
 trait BeanConversions {

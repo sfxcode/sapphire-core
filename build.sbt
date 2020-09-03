@@ -21,8 +21,9 @@ scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-val Json4sVersion  = "3.6.9"
-val LogbackVersion = "1.2.3"
+val Json4sVersion     = "3.6.9"
+val LogbackVersion    = "1.2.3"
+val DeltaspikeVersion = "1.9.4"
 
 lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/showcase"))
   .settings(
@@ -33,17 +34,19 @@ lazy val showcase = Project(id = "sapphire-core-showcase", base = file("demos/sh
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
     libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
     resolvers += "sandec" at "https://sandec.bintray.com/repo",
-    libraryDependencies += "com.sandec"          % "mdfx"           % "0.1.6",
-    libraryDependencies += "com.jfoenix"         % "jfoenix"        % "9.0.10",
-    libraryDependencies += "org.fxmisc.richtext" % "richtextfx"     % "0.10.3",
-    libraryDependencies += "org.json4s"          %% "json4s-native" % Json4sVersion,
+    libraryDependencies += "com.sandec"          % "mdfx"          % "0.1.6",
+    libraryDependencies += "com.jfoenix"         % "jfoenix"       % "9.0.10",
+    libraryDependencies += "org.fxmisc.richtext" % "richtextfx"    % "0.10.3",
+    libraryDependencies += "org.json4s"         %% "json4s-native" % Json4sVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.showcse.Application")
   )
   .dependsOn(sapphire_core_root)
 
+addCommandAlias("run-showcase", "sapphire-core-showcase/run")
+
 lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/login"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-login-demo",
     description := "Sapphire Login Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -53,22 +56,32 @@ lazy val demo_login = Project(id = "sapphire-login-demo", base = file("demos/log
   )
   .dependsOn(sapphire_core_root)
 
+addCommandAlias("run-login", "sapphire-login-demo/run")
+
 lazy val demo_issues = Project(id = "sapphire-issues-demo", base = file("demos/issues"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-issues-demo",
     description := "Sapphire Issues Demo",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
           .map(m => "org.openjfx" % s"javafx-$m" % JavaFXVersion classifier osName),
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % LogbackVersion,
-    libraryDependencies += "org.scalafx"    %% "scalafx"        % "14-R19",
+    libraryDependencies += "ch.qos.logback"                % "logback-classic"        % LogbackVersion,
+    libraryDependencies += "org.scalafx"                  %% "scalafx"                % "14-R19",
+    libraryDependencies += "javax.enterprise"              % "cdi-api"                % "2.0",
+    libraryDependencies += "javax.annotation"              % "javax.annotation-api"   % "1.3.2",
+    libraryDependencies += "org.apache.openwebbeans"       % "openwebbeans-impl"      % "2.0.17",
+    libraryDependencies += "org.apache.deltaspike.core"    % "deltaspike-core-impl"   % DeltaspikeVersion,
+    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion,
+    libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion,
     mainClass := Some("com.sfxcode.sapphire.core.demo.issues.Application")
   )
   .dependsOn(sapphire_core_root)
 
+addCommandAlias("run-issues", "sapphire-issues-demo/run")
+
 lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutorial"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-tutorial",
     description := "Sapphire Tutorial",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -80,7 +93,7 @@ lazy val tutorial = Project(id = "sapphire-tutorial", base = file("demos/tutoria
 
 lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows"))
   .settings(
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
     name := "sapphire-windows",
     description := "Sapphire Windows",
     libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
@@ -90,7 +103,6 @@ lazy val windows = Project(id = "sapphire-windows", base = file("demos/windows")
   )
   .dependsOn(sapphire_core_root)
 
-addCommandAlias("run-login", "sapphire-login-demo/run")
 lazy val docs = (project in file("docs"))
   .enablePlugins(ParadoxSitePlugin)
   .enablePlugins(ParadoxMaterialThemePlugin)
@@ -109,8 +121,6 @@ lazy val docs = (project in file("docs"))
           ParadoxPlugin.InDirectoryFilter((Compile / paradox / sourceDirectory).value / "includes")
   )
 
-addCommandAlias("run-issues", "sapphire-issues-demo/run")
-
 val JavaFXVersion = "14.0.2.1"
 
 val osName = System.getProperty("os.name") match {
@@ -124,7 +134,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.10.0" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.10.3" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % Json4sVersion % Test
 
@@ -148,25 +158,11 @@ libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "sw
 
 // Environment
 
+libraryDependencies += "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6"
+
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
 libraryDependencies += "com.typesafe" % "config" % "1.4.0"
-
-// CDI
-
-libraryDependencies += "javax.enterprise" % "cdi-api" % "2.0"
-
-libraryDependencies += "javax.annotation" % "javax.annotation-api" % "1.3.2"
-
-libraryDependencies += "org.apache.openwebbeans" % "openwebbeans-impl" % "2.0.17"
-
-val DeltaspikeVersion = "1.9.4"
-
-libraryDependencies += "org.apache.deltaspike.core" % "deltaspike-core-impl" % DeltaspikeVersion
-
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-api" % DeltaspikeVersion
-
-libraryDependencies += "org.apache.deltaspike.cdictrl" % "deltaspike-cdictrl-owb" % DeltaspikeVersion
 
 // Expression Language
 
@@ -188,16 +184,17 @@ buildInfoOptions += BuildInfoOption.BuildTime
 
 pomPostProcess := { node: XmlNode =>
   new RuleTransformer(new RewriteRule {
-    override def transform(node: XmlNode): XmlNodeSeq = node match {
-      case e: Elem
-          if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided")
-            && e.child.exists(c => c.label == "groupId" && c.text == "org.openjfx") =>
-        val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
-        val artifact     = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
-        val version      = e.child.filter(_.label == "version").flatMap(_.text).mkString
-        Comment(s"provided dependency $organization#$artifact;$version has been omitted")
-      case _ => node
-    }
+    override def transform(node: XmlNode): XmlNodeSeq =
+      node match {
+        case e: Elem
+            if e.label == "dependency" && e.child.exists(c => c.label == "scope" && c.text == "provided")
+              && e.child.exists(c => c.label == "groupId" && c.text == "org.openjfx") =>
+          val organization = e.child.filter(_.label == "groupId").flatMap(_.text).mkString
+          val artifact     = e.child.filter(_.label == "artifactId").flatMap(_.text).mkString
+          val version      = e.child.filter(_.label == "version").flatMap(_.text).mkString
+          Comment(s"provided dependency $organization#$artifact;$version has been omitted")
+        case _ => node
+      }
   }).transform(node).head
 }
 

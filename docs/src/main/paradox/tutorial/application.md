@@ -2,7 +2,7 @@
 
 ## Application object
 
-A sapphire application must contain an Application object that extends FXApp.
+A sapphire application must contain an Application object that extends BaseApplication.
 
 
 @@snip [Application](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/Application.scala)

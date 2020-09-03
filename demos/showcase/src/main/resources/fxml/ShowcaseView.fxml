@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane fx:id="root" minHeight="800" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="TODO">
+           fx:controller="com.sfxcode.sapphire.core.showcase.controller.ShowcaseViewController">
     <!-- Header -->
     <BorderPane>
 
         <top>
             <VBox spacing="20" styleClass="info-box">
                 <children>
-                    <Label fx:id="infoLabel" styleClass="info-label" text="Sapphire Extensions Showcase" />
+                    <Label fx:id="infoLabel" styleClass="info-label" text="Sapphire Core Showcase" />
                 </children>
                 <padding>
                     <Insets left="4.0" top="4.0" bottom="4.0"/>

@@ -5,9 +5,10 @@ import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.ConfigValues
-import com.sfxcode.sapphire.core.cdi.BeanResolver
 import com.sfxcode.sapphire.core.el._
+import com.sfxcode.sapphire.core.control.event.ActionEvents
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
+import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.{ FXCollections, ObservableList }
@@ -15,18 +16,16 @@ import javafx.fxml.Initializable
 import javafx.scene.Scene
 import javafx.scene.layout.Pane
 import javafx.stage.Stage
-import javax.annotation.{ PostConstruct, PreDestroy }
 
 import scala.language.implicitConversions
 
 abstract class ViewController
   extends FxmlLoading
-  with BeanResolver
   with ActionEvents
   with Initializable
   with Expressions
   with LazyLogging
-  with ConfigValues {
+  with NodeLocator {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
@@ -56,21 +55,10 @@ abstract class ViewController
 
   // bean lifecycle
 
-  @PostConstruct
-  def postConstruct(): Unit = {
-    registerBean(this)
-    startup()
-  }
+  registerBean(this)
+  startup()
 
   def startup() {}
-
-  @PreDestroy
-  def preDestroy(): Unit = {
-    unregisterBean(this)
-    shutdown()
-  }
-
-  def shutdown() {}
 
   override def initialize(loc: URL, res: ResourceBundle): Unit = {
     location = Some(loc)
@@ -112,30 +100,26 @@ abstract class ViewController
     if (pane == null) {
       logger.warn("contentPane is NULL")
       false
-    } else {
-      if (viewController == null) {
-        logger.warn("viewController is NULL")
-        false
-      } else {
-        if (viewController.canGainVisibility)
-          try {
-            viewController.managedParent.setValue(this)
-            viewController.windowController.set(windowController.get)
-            viewController.willGainVisibility()
-            pane.getChildren.add(viewController.rootPane)
-            viewController.didGainVisibilityFirstTime()
-            viewController.didGainVisibility()
-            unmanagedChildren.add(viewController)
-            true
-          } catch {
-            case e: Exception =>
-              logger.error(e.getMessage, e)
-              false
-          }
-        else
+    } else if (viewController == null) {
+      logger.warn("viewController is NULL")
+      false
+    } else if (viewController.canGainVisibility)
+      try {
+        viewController.managedParent.setValue(this)
+        viewController.windowController.set(windowController.get)
+        viewController.willGainVisibility()
+        pane.getChildren.add(viewController.rootPane)
+        viewController.didGainVisibilityFirstTime()
+        viewController.didGainVisibility()
+        unmanagedChildren.add(viewController)
+        true
+      } catch {
+        case e: Exception =>
+          logger.error(e.getMessage, e)
           false
       }
-    }
+    else
+      false
 
   def stateMap: Map[String, Any] = Map[String, Any]()
 

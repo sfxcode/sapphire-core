@@ -1,28 +1,24 @@
-package com.sfxcode.sapphire.core.fxml
+package com.sfxcode.sapphire.core.fxml.loader
 
 import java.io.{ IOException, InputStream }
 
-import com.sfxcode.sapphire.core.cdi.ApplicationEnvironment
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.layout.Pane
 import javafx.{ util => jfxu }
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Inject
 
-@ApplicationScoped
-class FxmlHandler {
-
-  @Inject
-  var applicationEnvironment: ApplicationEnvironment = _
-
-  @Inject
-  var fxmlLoader: FXMLLoader = _
+abstract class BaseDocumentLoader {
 
   var defaultCallback: Option[jfxu.Callback[Class[_], Object]] = None
 
+  def fxmlLoader: FXMLLoader
+
+  def updateNamespace(key: String, value: AnyRef): AnyRef =
+    fxmlLoader.getNamespace.put(key, value)
+
   def loadFromDocument(path: String, callback: jfxu.Callback[Class[_], Object] = null): (AnyRef, Pane) = {
-    // save cdi callback
+
     if (!defaultCallback.isDefined)
       defaultCallback = Some(fxmlLoader.getControllerFactory)
 
@@ -38,7 +34,7 @@ class FxmlHandler {
     try {
       inputStream = getResourceAsStream(path)
       fxmlLoader.setLocation(getClass.getResource(path))
-      fxmlLoader.setResources(applicationEnvironment.defaultWindowController.resourceBundleForView(path))
+      fxmlLoader.setResources(ApplicationEnvironment.applicationController.resourceBundleForView(path))
 
       fxmlLoader.load(inputStream).asInstanceOf[Parent]
 
@@ -51,15 +47,11 @@ class FxmlHandler {
       case e: Exception =>
         val message = String.format("can not load fxml from path [%s]", path)
         throw new IllegalStateException(message, e)
-    } finally {
-      if (inputStream != null) {
-        try {
-          inputStream.close()
-        } catch {
-          case e: IOException =>
-        }
+    } finally if (inputStream != null)
+      try inputStream.close()
+      catch {
+        case e: IOException =>
       }
-    }
   }
 
   def getResourceAsStream(path: String): InputStream = {

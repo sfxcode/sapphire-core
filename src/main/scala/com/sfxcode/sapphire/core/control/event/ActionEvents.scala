@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.controller
+package com.sfxcode.sapphire.core.control.event
 
 import com.sfxcode.sapphire.core.value.BeanConversions
 import javafx.event.ActionEvent

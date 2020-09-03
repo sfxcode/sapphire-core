@@ -1,19 +1,19 @@
 package com.sfxcode.sapphire.core.showcase
 
-import com.sfxcode.sapphire.core.application.FXApp
-import com.sfxcode.sapphire.core.controller.DefaultWindowController
+import com.sfxcode.sapphire.core.application.BaseApplication
+import com.sfxcode.sapphire.core.controller.BaseApplicationController
 import com.sfxcode.sapphire.core.showcase.controller.ShowcaseViewController
 import com.typesafe.scalalogging.LazyLogging
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Named
 
-object Application extends FXApp {
+object Application extends BaseApplication {
+
   override def title: String = "Sapphire Core Showcase"
+
+  override val applicationController: BaseApplicationController = new ApplicationController
+
 }
 
-@Named
-@ApplicationScoped
-class ApplicationController extends DefaultWindowController with LazyLogging {
+class ApplicationController extends BaseApplicationController with LazyLogging {
 
   lazy val showcaseController: ShowcaseViewController = getController[ShowcaseViewController]()
 

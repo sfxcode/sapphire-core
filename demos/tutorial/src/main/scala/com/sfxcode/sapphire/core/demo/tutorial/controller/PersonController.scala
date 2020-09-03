@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.demo.tutorial.controller
 
 import com.sfxcode.sapphire.core.demo.tutorial.model.{ Person, PersonFactory }
-import com.sfxcode.sapphire.core.fxml.FxmlLoader
+import com.sfxcode.sapphire.core.fxml.FxmlLocation
 import com.sfxcode.sapphire.core.value.{ BeanConversions, FXBean, FXBeanAdapter, KeyBindings }
 import javafx.collections.ObservableList
 import javafx.event.ActionEvent
@@ -9,7 +9,7 @@ import javafx.fxml.FXML
 import javafx.scene.control.TableView
 import javafx.scene.layout.VBox
 
-@FxmlLoader(path = "/fxml/widget/Person.fxml")
+@FxmlLocation(path = "/fxml/widget/Person.fxml")
 class PersonController extends AbstractViewController with BeanConversions {
 
   // second parameter parent Node is optional,

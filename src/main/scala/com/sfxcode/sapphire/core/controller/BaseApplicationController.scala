@@ -1,23 +1,18 @@
 package com.sfxcode.sapphire.core.controller
 
-import com.sfxcode.sapphire.core.cdi.annotation.{ FXStage, Startup }
+import com.sfxcode.sapphire.core.application.ApplicationEnvironment
 import com.sun.javafx.css.StyleManager
 import javafx.application.Platform
 import javafx.stage.Stage
-import javax.enterprise.event.Observes
 
-abstract class DefaultWindowController extends WindowController {
+abstract class BaseApplicationController extends WindowController {
 
   override def isMainWindow: Boolean = true
 
-  def startup(@Observes @FXStage @Startup stage: Stage) {
-    applicationStartup(stage)
-  }
-
-  def applicationStartup(stage: Stage) {
+  def onApplicationStartup(stage: Stage) {
     applicationWillLaunch()
     setStage(stage)
-    applicationEnvironment.defaultWindowController = this
+    ApplicationEnvironment.setApplicationController(this)
     applicationDidLaunch()
   }
 

@@ -34,12 +34,3 @@ For adding SubController and displaying their UI content following steps are nee
 ### Init Controller
 
 @@snip [MainViewController](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial//controller/MainViewController.scala) { #didGainVisibilityFirstTime}
-
-
-### CDI (optional)
-
-Make use of CDI Observers, Injection Points, ...
-
-Create Application Scoped Observer Bean to log Content Manager Activity
-
-@@snip [ApplicationObserver.scala](../../../../../demos/tutorial/src/main/scala/com/sfxcode/sapphire/core/demo/tutorial/ApplicationObserver.scala) { #cdi}

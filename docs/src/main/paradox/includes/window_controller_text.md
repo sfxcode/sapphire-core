@@ -3,4 +3,3 @@ Creates a stage and a scene. Scene content can be exchanged by replaceSceneConte
 
 Sample with scene content switching can be found in the login demo.
 
-Instances must be created by CDI.

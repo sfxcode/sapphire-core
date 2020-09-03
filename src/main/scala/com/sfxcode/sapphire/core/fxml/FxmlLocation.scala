@@ -3,9 +3,9 @@ package com.sfxcode.sapphire.core.fxml
 import scala.reflect.runtime.universe
 import scala.reflect.runtime.universe._
 
-case class FxmlLoader(path: String) extends scala.annotation.StaticAnnotation
+case class FxmlLocation(path: String) extends scala.annotation.StaticAnnotation
 
-object FxmlLoader {
+object FxmlLocation {
 
   def pathValue(clazzTag: scala.reflect.ClassTag[_]): String = {
     var result = ""
@@ -13,7 +13,7 @@ object FxmlLoader {
     val rootMirror = universe.runtimeMirror(runtimeClass.getClassLoader)
     val myAnnotatedClass = rootMirror.classSymbol(runtimeClass)
     val annotation: Option[universe.Annotation] =
-      myAnnotatedClass.annotations.find(_.tree.tpe =:= universe.typeOf[FxmlLoader])
+      myAnnotatedClass.annotations.find(_.tree.tpe =:= universe.typeOf[FxmlLocation])
     annotation.flatMap { a =>
       a.tree.children.tail.collectFirst {
         case Literal(Constant(name: String)) =>

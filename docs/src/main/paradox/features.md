@@ -1,11 +1,9 @@
 # Features
 
-## Application Environment powered by CDI
+## Application
 
 - @ref:[WindowController](detail/window_controller.md) (Holds JavaFX Stage and Scene)
 - @ref:[ViewController](detail/view_controller.md)
-- Parameter Provider
-- Configuration Provider
 - @ref:[FXML Loading](detail/fxml_loading.md)
 - @ref:[Hot Reload](development/hot_reload.md)
 
@@ -31,8 +29,6 @@
 
 - Controller Lifecycle
 - Node Locator
-- Controller CDI Additions
-- Controller Lookup by CDI
 
 ## First Class FXML Support
 

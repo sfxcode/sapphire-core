@@ -5,7 +5,7 @@ import java.util.regex.{ Matcher, Pattern }
 
 import org.fxmisc.richtext.model.{ StyleSpans, StyleSpansBuilder }
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object ScalaHighlighter {
 

@@ -13,11 +13,11 @@ object ObjectExpressionHelper {
 
     val expression = expressionString.replace(FxmlExpressionPrefix, ExpressionPrefix)
 
-    if (expression.contains(ExpressionPrefix)) {
+    if (expression.contains(ExpressionPrefix))
       result = getValueOnObject(obj, expression, clazz)
-    } else if (expression.contains("(")) {
+    else if (expression.contains("("))
       result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, expression), clazz)
-    } else {
+    else {
       var tempExpression = expression
       while (tempExpression.indexOf(".") != -1 && tempExpression.indexOf("().") == -1) {
         val index = tempExpression.indexOf(".")
@@ -26,15 +26,13 @@ object ObjectExpressionHelper {
 
       try {
         var methodExpression = tempExpression
-        if (!methodExpression.endsWith("()")) {
+        if (!methodExpression.endsWith("()"))
           methodExpression = methodExpression + "()"
-        }
         result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, methodExpression), clazz)
       } catch {
-        case e: MethodNotFoundException =>
-          if (!tempExpression.endsWith("()")) {
+        case _: MethodNotFoundException =>
+          if (!tempExpression.endsWith("()"))
             result = getValueOnObject(obj, String.format("${%s.%s}", TempObjectName, tempExpression), clazz)
-          }
       }
     }
     result
