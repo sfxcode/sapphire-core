@@ -11,7 +11,7 @@ import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.SimpleObjectProperty
-import javafx.collections.{FXCollections, ObservableList}
+import javafx.collections.{ FXCollections, ObservableList }
 import javafx.fxml.Initializable
 import javafx.scene.Scene
 import javafx.scene.layout.Pane
@@ -20,12 +20,12 @@ import javafx.stage.Stage
 import scala.language.implicitConversions
 
 abstract class ViewController
-    extends FxmlLoading
-    with ActionEvents
-    with Initializable
-    with Expressions
-    with LazyLogging
-    with NodeLocator {
+  extends FxmlLoading
+  with ActionEvents
+  with Initializable
+  with Expressions
+  with LazyLogging
+  with NodeLocator {
 
   implicit def stringListToMap(list: List[String]): Map[String, String] = list.map(s => (s, s)).toMap
 
@@ -34,10 +34,10 @@ abstract class ViewController
 
   val windowController = new SimpleObjectProperty[WindowController]()
 
-  val managedParent                                               = new SimpleObjectProperty[ViewController]()
-  protected val managedChildren: ObservableList[ViewController]   = FXCollections.observableArrayList[ViewController]()
+  val managedParent = new SimpleObjectProperty[ViewController]()
+  protected val managedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
   protected val unmanagedChildren: ObservableList[ViewController] = FXCollections.observableArrayList[ViewController]()
-  var gainedVisibility                                            = false
+  var gainedVisibility = false
 
   def stage: Stage = windowController.get.stage
 
@@ -100,12 +100,10 @@ abstract class ViewController
     if (pane == null) {
       logger.warn("contentPane is NULL")
       false
-    }
-    else if (viewController == null) {
+    } else if (viewController == null) {
       logger.warn("viewController is NULL")
       false
-    }
-    else if (viewController.canGainVisibility)
+    } else if (viewController.canGainVisibility)
       try {
         viewController.managedParent.setValue(this)
         viewController.windowController.set(windowController.get)
@@ -115,8 +113,7 @@ abstract class ViewController
         viewController.didGainVisibility()
         unmanagedChildren.add(viewController)
         true
-      }
-      catch {
+      } catch {
         case e: Exception =>
           logger.error(e.getMessage, e)
           false
@@ -137,6 +134,5 @@ abstract class ViewController
       this.getClass.getSimpleName,
       hashCode(),
       isLoadedFromFXML,
-      gainedVisibility
-    )
+      gainedVisibility)
 }
