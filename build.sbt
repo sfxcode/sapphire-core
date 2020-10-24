@@ -21,7 +21,7 @@ scalacOptions += "-deprecation"
 
 parallelExecution in Test := false
 
-val Json4sVersion     = "3.6.9"
+val Json4sVersion     = "3.6.10"
 val LogbackVersion    = "1.2.3"
 val DeltaspikeVersion = "1.9.4"
 
@@ -121,7 +121,7 @@ lazy val docs = (project in file("docs"))
           ParadoxPlugin.InDirectoryFilter((Compile / paradox / sourceDirectory).value / "includes")
   )
 
-val JavaFXVersion = "14.0.2.1"
+val JavaFXVersion = "15.0.1"
 
 val osName = System.getProperty("os.name") match {
   case n if n.startsWith("Linux")   => "linux"
@@ -134,7 +134,7 @@ addCommandAlias("run-tutorial", "sapphire-tutorial/run")
 
 // Test
 
-libraryDependencies += "org.specs2" %% "specs2-core" % "4.10.3" % Test
+libraryDependencies += "org.specs2" %% "specs2-core" % "4.10.5" % Test
 
 libraryDependencies += "org.json4s" %% "json4s-native" % Json4sVersion % Test
 
@@ -158,15 +158,15 @@ libraryDependencies ++= Seq("base", "controls", "fxml", "graphics", "media", "sw
 
 // Environment
 
-libraryDependencies += "org.scala-lang.modules" %% "scala-collection-compat" % "2.1.6"
+libraryDependencies += "org.scala-lang.modules" %% "scala-collection-compat" % "2.2.0"
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2"
 
-libraryDependencies += "com.typesafe" % "config" % "1.4.0"
+libraryDependencies += "com.typesafe" % "config" % "1.4.1"
 
 // Expression Language
 
-libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.37"
+libraryDependencies += "org.apache.tomcat" % "tomcat-jasper-el" % "9.0.39"
 
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 

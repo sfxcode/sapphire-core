@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 2.0.1
+* JavaFX 15.0.1
+* sbt 1.4.0
+
 ### 2.0.0
 * Removed FXValueFactory
 * Remove CDI - see [migrations](MIGRATION.md)
