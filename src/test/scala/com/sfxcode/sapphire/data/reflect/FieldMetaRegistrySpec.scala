@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.value
+package com.sfxcode.sapphire.data.reflect
 
 import java.time.LocalDate
 import java.util.Date
@@ -29,7 +29,7 @@ case class NoneTest(valueOption: Option[Long] = None)
 import com.sfxcode.sapphire.data.reflect.FieldMetaRegistry._
 import com.sfxcode.sapphire.data.reflect.PropertyType._
 
-class FXBeanClassRegistrySpec extends Specification {
+class FieldMetaRegistrySpec extends Specification {
 
   "FXBeanClassRegistry" should {
 
@@ -44,7 +44,7 @@ class FXBeanClassRegistrySpec extends Specification {
     val localDateTest = LocalDateTest()
     val noneTest = NoneTest()
 
-    def testMemberInfo(target: AnyRef, name: String, signature: PropertyValue, isOption: Boolean): Boolean = {
+    def assertFieldMeta(target: AnyRef, name: String, signature: PropertyValue, isOption: Boolean): Boolean = {
       val info = fieldMeta(target, name)
       info.name must be equalTo name
       info.signature must be equalTo signature
@@ -55,75 +55,75 @@ class FXBeanClassRegistrySpec extends Specification {
 
     "get member info for String" in {
 
-      testMemberInfo(stringTest, "value", TypeString, isOption = false) must beTrue
-      testMemberInfo(stringTest, "valueOption", TypeString, isOption = true) must beTrue
+      assertFieldMeta(stringTest, "value", TypeString, isOption = false) must beTrue
+      assertFieldMeta(stringTest, "valueOption", TypeString, isOption = true) must beTrue
 
-      testMemberInfo(stringTest2, "value", TypeString, isOption = false) must beTrue
-      testMemberInfo(stringTest2, "valueOption", TypeString, isOption = true) must beTrue
+      assertFieldMeta(stringTest2, "value", TypeString, isOption = false) must beTrue
+      assertFieldMeta(stringTest2, "valueOption", TypeString, isOption = true) must beTrue
 
     }
 
     "get member info for Int" in {
 
-      testMemberInfo(intTest, "value", TypeInt, isOption = false) must beTrue
-      testMemberInfo(intTest, "valueOption", TypeInt, isOption = true) must beTrue
+      assertFieldMeta(intTest, "value", TypeInt, isOption = false) must beTrue
+      assertFieldMeta(intTest, "valueOption", TypeInt, isOption = true) must beTrue
 
     }
 
     "get member info for Long" in {
-      testMemberInfo(longTest, "value", TypeLong, isOption = false) must beTrue
-      testMemberInfo(longTest, "valueOption", TypeLong, isOption = true) must beTrue
+      assertFieldMeta(longTest, "value", TypeLong, isOption = false) must beTrue
+      assertFieldMeta(longTest, "valueOption", TypeLong, isOption = true) must beTrue
 
     }
 
     "get member info for Long with None" in {
 
-      testMemberInfo(noneTest, "valueOption", TypeObject, isOption = true) must beTrue
+      assertFieldMeta(noneTest, "valueOption", TypeObject, isOption = true) must beTrue
     }
 
     "get member info for Float" in {
 
-      testMemberInfo(floatTest, "value", TypeFloat, isOption = false) must beTrue
-      testMemberInfo(floatTest, "valueOption", TypeFloat, isOption = true) must beTrue
+      assertFieldMeta(floatTest, "value", TypeFloat, isOption = false) must beTrue
+      assertFieldMeta(floatTest, "valueOption", TypeFloat, isOption = true) must beTrue
 
     }
 
     "get member info for Double" in {
 
-      testMemberInfo(doubleTest, "value", TypeDouble, isOption = false) must beTrue
-      testMemberInfo(doubleTest, "valueOption", TypeDouble, isOption = true) must beTrue
+      assertFieldMeta(doubleTest, "value", TypeDouble, isOption = false) must beTrue
+      assertFieldMeta(doubleTest, "valueOption", TypeDouble, isOption = true) must beTrue
 
     }
 
     "get member info for Boolean" in {
 
-      testMemberInfo(booleanTest, "value", TypeBoolean, isOption = false) must beTrue
-      testMemberInfo(booleanTest, "valueOption", TypeBoolean, isOption = true) must beTrue
+      assertFieldMeta(booleanTest, "value", TypeBoolean, isOption = false) must beTrue
+      assertFieldMeta(booleanTest, "valueOption", TypeBoolean, isOption = true) must beTrue
 
     }
 
     "get member info for Date" in {
 
-      testMemberInfo(dateTest, "value", TypeDate, isOption = false) must beTrue
-      testMemberInfo(dateTest, "valueOption", TypeDate, isOption = true) must beTrue
+      assertFieldMeta(dateTest, "value", TypeDate, isOption = false) must beTrue
+      assertFieldMeta(dateTest, "valueOption", TypeDate, isOption = true) must beTrue
 
     }
 
     "get member info for LocalDate" in {
 
-      testMemberInfo(localDateTest, "value", TypeLocalDate, isOption = false) must beTrue
-      testMemberInfo(localDateTest, "valueOption", TypeLocalDate, isOption = true) must beTrue
+      assertFieldMeta(localDateTest, "value", TypeLocalDate, isOption = false) must beTrue
+      assertFieldMeta(localDateTest, "valueOption", TypeLocalDate, isOption = true) must beTrue
     }
 
     "get member info performance" in {
       // warmup and cache
-      testMemberInfo(stringTest, "value", TypeString, isOption = false) must beTrue
-      testMemberInfo(stringTest, "valueOption", TypeString, isOption = true) must beTrue
+      assertFieldMeta(stringTest, "value", TypeString, isOption = false) must beTrue
+      assertFieldMeta(stringTest, "valueOption", TypeString, isOption = true) must beTrue
 
       val start = System.currentTimeMillis()
       (1 to 10000).foreach { _ =>
-        testMemberInfo(stringTest, "value", TypeString, isOption = false) must beTrue
-        testMemberInfo(stringTest, "valueOption", TypeString, isOption = true) must beTrue
+        assertFieldMeta(stringTest, "value", TypeString, isOption = false) must beTrue
+        assertFieldMeta(stringTest, "valueOption", TypeString, isOption = true) must beTrue
       }
       val time = System.currentTimeMillis() - start
 

@@ -1,17 +1,17 @@
-package com.sfxcode.sapphire.core.value
+package com.sfxcode.sapphire.data
 
 import com.sfxcode.sapphire.data.test.TestJavaBean
 import org.specs2.mutable.Specification
 
 case class UpdateTestBean(var name: String = "test", var age: Int = 42, var description: Option[String] = Some("desc"))
 
-class FXBeanUpdateSpec extends Specification {
+class DataWrapperUpdateSpec extends Specification {
 
   sequential
 
   "FXBean" should {
     "update member value" in {
-      val testBean = FXBean(UpdateTestBean())
+      val testBean = DataWrapper(UpdateTestBean())
       testBean.updateValue("name", "new")
       testBean.getValue("name") must be equalTo "new"
       testBean("name") must be equalTo "new"
@@ -29,7 +29,7 @@ class FXBeanUpdateSpec extends Specification {
   "FXBean" should {
     "update java member value" in {
       val bean: TestJavaBean = new TestJavaBean()
-      val testBean = FXBean(bean)
+      val testBean = DataWrapper(bean)
       testBean.updateValue("name", "new")
       testBean.getValue("name") must be equalTo "new"
       testBean("name") must be equalTo "new"

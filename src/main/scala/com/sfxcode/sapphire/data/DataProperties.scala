@@ -126,6 +126,7 @@ abstract class DataProperties(val typeHints: List[FieldMeta]) extends ChangeList
             }
 
             val property = result.asInstanceOf[Property[_]]
+            property.addListener(this)
             expressionMap.put(key, property)
             property
           }

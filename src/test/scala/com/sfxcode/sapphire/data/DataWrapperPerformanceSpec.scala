@@ -1,15 +1,14 @@
-package com.sfxcode.sapphire.core.value
+package com.sfxcode.sapphire.data
 
-import com.sfxcode.sapphire.data.TestClass
 import com.typesafe.scalalogging.LazyLogging
 import org.specs2.mutable.Specification
 
-class FXBeanPerformanceSpec extends Specification with LazyLogging {
+class DataWrapperPerformanceSpec extends Specification with LazyLogging {
 
   "FXBean" should {
 
     "get value of members of case class" in {
-      val testBean = FXBean[TestClass](new TestClass())
+      val testBean = DataWrapper[TestClass](new TestClass())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
       val max = 1000
