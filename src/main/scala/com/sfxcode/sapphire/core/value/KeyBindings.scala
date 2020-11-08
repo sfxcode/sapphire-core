@@ -1,9 +1,11 @@
 package com.sfxcode.sapphire.core.value
 
+import com.sfxcode.sapphire.data.reflect.{ FieldRegistry, ReflectionTools }
 import javafx.collections.{ FXCollections, ObservableMap }
 
 import scala.jdk.CollectionConverters._
 import scala.collection.mutable
+import scala.reflect.ClassTag
 import scala.reflect.runtime.universe._
 
 class KeyBindings {
@@ -50,15 +52,15 @@ object KeyBindings {
     bindings.add(list, nodePrefix)
   }
 
-  def forClass[T <: AnyRef](nodePrefix: String = "")(implicit t: TypeTag[T]): KeyBindings = {
+  def forClass[T <: AnyRef](nodePrefix: String = "")(implicit ct: ClassTag[T]): KeyBindings = {
     val bindings = new KeyBindings
 
-    val symbols = ReflectionTools.getMembers[T]()
-    symbols.foreach { s =>
-      val name = s.name.toString
+    val fields = FieldRegistry.fieldMap(ct.runtimeClass)
+    fields.keys.foreach { name =>
       bindings.add(nodePrefix + name, name)
     }
     bindings
+
   }
 
 }

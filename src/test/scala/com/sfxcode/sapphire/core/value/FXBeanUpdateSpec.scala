@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import com.sfxcode.sapphire.data.test.TestJavaBean
 import org.specs2.mutable.Specification
 
 case class UpdateTestBean(var name: String = "test", var age: Int = 42, var description: Option[String] = Some("desc"))

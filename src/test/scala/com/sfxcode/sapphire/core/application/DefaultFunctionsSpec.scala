@@ -1,23 +1,18 @@
-package com.sfxcode.sapphire.core.el
+package com.sfxcode.sapphire.core.application
 
 import java.text.SimpleDateFormat
 
+import com.sfxcode.sapphire.data.el.Expressions
 import org.specs2.mutable.Specification
 
-object CustomFunctionMapper {
-  def coolMethod(s: String): String = "test-" + s
-}
-
-class ExpressionsSpec extends Specification {
+class DefaultFunctionsSpec extends Specification {
 
   "Expressions" should {
 
-    "registerValues" in {
-      Expressions.register("ExpressionsSpec", "Test")
-      Expressions.getValue("${ExpressionsSpec}").get must be equalTo "Test"
-    }
-
     "evaluate default functions" in {
+      val functionHelper = Expressions.functionHelper
+      DefaultFunctions.addDefaultFunctions(functionHelper)
+
       Expressions.getValue("${sf:frameworkName()}").get must be equalTo "sapphire-core"
 
       val df = new SimpleDateFormat("yyyy-MM-dd")
@@ -43,16 +38,6 @@ class ExpressionsSpec extends Specification {
       Expressions.getValue("${sf:configString('test.string')}").get must be equalTo "Hello World"
 
     }
-
-    // #customFunction
-    "add custom function" in {
-
-      val clazz: Class[_] = Class.forName("com.sfxcode.sapphire.core.el.CustomFunctionMapper")
-      Expressions.functionHelper.addFunction("custom", "myCoolMethod", clazz, "coolMethod", classOf[String])
-      Expressions.getValue("${custom:myCoolMethod('123')}").get must be equalTo "test-123"
-
-    }
-    // #customFunction
 
   }
 }

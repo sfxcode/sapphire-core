@@ -1,7 +1,7 @@
 package com.sfxcode.sapphire.core.value
 
-import com.sfxcode.sapphire.core.application.ApplicationEnvironment
-import com.sfxcode.sapphire.core.el.DefaultFunctions
+import com.sfxcode.sapphire.core.application.{ ApplicationEnvironment, DefaultFunctions }
+import com.sfxcode.sapphire.data.DataProperties.{ defaultDateConverter, defaultDateTimeConverter }
 import javafx.beans.property.{ Property, StringProperty }
 import javafx.collections.{ FXCollections, ObservableMap }
 import javafx.util.StringConverter
@@ -60,10 +60,10 @@ abstract class KeyConverter {
   def addPercentageConverter(keys: String*): Unit =
     keys.foreach(addConverter(_, classOf[PercentageStringConverter].getSimpleName))
 
-  def addDateConverter(keys: String*): Unit = keys.foreach(addConverter(_, DefaultFunctions.defaultDateConverter))
+  def addDateConverter(keys: String*): Unit = keys.foreach(addConverter(_, defaultDateConverter))
 
   def addDateTimeConverter(keys: String*): Unit =
-    keys.foreach(addConverter(_, DefaultFunctions.defaultDateTimeConverter))
+    keys.foreach(addConverter(_, defaultDateTimeConverter))
 
   def addLocalDateConverter(keys: String*): Unit =
     keys.foreach(addConverter(_, classOf[LocalDateStringConverter].getSimpleName))

@@ -2,7 +2,8 @@ package com.sfxcode.sapphire.core.control
 
 import java.text.DecimalFormat
 
-import com.sfxcode.sapphire.core.value.{ FXBean, ReflectionTools }
+import com.sfxcode.sapphire.core.value.FXBean
+import com.sfxcode.sapphire.data.reflect.ReflectionTools
 import javafx.beans.property._
 import javafx.beans.value.ObservableValue
 
@@ -33,7 +34,7 @@ trait FXValueFactory[S, T] {
           }
         p.asInstanceOf[ObservableValue[T]]
       case _ =>
-        val reflectedValue = ReflectionTools.getMemberValue(value, property)
+        val reflectedValue = ReflectionTools.getFieldValue(value, property)
         reflectedValue match {
           case ov: ObservableValue[T] => ov
           case _ => null

@@ -6,12 +6,16 @@ import com.sfxcode.sapphire.core.controller.BaseApplicationController
 import com.sfxcode.sapphire.core.fxml.FxmlExpressionResolver
 import com.sfxcode.sapphire.core.fxml.loader.{ BaseDocumentLoader, DocumentLoader }
 import com.sfxcode.sapphire.core.scene.NodePropertyResolver
+import com.sfxcode.sapphire.data.el.Expressions
 import com.typesafe.scalalogging.LazyLogging
 import javafx.collections.{ FXCollections, ObservableMap }
 import javafx.util.StringConverter
 import javafx.util.converter.DefaultStringConverter
 
 object ApplicationEnvironment extends Serializable with LazyLogging {
+
+  val functionHelper = Expressions.functionHelper
+  DefaultFunctions.addDefaultFunctions(functionHelper)
 
   private var app: BaseApplication = _
   private var appController: BaseApplicationController = _

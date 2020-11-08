@@ -4,7 +4,7 @@ import java.util.ResourceBundle
 
 import com.sfxcode.sapphire.core.CollectionExtensions._
 import com.sfxcode.sapphire.core.application.ApplicationEnvironment
-import com.sfxcode.sapphire.core.el.Expressions
+import com.sfxcode.sapphire.data.el.Expressions
 import com.sfxcode.sapphire.core.fxml.FxmlLoading
 import com.sfxcode.sapphire.core.scene.NodeLocator
 import com.typesafe.scalalogging.LazyLogging

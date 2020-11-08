@@ -1,5 +1,6 @@
 package com.sfxcode.sapphire.core.value
 
+import com.sfxcode.sapphire.data.TestClass
 import com.typesafe.scalalogging.LazyLogging
 import org.specs2.mutable.Specification
 

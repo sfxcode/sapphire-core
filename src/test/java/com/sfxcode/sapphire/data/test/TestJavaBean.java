@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.value;
+package com.sfxcode.sapphire.data.test;
 
 import java.util.Date;
 

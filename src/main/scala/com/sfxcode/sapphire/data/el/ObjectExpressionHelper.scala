@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.el
+package com.sfxcode.sapphire.data.el
 
 import javax.el.MethodNotFoundException
 

@@ -30,10 +30,6 @@ case class Person(
 
 case class Friend(id: Long, name: String)
 
-case class Author(var name: String)
-
-case class Book(id: Long, title: String, pages: Int, author: Author)
-
 object PersonDatabase {
 
   implicit val formats = new DefaultFormats {
@@ -43,7 +39,6 @@ object PersonDatabase {
   val personen: List[Person] = read[List[Person]](fromJson("/test_data.json"))
 
   val friends: List[Friend] = personen.head.friends
-  val scalaBook = Book(1, "Programming In Scala", 852, Author("Martin Odersky"))
 
   def fromJson(name: String): String = {
     val is = getClass.getResourceAsStream(name)

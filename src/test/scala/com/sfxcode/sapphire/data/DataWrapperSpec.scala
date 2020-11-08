@@ -1,9 +1,13 @@
-package com.sfxcode.sapphire.core.value
+package com.sfxcode.sapphire.data
 
-import com.sfxcode.sapphire.core.test.{ Book, PersonDatabase }
+import com.sfxcode.sapphire.data.test.TestJavaBean
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property._
 import org.specs2.mutable._
+
+case class Author(var name: String)
+
+case class Book(id: Long, title: String, pages: Int, author: Author)
 
 case class Zip(value: Long = 12345)
 
@@ -41,15 +45,15 @@ case class ParentBean(parentName: String = "parentName", child: ChildBean = Chil
 
 case class ListClass(list: List[String] = List("A", "B"))
 
-class FXBeanSpec extends Specification with LazyLogging {
+class DataWrapperSpec extends Specification with LazyLogging {
 
   sequential
 
-  "FXBean" should {
+  "DataWrapper" should {
 
     "get value of members of case class" in {
 
-      val testBean = FXBean[TestBean](TestBean())
+      val testBean = DataWrapper[TestBean](TestBean())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
       testBean.getValue("description") must be equalTo Some("desc")
@@ -62,16 +66,16 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean("observable").asInstanceOf[StringProperty].getValue must be equalTo "observable"
       testBean("zip").asInstanceOf[Zip].value must be equalTo 12345
 
-      val testBean2 = FXBean[TestBean](TestBean())
+      val testBean2 = DataWrapper[TestBean](TestBean())
 
       testBean2.updateValue("description", None)
-      testBean2.bean.description must beNone
+      testBean2.wrappedData.description must beNone
       testBean2.getValue("description") must be equalTo None
 
     }
 
     "get value of members of class" in {
-      val testBean = FXBean[TestClass](new TestClass())
+      val testBean = DataWrapper[TestClass](new TestClass())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
       testBean.getValue("description") must be equalTo Some("desc")
@@ -87,7 +91,7 @@ class FXBeanSpec extends Specification with LazyLogging {
 
     "get value of members of java class" in {
       val bean: TestJavaBean = new TestJavaBean()
-      val testBean = FXBean[TestJavaBean](bean)
+      val testBean = DataWrapper[TestJavaBean](bean)
       logger.debug(testBean.getProperty("date").toString())
       testBean.getValue("name") must be equalTo "test"
       testBean.getValue("age") must be equalTo 42
@@ -96,8 +100,8 @@ class FXBeanSpec extends Specification with LazyLogging {
 
     "evaluate expressions" in {
 
-      // #FXBeanExpression
-      val testBean = FXBean[TestBean](TestBean())
+      // #DataWrapperExpression
+      val testBean = DataWrapper[TestBean](TestBean())
       testBean.getValue("result ${2*4}") must be equalTo "result 8"
       testBean.getValue("${_self.description().get()}") must be equalTo "desc"
       testBean.getValue("!{_self.description().get()}") must be equalTo "desc"
@@ -105,13 +109,13 @@ class FXBeanSpec extends Specification with LazyLogging {
       testBean.getValue("${_self.age() / 2}") must be equalTo 21.0
       testBean.getValue("${_self.multiply(2,3)}") must be equalTo 6
       testBean.getValue("!{_self.multiply(2,3)}") must be equalTo 6
-      // #FXBeanExpression
+      // #DataWrapperExpression
 
       testBean.getValue("doubleAge()") must be equalTo 84
     }
 
     "update expressions" in {
-      val testBean = FXBean[TestBean](TestBean())
+      val testBean = DataWrapper[TestBean](TestBean())
       val observableAge = testBean.getIntegerProperty("${_self.age()}")
       val observable = testBean.getIntegerProperty("${_self.doubleAge()}")
       observableAge.getValue must be equalTo 42
@@ -125,7 +129,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "update child expressions" in {
-      val testBean = FXBean[ParentBean](ParentBean())
+      val testBean = DataWrapper[ParentBean](ParentBean())
       val observableName = testBean.getStringProperty("${_self.fullName()}")
       observableName.getValue must be equalTo "parentName : [child] childName"
       testBean.updateValue("parentName", "parent")
@@ -136,7 +140,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "get observable property" in {
-      val testBean = FXBean[TestBean](TestBean())
+      val testBean = DataWrapper[TestBean](TestBean())
 
       val observable = testBean.getIntegerProperty("age")
       observable.getValue must be equalTo 42
@@ -144,7 +148,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "get observable expression property" in {
-      val testBean = FXBean[ListClass](ListClass())
+      val testBean = DataWrapper[ListClass](ListClass())
 
       val observable = testBean.getIntegerProperty("${_self.list().size()}")
       observable.getValue must be equalTo 2
@@ -155,23 +159,25 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "handle complex case classes" in {
-      val book = FXBean[Book](PersonDatabase.scalaBook)
-      book.getValue("title") must be equalTo "Programming In Scala"
-      book.getValue("author.name") must be equalTo "Martin Odersky"
-      book.updateValue("author.name", "M. Odersky")
-      book.getValue("author.name") must be equalTo "M. Odersky"
+      val book = Book(1, "Programming In Scala", 852, Author("Martin Odersky"))
 
-      val observable = book.getStringProperty("author.name")
+      val wrapper = DataWrapper[Book](book)
+      wrapper.getValue("title") must be equalTo "Programming In Scala"
+      wrapper.getValue("author.name") must be equalTo "Martin Odersky"
+      wrapper.updateValue("author.name", "M. Odersky")
+      wrapper.getValue("author.name") must be equalTo "M. Odersky"
+
+      val observable = wrapper.getStringProperty("author.name")
       observable.getValue must be equalTo "M. Odersky"
 
       observable.set("Martin Odersky")
-      book.getValue("author.name") must be equalTo "Martin Odersky"
+      wrapper.getValue("author.name") must be equalTo "Martin Odersky"
     }
 
     "handle scala map " in {
       val map = Map[String, Any]("test" -> 3, "test.test" -> 4)
 
-      val book = FXBean[Map[String, Any]](map)
+      val book = DataWrapper[Map[String, Any]](map)
 
       book.getValue("test") must be equalTo 3
       book.getValue("test.test") must be equalTo 4
@@ -179,7 +185,7 @@ class FXBeanSpec extends Specification with LazyLogging {
     }
 
     "handle changes in " in {
-      val testBean = FXBean[ParentBean](ParentBean())
+      val testBean = DataWrapper[ParentBean](ParentBean())
 
       testBean.hasChanges must beFalse
 

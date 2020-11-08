@@ -1,4 +1,4 @@
-package com.sfxcode.sapphire.core.el
+package com.sfxcode.sapphire.data.el
 
 import java.util.Properties
 
@@ -9,13 +9,11 @@ import scala.reflect.ClassTag
 object Expressions {
   val props: Properties = System.getProperties
 
-  if (!props.containsKey("org.apache.el.BeanELResolver.CACHE_SIZE")) {
+  if (!props.containsKey("org.apache.el.BeanELResolver.CACHE_SIZE"))
     props.put("org.apache.el.BeanELResolver.CACHE_SIZE", "2000")
-  }
 
-  if (!props.containsKey("org.apache.el.ExpressionBuilder.CACHE_SIZE")) {
+  if (!props.containsKey("org.apache.el.ExpressionBuilder.CACHE_SIZE"))
     props.put("org.apache.el.ExpressionBuilder.CACHE_SIZE", "10000")
-  }
 
   val processor: ELProcessor = new ELProcessor
   val manager: ELManager = processor.getELManager
@@ -41,11 +39,10 @@ object Expressions {
 
     val result: Option[Any] = ObjectExpressionHelper.getValue(obj, expression: String, clazz)
 
-    if (result.isDefined && result.get.isInstanceOf[T]) {
+    if (result.isDefined && result.get.isInstanceOf[T])
       result.asInstanceOf[Option[T]]
-    } else {
+    else
       None
-    }
   }
 
   def register(name: String, obj: Any): Unit =
@@ -65,11 +62,10 @@ object Expressions {
     val key = "%s%s".format(simpleName.head.toLower, simpleName.tail)
     val bean = evaluateExpressionOnObject(this, "${%s}".format(key))
 
-    if (bean.isDefined && bean.get.isInstanceOf[T]) {
+    if (bean.isDefined && bean.get.isInstanceOf[T])
       Some(bean.get.asInstanceOf[T])
-    } else {
+    else
       None
-    }
 
   }
 

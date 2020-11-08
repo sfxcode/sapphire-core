@@ -9,12 +9,10 @@ class TestViewController extends ViewController {
 
   rootPane = new HBox()
 
-  override def didGainVisibilityFirstTime() {
+  override def didGainVisibilityFirstTime(): Unit =
     super.willGainVisibility()
-  }
 
-  override def didGainVisibility() {
+  override def didGainVisibility(): Unit =
     super.didGainVisibility()
-  }
 
 }
