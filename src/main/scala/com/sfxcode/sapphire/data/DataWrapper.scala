@@ -2,7 +2,7 @@ package com.sfxcode.sapphire.data
 
 import com.sfxcode.sapphire.data.el.Expressions
 import com.sfxcode.sapphire.data.reflect.FieldMeta._
-import com.sfxcode.sapphire.data.reflect.{FieldMeta, ReflectionTools}
+import com.sfxcode.sapphire.data.reflect.{ FieldMeta, ReflectionTools }
 import com.typesafe.scalalogging.LazyLogging
 import javafx.beans.property.Property
 import javafx.beans.value.ObservableValue
@@ -11,8 +11,8 @@ import scala.collection.mutable
 import scala.jdk.CollectionConverters._
 
 class DataWrapper[T <: AnyRef](val wrappedData: T, typeHints: List[FieldMeta] = EmptyTypeHints)
-    extends DataProperties(typeHints)
-    with LazyLogging {
+  extends DataProperties(typeHints)
+  with LazyLogging {
 
   def data: AnyRef = wrappedData
 
@@ -27,30 +27,29 @@ class DataWrapper[T <: AnyRef](val wrappedData: T, typeHints: List[FieldMeta] = 
 
   def getValue(key: String): Any =
     wrappedData match {
-      case map: mutable.Map[String, _]       => map(key)
-      case map: Map[String, _]               => map(key)
+      case map: mutable.Map[String, _] => map(key)
+      case map: Map[String, _] => map(key)
       case javaMap: java.util.Map[String, _] => javaMap.get(key)
-      case _                                 => Expressions.evaluateExpressionOnObject(wrappedData, key).get
+      case _ => Expressions.evaluateExpressionOnObject(wrappedData, key).get
     }
 
   def updateValue(key: String, newValue: Any) {
     var valueToUpdate = newValue
-    val property      = propertyMap.asScala.getOrElse(key, getProperty(key))
+    val property = propertyMap.asScala.getOrElse(key, getProperty(key))
 
     if (newValue == None)
       valueToUpdate = null
     wrappedData match {
-      case map: mutable.Map[String, Any]       => map.put(key, valueToUpdate)
+      case map: mutable.Map[String, Any] => map.put(key, valueToUpdate)
       case javaMap: java.util.Map[String, Any] => javaMap.put(key, valueToUpdate)
       case _ =>
         if (key.contains(".")) {
           val objectKey = key.substring(0, key.indexOf("."))
-          val newKey    = key.substring(key.indexOf(".") + 1)
-          val value     = getValue(objectKey)
+          val newKey = key.substring(key.indexOf(".") + 1)
+          val value = getValue(objectKey)
           val childBean = createChildForKey(objectKey, value)
           childBean.updateValue(newKey, newValue)
-        }
-        else
+        } else
           ReflectionTools.setFieldValue(wrappedData, key, valueToUpdate)
     }
     updateObservableValue(property, valueToUpdate)
@@ -60,15 +59,15 @@ class DataWrapper[T <: AnyRef](val wrappedData: T, typeHints: List[FieldMeta] = 
     var key = ""
     observable match {
       case p: Property[_] => key = p.getName
-      case _              =>
+      case _ =>
     }
 
     if (key.nonEmpty) {
       preserveChanges(key, oldValue, newValue)
       wrappedData match {
-        case map: mutable.Map[String, Any]       => map.put(key, newValue)
+        case map: mutable.Map[String, Any] => map.put(key, newValue)
         case javaMap: java.util.Map[String, Any] => javaMap.put(key, newValue)
-        case _                                   => ReflectionTools.setFieldValue(wrappedData, key, newValue)
+        case _ => ReflectionTools.setFieldValue(wrappedData, key, newValue)
       }
     }
 
@@ -84,8 +83,7 @@ class DataWrapper[T <: AnyRef](val wrappedData: T, typeHints: List[FieldMeta] = 
       if (changeManagementMap.containsKey(key)) {
         if (changeManagementMap.get(key) == newValue || newValue.equals(changeManagementMap.get(key)))
           changeManagementMap.remove(key)
-      }
-      else
+      } else
         changeManagementMap.put(key, oldValue)
       hasChangesProperty.setValue(hasManagedChanges)
       if (parentBean.isDefined)
